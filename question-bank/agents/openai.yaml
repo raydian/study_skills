@@ -1,0 +1,4 @@
+interface:
+  display_name: "题库整理"
+  short_description: "Organize question banks by subject parameter"
+  default_prompt: "Use $question-bank with 学科=数学 to organize these questions into a leveled question bank."

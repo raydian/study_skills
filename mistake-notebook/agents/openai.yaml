@@ -1,0 +1,4 @@
+interface:
+  display_name: "错题本"
+  short_description: "Build wrong-answer notebooks by subject parameter"
+  default_prompt: "Use $mistake-notebook with 学科=物理 to create a wrong-answer notebook from these mistakes."

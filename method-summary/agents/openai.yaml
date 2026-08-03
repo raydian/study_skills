@@ -1,0 +1,4 @@
+interface:
+  display_name: "方法总结"
+  short_description: "Summarize reusable methods by subject parameter"
+  default_prompt: "Use $method-summary with 学科=物理 to summarize reusable methods from these questions."

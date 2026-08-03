@@ -1,0 +1,4 @@
+interface:
+  display_name: "学科讲解视频"
+  short_description: "创建高中学科知识点 Remotion 核心精讲视频"
+  default_prompt: "Use $subject-videos to create a Remotion core-lecture video project for a high-school subject knowledge point."

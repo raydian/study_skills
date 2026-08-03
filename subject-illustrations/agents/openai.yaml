@@ -1,0 +1,4 @@
+interface:
+  display_name: "学科插图生成"
+  short_description: "从笔记图片注释生成并插入统一风格插图"
+  default_prompt: "Use $subject-illustrations to generate subject-consistent illustrations from Markdown image comments and insert them into the notes."

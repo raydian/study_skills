@@ -1,0 +1,4 @@
+interface:
+  display_name: "知识点专题"
+  short_description: "Create knowledge-point topics by subject parameter"
+  default_prompt: "Use $topic-summary with 学科=物理 to create a knowledge-point topic note."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF 转 Markdown"
+  short_description: "Convert PDFs into complete Markdown with images"
+  default_prompt: "Use $pdf-markdown to convert this PDF into complete formatted Markdown with extracted images."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "试卷分析"
+  short_description: "Analyze exam papers by subject and question type"
+  default_prompt: "Use $exam-analysis with 学科=物理 to analyze this exam paper by question type."
