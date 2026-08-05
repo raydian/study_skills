@@ -13,6 +13,7 @@ publish.py — 把指定目录下的视频投稿到哔哩哔哩（B 站）
 用法：
   python3 publish.py <视频目录> [--dry-run | --go]
   python3 publish.py <视频目录> --manifest <清单路径>
+  python3 publish.py <视频目录> --extract-covers [--force]   # 提取视频帧作候选封面
 
 参数：
   <视频目录>          必填。包含待发布 .mp4 的目录。
@@ -148,6 +149,82 @@ def find_cover(video_path, cover_hint, base_dir):
     return None
 
 
+def detect_ffmpeg():
+    """返回 ffmpeg 可执行文件路径；缺失（未安装）返回 None。"""
+    p = shutil.which("ffmpeg")
+    if p:
+        return p
+    for cand in ("/opt/homebrew/bin/ffmpeg", "/usr/local/bin/ffmpeg"):
+        if os.path.isfile(cand):
+            return cand
+    return None
+
+
+def extract_frame(video_path, out_path, seek="0", ffmpeg=None):
+    """用 ffmpeg 从视频抓取一帧到 out_path。seek 为时间(秒或 hh:mm:ss)。
+    成功返回 out_path，失败/无 ffmpeg 返回 None。"""
+    if ffmpeg is None:
+        ffmpeg = detect_ffmpeg()
+    if not ffmpeg:
+        return None
+    try:
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        # -ss 置于 -i 前可快速定位；-frames:v 1 取单帧；-q:v 2 高画质
+        cmd = [ffmpeg, "-y", "-ss", str(seek), "-i", video_path,
+               "-frames:v", "1", "-q:v", "2", out_path]
+        subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        if os.path.isfile(out_path) and os.path.getsize(out_path) > 0:
+            return out_path
+        return None
+    except Exception:
+        return None
+
+
+def extract_covers(base_dir, manifest, args):
+    """--extract-covers 模式：从每支视频提取第一帧(0s) / 第二秒帧(2s) 作为候选封面。
+
+    优先级（与 find_cover 对齐）：先第一帧@0s 作默认封面 covers/<名>.png，
+    再第二秒帧@2s 作备选 covers/<名>_t2.png。已存在封面默认跳过，--force 可覆盖。
+    """
+    ffmpeg = detect_ffmpeg()
+    if not ffmpeg:
+        err("未找到 ffmpeg，无法提取视频帧。请先 `brew install ffmpeg`；"
+            "或跳过此步改用 ImageGen 生成封面（见 metadata_conventions 第 5 节）。")
+        return 1
+    videos = []
+    if manifest:
+        for v in manifest.get("videos", []):
+            vf = v.get("file")
+            vpath = os.path.join(base_dir, vf) if vf else None
+            if vpath and os.path.isfile(vpath):
+                videos.append(vpath)
+    else:
+        videos = [os.path.join(base_dir, vf) for vf in scan_videos(base_dir)]
+    if not videos:
+        err("目录下没有可处理的 .mp4 视频：%s" % base_dir)
+        return 1
+    for vpath in videos:
+        name = os.path.splitext(os.path.basename(vpath))[0]
+        cov_dir = os.path.join(base_dir, "covers")
+        frame0 = os.path.join(cov_dir, name + ".png")     # 第一帧 @0s（默认封面）
+        frame2 = os.path.join(cov_dir, name + "_t2.png")  # 第二秒帧 @2s（备选）
+        if os.path.isfile(frame0) and not args.force:
+            info("已存在封面，跳过：%s" % frame0)
+            continue
+        ok0 = extract_frame(vpath, frame0, "0", ffmpeg)
+        ok2 = extract_frame(vpath, frame2, "2", ffmpeg)
+        if ok0:
+            log("✓ 提取第一帧(0s): %s" % frame0)
+        if ok2:
+            log("✓ 提取第二秒帧(2s): %s" % frame2)
+        if not ok0 and not ok2:
+            err("✗ 提取失败：%s" % vpath)
+    log("提示：用 Read 工具查看 covers/<名>.png；若画面无清晰标题文字，"
+        "请用 ImageGen 生成带标题封面并覆盖该文件，再运行 --dry-run / --go。"
+        "若第一帧是黑屏/无关，可改用 covers/<名>_t2.png（第二秒帧）覆盖。")
+    return 0
+
+
 def scan_videos(base_dir):
     """列出目录下所有 .mp4（按文件名排序）。"""
     return sorted(
@@ -243,6 +320,10 @@ def main():
     ap.add_argument("--copyright", type=int, default=None, help="版权 1=自制 2=转载")
     ap.add_argument("--tags", default=None, help="无清单时的默认标签(a,b,c)")
     ap.add_argument("--prefix", default=None, help="无清单时标题前缀")
+    ap.add_argument("--extract-covers", action="store_true",
+                    help="从视频提取第一帧(0s)/第二秒帧(2s)作为候选封面（需 ffmpeg）")
+    ap.add_argument("--force", action="store_true",
+                    help="--extract-covers 时覆盖已存在的封面帧")
     args = ap.parse_args()
 
     go = args.go and not args.dry_run
@@ -250,6 +331,12 @@ def main():
     if not os.path.isdir(base_dir):
         err("目录不存在：%s" % base_dir)
         sys.exit(1)
+
+    # 0) 仅提取封面帧（不需要 biliup / 登录态）
+    if args.extract_covers:
+        manifest_path = args.manifest or os.path.join(base_dir, "bilibili-manifest.json")
+        rc = extract_covers(base_dir, load_manifest(manifest_path, base_dir), args)
+        sys.exit(rc)
 
     # 1) 二进制
     biliup = ensure_biliup()
