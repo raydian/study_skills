@@ -96,7 +96,7 @@ Write subtitle-sized semantic cues rather than long paragraphs. Include scene id
 
 ## Implementation Contract
 
-- Use `$remotion-best-practices`, `rules/video-layout.md`, `rules/subtitles.md`, `rules/timing.md`, and `rules/transitions.md` before editing Remotion code.
+- Use `$remotion-best-practices`, `rules/display-captions.md`, `rules/timing.md`, and `rules/transitions.md` before editing Remotion code.
 - Scaffold an empty project with `npx create-video@latest --yes --blank --no-tailwind <工程名>` when required.
 - Centralize color tokens, typography, safe areas, content, captions, and timing.
 - Share semantic components and data; split layout components by aspect ratio where necessary.
@@ -111,6 +111,23 @@ Write subtitle-sized semantic cues rather than long paragraphs. Include scene id
 - Keep assets in `public/` and use `staticFile()`.
 - Display required readable text as HTML or SVG overlays.
 - Do not add audio components, TTS dependencies, render scripts, or post-render tooling.
+- In the `hs_knowledge` workspace, make `node_modules` a relative symlink to the shared `video/node_modules`; never run `npm install` inside an individual video project.
+
+## Proven Implementation Blueprints
+
+Distilled from `video/选科/04-六门选考科目分别学什么/` (2026-08). Replicate this inventory unless the design documents a deviation:
+
+- `SceneShell`: `bgDeep` base + low-opacity radial/linear blue structural wash; owns font and text color; every scene renders inside it.
+- `Cover` / `Hook`: per the playbook; cover has no frame-driven code, hook stages question→dim→correction.
+- `SceneTransition`: shared enter/exit wrapper (see `transition-playbook.md`).
+- `SubjectNav`-style continuity anchor: one component, two geometries (wide node rail / vertical progress dots), three states (current/completed/upcoming), reused in series scenes and closing.
+- `SubtitleBand`: looks up the active cue by `frame/fps*1000`, explicit color/font, mode-specific size and bottom reserve, ≤6-frame cue micro-fade, z-index above scenes.
+- `TimelineScenes`: one named `Sequence` per shared scene (`layout="none"`) so Studio exposes a navigable scene timeline.
+- Shared content model in `src/data/content.ts`: each core scene is `{conclusion, explanation, evidence: readonly string[], nextStep}`; sibling series additionally share an id list, display names, and per-item task labels so compare and closing scenes can rebuild the series from data.
+- `src/config/layout.ts`: per-mode tokens (`safeX`, `top`, `subtitleBottom`, `subtitleReserve`, `title`, `body`, `subtitle`, `columns`, `maxSimultaneousItems`); scenes read tokens, never hardcode geometry.
+- `src/validation/captionFit.ts`: deterministic line estimator (full-width `1.0em`, CJK punctuation `0.7em`, space `0.3em`, ASCII `0.58em`) used by both the vitest suite and the validate script.
+- `tests/`: `video-contract.test.ts` (vitest) + `validate-video.mts` (plain node/tsx) implementing the automated layer of `compliance-checklist.md`. Keep asserted literal strings out of comments to avoid false failures.
+- Illustrative cases carry a visible 示例 badge; misconception content pairs danger-colored wrong claim with success-colored correction in one card.
 
 ## Validation Checklist
 

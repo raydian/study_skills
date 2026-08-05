@@ -123,7 +123,7 @@ Exit gate:
 
 ## Stage 4: Implementation
 
-Load `$remotion-best-practices`, `rules/video-layout.md`, `rules/subtitles.md`, `rules/timing.md`, and `rules/transitions.md` before implementation.
+Load `$remotion-best-practices`, `rules/display-captions.md`, `rules/timing.md`, and `rules/transitions.md` before implementation.
 
 Required implementation rules:
 
@@ -135,6 +135,7 @@ Required implementation rules:
 - use adaptive layout tokens while preserving independent scene composition and density;
 - distribute dense content across frames or scenes and use motion for progressive explanation;
 - use transitions only when they express continuity, progression, contrast, reveal, or topic change;
+- implement scene changes with `references/transition-playbook.md`: a shared SceneTransition wrapper (paired enter/exit fades), slide relay for ordered sibling scenes, and a matched-element continuity anchor across every multi-scene series;
 - use frame-driven Remotion animation only;
 - implement conclusion → explanation → evidence/action layers for every core teaching scene;
 - register human-readable `Sequence` ranges for scene navigation in Remotion Studio;
@@ -164,6 +165,7 @@ Review at least:
 - explicit subtitle color/font and an appropriately enlarged vertical subtitle reserve;
 - named scene ranges in Studio and accurate expectations about code-generated timeline thumbnails;
 - teaching purpose for motion and semantic purpose for transitions;
+- unified transition implementation per `transition-playbook.md` (shared wrapper, one slide direction per sibling series, continuity anchor reused in the closing scene, transitions never touching the subtitle band or frame 0);
 - subtitle type, timing, safe area, and two-line limit;
 - semantic splitting of overlong subtitles into separate, non-overlapping playback ranges;
 - frame-driven deterministic animation;
@@ -202,6 +204,8 @@ Run the checks supported by the project, such as:
 - source scan for forbidden CSS animation, TTS, audio, and render integration.
 - inspect representative stills only after an explicit user preview instruction; otherwise do not render stills or video.
 
+After the project's own checks pass, run the **compliance pass** defined in `references/compliance-checklist.md`: walk every subtitle, motion, color, and layout-structure item (machine layer plus manual layer). Any non-conforming item must be adjusted and optimized in the production code or data — never weaken the check — then re-run the entire suite and re-walk the affected manual items. Record each failure, fix, and recheck in the verification artifact.
+
 Do not run `remotion render`, `remotion still`, FFmpeg export, or an automated screenshot/still render as a test.
 
 Artifact:
@@ -213,9 +217,10 @@ docs/superpowers/testing/YYYY-MM-DD-<主题>-verification.md
 Exit gate:
 
 - all required non-rendering checks pass;
+- the compliance pass in `references/compliance-checklist.md` has no open failure in subtitles, motion, colors, or layout structure;
 - no subtitle exceeds two lines in either composition;
 - failures are fixed and rechecked;
-- the verification artifact records commands, results, and intentionally skipped visual/render checks.
+- the verification artifact records commands, results, fixes with recheck evidence, and intentionally skipped visual/render checks.
 
 ## Stage 7: Complete
 

@@ -68,6 +68,8 @@ Use a small, consistent transition vocabulary across the video. Avoid a differen
 
 When using `TransitionSeries`, account for overlapping transition frames in total duration and keep shared caption timing valid. Do not let transitions obscure subtitles or change the exact one-frame cover rule.
 
+For concrete implementations — the shared SceneTransition wrapper (paired enter/exit fades), slide relay for sibling scenes, matched-element continuity anchors, one-way staggered reveals, hook staging, and the transition safety budget — follow `transition-playbook.md`. When scenes are dispatched by frame lookup rather than `TransitionSeries`, the playbook's paired-fade pattern is the default way to get smooth cross-fades without breaking caption math.
+
 ## Wide Layout Strategy
 
 Use horizontal space for relationships, not for filling every available region.
