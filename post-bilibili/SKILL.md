@@ -49,8 +49,19 @@ Remotion / subject-videos 等技能的事）。
 - **标题**（≤80 字，推荐 `高中数学必修一：<章节>-<序号>-<主题>｜知识点讲解` 结构）
 - **标签**（3–8 个，大词+长尾词）
 - **简介**（纯文本，写明本节内容与适用人群）
-- **封面**：若 `covers/<名>.png` 已存在则直接用；否则用 WorkBuddy 内置 **ImageGen** 工具
-  生成一张宽屏知识封面，保存到 `covers/<视频名>.png`（提示词模板见 metadata_conventions 第 5 节）。
+- **封面（优先用视频帧）**：
+  1. 先跑一次帧提取（需 `brew install ffmpeg`）：
+     ```bash
+     python3 <技能目录>/scripts/publish.py "<目录>" --extract-covers
+     ```
+     它会把每支视频的**第一帧(0s)** 抓到 `covers/<名>.png`、**第二秒帧(2s)** 抓到
+     `covers/<名>_t2.png`。
+  2. 用 **Read 工具查看**提取的 `covers/<名>.png`：
+     - 含清晰标题文字（片头标题卡）→ 直接用，无需 ImageGen；
+     - 无标题信息（纯人脸/空白/无关画面）→ 调用 WorkBuddy **ImageGen** 生成一张带标题的
+       宽屏封面，保存为 `covers/<视频名>.png` 覆盖之（提示词模板见 metadata_conventions 第 5.2 节）。
+  3. 若 ffmpeg 未装或视频无任何帧可用，直接走第 2 步的 ImageGen 生成。
+  > publish.py 的 `find_cover` 已自动按上述优先级查找封面，通常无需在清单里写 `cover` 字段。
 
 将结果写入 `<目录>/bilibili-manifest.json`，格式见 `references/metadata_conventions.md` 第 1 节。
 **质量优先**：标题/标签/简介决定了检索与点击，值得认真写，不要只拿文件名凑数。
@@ -59,7 +70,7 @@ Remotion / subject-videos 等技能的事）。
 
 运行（用受管 Python）：
 ```bash
-/Users/yxy/.workbuddy/binaries/python/versions/3.13.12/bin/python3 \
+/Users/mac/.workbuddy/binaries/python/versions/3.13.12/bin/python3 \
   <技能目录>/scripts/publish.py "<目录>" --dry-run
 ```
 确认脚本正确识别了每条视频、封面、标题、标签、简介，无"缺失"警告。若有缺失，回去补元数据或封面。
@@ -67,7 +78,7 @@ Remotion / subject-videos 等技能的事）。
 ### 第 4 步：正式投稿
 
 ```bash
-/Users/yxy/.workbuddy/binaries/python/versions/3.13.12/bin/python3 \
+/Users/mac/.workbuddy/binaries/python/versions/3.13.12/bin/python3 \
   <技能目录>/scripts/publish.py "<目录>" --go
 ```
 
@@ -92,6 +103,7 @@ Remotion / subject-videos 等技能的事）。
 
 ## 资源
 
-- `scripts/publish.py` — 通用投稿脚本（扫描目录、读清单、逐条上传、代理处理、频控）。
+- `scripts/publish.py` — 通用投稿脚本（扫描目录、读清单、逐条上传、代理处理、频控；
+  另支持 `--extract-covers [--force]` 用 ffmpeg 提取视频第一帧/第二秒帧作候选封面）。
 - `references/biliup_reference.md` — biliup-rs 安装/登录/命令/分区码/踩坑全集。
 - `references/metadata_conventions.md` — 标题/标签/简介/封面生成规范与 ImageGen 提示词模板。
