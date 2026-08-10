@@ -65,6 +65,6 @@ Represent candidates as data with explicit booleans or verdict fields. Add a uni
 - Check KaTeX baseline alignment, superscripts, roots, fractions, set symbols, and domain notation at final video resolution.
 - Check that subtitles do not cover graph axes, domain restrictions, verdicts, or final conclusions.
 - Check graph examples against known points and domain restrictions in tests; check derivations and comparison verdicts as data rather than only by visual inspection.
-- After TTS timing changes, verify each scene boundary is contiguous and every subtitle range lies inside its scene.
+- After narration cue changes, verify each scene boundary is contiguous and every subtitle range lies inside its scene.
 - Check graph geometry against mathematical invariants, not only appearance: correct quadrants, intercepts, asymptotes, holes, endpoints, and branch separation.
 - For every worked example, render at least the setup, transformation, sign-analysis, and conclusion states. Verify that the narration cue at each frame explains the visible state.

@@ -1,4 +1,4 @@
 interface:
   display_name: "PDF 转 Markdown"
-  short_description: "Convert PDFs into complete Markdown with images"
-  default_prompt: "Use $pdf-markdown to convert this PDF into complete formatted Markdown with extracted images."
+  short_description: "MinerU 原始稿、格式化稿和章节/单元拆分"
+  default_prompt: "Use $pdf-markdown to run the MinerU raw conversion, formatting, chapter/unit split, and validation pipeline."

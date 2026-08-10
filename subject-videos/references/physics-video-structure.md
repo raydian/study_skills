@@ -325,7 +325,7 @@ For every scene, record:
 
 ### `口播稿.md`
 
-Keep scene ids and stable `visualCueId`/`stepId` values. Multiple narration cues may explain one unchanged visual step. Narration, subtitle, formula, and diagram must describe the same state. Once audio exists, use the measured cue to drive the corresponding Remotion frames; a formula, conclusion, vector, graph state, or answer step must not appear before its spoken cue.
+Keep scene ids and stable `visualCueId`/`stepId` values. Multiple narration cues may explain one unchanged visual step. Narration, subtitle, formula, and diagram must describe the same state. Use the authored cue to drive the corresponding Remotion frames; a formula, conclusion, vector, graph state, or answer step must not appear before its explanatory cue.
 
 ## Fallback Rules
 

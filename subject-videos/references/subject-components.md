@@ -45,7 +45,7 @@ Chinese page layout patterns:
 
 Timing behavior for reading components:
 
-- visual state must be derived from the measured narration/subtitle timeline;
+- visual state must be derived from the authored narration/subtitle timeline;
 - during pauses between narration segments, hold the previous meaningful text or display a deliberate pause prompt;
 - do not fall back to the first line, first subtitle, or a generic “overall impression” prompt during segment gaps;
 - if a component uses an active segment index, choose the latest segment whose `start` is not greater than the current frame when the current frame is between segments.
@@ -82,7 +82,7 @@ Patterns:
 Physics structure routing:
 
 - Use `physics-video-structure.md` to select the concept/law, experiment/inquiry, calculation/method, or phenomenon/mechanism route.
-- Keep components frame-driven and bind narration-led states to stable `stepId`/`visualCueId` values once audio exists.
+- Keep components frame-driven and bind narration-led states to stable `stepId`/`visualCueId` values.
 - Treat the route stages as teaching purposes, not one-component-per-stage or fixed pages.
 
 ## 化学
@@ -148,6 +148,6 @@ Patterns:
 ## Cross-Subject Rules
 
 - Components must be readable at 1920x1080.
-- Keep labels concise; put longer explanation in voiceover.
+- Keep labels concise; put longer explanation in the narration script.
 - Prefer progressive reveal over showing a full dense diagram at once.
 - Use color consistently: neutral base, one accent for current focus, one warning color for common mistakes.

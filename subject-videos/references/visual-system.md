@@ -106,7 +106,7 @@ Treat these as starting points, not substitutes for rendering. Do not shrink a l
 
 Keep text concise on screen. Put long explanation in `口播稿.md`.
 
-For bottom subtitles, keep the approved font size and safe width stable. The complete verbatim cue may use at most two rendered lines and should use one when it fits. Do not solve a third line by shrinking the font, expanding beyond the safe area, clipping, or hiding text. Split the matching spoken marker into multiple timed cues at semantic boundaries, keeping each cue identical to the audio text.
+For bottom subtitles, keep the approved font size and safe width stable. The complete verbatim cue may use at most two rendered lines and should use one when it fits. Do not solve a third line by shrinking the font, expanding beyond the safe area, clipping, or hiding text. Split the matching narration cue into multiple authored cues at semantic boundaries, keeping each cue identical to the script text.
 
 ## Subject Visual Profiles
 
@@ -128,7 +128,7 @@ Keep these shared constraints:
 
 - show selected text, evidence labels, interpretation paths, structure/theme synthesis, and answer-building steps instead of full-page paragraphs;
 - rebuild information-structure images as native video elements unless the image itself is evidence or artwork students must inspect;
-- bind active-line reading focus and evidence/answer reveals to measured narration timing once audio exists;
+- bind active-line reading focus and evidence/answer reveals to authored narration cue ranges;
 - use the complete worked-example sequence from `chinese-video-structure.md`, not a template-only answer card;
 - show exact classical quotations and explain their source and citation function when known.
 
@@ -253,7 +253,7 @@ Each project should implement or reuse equivalents of:
 - `Callout`: key point / warning / success / danger box;
 - `DefinitionCard` or subject equivalent: term/model/process + explanation with accent rule;
 - `Formula`, `Diagram`, `Map`, `Timeline`, or subject equivalent with consistent emphasis;
-- `SceneVoice` or timeline subtitle mapping when audio/timed narration exists.
+- timeline subtitle mapping when timed narration exists.
 
 Keep component APIs simple and content-driven. Components should accept text/data/style props instead of baking in one lesson's labels.
 
@@ -264,12 +264,11 @@ For polished videos, use one timeline source for:
 - scene start/end;
 - per-line narration text;
 - subtitle display;
-- audio clips when generated;
 - scene animation checkpoints.
 
-The `sets-concept` pattern uses `timeline.json`, `timeline.ts`, `voiceover-data.ts`, and `voiceover-timeline.ts`. Future projects may simplify this before audio exists, but should still keep scene timing centralized rather than scattering magic frame numbers across components.
+The `sets-concept` pattern uses `timeline.json` and `timeline.ts` for centralized scene, cue, and animation timing. Future projects may simplify this, but should still keep scene timing centralized rather than scattering magic frame numbers across components.
 
-When a scene's main visual follows timed narration segments, handle pauses deliberately. During measured silent gaps between subtitle segments, keep the previous meaningful visual state or show an intentional reading pause state; never flash back to a generic fallback or the first segment.
+When a scene's main visual follows timed narration segments, handle pauses deliberately. During intentional gaps between subtitle segments, keep the previous meaningful visual state or show an intentional reading pause state; never flash back to a generic fallback or the first segment.
 
 ## Quality Checklist
 
@@ -280,7 +279,7 @@ Before finishing a video project:
 - the cover page appears before the first teaching scene and the closing page appears after the final recap;
 - math videos are consistent with `sets-concept`; other subjects use their own visual profile;
 - subtitles are below the main teaching board and do not cover critical labels;
-- every subtitle renders in at most two lines at final resolution and matches the exact spoken marker text;
+- every subtitle renders in at most two lines at final resolution and matches the exact authored narration cue;
 - each scene has a clear teaching purpose and at least one meaningful visual structure;
 - diagrams reveal progressively rather than appearing as dense final boards;
 - all motion is frame-driven and deterministic;

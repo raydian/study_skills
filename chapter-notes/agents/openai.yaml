@@ -1,4 +1,4 @@
 interface:
   display_name: "章节笔记"
-  short_description: "生成带知识点图谱、双链与 SEO 元数据的章节笔记"
-  default_prompt: "Use $chapter-notes to generate compliant subject chapter notes with multiple knowledge-point tags, verified Obsidian Wikilinks, a chapter MOC, and Quartz-compatible SEO frontmatter from the specified source."
+  short_description: "按真实子章节拆分笔记并完善插图注释、双链与 SEO 元数据"
+  default_prompt: "Use $chapter-notes to split the specified source by real textbook subchapters, preserve every source visual unit as a specific image-description comment, generate complete subject-specific notes with a chapter MOC, knowledge-point tags, verified Wikilinks, and Quartz-compatible SEO frontmatter."

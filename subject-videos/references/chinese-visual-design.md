@@ -241,7 +241,7 @@ Preferred motion:
 
 Keep the background drift extremely slow. Avoid bounce, spin, random particles, decorative looping light, CSS transitions, and motion unrelated to reading or reasoning.
 
-Once audio exists, bind reading focus, keyword emphasis, reasoning steps, and answer construction to measured narration cues.
+Bind reading focus, keyword emphasis, reasoning steps, and answer construction to authored narration cues.
 
 ## Adaptation By Genre
 

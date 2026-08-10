@@ -12,6 +12,76 @@ def read(relative_path: str) -> str:
 
 
 class SkillContractTest(unittest.TestCase):
+    def test_subject_videos_contains_no_voiceover_operations(self) -> None:
+        self.assertFalse((SKILL_ROOT / "references/audio-voiceover.md").exists())
+        markdown_files = (SKILL_ROOT / "references").rglob("*.md")
+        combined = read("SKILL.md") + "\n" + "\n".join(
+            path.read_text(encoding="utf-8")
+            for path in markdown_files
+            if path.name != "audio-voiceover.md"
+        )
+
+        for forbidden in (
+            "$video-voiceover",
+            "ffprobe",
+            "audio_timeline.json",
+            "speechRate",
+            "call TTS",
+            "Doubao TTS",
+        ):
+            self.assertNotIn(forbidden, combined)
+
+    def test_voiceover_is_an_explicit_external_handoff(self) -> None:
+        skill = read("SKILL.md")
+        english = read("references/english-video-structure.md")
+
+        self.assertIn("Narration Handoff Boundary", skill)
+        self.assertIn("Do not generate or attach audio", skill)
+        self.assertNotIn("$video-voiceover", skill)
+        self.assertNotIn("audio_timeline.json", skill)
+        self.assertNotIn("zh_female_yingyujiaoxue_uranus_bigtts", skill)
+        self.assertNotIn("$video-voiceover", english)
+        self.assertNotIn("ffprobe", english)
+
+    def test_english_videos_build_three_parts_then_merge(self) -> None:
+        skill = read("SKILL.md")
+        english = read("references/english-video-structure.md")
+
+        self.assertIn("English Video Routing", skill)
+        self.assertIn("three independently authored parts", skill)
+        self.assertIn("unit-cover", skill)
+        self.assertIn("chapter-01", skill)
+        self.assertIn("English-only narration/script text", skill)
+        self.assertIn("shadowing", skill)
+        self.assertIn("Build Independently, Then Merge", english)
+        self.assertIn("subtitleEn === textEn", english)
+        self.assertIn("Narration Handoff", english)
+
+    def test_english_vocabulary_videos_use_a_dedicated_learning_route(self) -> None:
+        skill = read("SKILL.md")
+        english = read("references/english-video-structure.md")
+
+        self.assertIn("Vocabulary and Phrase Specialization", skill)
+        self.assertIn("vocabulary-and-phrase route takes precedence", skill)
+        self.assertIn("all core vocabulary and core phrases", skill)
+        self.assertIn("Vocabulary and Phrase Route", english)
+        self.assertIn("semantic module", english)
+        self.assertIn("scene + communicative function + usage frame", english)
+        self.assertIn("recognition", english)
+        self.assertIn("retrieval", english)
+        self.assertIn("transfer", english)
+        self.assertIn("one primary module", english)
+
+    def test_english_vocabulary_videos_do_not_force_full_course_sections(self) -> None:
+        skill = read("SKILL.md")
+        english = read("references/english-video-structure.md")
+        combined = skill + "\n" + english
+
+        self.assertIn("Do not force the full reading", combined)
+        self.assertIn("shadowing", combined)
+        self.assertIn("spoken-output section", combined)
+        self.assertIn("short sentence-level application", combined)
+
     def test_cover_title_is_dominant_core_knowledge_point(self) -> None:
         skill = read("SKILL.md")
         cover = read("references/cover-design.md")
@@ -24,7 +94,6 @@ class SkillContractTest(unittest.TestCase):
         files = (
             "SKILL.md",
             "references/teaching-script.md",
-            "references/audio-voiceover.md",
             "references/visual-system.md",
             "references/chinese-visual-design.md",
             "references/physics-video-structure.md",
@@ -38,22 +107,6 @@ class SkillContractTest(unittest.TestCase):
         self.assertIn(
             "never summarize, shorten, omit, paraphrase, or rewrite", combined
         )
-
-    def test_measured_audio_drives_visual_frame_state(self) -> None:
-        skill = read("SKILL.md")
-        audio = read("references/audio-voiceover.md")
-
-        self.assertIn(
-            "measured audio timing is the source of truth for subtitles, "
-            "scene boundaries, visual steps, and total frames",
-            skill,
-        )
-        self.assertIn(
-            "measured audio cue -> subtitle cue -> visualCueId/stepId -> "
-            "Remotion frame state",
-            audio,
-        )
-        self.assertIn("must not appear before its spoken cue", audio)
 
     def test_physics_projects_use_template_and_shared_dependencies(self) -> None:
         skill = read("SKILL.md")

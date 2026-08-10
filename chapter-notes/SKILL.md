@@ -1,6 +1,6 @@
 ---
 name: chapter-notes
-description: Create subject-specific high-school chapter notes with complete learning sections, knowledge-point-centered tags, Obsidian Wikilinks, chapter MOCs, and Quartz-compatible SEO frontmatter from a specified textbook Markdown file, chapter file, or source material. Use when the user asks to 生成章节笔记, 拆解章节笔记, 按指定文件生成章节目录和子章节笔记, 建立知识图谱或双向链接, or create and improve chapter-note outputs under high_school; the subject must be provided or inferred and routed to the matching reference file.
+description: Create subject-specific high-school chapter notes with complete learning sections, real-subchapter splitting, source-figure image annotations, knowledge-point-centered tags, Obsidian Wikilinks, chapter MOCs, and Quartz-compatible SEO frontmatter from a specified textbook Markdown file, chapter file, or source material. Use when the user asks to 生成章节笔记, 拆解章节笔记, 按真实子章节生成独立笔记, 为教材插图补充图片注释, 建立知识图谱或双向链接, or create and improve chapter-note outputs under high_school; the subject must be provided or inferred and routed to the matching reference file.
 ---
 
 # Chapter Notes
@@ -43,7 +43,8 @@ Always read `references/common.md`, then read exactly one subject reference befo
 13. Add `## 知识关系导航` between the H1 title and the nine required learning sections. Every note must contain at least one verified Wikilink, normally to the chapter MOC plus relevant knowledge-point headings in existing or concurrently created notes. Add contextual body Wikilinks when they clarify a genuine knowledge relationship.
 14. When one input file contains multiple chapters, create one chapter folder and one chapter MOC per real chapter, then generate the subchapter files inside each folder.
 15. Do not create `原始课本素材.md` inside `章节笔记/` unless the user explicitly asks for source-material archiving there. Prefer keeping raw material in `markdown/`.
-16. Validate outputs before finishing:
+16. Treat illustrations as a two-pass deliverable: first write complete notes with source-figure-aware `图片描述` comments; only then hand the notes to `subject-illustrations` or another image workflow to generate and insert image files. Never remove a comment because an image has not yet been generated.
+17. Validate outputs before finishing:
    - correct subject directory;
    - one folder per real chapter;
    - one file per real subchapter;
@@ -55,8 +56,30 @@ Always read `references/common.md`, then read exactly one subject reference befo
    - knowledge links express a real prerequisite, progression, comparison, causation, derivation, method-transfer, or application relationship instead of forming a link dump;
    - every subchapter file has the required nine sections;
    - every core knowledge point, key definition, important conclusion, required method, and source example/experiment/material point from the textbook subchapter is covered;
+   - every source figure, chart, map, experiment image, or other meaningful visual unit has a nearby, specific image annotation; the generic local-image count is only a default when the source has no figure inventory;
    - image annotations and knowledge-map annotations are placed only where they support learning, with controlled quantity and subject-consistent style;
    - content is explanatory, not copied raw textbook text.
+
+## Subchapter Splitting Contract
+
+Split by the textbook's real teaching structure, not by page boundaries or whatever heading happens to be easiest to match:
+
+- A numbered teaching section such as `第一节`, `第二节`, `1.1`, or `1.2` becomes its own Markdown note and keeps the source section title in the filename.
+- A chapter folder must contain every real teaching section plus any substantial chapter-end learning unit. A `问题研究`/专题探究 with its own materials, questions, or conclusions may be a separate note; a short `活动`/`思考`/`案例` remains in the parent section while its learning value is preserved.
+- Do not merge two real sections into one file, flatten all sections into `原始课本素材.md`, or create files only for page ranges, image blocks, exercises, or decorative headings.
+- After splitting, update `章首 学习导图.md` so it links every generated note and explains the sequence and cross-section relationships. Each split note still receives the complete learning-note structure; splitting must not reduce content to a summary.
+- When updating an existing chapter, preserve established filenames and links where possible. If a split is corrected, update the MOC and all affected Wikilinks in the same task.
+
+## Illustration Contract
+
+Image annotations are part of the note content and form the handoff contract to image generation:
+
+- Before writing, inventory source visual units by figure number/caption or source image reference. Map each meaningful source visual unit to one nearby `<!-- 图片描述：... -->` comment. Preserve the source figure identity in the visible explanation or in the comment so the mapping is auditable.
+- Every subchapter starts with one “本节整体知识信息结构图” comment. Add source-driven comments and learning-value-driven local diagrams near the relevant paragraph; the source inventory overrides any generic 2–5-image guideline.
+- A comment must describe the subject, structure, labels, arrows, variables, legend, comparison or process, key conclusion, and why the image helps at that exact location. `<!-- 配图 -->` and other empty placeholders are invalid.
+- In the image-generation pass, insert the generated image immediately above its comment using a relative path such as `![图1.1：太阳辐射示意图](images/第一节-太阳辐射-图1-1.webp)`. Keep the comment after insertion.
+- Image filenames and relative paths must contain no spaces. Use hyphens or underscores as separators; keep names stable, readable, and tied to the note/figure identity. Do not use a filename that changes between generation and insertion.
+- Generated images belong beside the note in its `images/` directory and may be shared by related notes through relative paths when that is clearer; do not duplicate identical assets unnecessarily. Validate that every referenced file exists and that no source-image mapping was silently dropped.
 
 ## Output Boundary
 

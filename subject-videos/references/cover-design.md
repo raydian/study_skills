@@ -69,7 +69,7 @@ Use a calm, deterministic entrance:
 5. key SVG path draws;
 6. conclusion points or labels appear.
 
-Keep the cover alive long enough for narration, but do not add idle time. Cover motion must not change established subtitle, audio, scene-start, or total-frame timing unless the spoken script also changes.
+Keep the cover alive long enough for narration, but do not add idle time. Cover motion must not change established subtitle, cue, scene-start, or total-frame timing unless the script also changes.
 
 ## Cover QA
 

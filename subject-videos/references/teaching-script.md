@@ -68,7 +68,7 @@ When the source text cites a classical work (经典), the video must:
 - state the classical source if known (e.g., 《论语·学而》);
 - explain the citation context: what concept the quote supports and how the author uses it in the argument.
 
-Keep the quote on screen long enough to be read, and bind the highlight to its spoken subtitle/audio segment.
+Keep the quote on screen long enough to be read, and bind the highlight to its authored narration/subtitle cue.
 
 ## Screen Text Structure
 
@@ -79,7 +79,7 @@ Use this screen-text hierarchy:
 - primary focus: one quote, one question, one conclusion, one diagram, or one answer step;
 - annotations: keywords, short margin notes, arrows, cause/effect labels, emotional turns, or method labels;
 - route map: the current learning path, such as `结构 -> 意象 -> 情感 -> 手法 -> 答法`;
-- subtitle: the exact spoken text, split before TTS into short timed segments that render in at most two lines.
+- subtitle: the exact authored narration text, split into short cue segments that render in at most two lines.
 
 For Chinese videos, avoid generic pages like “课文简介 + 中心思想 + 写作手法” as the main visual structure. Prefer genre-specific routes and evidence-based boards: selected text, evidence labels, interpretation paths, theme formation, weak/strong answer contrast, and complete worked-example solution paths.
 
@@ -101,10 +101,10 @@ When a formula appears, identify the object, process, direction convention, quan
 - Give each teaching scene multiple subtitle-sized narration segments. Each complete verbatim cue may render in at most two lines; one static subtitle for an entire scene is not acceptable.
 - Store a stable scene id on every cue. Test that the scene exists and that `scene.from <= cue.start < cue.end <= scene.from + scene.duration`.
 - For worked examples, create one or more cues for every visible semantic step. The cue must explain the formula, reason, or warning currently highlighted on screen.
-- Keep the full teacher explanation in `口播稿.md`; split it into spoken cues and use each cue verbatim as its subtitle. Require `subtitle === text`; never summarize, shorten, omit, paraphrase, or rewrite the spoken wording, and do not let the subtitle introduce a conclusion before the board has reached it.
-- Prefer one rendered line when the complete cue fits. If a cue would exceed two rendered lines at the approved font size and safe width, split the spoken sentence at a semantic boundary and assign separate measured timeline ranges.
+- Keep the full teacher explanation in `口播稿.md`; split it into narration cues and use each cue verbatim as its subtitle. Require `subtitle === text`; never summarize, shorten, omit, paraphrase, or rewrite the authored wording, and do not let the subtitle introduce a conclusion before the board has reached it.
+- Prefer one rendered line when the complete cue fits. If a cue would exceed two rendered lines at the approved font size and safe width, split the narration sentence at a semantic boundary and assign separate cue ranges.
 - Update `口播稿.md`, `storyboard.md`, cue data, scene durations, and visual step boundaries together when content expands or contracts.
-- Once audio exists, use `measured audio cue -> subtitle cue -> visualCueId/stepId -> Remotion frame state` as the canonical timing chain. A visual conclusion must not appear before the cue that speaks it, and the active visual step must advance with the measured narration unless consecutive cues intentionally share one stable visual id.
+- Use `narration cue -> subtitle cue -> visualCueId/stepId -> Remotion frame state` as the canonical authored timing chain. A visual conclusion must not appear before the cue that explains it, and the active visual step must advance with the narration unless consecutive cues intentionally share one stable visual id.
 
 ### Remotion Frame Coordinates
 

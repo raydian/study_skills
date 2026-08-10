@@ -1,13 +1,13 @@
 ---
 name: subject-videos
-description: Create high-school subject knowledge-point lecture videos as Remotion projects. Use when the user asks to make 学科视频, 知识点讲解视频, Remotion 学习视频, 核心精讲版 videos, teacher-style voiceover scripts, or silent 1920x1080 educational video projects under the project video directory for subjects such as Chinese, math, physics, chemistry, biology, geography, or history.
+description: Create high-school subject knowledge-point lecture videos as Remotion projects. Use when the user asks to make 学科视频, 知识点讲解视频, Remotion 学习视频, 核心精讲版 videos, teacher-style narration scripts, or 1920x1080 educational video projects under the project video directory, including English listening, shadowing, vocabulary, grammar, speaking, bilingual-subtitle, or three-part-build-then-merge workflows.
 ---
 
 # Subject Videos
 
 ## Overview
 
-Create one Remotion video project for one high-school knowledge-point file. The output is a 1920x1080 horizontal core-lecture project, a teacher-like voiceover script, and a silent video composition that can receive audio later.
+Create one Remotion video project for one high-school knowledge-point file. The output is a 1920x1080 horizontal core-lecture project, a teacher-like narration script, a bilingual subtitle/cue plan when needed, and a silent Remotion composition. Audio generation and audio attachment are outside this skill.
 
 Always use `$remotion-best-practices` as the core Remotion implementation guide before writing or editing Remotion code.
 
@@ -31,8 +31,8 @@ Rules:
 - Include a cover/opening page before the first teaching scene. The cover should establish the course topic and "未开始/即将开始" state briefly, not jump directly into the knowledge explanation on frame 0.
 - Build the cover with `references/cover-design.md`: default to a left-side subject/title/range hierarchy and a right-side topic-specific SVG. Make the current core knowledge point the largest white bold text and first visual focus on the frame; keep the subject label, nearest chapter/range, illustration, and course chrome secondary unless the user requests otherwise.
 - Include a closing page after the final teaching scene. The closing page should summarize the whole video's learning path, key takeaways, and final method cue instead of ending abruptly on the last content board.
-- Create `口播稿.md` for narration. Do not generate final audio unless the user asks later.
-- Create a silent Remotion video. Do not add placeholder audio.
+- Create `口播稿.md` for narration/script planning. Do not generate or attach audio in this skill.
+- Keep the Remotion source silent in this workflow. If narration audio is requested, hand off only after the user confirms a separate voiceover workflow.
 - Assets from notes, images, exercises, and text may be copied into `public/` and referenced with `staticFile()`.
 - If the user asks for a high-fidelity 4K deliverable, keep the master timeline and sync unchanged and export an additional `3840x2160` file under `output/`.
 
@@ -61,6 +61,36 @@ Apply these repository-specific mathematics rules:
   - Let `buildLesson` compute every scene start frame and distribute every narration cue from declared durations; never hardcode `FROM`/`HOOK` frame constants inside scene files.
   - Author narration only in `src/data/lesson-inputs.ts`. Generate `口播稿.md` with `node scripts/gen-script.mjs`; never maintain it by hand. The script-sync guard test fails on any drift between data and script.
   - Run `tsc --noEmit && vitest run` and keep the four guard suites green before finishing: CSS animation/transition ban, composition registration, KaTeX formula guard, and 口播稿↔subtitle consistency. The full compiler, schema, engine, and guard-test code live in the `remotion-lesson-video` skill.
+
+## English Video Routing
+
+For `学科=英语`, read `references/english-video-structure.md` before designing the storyboard, script, scene data, or Remotion composition.
+
+### Vocabulary and Phrase Specialization
+
+When the source or request is specifically about core vocabulary and core phrases, use the dedicated vocabulary-and-phrase route. The vocabulary-and-phrase route takes precedence over the three-part English course route below.
+
+- Inventory the full source scope before authoring: all core vocabulary and core phrases, supplementary vocabulary or chunks explicitly included by the source, relevant word families, and required collocation/form variants. Give every learning object one primary semantic module and keep a coverage matrix linking it to explanation, practice, and review cues.
+- Divide content by `scene + communicative function + usage frame`, not by word-list order, isolated Chinese meaning, or fixed textbook page order. A semantic module must be coherent as a micro-situation, share an expressive task or usage pattern, and fit a complete learning loop.
+- Use the module loop `context trigger → vocabulary network → item explanation → collocation and sentence frame → contrast/error check → immediate retrieval → contextual transfer → module checkpoint`.
+- Include recognition, active retrieval, and transfer in every module. Recycle each learning object at initial exposure, immediate practice, and later mixed review.
+- For each word, explain core meaning, part of speech, useful collocation, sentence frame, one error point, one natural example, and one active retrieval task. For each phrase, explain whole-chunk meaning, structure, replaceable slots, typical context, sentence frame, and a production task.
+- Do not force the full reading, shadowing, or spoken-output section into a vocabulary-and-phrase lesson. Do not add long listening input, shadowing pauses, independent speaking chapters, or full writing tasks unless the user explicitly requests them. Keep only short sentence-level application and contextual transfer needed to make the vocabulary usable.
+- Treat module names as content-dependent. Use `typical scene + communicative task + language handle`; do not hard-code the five Unit 1 example modules as a universal taxonomy.
+- Keep each module within a manageable load, normally 6–10 core words, 3–6 phrases, and one or two word-family or contrast groups. Split or merge only after checking semantic coherence, training completeness, and cognitive load.
+- Prefer a module series plus a final mixed-retrieval episode when all unit vocabulary cannot be taught and recycled well in one short file. Duration is driven by the inventory and learning loop, not by the default 2–15 minute target.
+
+### General English Course Route
+
+For English lessons whose main goal is listening, shadowing, language noticing, and spoken output, use three independently authored parts: input and shadowing, language focus in context, and spoken output and review. Build and validate the three parts independently first, then merge them into one final master composition with a complete unit cover and one chapter page before each part. The final master should expose one complete composition unless the user explicitly requests separate episode deliverables.
+
+English-specific defaults:
+
+- Use English-only narration/script text and English for page text; render bilingual subtitles with English on the first line and Chinese on the second line.
+- For the general course route, use short listening, shadowing, quick vocabulary-in-context, grammar-noticing, speaking, and retrieval cues instead of a long conventional lecture. For the vocabulary-and-phrase route, use micro-contexts, semantic modules, item-level explanation, contrast, retrieval, and transfer instead of shadowing or an independent speaking section.
+- Use `unit-cover` as the complete first frame, then `chapter-01`, `chapter-02`, and `chapter-03` before the three content blocks. Do not show a blank frame before the cover.
+- Author each part as an independently testable episode data set/composition, then build `COMBINED_EPISODE` (or the project equivalent) by removing local episode covers and inserting the global cover and chapter pages in sequence.
+- Do not select a voice, invoke a synthesizer, generate audio files, or update the video timeline from measured audio here. Treat narration audio as a separate, user-confirmed handoff.
 
 ## Chinese Template And Shared Dependencies
 
@@ -106,7 +136,7 @@ Apply these repository-specific physics rules:
 ## Workflow
 
 1. Read the source knowledge-point file and identify subject, chapter, core concepts, examples, exercises, and available images.
-2. Read `references/content-design.md`, `references/project-structure.md`, `references/visual-system.md`, `references/cover-design.md`, `references/teaching-script.md`, and the relevant subject section in `references/subject-components.md`. For `学科=语文`, also read `references/chinese-video-structure.md` and `references/chinese-visual-design.md` before designing content, storyboard, narration, or Remotion scenes. For mathematics, also read `references/math-video-patterns.md` before designing formulas, graphs, or logic-comparison pages. For `学科=物理`, also read `references/physics-video-structure.md` and `references/physics-visual-design.md` before designing content, assessment emphasis, misconceptions, the mother problem, storyboard, narration, Remotion scenes, or project scaffolding.
+2. Read `references/content-design.md`, `references/project-structure.md`, `references/visual-system.md`, `references/cover-design.md`, `references/teaching-script.md`, and the relevant subject section in `references/subject-components.md`. For `学科=英语`, also read `references/english-video-structure.md` before designing content, the three independent parts, storyboard, narration, or Remotion scenes. For `学科=语文`, also read `references/chinese-video-structure.md` and `references/chinese-visual-design.md` before designing content, storyboard, narration, or Remotion scenes. For mathematics, also read `references/math-video-patterns.md` before designing formulas, graphs, or logic-comparison pages. For `学科=物理`, also read `references/physics-video-structure.md` and `references/physics-visual-design.md` before designing content, assessment emphasis, misconceptions, the mother problem, storyboard, narration, Remotion scenes, or project scaffolding.
 3. Use `$remotion-best-practices` before creating or editing Remotion code.
 4. Create or scaffold the project directory:
    - For mathematics in this repository, run `python3 scripts/create_math_video.py "<工程目录名>" --composition-id <CompositionId>` and keep its shared dependency symlink intact.
@@ -114,15 +144,16 @@ Apply these repository-specific physics rules:
    - For physics in this repository, run `python3 scripts/create_physics_video.py "<工程目录名>" --composition-id <CompositionId>` and keep its shared dependency symlink intact.
    - For subjects other than mathematics, Chinese, and physics, use `scripts/init_subject_video.py` to create the directory and starter planning files.
    - For subjects other than mathematics, Chinese, and physics with no Remotion app yet, run `npx create-video@latest --yes --blank --no-tailwind <project-dir-name>` inside `video/<学科>/`, then adapt it.
+   - For English, keep the selected route inside one project directory unless separate project deliverables are requested. For the general course route, keep the three independently authored parts and expose or preview them while authoring; for the vocabulary-and-phrase route, keep semantic modules independently previewable and expose only the merged master by default after the route is validated.
 5. Create the knowledge analysis and video content design first. Do not convert the source file directly into narration.
 6. Write `storyboard.md` with time ranges, teaching purpose, visual effect design, source material, and Remotion component names.
 7. Write `口播稿.md` from the designed teaching structure and storyboard, not by reading the source file line by line.
    - Give every teaching scene multiple short narration/subtitle cues.
    - Write each narration cue at subtitle-sized semantic granularity. Subtitles may use at most two rendered lines and should use one line when the complete verbatim cue fits.
-   - If one spoken thought exceeds two rendered lines at the approved font size and safe width, split it at a semantic boundary into consecutive cues before TTS. Do not keep a long audio segment and replace it with a shorter summary subtitle.
+   - If one narration thought exceeds two rendered lines at the approved font size and safe width, split it at a semantic boundary into consecutive cues before any later voiceover handoff. Do not replace a long teaching thought with a shorter summary subtitle.
    - Assign every cue to a scene and keep its range inside that scene.
    - Align worked-example visual steps with the cue that explains the same step.
-8. If the user asks for final narration audio, read `references/audio-voiceover.md`, create a speech marker file first, generate audio from that marker file, and drive subtitle/timeline timing from measured audio durations.
+8. If the user asks for final narration audio, pause after the script and bilingual subtitle/cue plan are validated. Confirm the separate voiceover skill and its additional process before any audio action. This skill does not select voices, invoke a synthesizer, generate audio files, or derive timing from audio.
 9. Build the Remotion composition:
    - define the composition in `src/Root.tsx`;
    - use `1920x1080`, `30fps`, and duration in frames;
@@ -137,8 +168,8 @@ Apply these repository-specific physics rules:
    - inspect that text fits and key diagrams are readable.
    - render the start, middle, and end of formula-, proof-, graph-, and text-dense scenes;
    - check that visible formula commands render as symbols, not words such as `Rightarrow`, `quad`, or `dfrac`;
-   - check narration/subtitle text against the current visual step rather than only checking scene-level timing.
-11. If audio is included, check audio-subtitle sync against the final rendered video, not only against planning files.
+   - check narration/subtitle cue text against the current visual step rather than only checking scene-level timing.
+11. Do not perform audio generation or audio-stream validation in this skill. The separately confirmed voiceover workflow owns those checks.
 12. If the user reports a page-level issue, reproduce it with still frames or a final render check, fix the exact scene, then re-render the deliverable if an output video already exists.
 13. If the user requests 4K, export the 4K deliverable after the approved master version is stable.
 14. Finish with paths, duration, status, and any skipped validation.
@@ -154,7 +185,7 @@ Apply the following rules whenever a lesson uses formal notation, symbolic trans
 - Store each worked-example step with at least `formula`, `reason`, and `detail`/`warning`; do not show a formula without explaining why the transformation and sign judgment are valid.
 - In TSX formula props, use a safe LaTeX string form such as `String.raw` when commands contain backslashes. In TypeScript data strings, escape commands correctly or use `String.raw`. Render a still to catch commands displayed as plain text.
 - Use SVG for diagrams and graphs. Use D3 for scales, axes, and deterministic path construction; use Math.js to parse/sample expressions when graphing an expression; use KaTeX for every associated formula.
-- Drive all reveals, emphasis, line drawing, graph-domain exposure, and card focus from Remotion frames. Once narration exists, bind explanation-state changes to measured subtitle cues rather than stale fixed frame offsets.
+- Drive all reveals, emphasis, line drawing, graph-domain exposure, and card focus from Remotion frames. Bind explanation-state changes to authored subtitle/cue data rather than stale fixed frame offsets.
 - Remember that `useCurrentFrame()` inside `<Sequence>` is scene-local. Convert it to the centralized global frame before looking up global subtitle cues or global progress, or store cues scene-locally and keep the coordinate system consistent. Add a test that every cue belongs to a real scene and stays within its boundaries.
 
 Use `references/math-video-patterns.md` for the full mathematics component and QA patterns.
@@ -232,7 +263,7 @@ For `学科=物理`, use `references/physics-video-structure.md` as the source o
 
 Use `references/teaching-script.md`.
 
-The voiceover should feel like a senior teacher explaining in class:
+The narration script should feel like a senior teacher explaining in class:
 
 - complete knowledge coverage, not a short promo;
 - light, pleasant, and lively without becoming childish or unserious;
@@ -242,32 +273,20 @@ The voiceover should feel like a senior teacher explaining in class:
 - examples and exercises used as learning moments;
 - plain language first, formal expression second;
 - enough time for students to observe diagrams and reason;
-- subtitles must be synchronized with narration segments, not a single static line per scene. Every scene should have multiple subtitle changes matching the spoken content.
-- for shorter texts, a full expressive read-through may come first, but it still needs timed subtitle segmentation and emotional pacing rather than a single text block.
+- subtitles must be segmented with the narration cues, not written as a single static line per scene. Every scene should have multiple subtitle changes matching the teaching content.
+- for shorter texts, a full expressive read-through may come first, but it still needs cue segmentation and emotional pacing rather than a single text block.
 
 Do not write a fast knowledge announcement. Write a teaching script.
 Do not use the source file as a direct read-aloud script. The narration must come from the knowledge analysis and video design.
 
-## Audio And Subtitle Sync Requirements
+## Narration Handoff Boundary
 
-When narration audio is requested, use `references/audio-voiceover.md`.
+Subject-videos owns narration wording and bilingual subtitle/cue planning, not audio production.
 
-- Create a speech marker file before calling TTS. Do not synthesize directly from a monolithic script.
-- Split narration into subtitle-sized semantic segments; each segment should include scene id, exact spoken `text`, identical `subtitle`, tone/emotion, speech rate, pause after the segment, and an optional independent `visualCueId`/`stepId`.
-- Treat the exact text sent to TTS as the subtitle source of truth. Require `subtitle === text`; never summarize, shorten, omit, paraphrase, or rewrite spoken content in the subtitle layer.
-- Keep each subtitle to at most two rendered lines at the approved font size and safe width. Prefer one line when the complete verbatim cue fits, then confirm the longest cues with actual DOM/render measurement.
-- When a sentence exceeds the two-line visual limit, split the narration marker itself at punctuation, a clause boundary, formula step, question/answer turn, or reasoning step. Give every split cue its own measured audio and timeline range.
-- If audio already exists, regenerate and remeasure the affected split segments. If regeneration is impossible, obtain word/phrase timestamps from alignment or transcription before creating sub-cues; never divide an existing audio span only by character-count proportion.
-- Use measured audio duration, not estimated character count, to update `timeline.json`, subtitle ranges, scene durations, and final composition duration.
-- Once audio exists, measured audio timing is the source of truth for subtitles, scene boundaries, visual steps, and total frames. Bind every cue to a real scene and stable `visualCueId`/`stepId`, and drive Remotion reveal, emphasis, drawing, formula transformation, and answer-state frames from that measured cue.
-- When a project stores scene durations in TypeScript rather than `timeline.json`, update that project-owned timing source from the generated timing record as well. Build scene boundaries from measured global subtitle starts, not from independently rounded per-scene durations.
-- Subtitle changes must follow actual speech boundaries. Do not keep one subtitle block on screen after the spoken phrase has already changed.
-- For poetry or classical recitation, mark line-by-line pauses and tone; slow down important lines and sync the current-line visual highlight with the timed subtitle segment.
-- Put final audio under `public/audio/` and reference it from Remotion with `staticFile()`.
-- Use subject voice defaults unless the user specifies another voice: 数学、物理、化学、生物 use `zh_female_yingyujiaoxue_uranus_bigtts`; 语文、英语、地理、历史 use `zh_male_yuanboxiaoshu_uranus_bigtts`.
-- When a visual state follows narration, use the measured subtitle/audio segment timing as the source of truth. Do not use fixed frame durations for recitation line highlights, answer-step highlights, or current-card emphasis once audio exists.
-- Do not infer teaching-step changes from the ordinal position of every subtitle after splitting. Key visual states to stable `visualCueId`/`stepId` values so multiple consecutive subtitle cues may explain one unchanged visual step.
-- During measured silent pauses, keep the previous meaningful visual state or show an intentional pause state. Do not flash back to a default prompt or first subtitle.
+- Create and validate `口播稿.md` plus scene-level cue data. Each cue should have a stable id, scene id, English text when applicable, Chinese subtitle translation when applicable, and a visual cue id.
+- Do not select a voice, invoke a synthesizer, generate audio files, create speech-marker or audio-timeline files, attach audio to Remotion, or validate audio streams from this skill.
+- If narration audio is requested, stop at the validated script/subtitle handoff and ask the user to confirm the separate voiceover skill and its additional process before continuing.
+- Keep visual timing deterministic from authored scene/cue data until the separate audio workflow explicitly returns approved timing data.
 
 ## Visual Design Requirements
 
@@ -284,9 +303,9 @@ Use `references/visual-system.md` as the baseline for every subject video. All p
 - Use the dedicated cover rules in `references/cover-design.md`; do not reuse a dense teaching-board layout as the first screen.
 - Allow subject-specific differences in background texture, accent palette, diagram style, iconography, and visual metaphor according to `references/visual-system.md`.
 - Dense text scenes must be laid out so that body text, annotation text, and subtitle text never overlap. Check multi-column and layered text scenes frame-by-frame where needed.
-- Bottom subtitles are capped at two rendered lines in the final render. Prefer one line when the complete verbatim cue fits. If a cue would produce a third line, split the corresponding spoken marker into multiple measured timeline cues instead of shrinking the font, widening outside the safe area, clipping text, or showing a summary.
+- Bottom subtitles are capped at two rendered lines in the final render. Prefer one line when the complete verbatim cue fits. If a cue would produce a third line, split the corresponding authored cue at a semantic boundary instead of shrinking the font, widening outside the safe area, clipping text, or showing a summary.
 - Avoid clipping hidden text with `overflow: hidden`, tight fixed-height containers, or cards placed too close to scene boundaries. If a scene uses `overflow: hidden` for a framed board, verify every revealed label, node, and annotation remains fully visible at its final state.
-- For reading-heavy Chinese scenes, show selected lines, active highlights, and compact interpretation routes. Keep the active line highlighted until its measured audio segment has ended.
+- For reading-heavy Chinese scenes, show selected lines, active highlights, and compact interpretation routes. Keep the active line highlighted through the authored cue range.
 
 ## Visual QA Requirements
 
@@ -295,13 +314,12 @@ Before considering the video done:
 - inspect any scene with dense text, poem/classical recitation, worked-example steps, or layered labels for collisions, overlap, and clipping;
 - check that text layers do not occupy the same screen band as bottom subtitles unless intentionally designed and still fully readable;
 - verify subtitle line count in the actual render, not only in source data;
-- compare every final subtitle cue against the exact TTS marker text and fail validation on any mismatch;
+- compare every final subtitle cue against the authored English/Chinese cue data and fail validation on any mismatch;
 - render the longest subtitle cues and reject any third line, clipping, hidden text, unsafe font shrinkage, or overlap;
-- add automated checks for marker/subtitle id count, scene id, exact text equality, two-line rendered limit, cue ordering, and scene boundaries;
+- add automated checks for cue ids, scene ids, exact authored text, two-line rendered limit, cue ordering, and scene boundaries;
 - verify the final rendered video, not only preview frames, when the user explicitly reports a page-level display issue.
 - for reported page issues, render still frames near the start, middle, and end of the relevant narration segment, not just one convenient frame;
-- after changing a project that already has an output video, re-render the final mp4 and confirm the media still has the expected video and audio streams.
-- Do not describe an existing MP4 as updated until its modification time and `ffprobe` duration match the revised timeline. If final rendering fails, report the validated source/audio state separately from the missing packaged deliverable.
+- after changing a project that already has an output video, re-render the visual deliverable when the user asks for that update; audio validation belongs to the separate voiceover workflow.
 
 ## 4K Delivery Rule
 
@@ -310,7 +328,7 @@ When the user asks for a 4K version:
 - keep timing, subtitle sync, and approved content identical to the validated master version;
 - prefer exporting from the approved master pipeline or creating a high-quality 4K deliverable from the approved master when that is more reliable and faster;
 - place the final file under `output/` with a clear `-4k` suffix;
-- confirm final resolution, frame rate, duration, and audio stream with `ffprobe`.
+- confirm final resolution, frame rate, and duration; handle audio validation in the separate voiceover workflow.
 
 ## Subject Component Routing
 
@@ -364,7 +382,7 @@ npx remotion render src/index.ts <CompositionId> \
 - `remotion-lesson-video` skill: complete, copy-paste-ready compiler/schema/engine/guard-test code and the scaffold steps for the mathematics data-driven architecture.
 - `references/cover-design.md`: required first-screen hierarchy, left-right structure, title sizing, subject/range labels, topic-specific SVG, animation, and QA.
 - `references/teaching-script.md`: teacher-style narration rules.
-- `references/audio-voiceover.md`: speech marker file, Doubao TTS, audio timing, subtitle sync, and recitation rules.
+- `references/english-video-structure.md`: English route selection, vocabulary-and-phrase semantic modules, complete coverage and retrieval loop, three-part independent build, merge sequence, bilingual subtitle convention, and English-specific QA.
 - `references/subject-components.md`: subject-specific animation libraries and frame-driven component constraints.
 - `references/math-video-patterns.md`: required mathematics formula, graph, logic-comparison, and visual QA patterns.
 - `references/physics-video-structure.md`: physics-only teaching arc, four route types, assessment/difficulty/misconception rules, mother-problem transfer, transitions, and QA.
