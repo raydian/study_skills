@@ -22,7 +22,7 @@ Shared elements required in every project:
 
 - top progress bar: `5px`, frame-driven, visible but quiet;
 - scene title header: top-left scene index + title + subtitle/context text, with a short underline reveal;
-- bottom subtitle: centered near bottom, semi-transparent dark panel, `maxWidth` about `82%`, bottom around `32px`, and at most two rendered lines;
+- bottom subtitle: centered near bottom, usually a semi-transparent dark panel, `maxWidth` about `82%`, bottom around `32px`, and at most two rendered lines; for geography, follow `geography-visual-design.md` and use a light white-safe panel with deep-teal text;
 - scene transition: short fade in/out, usually `10-14` frames;
 - main content safe area: `left/right 90`, `top 160`, with the bottom reserve adjusted to the actual two-line subtitle panel height;
 - subtitle safe area: reserve enough height for two rendered lines and avoid placing critical diagram labels, formulas, evidence, or answer steps behind that band.
@@ -59,7 +59,7 @@ export const COLORS = {
 
 Role rules:
 
-- `bg*`: subject-appropriate dark learning surface;
+- `bg*`: subject-appropriate learning surface; it may be a dark board or a white background when the subject profile requires it;
 - `primary`: normal structure and current focus;
 - `accent`: key judgment, conclusion, transformation point, or易错提醒;
 - `success`: correct path, valid result, successful check;
@@ -162,11 +162,12 @@ Keep these shared constraints:
 
 ### 地理
 
-- Atmosphere: dark map room / earth system dashboard.
-- Background texture: contour lines, graticule, terrain cross-section, map tile grid.
-- Palette: deep blue/earth slate base, cyan for water/atmosphere, green for vegetation/land, amber for human activity/energy, red for hazard/risk.
-- Visual language: maps, regional location, layered spatial elements, terrain/climate/water cross sections, human-land system flows, resource-transport-management diagrams.
-- Motion: map pan/zoom controlled by frame, layer reveal, flow arcs, cross-section build-up, cause-process-result chain.
+- Atmosphere: white background / clean earth-system atlas.
+- Background texture: white base with low-opacity contour lines, graticule, terrain cross-section, or local map-grid traces; keep the texture subordinate to images and labels.
+- Palette: deep teal/navy text on white, water/atmosphere blue, vegetation/land green, climate and human activity amber, hazard/risk red, pale blue-gray support panels.
+- Visual language: source/article images, generated conceptual geographic illustrations when needed, maps, regional location, layered spatial elements, terrain/climate/water cross sections, human-land system flows, resource-transport-management diagrams.
+- Motion: image crop and callout, map pan/zoom controlled by frame, layer reveal, flow arcs, cross-section build-up, raster reveal, and cause-process-result chain.
+- Component route: read `references/geography-visual-design.md`; select `d3-geo`, Turf.js, GeoTIFF.js, PixiJS, Three.js, or CesiumJS by the geographic need rather than using a fixed library stack.
 
 ### 历史
 

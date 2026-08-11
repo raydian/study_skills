@@ -118,17 +118,22 @@ Patterns:
 
 Allowed tools:
 
-- Leaflet: map-based explanation.
-- MapLibre: vector map scenes.
-- OpenLayers: layered geographic data.
-- deck.gl: spatial flows, point layers, arcs.
-- Three.js: terrain, earth, atmosphere, or 3D process scenes.
+- d3-geo: projections, graticules, GeoJSON paths, and deterministic thematic-map overlays.
+- Turf.js: spatial calculations such as buffers, centroids, distances, intersections, and routes.
+- GeoTIFF.js: local climate, elevation, and remote-sensing raster inspection or preprocessing.
+- PixiJS: dense deterministic particles for wind, rainfall, currents, migration, or transport flows.
+- Three.js: terrain, earth, atmosphere, or 3D process scenes when a flat map is insufficient.
+- CesiumJS: globe-scale terrain or time-varying 3D geographic context only when the lesson needs it.
 
 Patterns:
 
 - RegionMap: location, elements, spatial pattern.
 - ProcessCrossSection: terrain/climate/water/urban mechanism.
 - HumanLandSystem: resource, production, transport, management, impact.
+- ImageEvidence: source or generated geographic image with frame-driven crop, callout, legend, and evidence focus.
+- LayeredThematicMap: reveal verified spatial layers one at a time with stable projection and legend.
+- RasterToMeaning: turn a local GeoTIFF or remote-sensing layer into a pattern, comparison, and geographic conclusion.
+- GlobeToRegion: transition from a deterministic globe/terrain view to a stable regional map anchor.
 
 ## 历史
 

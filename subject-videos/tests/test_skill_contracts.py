@@ -125,6 +125,42 @@ class SkillContractTest(unittest.TestCase):
         self.assertIn("Do not let lines, symbols, arrows, or labels overlap", visual)
         self.assertIn("Do not render unless the user explicitly asks", visual)
 
+    def test_geography_videos_use_white_background_and_image_first_visuals(self) -> None:
+        skill = read("SKILL.md")
+        visual = read("references/visual-system.md")
+        geography_path = SKILL_ROOT / "references/geography-visual-design.md"
+
+        self.assertTrue(geography_path.exists())
+        geography = geography_path.read_text(encoding="utf-8")
+
+        self.assertIn("Geography Video Routing", skill)
+        self.assertIn("geography-visual-design.md", skill)
+        self.assertIn("white background", geography.lower())
+        self.assertIn("source images", geography.lower())
+        self.assertIn("image-gen", geography.lower())
+        self.assertIn("#ffffff", geography.lower())
+        self.assertIn("white background", visual.lower())
+        self.assertNotIn("dark map room / earth system dashboard", visual)
+
+    def test_geography_videos_select_frame_driven_geo_tools_by_need(self) -> None:
+        geography_path = SKILL_ROOT / "references/geography-visual-design.md"
+
+        self.assertTrue(geography_path.exists())
+        geography = geography_path.read_text(encoding="utf-8")
+
+        for library in (
+            "d3-geo",
+            "Turf.js",
+            "Three.js",
+            "CesiumJS",
+            "GeoTIFF.js",
+            "PixiJS",
+        ):
+            self.assertIn(library, geography)
+        self.assertIn("frame-driven", geography.lower())
+        self.assertIn("deterministic", geography.lower())
+        self.assertIn("subtitle", geography.lower())
+
 
 if __name__ == "__main__":
     unittest.main()

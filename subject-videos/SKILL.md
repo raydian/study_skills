@@ -1,6 +1,6 @@
 ---
 name: subject-videos
-description: Create high-school subject knowledge-point lecture videos as Remotion projects. Use when the user asks to make 学科视频, 知识点讲解视频, Remotion 学习视频, 核心精讲版 videos, teacher-style narration scripts, or 1920x1080 educational video projects under the project video directory, including English listening, shadowing, vocabulary, grammar, speaking, bilingual-subtitle, or three-part-build-then-merge workflows.
+description: Use when creating high-school subject knowledge-point lecture videos as Remotion projects, including 1920x1080 core-lecture videos, teacher-style narration scripts, English listening/shadowing/vocabulary routes, or image-led geography videos with maps, spatial diagrams, and geographic visualizations.
 ---
 
 # Subject Videos
@@ -136,7 +136,7 @@ Apply these repository-specific physics rules:
 ## Workflow
 
 1. Read the source knowledge-point file and identify subject, chapter, core concepts, examples, exercises, and available images.
-2. Read `references/content-design.md`, `references/project-structure.md`, `references/visual-system.md`, `references/cover-design.md`, `references/teaching-script.md`, and the relevant subject section in `references/subject-components.md`. For `学科=英语`, also read `references/english-video-structure.md` before designing content, the three independent parts, storyboard, narration, or Remotion scenes. For `学科=语文`, also read `references/chinese-video-structure.md` and `references/chinese-visual-design.md` before designing content, storyboard, narration, or Remotion scenes. For mathematics, also read `references/math-video-patterns.md` before designing formulas, graphs, or logic-comparison pages. For `学科=物理`, also read `references/physics-video-structure.md` and `references/physics-visual-design.md` before designing content, assessment emphasis, misconceptions, the mother problem, storyboard, narration, Remotion scenes, or project scaffolding.
+2. Read `references/content-design.md`, `references/project-structure.md`, `references/visual-system.md`, `references/cover-design.md`, `references/teaching-script.md`, and the relevant subject section in `references/subject-components.md`. For `学科=英语`, also read `references/english-video-structure.md` before designing content, the three independent parts, storyboard, narration, or Remotion scenes. For `学科=语文`, also read `references/chinese-video-structure.md` and `references/chinese-visual-design.md` before designing content, storyboard, narration, or Remotion scenes. For mathematics, also read `references/math-video-patterns.md` before designing formulas, graphs, or logic-comparison pages. For `学科=物理`, also read `references/physics-video-structure.md` and `references/physics-visual-design.md` before designing content, assessment emphasis, misconceptions, the mother problem, storyboard, narration, Remotion scenes, or project scaffolding. For `学科=地理`, also read `references/geography-visual-design.md` before choosing background, source images, generated images, geographic libraries, map projections, spatial effects, storyboard, or Remotion scenes.
 3. Use `$remotion-best-practices` before creating or editing Remotion code.
 4. Create or scaffold the project directory:
    - For mathematics in this repository, run `python3 scripts/create_math_video.py "<工程目录名>" --composition-id <CompositionId>` and keep its shared dependency symlink intact.
@@ -149,7 +149,7 @@ Apply these repository-specific physics rules:
 6. Write `storyboard.md` with time ranges, teaching purpose, visual effect design, source material, and Remotion component names.
 7. Write `口播稿.md` from the designed teaching structure and storyboard, not by reading the source file line by line.
    - Give every teaching scene multiple short narration/subtitle cues.
-   - Write each narration cue at subtitle-sized semantic granularity. Subtitles may use at most two rendered lines and should use one line when the complete verbatim cue fits.
+   - Write each narration cue at subtitle-sized semantic granularity. Subtitles may use at most two rendered lines and should use one line when the complete verbatim cue fits (geography may use up to three rendered lines per its page layout contract when annotation-based detail requires it).
    - If one narration thought exceeds two rendered lines at the approved font size and safe width, split it at a semantic boundary into consecutive cues before any later voiceover handoff. Do not replace a long teaching thought with a shorter summary subtitle.
    - Assign every cue to a scene and keep its range inside that scene.
    - Align worked-example visual steps with the cue that explains the same step.
@@ -162,6 +162,7 @@ Apply these repository-specific physics rules:
    - For `学科=数学`, do not hand-write fat per-video components. Derive the project from the math template and use its data-driven engine: author lesson data in `src/data/lesson-inputs.ts`, let `buildLesson` compute the timeline, register the composition in `src/Root.tsx`, and run `tsc --noEmit && vitest run` (see `references/math-lesson-engine.md` and the `remotion-lesson-video` skill).
    - keep theme, layout, subtitle, progress, scene transition, and motion timing consistent with `references/visual-system.md`;
    - copy required images to `public/`.
+   - For `学科=地理`, follow `references/geography-visual-design.md`: use a white canvas, make source or generated geographic imagery a primary teaching layer, and select geographic libraries only when they materially clarify a spatial, terrain, raster, globe, or flow concept.
 10. Validate with Remotion:
    - run typecheck or lint if available;
    - render at least one still frame when practical;
@@ -244,6 +245,30 @@ For `学科=物理`, use `references/physics-video-structure.md` as the source o
 - Use a single-condition variation to test whether the model transfers. If the changed condition requires a different core model, route it to another lesson.
 - Preserve a question, object, process, conclusion, diagram, or visual position across adjacent scenes so transitions carry the reasoning forward.
 
+### Geography Video Routing
+
+For `学科=地理`, use `references/geography-visual-design.md` as the source of truth for the visual system and geographic-media decisions.
+
+- Use a white background and geography-specific dark-teal/blue/green/earth accent colors. Do not inherit the dark map-room treatment from older visual profiles.
+- Make images, maps, satellite views, terrain photographs, climate diagrams, remote-sensing rasters, or generated geographic illustrations primary teaching media. A geography lecture should not become a sequence of text-only boards.
+- Inspect the source article/note for useful images before designing scenes. Reuse an article image as a real teaching element when it shows a place, process, pattern, landscape, map, chart, or evidence students need to inspect. Copy it to `public/images/`, preserve provenance in `content-design.md` or `storyboard.md`, and use `<Img>`/`staticFile()`. When a source image is used, three integrity rules apply: (1) **completeness** — keep the legend, labels, scale bar, north arrow, annotations, and caption that carry the image's explanation inside the visible frame, do not crop them away; (2) **static use** — display the image as a static inspected visual, never cycle/flip/jitter/sequence still images to fake a GIF or motion; visible motion must come from frame-driven overlays or component state on top of the stable image; (3) **knowledge-point match** — confirm the image actually explains the exact concept, region, process, scale, and time being narrated in that scene, not merely a topically related picture; record the matched knowledge point beside the image reference in `storyboard.md`.
+- If no suitable visual exists and text alone cannot make the spatial relationship, process, landscape, or mechanism clear, use `image-gen` to create a conceptual teaching asset. Record the prompt and asset role. Do not use generated imagery as the quantitative source of truth for exact boundaries, measurements, or statistical maps; overlay precise labels/data from deterministic SVG or geographic data. The three integrity rules above apply to generated images as well.
+- When no source image matches the narrated knowledge point, or the teaching point is a process a static picture cannot carry, generate the visual with an open-source geographic component instead of forcing an ill-fitting image: SVG/React for precise overlays; `d3-geo` for projections and graticules; Turf.js for spatial calculations; GeoTIFF.js for raster/remote-sensing data; PixiJS for dense particles or flow fields; Three.js for terrain/globe/atmosphere; CesiumJS only for justified globe-scale 3D terrain or time-varying spatial scenes. A frame-driven generated component is preferred over a loosely-matched source image whenever the image does not actually explain the current knowledge point.
+- Use many meaningful visuals, but choose the smallest effective visual system. Keep every library deterministic and frame-driven. Disable internal autoplay, timers, tickers, requestAnimationFrame loops, camera clocks, interaction, and network-dependent tiles; derive pan, zoom, layer reveals, particles, routes, camera, and highlights from Remotion frames or precomputed data.
+- Use geography subtitles and board text that remain legible on white: deep teal/navy for body text, blue for water/atmosphere, green for vegetation/land, amber for climate/human activity, and red only for hazards or errors. Keep exact authored narration cues and a dedicated subtitle safe band.
+- **Geography page layout contract** (user-confirmed, see `references/geography-visual-design.md`):
+  - Image pages: ONE source figure full-bleed over the whole canvas (`object-fit: contain`, never cropped, no card frame), with **no chrome header** (no scene index/title/progress bar). Avoid the PPT-style "title bar + figure + subtitle bar" three-band structure.
+  - Non-image pages (concept, misconception, example, comparison, closing): render the chrome title header so the viewer knows which page they are on.
+  - Subtitle floats on top of the image bottom as a translucent panel — background `rgba(255,255,255,0.85)`, **text fully opaque** deep teal (weight 700 + light text shadow). User explicitly allows subtitles to cover the image.
+  - Geography subtitles may use **up to three rendered lines** to carry annotation-based detail (relaxes the global two-line cap); verify the third line in an actual render.
+  - Detailed, annotation-driven narration: every image scene gets **5–7 cues** drawn from the source figure's annotation (图注) — narrate each legend, label, arrow, and data value; scale scene durations (~35–45s) for reading time.
+  - Avoid adjacent-scene image reuse: if two consecutive scenes would show the same figure, pick a different image or convert the second scene into a text page (comparison cards / causal chain).
+  - Cover is scene 0 and must read as a cover at frame 0: subject label + large display title visible immediately (no fade-in), bottom pre-start bar in the same translucent-panel style.
+  - Wrap every scene with a component in `<Sequence from durationInFrames name>` so the IDE timeline shows per-scene segments; scene-local frames come from `useCurrentFrame()` inside the sequence.
+  - Faint graticule background renders only on text pages; image pages get a clean white canvas.
+- Preserve geographic continuity across adjacent scenes: keep the same projection, north/up convention, region framing, legend, visual anchor, and color semantics unless the narration explicitly announces the change.
+- **Layout and no-occlusion**: image pages are full-bleed single images with no chrome; text pages keep a clear hierarchy of title header / board / subtitle with explicit safe margins and no overflow into the subtitle band. The rendered video must not cover the source image, generated illustration, map legend, scale bar, north arrow, axis, label, arrow, callout, contour annotation, or chart pattern with opaque panels, decorative shapes, progress bars, logos, or other UI elements. The floating subtitle panel is translucent by design and may sit on the image's bottom edge (user-confirmed), but its footprint must not fully bury a critical legend/label — narrow the panel or adjust vertical framing inside `contain` bounds if a legend lands exactly where the subtitle sits. Run an explicit occlusion, layout, and subtitle-vs-image check on every image-bearing scene before completion.
+
 ## Remotion Hard Rules
 
 - Use Remotion frame control: `useCurrentFrame()`, `useVideoConfig()`, `interpolate()`, `Easing`, and `<Sequence>`.
@@ -303,7 +328,7 @@ Use `references/visual-system.md` as the baseline for every subject video. All p
 - Use the dedicated cover rules in `references/cover-design.md`; do not reuse a dense teaching-board layout as the first screen.
 - Allow subject-specific differences in background texture, accent palette, diagram style, iconography, and visual metaphor according to `references/visual-system.md`.
 - Dense text scenes must be laid out so that body text, annotation text, and subtitle text never overlap. Check multi-column and layered text scenes frame-by-frame where needed.
-- Bottom subtitles are capped at two rendered lines in the final render. Prefer one line when the complete verbatim cue fits. If a cue would produce a third line, split the corresponding authored cue at a semantic boundary instead of shrinking the font, widening outside the safe area, clipping text, or showing a summary.
+- Bottom subtitles are capped at two rendered lines in the final render. Prefer one line when the complete verbatim cue fits. If a cue would produce a third line, split the corresponding authored cue at a semantic boundary instead of shrinking the font, widening outside the safe area, clipping text, or showing a summary. Exception: geography may use up to three rendered lines per its page layout contract to carry annotation-based detail (`references/geography-visual-design.md`); still verify the third line renders cleanly.
 - Avoid clipping hidden text with `overflow: hidden`, tight fixed-height containers, or cards placed too close to scene boundaries. If a scene uses `overflow: hidden` for a framed board, verify every revealed label, node, and annotation remains fully visible at its final state.
 - For reading-heavy Chinese scenes, show selected lines, active highlights, and compact interpretation routes. Keep the active line highlighted through the authored cue range.
 
@@ -387,6 +412,7 @@ npx remotion render src/index.ts <CompositionId> \
 - `references/math-video-patterns.md`: required mathematics formula, graph, logic-comparison, and visual QA patterns.
 - `references/physics-video-structure.md`: physics-only teaching arc, four route types, assessment/difficulty/misconception rules, mother-problem transfer, transitions, and QA.
 - `references/physics-visual-design.md`: physics template creation, shared dependency contract, Graphite Blue tokens, background texture, cover/closing baseline, collision prevention, IDE validation, and render authorization boundary.
+- `references/geography-visual-design.md`: geography white-background visual system, image-first material strategy, image-gen fallback, geographic library selection, deterministic spatial motion, and map/image QA.
 - `references/chinese-video-structure.md`: Chinese-only flexible teaching modules, evidence units, theme placement, genre routes, real worked examples, and structure QA.
 - `references/chinese-visual-design.md`: Chinese-only visual identity derived from `video/语文/01-短歌行/`, including reusable background, fonts, palette, layouts, motion, and visual QA.
 - `scripts/create_chinese_video.py` at the workspace root: create a Chinese lesson from `video/语文/语文视频模板/` and link the shared dependencies.
