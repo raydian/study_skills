@@ -70,11 +70,22 @@ Use `--dry-run` to parse and normalize the marks without calling the TTS API.
 
 Use `--sync-remotion` when the project has `src/data/subtitles.ts` and the voiceover should drive scene/subtitle timing. The script measures real audio durations with `ffprobe`, then syncs timings from measured audio rather than estimated text length. If the project stores scene durations in `src/timeline.ts` (or another project-owned timing file), update that file from `voiceover/audio_timeline.json` after generation; do not leave earlier estimated durations in place.
 
+### Sync Script Pitfalls (reusable)
+
+When a project owns `src/data/timeline.ts` with an estimated-text timeline and you write a custom `scripts/sync_timeline_from_audio.cjs`:
+
+1. **Idempotency**: do NOT overwrite `voiceover/audio_timeline.json` in place. Write the cover-offset version to `voiceover/audio_timeline_synced.json` and rewrite `timeline.ts` from that; otherwise re-running the script double-applies the cover offset.
+2. **Never parse scene metadata from the existing timeline.ts**: the first sync rewrites that file, so a regex over `SCENE_SEEDS` breaks on the second run (and `[a-z0-9]+` misses camelCase ids like `p1Joy`/`p4Water`). Embed a fixed `SCENE_META` table (id/title/context/mode) in the script and take cue texts from `voiceover/voiceover_marks.json` (identical to the TTS segments).
+3. **Cover lead silence**: prepend 75 frames (2.5 s) to the audio timeline and add the same 75 frames to the cover scene duration, then also prepend 2.5 s of silence to the MP3 (`ffmpeg concat anullsrc`) so audio, subtitles and video stay aligned from frame 0.
+4. **Recitation detection**: the generator's `is_recitation` heuristic flags any short quoted classical line as 朗读 (-14 slow). For lesson scripts that quote lines inside explanation scenes, write explicit `speechRate`/`pauseAfterMs`/`tone` into `voiceover_marks.json` (朗读 scenes -14/420, explanation scenes -2/260) instead of relying on the heuristic.
+5. **Global subtitle overlap**: in the composition, the global `<Subtitle>` renders the cover's cue at frame 0 and overrides the cover page's own delayed subtitle. Restrict the global Subtitle to `frame >= SCENE_STARTS.read1 && frame < SCENE_STARTS.closing` so cover/closing pages manage their own subtitle.
+
 ## After Generation
 
 1. Confirm `public/audio/voiceover.mp3` exists and has nonzero duration.
-2. Confirm subtitle timings in `voiceover/audio_timeline.json`.
+2. Confirm subtitle timings in `voiceover/audio_timeline.json` (raw) and `voiceover/audio_timeline_synced.json` (with cover offset).
 3. Ensure the video composition uses `staticFile("audio/voiceover.mp3")` for narration.
 4. Render or preview the video and check that there is no long blank tail, silent missing section, or subtitle-free ending.
 5. Verify every subtitle is inside its scene and each scene starts at the measured global start of its first subtitle. Do not sum independently rounded scene durations when those values can drift by frames.
-6. If a final MP4 already exists, re-render it and confirm its modification time, duration, and video/audio streams with `ffprobe` before calling it updated.
+6. Run a whole-video silence check: extract silence ranges with `ffmpeg -af silencedetect=noise=-38dB:d=0.4` and assert every subtitle `start` falls inside a silence range (0 mismatches), and the last subtitle `end` is before the audio total (no blank tail).
+7. If a final MP4 already exists, re-render it and confirm its modification time, duration, and video/audio streams with `ffprobe` before calling it updated.
