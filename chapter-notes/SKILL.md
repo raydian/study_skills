@@ -43,7 +43,7 @@ Always read `references/common.md`, then read exactly one subject reference befo
 13. Add `## 知识关系导航` between the H1 title and the nine required learning sections. Every note must contain at least one verified Wikilink, normally to the chapter MOC plus relevant knowledge-point headings in existing or concurrently created notes. Add contextual body Wikilinks when they clarify a genuine knowledge relationship.
 14. When one input file contains multiple chapters, create one chapter folder and one chapter MOC per real chapter, then generate the subchapter files inside each folder.
 15. Do not create `原始课本素材.md` inside `章节笔记/` unless the user explicitly asks for source-material archiving there. Prefer keeping raw material in `markdown/`.
-16. Treat illustrations as a two-pass deliverable: first write complete notes with source-figure-aware `图片描述` comments; only then hand the notes to `subject-illustrations` or another image workflow to generate and insert image files. Never remove a comment because an image has not yet been generated.
+16. Treat illustrations as a two-pass deliverable: first write complete notes with source-figure-aware `图片描述` comments; only then hand the notes to `subject-illustrations` or another image workflow to generate and insert image files. Never remove a comment because an image has not yet been generated. For biology, every comment must explicitly identify itself as a faithful textbook-source redraw or a supplemental knowledge diagram; read `references/biology.md` for the mandatory separation and source-audit rules.
 17. Validate outputs before finishing:
    - correct subject directory;
    - one folder per real chapter;
@@ -75,6 +75,7 @@ Split by the textbook's real teaching structure, not by page boundaries or whate
 Image annotations are part of the note content and form the handoff contract to image generation:
 
 - Before writing, inventory source visual units by figure number/caption or source image reference. Map each meaningful source visual unit to one nearby `<!-- 图片描述：... -->` comment. Preserve the source figure identity in the visible explanation or in the comment so the mapping is auditable.
+- Inspect the actual source image rather than inferring its content from OCR text, filenames, captions, or memory. Exclude decorative icons and page furniture from the learning inventory.
 - Every subchapter starts with one “本节整体知识信息结构图” comment. Add source-driven comments and learning-value-driven local diagrams near the relevant paragraph; the source inventory overrides any generic 2–5-image guideline.
 - A comment must describe the subject, structure, labels, arrows, variables, legend, comparison or process, key conclusion, and why the image helps at that exact location. `<!-- 配图 -->` and other empty placeholders are invalid.
 - In the image-generation pass, insert the generated image immediately above its comment using a relative path such as `![图1.1：太阳辐射示意图](images/第一节-太阳辐射-图1-1.webp)`. Keep the comment after insertion.
@@ -120,6 +121,7 @@ Before final response, run a quick check such as:
 ```bash
 find "high_school/<学科>/章节笔记/<章节名>" -maxdepth 1 -type f -name "*.md" -print
 rg -n "^title:|^description:|^aliases:|^tags:|^draft:|知识点/|^## 知识关系导航|\[\[[^]]+\]\]|^## 本节学习目标|^## 核心知识点讲解|^## 练习题答案" "high_school/<学科>/章节笔记/<章节名>"
+python3 skills/chapter-notes/scripts/validate_chapter_notes.py "high_school/<学科>/章节笔记/<章节名>" --stage comments --subject <学科> --source "<源章节Markdown>"
 ```
 
 If the files are only source extracts, delete or move them out of `章节笔记/` and regenerate as learning notes.
