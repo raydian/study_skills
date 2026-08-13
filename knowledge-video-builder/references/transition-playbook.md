@@ -59,7 +59,7 @@ All sibling scenes must use the **same direction and the same layout skeleton** 
 
 Smooth 上下承接 needs a persistent visual anchor that survives scene changes at a constant position:
 
-- Build a series-level navigation element (e.g. `SubjectNav`): one node per sibling scene; states = current (accent, enlarged, glow) / completed (primary, lit) / upcoming (muted).
+- Build a series-level navigation element (e.g. `SubjectNav`): one node per sibling scene; states = current (accent, enlarged, glow) / completed (primary, lit) / upcoming (muted). For the ink-wash (选科) palette: current = `seal`, completed = `ink`, upcoming = `wash`.
 - Render it at the **identical coordinates** in every sibling scene and in the summary/closing scenes (with all nodes lit) so the series opens and closes as a loop.
 - Wide: horizontal node rail with dot + label. Vertical: compact progress-bar dots at the top — same data, different geometry, never a shrunk copy.
 - In the closing scene, reuse the anchor with all nodes lit to "回收路线图", forming a narrative loop.

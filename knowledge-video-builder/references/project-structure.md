@@ -70,6 +70,7 @@ Include:
 - representative example, analogy, demonstration, or case;
 - misconception and takeaway, memory aid, or action checklist;
 - claims, data, or time-sensitive facts requiring verification;
+- **palette selection**: standard (default) or ink-wash 水墨留白 (选科 category), per `visual-system.md` Palette Selection;
 - exact one-frame cover title and hierarchy;
 - separate frame-1 hook copy, hook type, and reveal plan;
 - explicit exclusions: no generated voice and no automatic render.
@@ -117,10 +118,10 @@ Write subtitle-sized semantic cues rather than long paragraphs. Include scene id
 
 Distilled from `video/选科/04-六门选考科目分别学什么/` (2026-08). Replicate this inventory unless the design documents a deviation:
 
-- `SceneShell`: `bgDeep` base + low-opacity radial/linear blue structural wash; owns font and text color; every scene renders inside it.
-- `Cover` / `Hook`: per the playbook; cover has no frame-driven code, hook stages question→dim→correction.
+- `SceneShell`: `bgDeep` base + low-opacity radial/linear blue structural wash for the standard palette; for the ink-wash (选科) palette use `paper` base + low-opacity ink-wash structural field (brush/mountain/grid at 6-10% opacity); owns font and text color; every scene renders inside it.
+- `Cover` / `Hook`: per the playbook; cover has no frame-driven code, hook stages question→dim→correction. Ink-wash covers use `paper` + `ink` title + one `seal` phrase.
 - `SceneTransition`: shared enter/exit wrapper (see `transition-playbook.md`).
-- `SubjectNav`-style continuity anchor: one component, two geometries (wide node rail / vertical progress dots), three states (current/completed/upcoming), reused in series scenes and closing.
+- `SubjectNav`-style continuity anchor: one component, two geometries (wide node rail / vertical progress dots), three states (current/completed/upcoming), reused in series scenes and closing. Ink-wash palette: current = `seal`, completed = `ink`, upcoming = `wash`.
 - `SubtitleBand`: looks up the active cue by `frame/fps*1000`, explicit color/font, mode-specific size and bottom reserve, ≤6-frame cue micro-fade, z-index above scenes.
 - `TimelineScenes`: one named `Sequence` per shared scene (`layout="none"`) so Studio exposes a navigable scene timeline.
 - Shared content model in `src/data/content.ts`: each core scene is `{conclusion, explanation, evidence: readonly string[], nextStep}`; sibling series additionally share an id list, display names, and per-item task labels so compare and closing scenes can rebuild the series from data.

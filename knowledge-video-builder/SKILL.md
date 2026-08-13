@@ -1,6 +1,6 @@
 ---
 name: knowledge-video-builder
-description: Convert Chinese knowledge articles, notes, rules, methods, concepts, processes, comparisons, data, and cases into complete, video-native Remotion explainer projects with synchronized 16:9 and 9:16 compositions and subtitles. Use for 知识类视频、文章转视频、知识讲解、科普、规则解读、方法教程、概念解释、案例分析，或需要第 0 帧独立大字体封面、第 1 帧起独立钩子、分层讲清楚、SVG 图标/关系图、结构化背景、语义化转场和横竖版独立自适应布局的视频工程。必须按七阶段门禁执行；字幕最多两行，过长内容拆到不同播放帧；不生成配音，不自动渲染。
+description: Convert Chinese knowledge articles, notes, rules, methods, concepts, processes, comparisons, data, and cases into complete, video-native Remotion explainer projects with synchronized 16:9 and 9:16 compositions and subtitles. Use for 知识类视频、文章转视频、知识讲解、科普、规则解读、方法教程、概念解释、案例分析，或需要第 0 帧独立大字体封面、第 1 帧起独立钩子、分层讲清楚、SVG 图标/关系图、结构化背景、语义化转场和横竖版独立自适应布局的视频工程。选科类知识讲解（选科科普、科目介绍、专业与选科对应、选科决策方法）默认使用水墨留白配色方案（见 visual-system.md 的 Ink-Wash tokens）。必须按七阶段门禁执行；字幕最多两行，过长内容拆到不同播放帧；不生成配音，不自动渲染。
 ---
 
 # Knowledge Video Builder

@@ -55,9 +55,9 @@ Stage 6 may not close with open failures. Intentional deviations must be documen
 
 ## Colors
 
-- [manual] Only palette tokens from `visual-system.md` are used; semantic roles stay stable (blue=structure/current, yellow=answer/key point, green=valid/corrected, red=risk/misconception, purple=secondary dimension, gray=inactive).
-- [manual] Distribution roughly 70/20/7/3; no large saturated red/yellow fields; `danger` used as text/outline/small fill only.
-- [manual] Text contrast on `bgDeep`/`panel` holds for muted labels and annotations; misconception pairs read danger→success.
+- [manual] Only palette tokens from `visual-system.md` are used; the project uses exactly one palette — standard deep-blue for general knowledge videos, or the ink-wash (水墨留白) palette for 选科-related videos. Standard semantic roles stay stable (blue=structure/current, yellow=answer/key point, green=valid/corrected, red=risk/misconception, purple=secondary dimension, gray=inactive); ink-wash roles map to seal=answer/key point, ink=structure/current, inkSoft=secondary dimension, wash=inactive, success=valid/corrected, danger=risk/misconception.
+- [manual] Standard distribution roughly 70/20/7/3; ink-wash distribution roughly 85/10/4/1; no large saturated red/yellow fields; `danger` used as text/outline/small fill only.
+- [manual] Standard palette: text contrast on `bgDeep`/`panel` holds for muted labels and annotations; misconception pairs read danger→success. Ink-wash palette: `ink` on `paper` ≥ 7:1, `inkSoft` ≥ 4.5:1, `seal` text on `paper` ≥ 4.5:1, no white text on `wash` panels.
 
 ## Layout Structure
 

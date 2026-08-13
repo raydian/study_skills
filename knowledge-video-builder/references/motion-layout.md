@@ -111,6 +111,14 @@ Default simultaneous density:
 
 If a wide scene has two or three columns, convert vertical to steps, alternating states, or a vertical sequence. Do not preserve the column count by shrinking cards. Split a vertical scene when its final state remains crowded after sequential reveal.
 
+### Subject-Selection Series Rules
+
+For 选科 series (e.g. six 选考科目), enforce these density rules on top of the defaults:
+
+- Wide: the series map uses a `3+3` grouped grid or a subject-vs-dimension matrix, capped at six cards total; `SubjectNav` node rail stays on top across every sibling scene. A compare scene may show two subjects side by side, never more.
+- Vertical: show **exactly one** subject card at a time with the `SubjectNav` progress dots pinned at the top; the completed subject collapses to a compact checkmark row and the next subject enters. Never render all six subject cards as a vertical grid — that violates the one-primary-unit rule.
+- The closing scene reuses the nav anchor with all nodes lit (all-subjects state), which is the only scene allowed to display all six names — as compact lit labels, not six full cards.
+
 ## Adaptive Architecture
 
 Share semantic data and timing, then adapt presentation through explicit layout configuration.
