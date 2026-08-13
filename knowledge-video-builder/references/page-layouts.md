@@ -10,9 +10,9 @@
 6. Layout Selection Rules
 7. Quality Gates
 
-This file defines the canonical per-frame page layouts for every knowledge video. It is distilled from `output/高中学科科普视频-视频帧布局应用-水墨留白.html` (2026-08) and is the single source of truth for scene structure. Horizontal and vertical layouts are **separate, independent page structures** — the vertical version is never a crop or scale of the horizontal one.
+This file defines the canonical per-frame page layouts for every knowledge video. It is distilled from `docs/design/高中学科科普视频-视频帧布局应用-水墨留白.html` (2026-08) and is the single source of truth for scene structure. Horizontal and vertical layouts are **separate, independent page structures** — the vertical version is never a crop or scale of the horizontal one.
 
-The absolute baseline source is `/Users/yxy/document/jay/hs_knowledge/output/高中学科科普视频-视频帧布局应用-水墨留白.html`. Preserve its canvas-relative geometry and typography when translating CSS into Remotion. If another skill reference or a framework default disagrees with the token values in this file, this file wins. A project may deviate only when the design explains why and the review and verification artifacts prove equivalent readability and hierarchy.
+The absolute baseline source is `/Users/yxy/document/jay/hs_knowledge/docs/design/高中学科科普视频-视频帧布局应用-水墨留白.html`. Preserve its canvas-relative geometry and typography when translating CSS into Remotion. If another skill reference or a framework default disagrees with the token values in this file, this file wins. A project may deviate only when the design explains why and the review and verification artifacts prove equivalent readability and hierarchy.
 
 Every frame in the library is a reusable page layout. Choose layouts by teaching purpose, not by frame order. A project reuses a subset; it does not have to contain all 22.
 

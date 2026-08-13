@@ -114,7 +114,7 @@ Use `danger` as text, outline, icon, or small warning fill. Do not place long sm
 
 ## Typography And Safe Areas
 
-The exact baseline is `/Users/yxy/document/jay/hs_knowledge/output/高中学科科普视频-视频帧布局应用-水墨留白.html`. Use canvas-relative values from `references/page-layouts.md`; the pixel equivalents below are calculated at the final composition size and are not generic substitutes.
+The exact baseline is `/Users/yxy/document/jay/hs_knowledge/docs/design/高中学科科普视频-视频帧布局应用-水墨留白.html`. Use canvas-relative values from `references/page-layouts.md`; the pixel equivalents below are calculated at the final composition size and are not generic substitutes.
 
 Use locally available `Noto Sans SC` for body, subtitles, labels, and tables. Use `Noto Serif SC` for major titles, key statements, quotations, and closing copy. Use Georgia only for Latin numerals, KPI figures, and formulas. Approved fallback stacks are:
 
