@@ -1,4 +1,4 @@
 interface:
   display_name: "分层知识讲解视频工程"
   short_description: "按七阶段创建讲清楚、带 SVG 语义图形和双版布局的知识视频工程"
-  default_prompt: "使用 $knowledge-video-builder 将这篇中文知识文章制作成讲清楚的横竖双版 Remotion 工程：每个要点必须有结论、解释与证据/行动层，使用必要的 SVG 图标和结构背景，竖版加大字幕并降低同屏密度；不生成配音或自动渲染。"
+  default_prompt: "使用 $knowledge-video-builder 将这篇中文知识文章制作成讲清楚的横竖双版 Remotion 工程：每个场景按 page-layouts.md 选择横屏 H01-H22 与竖屏 V01-V22 独立页面布局，每个要点必须有结论、解释与证据/行动层，使用必要的 SVG 图标和结构背景，竖版按 V 布局独立重排、加大字幕并降低同屏密度；不生成配音或自动渲染。"

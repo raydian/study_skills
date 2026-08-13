@@ -72,36 +72,45 @@ For concrete implementations — the shared SceneTransition wrapper (paired ente
 
 ## Wide Layout Strategy
 
-Use horizontal space for relationships, not for filling every available region.
+Use horizontal space for relationships, not for filling every available region. Horizontal page structures come from `references/page-layouts.md` H01-H22; pick one per scene and record its tag in the storyboard.
 
 Suitable patterns:
 
-- two clearly prioritized comparison panels;
-- left-to-right process or timeline;
-- primary explanation plus one supporting visual;
+- two clearly prioritized comparison panels (H08 Compare);
+- left-to-right process or timeline (H09 Process Steps);
+- primary explanation plus one supporting visual (H04 Concept + Visual);
 - route map with two or three nodes;
-- chart with a focused annotation region.
+- chart with a focused annotation region (H12 Data + Insight).
 
 Default simultaneous density:
 
 - one headline;
 - one primary visual structure;
-- up to three short peer items only when comparison requires simultaneous visibility.
+- up to three short peer items only when comparison requires simultaneous visibility (H06 Pillars, H11 KPIs).
 
 Move detailed explanation into time-based reveals rather than extra columns.
 
 ## Vertical Layout Strategy
 
-Treat vertical as an independently composed mobile video, not a narrow version of the wide scene.
+Treat vertical as an independently composed mobile video, not a narrow version of the wide scene. Vertical page structures come from `references/page-layouts.md` V01-V22 — each is a separate stacked or sequential layout for the 1080x1920 canvas with a bottom-third subtitle zone; never scale or crop the horizontal page.
+
+Implementation constraint — vertical scene containers must use **flow layout**, not absolute-positioned header/content stacks:
+
+- Outer container: `position:absolute; inset:0; padding:170px 64px 640px; display:flex; flexDirection:column`.
+- Header (kicker + title): `flexShrink:0`. Content board: `flex:1; justifyContent:center` (or top-aligned when the V-layout says so). Footer/insight line: flowing `marginTop`, never `position:absolute; bottom:...`.
+- Reason: an absolute `top:150/170` header plus an absolute `top:200/230` content board overlap when the title wraps to two lines (production bug, 2026-08 选科 series). Flow layout makes overlap impossible and keeps content out of the bottom-third subtitle zone.
+- Footer/insight text must stay above the subtitle footprint: in wide scenes `bottom ≥ 250px` (1080-high canvas), in vertical scenes flowing above the `640px` bottom padding.
 
 Prefer:
 
-- centered or strongly aligned single-column flow;
-- one main card, node, example, or chart focus at a time;
-- top-to-bottom process and milestone rails;
-- sequential replacement instead of side-by-side comparison;
+- centered or strongly aligned single-column flow (V01, V03, V05, V14, V15, V18, V22);
+- one main card, node, example, or chart focus at a time (V04, V06, V07, V12);
+- top-to-bottom process and milestone rails (V08, V09, V17);
+- sequential replacement instead of side-by-side comparison (V08, V17 replace H08, H17 columns with stacked panels + down arrows);
+- two-column grids only when the grid is the teaching point, and only as the 2x2/2-column pattern (V10 Matrix, V16 Icon Features, V19 Spec Grid);
 - larger labels, shorter copy, larger gaps, and more empty space;
-- persistent summary or progress indicator only when it does not compete with the focal content.
+- persistent summary or progress indicator only when it does not compete with the focal content;
+- a reserved bottom-third subtitle zone that teaching content never enters.
 
 Default simultaneous density:
 
@@ -109,7 +118,7 @@ Default simultaneous density:
 - one primary visual or card;
 - at most one compact supporting element.
 
-If a wide scene has two or three columns, convert vertical to steps, alternating states, or a vertical sequence. Do not preserve the column count by shrinking cards. Split a vertical scene when its final state remains crowded after sequential reveal.
+If a wide scene has two or three columns, convert vertical to steps, alternating states, or a vertical sequence (per the V-layout mapping). Do not preserve the column count by shrinking cards. Split a vertical scene when its final state remains crowded after sequential reveal.
 
 ### Subject-Selection Series Rules
 
@@ -121,7 +130,7 @@ For 选科 series (e.g. six 选考科目), enforce these density rules on top of
 
 ## Adaptive Architecture
 
-Share semantic data and timing, then adapt presentation through explicit layout configuration.
+Share semantic data and timing, then adapt presentation through explicit layout configuration. The layout configuration picks the horizontal H-layout and the vertical V-layout per scene from `references/page-layouts.md`; the storyboard row records both tags.
 
 Use tokens or helpers such as:
 
@@ -161,8 +170,10 @@ Reject a scene when:
 - it contains paragraph-like text or repeats the subtitle verbatim without visual purpose;
 - two or more elements compete as the primary focal point;
 - vertical shows more simultaneous content than it can comfortably hold;
+- the storyboard does not name a horizontal and a vertical layout tag from `references/page-layouts.md`;
 - wide and vertical use the same fixed coordinates or card grid;
 - the vertical version is produced by scaling or cropping the wide version;
+- the vertical content board extends into the bottom subtitle zone;
 - animation is decorative and does not reveal meaning;
 - transitions obscure text, collide with captions, or vary without semantic reason;
 - the final reveal state is denser than the opening state can support.

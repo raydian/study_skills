@@ -9,11 +9,12 @@ Create one repeatable Remotion knowledge-video project from one article, note, c
 
 ## Read The References
 
-Read all eight references before creating a project:
+Read all nine references before creating a project:
 
 - `references/workflow-gates.md`: mandatory Superpowers stage order, artifacts, and gates.
 - `references/content-design.md`: separate cover and hook, narrative routes, scene structure, and teaching language.
 - `references/visual-system.md`: approved palette, typography, layouts, and 16:9/9:16 adaptations.
+- `references/page-layouts.md`: canonical per-frame page layouts — 22 horizontal (H01-H22) and 22 vertical (V01-V22) independent page structures, layout tags L01-L20, and the frame-to-layout mapping table.
 - `references/motion-layout.md`: text-density limits, progressive reveals, semantic transitions, and adaptive wide/vertical layouts.
 - `references/transition-playbook.md`: concrete SceneTransition wrapper, slide relay, matched-element continuity anchors, one-way staggered reveal, and transition safety budget for smooth scene and storyboard changes.
 - `references/dual-format-contract.md`: shared subtitle, timeline, and composition contract.
@@ -34,6 +35,11 @@ Read all eight references before creating a project:
 - Frame `1` hard-cuts to a separate hook page for approximately five seconds.
 - Create `1920x1080` and `1080x1920` compositions at `30fps` from one shared semantic timeline and one subtitle dataset.
 - Reflow meaning into aspect-specific layouts. Never crop or mechanically shrink the horizontal composition to produce the vertical version.
+- Treat `/Users/yxy/document/jay/hs_knowledge/output/高中学科科普视频-视频帧布局应用-水墨留白.html` as the baseline layout specification. `references/page-layouts.md` is its implementation contract; when prose or a generic Remotion default conflicts with that reference, the page-layout token table wins. Record any intentional project-specific deviation in the design, review, and verification artifacts.
+- The ink-wash (选科) cover is a **dark surface**: H01/V01 use `ink` background with large `paper` title, exactly one `seal` key phrase, and one small seal accent. Never "fix" a dark cover whose title is invisible by switching the cover to the light `paper` surface — the correct fix is a `paper` title on `ink` (see `references/visual-system.md`). Do not place a series label such as `选科科普 · 01` on the cover; cover meta line is optional and stays secondary.
+- The ink surface and its wave-line texture are rendered by the shared `SceneShell` dark branch. **The cover component itself must not paint an opaque `backgroundColor` on its root `AbsoluteFill`** — an opaque cover root would cover the wave texture and silently regress the cover to a flat single-color ink field (real-project bug fixed 2026-08, 选科 series). Keep the cover root transparent, set only `color: paper` for text. The same applies to any other dark-surface layout component (e.g. closing).
+- The closing page (H22/V22) does **not** preview the next article's title by default. It restates one conclusion and gives an action line (e.g. `行动，从三件小事开始`) instead. Preview the next topic only when the user explicitly asks for a next-video prompt.
+- Choose every scene's page structure from `references/page-layouts.md`: one horizontal layout (H01-H22) and one independent vertical layout (V01-V22) per scene, recorded as layout tags in `storyboard.md`. The vertical page is an independent stacked or sequential composition for the 1080x1920 canvas, never a scaled or cropped horizontal board.
 - Keep each frame focused on one main message. Move secondary information into later frames, animation states, or additional scenes instead of stacking paragraphs and dense cards.
 - Do not reduce an explanatory article into title-only cards. Each core teaching scene must carry a conclusion, a short explanation, and an evidence, consequence, comparison, example, or action cue.
 - Use readable HTML/SVG as needed for explanation; short explanatory text is required when an icon or diagram alone cannot teach the point.
@@ -55,6 +61,10 @@ Read all eight references before creating a project:
 - Scaffold an empty project with the command prescribed by `$remotion-best-practices` when no suitable project exists.
 - Keep content, subtitle data, scene ids, and timing shared; keep aspect-specific layout components separate.
 - Use adaptive layout tokens for safe areas, gaps, typography, column count, orientation, and simultaneous item count. Wide and vertical layouts may share data and primitives but must not share one fixed page geometry.
+- Name layout components after the page-layouts tags (e.g. `PillarsLayout` / `VerticalPillarsLayout` for L07, `CompareLayout` / `VerticalCompareLayout` for L08) so the storyboard mapping is directly inspectable in code.
+- Give vertical scenes a dedicated bottom subtitle zone (bottom third of the 1080x1920 canvas) and keep teaching content out of it; subtitles use the reference baseline `6cqw = 64.8px` there. Do not silently substitute smaller generic subtitle defaults.
+- Vertical scene containers use **flow layout** (flex column with `padding: 170px 64px 640px` and header `flexShrink:0`, content `flex:1`, footer flowing), never absolute-positioned stacks of header + content that overlap when a two-line title grows (see `references/motion-layout.md`). Vertical card text must meet the vertical token floors: card name `≥ 42px`, description `≥ 32px` (baseline `4.2cqw`/`2.8cqw`); do not render card copy smaller than that.
+- Wide scene content boards center vertically (flex column with content `flex:1` + `justifyContent:center`) instead of absolute `top` offsets, so three-pillar pages do not sit too high; keep footer above the subtitle footprint (`bottom ≥ 250px` on the 1080-high canvas).
 - Drive animation with `useCurrentFrame()`, `interpolate()`, and deterministic Remotion primitives.
 - Use motion to reveal, compare, connect, transform, emphasize, or sequence information. Use scene transitions to communicate continuity or topic changes, not as decoration.
 - Implement smooth scene changes with the shared patterns in `references/transition-playbook.md`: one SceneTransition wrapper per scene (paired enter/exit fades for cross-fade), slide relay for ordered sibling scenes, a matched-element continuity anchor across each multi-scene series, and one-way staggered reveals.
@@ -62,6 +72,7 @@ Read all eight references before creating a project:
 - Keep assets in `public/` and reference local assets with `staticFile()`.
 - Display readable text as HTML or SVG overlays, not inside generated imagery.
 - Give `SubtitleBand` an explicit readable text color and font; never rely on inherited color from a sibling background container.
+- Implement the exact baseline typography roles: `Noto Sans SC` for body/subtitles/labels/tables, `Noto Serif SC` for major titles and quotations, and Georgia for Latin numerals/formulas where specified. Load the actual font files before rendering; a CSS family name without an available font is not compliance.
 - Register semantic scene `Sequence` blocks with human-readable names so Remotion Studio provides a useful, navigable timeline. Do not promise automatic thumbnail strips for pure code-generated scenes; Studio shows structural scene ranges rather than NLE-style video thumbnails.
 - Reserve subtitle-safe areas and keep each visible subtitle cue within two lines in both formats.
 - Split overlong subtitles across different playback frames. Do not force text into two lines by shrinking below the approved subtitle size, tightening letter spacing, clipping, masking, scaling, or hiding overflow.
@@ -77,7 +88,8 @@ Mark the creation workflow complete only when:
 - required tests, typecheck, lint, caption-schema checks, and timeline checks pass;
 - the Stage 6 compliance pass in `references/compliance-checklist.md` was run covering subtitles, motion, colors, and layout structure; every failed item was fixed and the full suite re-run — checks are never weakened to match the code;
 - deterministic subtitle-fit checks prove that every cue stays within two lines in both layouts;
-- layout review confirms that vertical scenes contain fewer simultaneous elements and use a deliberate stacked or sequential composition;
+- every storyboard scene names a horizontal and a vertical layout tag from `references/page-layouts.md`, and the implemented components match those tags;
+- layout review confirms that vertical scenes contain fewer simultaneous elements and use a deliberate stacked or sequential composition from V01-V22, never a scaled or cropped horizontal board;
 - visual review confirms scene hierarchy: conclusion first, explanation second, evidence/action third; backgrounds and SVG elements support rather than replace meaning;
 - no audio file or generated MP4 was created by the workflow.
 

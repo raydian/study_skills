@@ -36,7 +36,7 @@ Require frame `0` to contain:
 - one highlighted key phrase at most;
 - a finished, readable static layout.
 
-The cover exists for exactly one frame. Do not attach narration, subtitles, entrance motion, exit motion, or a transition overlap to it. Hard-cut at frame `1` to a visually distinct hook page.
+Do not place a series label (e.g. `选科科普 · 01`) on the cover; a category/source meta line is optional and stays secondary. The cover exists for exactly one frame. Do not attach narration, subtitles, entrance motion, exit motion, or a transition overlap to it. Hard-cut at frame `1` to a visually distinct hook page.
 
 The hook page must not duplicate the cover. It should present a concrete question, conflict, consequence, misconception, decision test, or counterintuitive fact. Let it occupy approximately five seconds, then follow with a direct answer, answer boundary, or route preview within `5-15` seconds of the video start.
 
@@ -75,7 +75,7 @@ Use this as the default focused-explainer arc. Author cue durations during plann
 | Example or case | Late body | Apply the concept, rule, or method |
 | Misconception check | Before recap | Correct the most likely wrong takeaway |
 | Takeaway or action | Final 20-35s | Give a memory aid, procedure, or concrete next action |
-| Closing | Final 3-6s | Restate one conclusion and point to the next related question |
+| Closing | Final 3-6s | Restate one conclusion and give an action line; do **not** preview the next article's title unless the user explicitly asks for a next-video prompt |
 
 ## Route Selection
 
@@ -138,7 +138,7 @@ Require every scene to answer:
 5. What teaching purpose does the motion serve?
 6. Does the transition communicate continuity, progression, contrast, reveal, or a topic boundary?
 
-Merge or remove scenes that only decorate, repeat the subtitle, or restate the source without visual explanation. Split scenes that require paragraph blocks, dense grids, or several competing focal points. Require separate horizontal and vertical layout descriptions; the vertical description must reduce simultaneous content and use stacked or sequential presentation.
+Merge or remove scenes that only decorate, repeat the subtitle, or restate the source without visual explanation. Split scenes that require paragraph blocks, dense grids, or several competing focal points. Require separate horizontal and vertical layout descriptions; the vertical description must reduce simultaneous content and use stacked or sequential presentation. Every scene's storyboard row must name one horizontal layout and one vertical layout tag from `references/page-layouts.md` (H01-H22 / V01-V22), chosen from its frame-to-layout mapping table.
 
 ## Explanation Depth Gate
 

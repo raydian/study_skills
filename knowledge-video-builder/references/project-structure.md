@@ -77,9 +77,9 @@ Include:
 
 ### `storyboard.md`
 
-Use one row per shared scene:
+Use one row per shared scene. Every row names a horizontal layout tag (H01-H22) and a vertical layout tag (V01-V22) from `references/page-layouts.md` in the `Horizontal visual` and `Vertical visual` columns; scene ids and layout component names carry the same tag:
 
-| Scene | Purpose | Script/caption cues | Horizontal visual | Vertical visual | Motion purpose | Transition out | Visual cue ids |
+| Scene | Purpose | Script/caption cues | Horizontal visual (H-tag) | Vertical visual (V-tag) | Motion purpose | Transition out | Visual cue ids |
 |---|---|---|---|---|---|---|---|
 
 ### `口播稿.md`
@@ -101,12 +101,13 @@ Write subtitle-sized semantic cues rather than long paragraphs. Include scene id
 - Scaffold an empty project with `npx create-video@latest --yes --blank --no-tailwind <工程名>` when required.
 - Centralize color tokens, typography, safe areas, content, captions, and timing.
 - Share semantic components and data; split layout components by aspect ratio where necessary.
-- Centralize adaptive layout tokens, but give wide and vertical scenes independent flow, geometry, density, and reveal cadence.
+- Select every scene's horizontal and vertical page structure from `references/page-layouts.md`; name components after the layout tags so the mapping is inspectable.
+- Centralize adaptive layout tokens, but give wide and vertical scenes independent flow, geometry, density, and reveal cadence; vertical scenes keep a bottom-third subtitle zone and never reuse the wide geometry at scale.
 - Use time-based reveals, focus changes, diagrams, and semantic transitions instead of paragraph blocks or dense card grids.
 - Build every key scene as conclusion → explanation → evidence/action. Do not substitute title-only cards for source reasoning.
 - Use SVG icons and diagrams where they explain a relationship; pair them with readable labels and explanatory copy. Use low-contrast structural backgrounds behind content, never as a replacement for it.
 - Use named `Sequence` ranges matching the storyboard so Studio offers a usable scene timeline.
-- Explicitly set subtitle text color and font. For vertical videos, prefer 48-52px subtitles with a correspondingly enlarged bottom reserve.
+- Explicitly set subtitle text color and font. Implement the reference subtitle tokens: wide `54px`/`1.3`/`82cqw` at `bottom 21.6px`; vertical `64.8px`/`1.5` with `64.8px` side insets at `bottom 211.2px`, inside the dedicated bottom third.
 - Drive every animation from Remotion frames and deterministic interpolation.
 - Forbid CSS transitions, CSS animations, and Tailwind animation classes.
 - Keep assets in `public/` and use `staticFile()`.
@@ -118,14 +119,15 @@ Write subtitle-sized semantic cues rather than long paragraphs. Include scene id
 
 Distilled from `video/选科/04-六门选考科目分别学什么/` (2026-08). Replicate this inventory unless the design documents a deviation:
 
-- `SceneShell`: `bgDeep` base + low-opacity radial/linear blue structural wash for the standard palette; for the ink-wash (选科) palette use `paper` base + low-opacity ink-wash structural field (brush/mountain/grid at 6-10% opacity); owns font and text color; every scene renders inside it.
-- `Cover` / `Hook`: per the playbook; cover has no frame-driven code, hook stages question→dim→correction. Ink-wash covers use `paper` + `ink` title + one `seal` phrase.
+- `SceneShell`: `bgDeep` base + low-opacity radial/linear blue structural wash for the standard palette; for ink-wash (选科), light teaching scenes use `paper` plus restrained structure while H01/V01 cover and H22/V22 closing use the dark `ink` surface; owns font and text color; every scene renders inside it.
+- `Cover` / `Hook`: per the playbook; cover has no frame-driven code or caption, hook stages question→dim→correction. Ink-wash covers use `ink` background + `paper` title + one small `seal` accent, matching the baseline H01/V01 — never a light-surface cover. No series label on the cover.
 - `SceneTransition`: shared enter/exit wrapper (see `transition-playbook.md`).
-- `SubjectNav`-style continuity anchor: one component, two geometries (wide node rail / vertical progress dots), three states (current/completed/upcoming), reused in series scenes and closing. Ink-wash palette: current = `seal`, completed = `ink`, upcoming = `wash`.
-- `SubtitleBand`: looks up the active cue by `frame/fps*1000`, explicit color/font, mode-specific size and bottom reserve, ≤6-frame cue micro-fade, z-index above scenes.
+- `SubjectNav`-style continuity anchor: one component, two geometries (wide node rail / vertical progress dots), three states (current/completed/upcoming), reused in series scenes and closing. Ink-wash palette: current = `seal`, completed = `ink`, upcoming = `wash`; on the dark closing surface use a `dark` prop so completed nodes render `paper` instead of invisible `ink`.
+- `SubtitleBand`: looks up the active cue by `frame/fps*1000`, explicit loaded font/color, exact reference mode tokens (`54px` wide, `64.8px` vertical), ≤6-frame cue micro-fade, z-index above scenes. Use the reference three-layer text shadow or a documented equivalent that preserves legibility on paper and ink surfaces. Invert to `paper` on dark scenes (cover/closing).
 - `TimelineScenes`: one named `Sequence` per shared scene (`layout="none"`) so Studio exposes a navigable scene timeline.
 - Shared content model in `src/data/content.ts`: each core scene is `{conclusion, explanation, evidence: readonly string[], nextStep}`; sibling series additionally share an id list, display names, and per-item task labels so compare and closing scenes can rebuild the series from data.
 - `src/config/layout.ts`: per-mode tokens (`safeX`, `top`, `subtitleBottom`, `subtitleReserve`, `title`, `body`, `subtitle`, `columns`, `maxSimultaneousItems`); scenes read tokens, never hardcode geometry.
+- Vertical scene containers: flow column (`padding:170px 64px 640px`; header `flexShrink:0`, content `flex:1`, footer flowing) so header/content never overlap and teaching content never enters the bottom-third subtitle zone. Vertical card copy floors: name `≥42px`, description `≥32px`. Wide scene content boards center vertically; footer sits above the subtitle footprint (`bottom ≥250px`).
 - `src/validation/captionFit.ts`: deterministic line estimator (full-width `1.0em`, CJK punctuation `0.7em`, space `0.3em`, ASCII `0.58em`) used by both the vitest suite and the validate script.
 - `tests/`: `video-contract.test.ts` (vitest) + `validate-video.mts` (plain node/tsx) implementing the automated layer of `compliance-checklist.md`. Keep asserted literal strings out of comments to avoid false failures.
 - Illustrative cases carry a visible 示例 badge; misconception content pairs danger-colored wrong claim with success-colored correction in one card.

@@ -44,6 +44,7 @@ Required work:
 
 - inspect the complete source and related references;
 - identify audience, learning objective, scope, target duration, content route, evidence boundaries, cover, hook, motion strategy, transitions, and dual-format needs;
+- select the page structure for each planned scene from `references/page-layouts.md` (horizontal H01-H22 and vertical V01-V22 per scene, layout tags L01-L20);
 - resolve material ambiguities one question at a time;
 - compare viable content or visual approaches and record the recommended choice;
 - present the design and obtain the user’s approval when the skill requires it.
@@ -68,7 +69,7 @@ Use `$writing-plans` after the approved design and before production code.
 Required work:
 
 - map exact files and responsibilities;
-- plan shared data, independent wide and vertical layouts, adaptive tokens, motion, transitions, subtitles, timing, and validation;
+- plan shared data, independent wide and vertical layouts (per-scene H-tags and V-tags from `references/page-layouts.md`), adaptive tokens, motion, transitions, subtitles, timing, and validation;
 - include exact checks and expected results;
 - keep rendering and voice generation out of the plan.
 

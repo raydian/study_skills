@@ -40,7 +40,7 @@ semantic visual cue ids
 Keep aspect-specific:
 
 ```text
-layout component
+layout component (one H-layout and one V-layout from references/page-layouts.md per scene)
 font scale
 panel geometry
 diagram orientation
@@ -48,6 +48,7 @@ simultaneous item count
 camera crop or visual framing
 reveal cadence
 transition presentation when geometry requires it
+vertical bottom-third subtitle zone (V-layouts reserve it; teaching content never enters)
 ```
 
 Do not create one oversized universal canvas and crop or scale it. Build each aspect ratio from shared semantic data and explicit adaptive layout configuration.
@@ -160,7 +161,8 @@ Validate without media rendering:
 - every overlong source sentence is represented by multiple ordered, non-overlapping caption cues and playback ranges;
 - no horizontal layout mechanically reused as vertical;
 - no fixed page geometry, uniform scale transform, or unchanged multi-column grid shared across aspect ratios;
-- vertical scenes respect their lower simultaneous-item limit and sequential reveal plan;
+- every scene implements the horizontal and vertical layout tags declared in the storyboard (per `references/page-layouts.md`), and vertical scenes use the V01-V22 stacked/sequential structures;
+- vertical scenes respect their lower simultaneous-item limit, sequential reveal plan, and the bottom-third subtitle zone;
 - no audio import, TTS integration, render script, or generated media output.
 
 Do not run still or video rendering as part of validation.
