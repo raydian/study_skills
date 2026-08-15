@@ -1,0 +1,18 @@
+schema_version: 1
+chapter_id: chNN
+annotations:
+  - id: ann-chNN-001
+    target_refs: [chNN-p001]
+    annotation_type: claim
+    attribution: author_claim
+    body: "__ANNOTATION__"
+    source_refs:
+      - ref: chNN-p001
+        pages: ["__PAGE__"]
+        relation: states
+    concepts: []
+    related_units: []
+    confidence: 0.0
+    revision: 1
+    supersedes: null
+    change_reason: initial

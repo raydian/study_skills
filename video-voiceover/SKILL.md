@@ -1,7 +1,6 @@
 ---
 name: video-voiceover
-agent_created: true
-description: Generate subject-specific Doubao TTS voiceover audio for high-school subject video projects. Use when the user asks to create, add, regenerate, or sync 配音, 旁白, 朗读音频, voiceover, TTS audio, or narration for a video directory from an audio script/口播稿/配音稿.
+description: Generate and synchronize Doubao TTS voiceover audio for high-school subject and close-reading book explainer videos. Use when the user asks to create, add, regenerate, verify, or sync 配音, 旁白, 朗读音频, voiceover, TTS audio, narration, subtitles, or video timing from an audio script/口播稿/配音稿.
 ---
 
 # Video Voiceover
@@ -31,6 +30,7 @@ Use subject-specific voice profiles. Read `references/voice-profiles.md` when ch
 
 - 数学、物理、化学、生物: default speaker `zh_female_yingyujiaoxue_uranus_bigtts`.
 - 语文、英语、地理、历史: default speaker `zh_male_yuanboxiaoshu_uranus_bigtts`.
+- 精读图书视频讲解: required speaker `zh_male_yuanboxiaoshu_uranus_bigtts`.
 - 语文: calm, literary, slower for formal whole-text reading.
 - 数学: precise, steady, slightly faster explanation.
 - 英语: clear bilingual classroom tone, preserving English terms.
@@ -41,6 +41,8 @@ Use subject-specific voice profiles. Read `references/voice-profiles.md` when ch
 - 地理: broad, explanatory, map-reading tone.
 
 Known speaker IDs above are the local stable defaults. If a video project or user requires another account-specific voice, pass `--speaker`.
+
+Choose speech rate, pauses, and tone from the content before synthesis. After generating the approved voiceover, treat those delivery choices as locked: never change TTS speed, pause intervals, tone, or stretch/compress the audio merely to fit an existing video duration.
 
 ## Script Format
 
@@ -80,12 +82,24 @@ When a project owns `src/data/timeline.ts` with an estimated-text timeline and y
 4. **Recitation detection**: the generator's `is_recitation` heuristic flags any short quoted classical line as 朗读 (-14 slow). For lesson scripts that quote lines inside explanation scenes, write explicit `speechRate`/`pauseAfterMs`/`tone` into `voiceover_marks.json` (朗读 scenes -14/420, explanation scenes -2/260) instead of relying on the heuristic.
 5. **Global subtitle overlap**: in the composition, the global `<Subtitle>` renders the cover's cue at frame 0 and overrides the cover page's own delayed subtitle. Restrict the global Subtitle to `frame >= SCENE_STARTS.read1 && frame < SCENE_STARTS.closing` so cover/closing pages manage their own subtitle.
 
+## Mandatory Three-Source Synchronization
+
+Apply this workflow to every video voiceover task, including close-reading book explainers:
+
+1. Inspect the actual video playback content, scene order, current frame count, subtitle content/timing, and generated voiceover before declaring the task complete.
+2. Use the measured voiceover timeline as the single timing source of truth. Make each subtitle's text correspond to the spoken segment and make its visible interval follow that segment's measured audio interval.
+3. Make each visual scene cover the matching narration and subtitle interval. Adjust scene duration, transitions, composition duration, and playback frame counts to the voiceover timeline.
+4. If video duration and voiceover duration differ, change the video timing and frame counts. Do not solve the mismatch by changing voiceover speed, pause intervals, tone, prosody, or by time-stretching/compressing the audio.
+5. Derive all scene boundaries from cumulative global audio times converted at the composition FPS. Ensure scene frame counts sum exactly to the composition's total frame count; do not independently round scene durations and accumulate drift.
+6. Re-render or preview the complete result and verify the same content is aligned across all three sources: visuals, subtitles, and voiceover.
+
 ## After Generation
 
 1. Confirm `public/audio/voiceover.mp3` exists and has nonzero duration.
 2. Confirm subtitle timings in `voiceover/audio_timeline.json` (raw) and `voiceover/audio_timeline_synced.json` (with cover offset).
 3. Ensure the video composition uses `staticFile("audio/voiceover.mp3")` for narration.
-4. Render or preview the video and check that there is no long blank tail, silent missing section, or subtitle-free ending.
-5. Verify every subtitle is inside its scene and each scene starts at the measured global start of its first subtitle. Do not sum independently rounded scene durations when those values can drift by frames.
+4. Render or preview the complete video and inspect playback content, scene order, subtitles, and narration together; check that there is no long blank tail, silent missing section, subtitle-free ending, mismatched line, or early visual cut.
+5. Verify every subtitle is inside its matching scene and each scene starts and ends on cumulative frame boundaries derived from measured audio. Confirm the sum of scene frames equals the composition's total frames.
 6. Run a whole-video silence check: extract silence ranges with `ffmpeg -af silencedetect=noise=-38dB:d=0.4` and assert every subtitle `start` falls inside a silence range (0 mismatches), and the last subtitle `end` is before the audio total (no blank tail).
-7. If a final MP4 already exists, re-render it and confirm its modification time, duration, and video/audio streams with `ffprobe` before calling it updated.
+7. Confirm the video duration matches the voiceover-driven total within one frame. Resolve any mismatch only by changing video timing/frame counts and regenerating subtitle timing, never by altering the approved voiceover delivery.
+8. If a final MP4 already exists, re-render it and confirm its modification time, duration, and video/audio streams with `ffprobe` before calling it updated.

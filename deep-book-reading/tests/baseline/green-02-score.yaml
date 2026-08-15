@@ -1,0 +1,12 @@
+case: concept-revision-with-editorial-pressure
+skill_loaded: true
+result: pass
+checks:
+  initial_state_preserved: pass
+  later_constraint_preserved: pass
+  final_state_used_operationally: pass
+  ai_synthesis_labeled: pass
+  all_chapters_traced: pass
+  editor_simplification_rejected: pass
+  underdefined_skill_held: pass
+note: "The agent used bounded autonomy as the final state and scored the candidate 66/100 (hold/research)."

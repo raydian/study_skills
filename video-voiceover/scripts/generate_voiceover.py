@@ -36,6 +36,8 @@ VOICE_PROFILES = {
     "生物": {"speaker": "zh_female_yingyujiaoxue_uranus_bigtts", "speechRate": 0, "pauseAfterMs": 220, "loudnessRate": 0},
     "历史": {"speaker": "zh_male_yuanboxiaoshu_uranus_bigtts", "speechRate": -1, "pauseAfterMs": 240, "loudnessRate": 0},
     "地理": {"speaker": "zh_male_yuanboxiaoshu_uranus_bigtts", "speechRate": 0, "pauseAfterMs": 220, "loudnessRate": 0},
+    "精读图书": {"speaker": "zh_male_yuanboxiaoshu_uranus_bigtts", "speechRate": 0, "pauseAfterMs": 240, "loudnessRate": 0},
+    "精读图书视频讲解": {"speaker": "zh_male_yuanboxiaoshu_uranus_bigtts", "speechRate": 0, "pauseAfterMs": 240, "loudnessRate": 0},
 }
 
 SCRIPT_CANDIDATES = [
@@ -381,7 +383,10 @@ def build_audio_timeline(marks: list[dict], fps: int, scene_order: list[str]) ->
             scene_subtitles.append(subtitle)
             subtitles.append(subtitle)
             local_cursor = end + mark["pauseAfterMs"] / 1000
-        duration_frames = max(1, round(local_cursor * fps))
+        scene_end = scene_start + local_cursor
+        start_frame = round(scene_start * fps)
+        end_frame = round(scene_end * fps)
+        duration_frames = max(1, end_frame - start_frame)
         scenes.append(
             {
                 "id": scene_id,
@@ -390,7 +395,7 @@ def build_audio_timeline(marks: list[dict], fps: int, scene_order: list[str]) ->
                 "subtitles": scene_subtitles,
             }
         )
-        global_cursor += local_cursor
+        global_cursor = scene_end
     return {
         "fps": fps,
         "totalSeconds": round(global_cursor, 3),

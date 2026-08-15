@@ -1,0 +1,17 @@
+case: red-01-replayed-with-skill
+skill_loaded: true
+result: pass
+checks:
+  source_wording_preserved: pass
+  editorial_pressure_rejected: pass
+  causal_overclaim_resisted: pass
+  figure_read_as_evidence: pass
+  footnote_used: pass
+  stable_unit_ids: pass
+  unresolved_locator_blocks_sealing: pass
+  reading_claim_ids: pass
+  canonical_source_refs: pass
+  attribution_taxonomy: pass
+  canonical_knowledge_types: pass
+  weak_skill_candidate_rejected: pass
+note: "The agent kept Source in staging because the figure page was unresolved, demonstrating gate-aware behavior."

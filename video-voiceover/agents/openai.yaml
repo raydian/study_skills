@@ -1,4 +1,4 @@
 interface:
   display_name: "Video Voiceover"
-  short_description: "Generate subject-specific video narration audio"
-  default_prompt: "Use $video-voiceover to generate synced narration audio for this video directory."
+  short_description: "Generate and synchronize video narration, subtitles, and timing"
+  default_prompt: "Use $video-voiceover to generate narration for this video, then synchronize the visuals, subtitles, and frame counts to the measured voiceover timeline."

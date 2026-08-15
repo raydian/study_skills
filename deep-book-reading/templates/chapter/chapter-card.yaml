@@ -1,0 +1,24 @@
+chapter_id: chNN
+core_question: "__QUESTION__"
+author_answer: "__ANSWER__"
+source_refs: [chNN-p001]
+concepts: []
+claims: []
+argument_chain: []
+evidence: []
+cases: []
+methods: []
+frameworks: []
+limitations: []
+links_previous: []
+links_next: []
+skill_candidates: []
+open_questions: []
+density:
+  concept_clusters: 0
+  argument_branches: 0
+  frameworks_methods: 0
+  applications_cases: 0
+  cross_chapter_importance: 0
+  total: 0
+  topic_readings: 0

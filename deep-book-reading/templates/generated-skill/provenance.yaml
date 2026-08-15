@@ -1,0 +1,14 @@
+schema_version: 1
+source_book:
+  book_id: "__BOOK_SLUG__"
+  title: "__TITLE__"
+  author: ["__AUTHOR__"]
+derived_from:
+  knowledge_units: []
+  source_refs: []
+  evidence_refs: []
+transformations: []
+boundaries_preserved: []
+generalizations_added: []
+confidence: 0.0
+verified_at: "__ISO_8601__"

@@ -1,0 +1,18 @@
+schema_version: 1
+chapter_id: chNN
+knowledge_units:
+  - id: ku-concept-0001
+    type: Concept
+    name: "__NAME__"
+    statement: "__STATEMENT__"
+    human_explanation: "__EXPLANATION__"
+    attribution: author_claim
+    source_refs:
+      - ref: chNN-p001
+        pages: ["__PAGE__"]
+        relation: defines
+    evidence_refs: []
+    prerequisites: []
+    boundary_conditions: []
+    related_units: []
+    confidence: 0.0

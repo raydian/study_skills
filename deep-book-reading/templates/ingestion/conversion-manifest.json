@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "book": {
+    "title": "",
+    "category": "",
+    "language": ""
+  },
+  "source": {
+    "pdf": "",
+    "sha256": "",
+    "auto_dir": ""
+  },
+  "engine": {
+    "name": "",
+    "version": ""
+  },
+  "stages": {
+    "imported": false,
+    "formatted": false,
+    "split": false
+  },
+  "pages": [],
+  "resources": {
+    "images": [],
+    "mineru_json": []
+  },
+  "warnings": [],
+  "validation": {
+    "status": "pending",
+    "blocking_count": 0,
+    "issues": []
+  }
+}

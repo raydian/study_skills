@@ -1,0 +1,27 @@
+schema_version: 1
+book_id: "__BOOK_SLUG__"
+passes:
+  pass_0: pending
+  pass_1: pending
+  pass_2: pending
+  pass_3: pending
+  pass_4: pending
+  pass_5: pending
+coverage:
+  chapters: {reviewed: 0, total: 0}
+  sections: {reviewed: 0, total: 0}
+  pages: {reviewed: 0, total: 0}
+  paragraphs: {reviewed: 0, total: 0}
+  figures: {reviewed: 0, total: 0}
+  tables: {reviewed: 0, total: 0}
+  equations: {reviewed: 0, total: 0}
+  code_blocks: {reviewed: 0, total: 0}
+  footnotes: {reviewed: 0, total: 0}
+  sidebars: {reviewed: 0, total: 0}
+  appendices: {reviewed: 0, total: 0}
+units: []
+checkpoint:
+  updated_at: "__ISO_8601__"
+  next_unit: "pass0:source-integrity"
+  context_note: ""
+gaps: []

@@ -1,0 +1,16 @@
+case: red-01
+skill_loaded: false
+result: fail
+checks:
+  source_wording_preserved: pass
+  causal_overclaim_resisted: pass
+  figure_read_as_evidence: pass
+  footnote_used: pass
+  stable_unit_ids: fail
+  source_seal_and_hash: fail
+  reading_claim_ids: fail
+  canonical_source_refs: fail
+  attribution_taxonomy: fail
+  canonical_knowledge_types: fail
+  manifest_and_ledgers: fail
+observed_failure_pattern: "Good local judgment without a complete reproducible artifact contract."

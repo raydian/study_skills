@@ -1,0 +1,4 @@
+interface:
+  display_name: "深度图书拆解"
+  short_description: "把整本书转成可追溯的人类精读、AI 知识语料与 Agent Skills"
+  default_prompt: "使用 $deep-book-reading 深度拆解这本书，并生成可回溯原文的完整图书资产包。"

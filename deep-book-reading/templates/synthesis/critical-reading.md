@@ -1,0 +1,19 @@
+# Critical reading
+
+## __CLAIM_ID__
+
+### Author View
+
+__AUTHOR_VIEW_WITH_SOURCE_REFS__
+
+### Evidence
+
+__EVIDENCE_STRENGTH_AND_LIMITATIONS__
+
+### Alternative View
+
+__ALTERNATIVE_OR_OPEN_QUESTION__
+
+### AI Assessment
+
+__CRITICAL_ANALYSIS_WITH_SOURCE_REFS_AND_CONFIDENCE__
