@@ -9,6 +9,12 @@
 | `reading-ledger.yaml` | AI/system | append/update | Reading Ledger and PASS/coverage state |
 | `evidence-ledger.yaml` | AI/system | append/update | Evidence Ledger linking derived claims to Source |
 
+## PDF parsed-source artifacts
+
+For PDF input, `markdown/<category>/<title>/` is a separately and atomically published parsed-source generation. It contains raw `<title>.md`, formatted `<title>-格式化.md`, `normalization-log.json`, hashed `images/`, hashed `mineru/` JSON evidence, `拆分/split-index.json`, chapter splits when reliable, and schema-v2 `conversion-manifest.json`. It is staging evidence and must not be represented as sealed Source. Formatting preserves ambiguous lexical hyphens and protected Markdown states. If splitting is unavailable, the formatted artifact—not raw Markdown—is the package source unit.
+
+The initialized package root is `books/<title-slug>/`; its `chapters/chNN/source.md` files begin in staging and become canonical Source only after Gate B sealing. `manifest.yaml` must retain `ingestion.conversion_dir`, `ingestion.conversion_manifest`, `ingestion.provenance_index`, `ingestion.source_pdf_sha256`, and `ingestion.gate_status: passed`. Package-local `ingestion-provenance.json` binds every ordered chapter ID and package source hash to its conversion source-unit path/hash and conversion-manifest hash, and binds every source-referenced copied asset by package path/hash/size. Reuse requires exact split/chapter/provenance identity and rescans all current package Markdown image links.
+
 ## Required chapter artifacts
 
 ### `source.md`

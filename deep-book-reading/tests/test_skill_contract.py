@@ -67,6 +67,49 @@ class SkillContractTests(unittest.TestCase):
         )
         self.assertNotIn(forbidden, corpus.lower())
 
+    def test_pdf_contract_and_manifest_template_share_authoritative_gate_fields(self):
+        template = (ROOT / "templates" / "ingestion" / "conversion-manifest.json").read_text(
+            encoding="utf-8"
+        )
+        contract = (ROOT / "references" / "pdf-ingestion-contract.md").read_text(
+            encoding="utf-8"
+        )
+        workflow = (ROOT / "workflows" / "pdf-ingestion.md").read_text(
+            encoding="utf-8"
+        )
+        for term in (
+            '"artifacts"',
+            '"normalization_log"',
+            '"command"',
+            '"source_count"',
+            '"reconciliation"',
+        ):
+            self.assertIn(term, template)
+        for term in (
+            "atomic",
+            "formatted",
+            "normalization log",
+            "source_count",
+            "mineru_count",
+            "explicit page",
+            "distinct canonical",
+            "undeclared",
+            "unresolved",
+            "copied-asset",
+            "complete",
+            "passed",
+        ):
+            self.assertIn(term, (contract + "\n" + workflow).lower())
+
+    def test_pdf_ingestion_module_description_mentions_mineru_execution(self):
+        first_lines = "\n".join(
+            (ROOT / "scripts" / "pdf_ingestion.py")
+            .read_text(encoding="utf-8")
+            .splitlines()[:8]
+        )
+        self.assertIn("MinerU execution", first_lines)
+        self.assertNotIn("contains no MinerU execution code", first_lines)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -35,7 +35,7 @@ python3 scripts/validate_book_package.py /absolute/path/to/book-package
 python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
-The validator checks structure, sealed Source markers, stable paragraph IDs, traceable reading claims, attribution/provenance fields, PASS state, resource-kind coverage, and synthesis files. It cannot prove semantic fidelity by itself; the workflow therefore adds quote sampling and human/AI fidelity review.
+For PDF packages the validator also resolves conversion/provenance paths within allowed roots, recomputes the original PDF hash, reruns authoritative Gate P over exact schema-v2 artifacts/stages/resources/links/splits/warnings, and verifies ordered package source-unit plus copied-asset provenance. It rejects unresolved references and undeclared files, then rescans current package Markdown image links. It also checks structure, sealed Source markers, stable paragraph IDs, traceable reading claims, attribution fields, PASS state, resource-kind coverage, and synthesis files. It cannot prove semantic fidelity by itself; the workflow therefore adds quote sampling and human/AI fidelity review.
 
 ## Copyright and privacy
 

@@ -25,6 +25,7 @@ ingestion:
   parser: "__INGESTION_PARSER__"
   conversion_dir: "__CONVERSION_DIR__"
   conversion_manifest: "__CONVERSION_MANIFEST__"
+  provenance_index: "__INGESTION_PROVENANCE_INDEX__"
   source_pdf_sha256: "__SOURCE_PDF_SHA256__"
   gate_status: "__GATE_STATUS__"
   imported_at: "__ISO_8601__"

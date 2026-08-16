@@ -1,12 +1,14 @@
 import importlib.util
 import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
 from dataclasses import FrozenInstanceError
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -87,6 +89,17 @@ class PdfIngestionPrimitiveTests(unittest.TestCase):
             self.assertEqual("第二次", target.read_text(encoding="utf-8"))
             self.assertEqual([], list(target.parent.glob(".manifest.txt.*.tmp")))
 
+    def test_atomic_write_failure_preserves_existing_target_and_cleans_temporary(self):
+        module = load_ingestion()
+        with tempfile.TemporaryDirectory() as temp:
+            target = Path(temp) / "manifest.txt"
+            target.write_text("existing\n", encoding="utf-8")
+            with mock.patch.object(module.os, "replace", side_effect=OSError("injected")):
+                with self.assertRaises(OSError):
+                    module.atomic_write_text(target, "replacement\n")
+            self.assertEqual("existing\n", target.read_text(encoding="utf-8"))
+            self.assertEqual([], list(target.parent.glob(".manifest.txt.*.tmp")))
+
     def test_json_helpers_round_trip_payload(self):
         module = load_ingestion()
         with tempfile.TemporaryDirectory() as temp:
@@ -152,7 +165,7 @@ class ConversionAssetTests(unittest.TestCase):
             "# 系统思考\n\n![图 1](images/figure-1.png)\n", encoding="utf-8"
         )
         (self.auto_dir / "book_content_list_v2.json").write_text(
-            '{"pages": []}\n', encoding="utf-8"
+            '{"pages": [{"page_idx": 0, "type": "text"}]}\n', encoding="utf-8"
         )
         (self.auto_dir / "images" / "figure-1.png").write_bytes(b"figure")
 
@@ -266,16 +279,23 @@ class ConversionAssetTests(unittest.TestCase):
             "![图 1](../../images/figure-1.png)",
             chapter_path.read_text(encoding="utf-8"),
         )
-        self.assertEqual(0, self.module.validate_conversion(self.markdown_dir).blocking_count)
+        split_index = json.loads(
+            (self.markdown_dir / "拆分" / "split-index.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual("chapters", split_index["mode"])
+        self.assertEqual(0, split_index["units"][0]["start"])
+        self.assertEqual(len(formatted), split_index["units"][0]["end"])
 
     def test_validate_conversion_reports_missing_image_as_blocking(self):
-        self.markdown_dir.mkdir(parents=True)
-        (self.markdown_dir / "系统思考.md").write_text(
-            "![缺图](images/missing.png)\n", encoding="utf-8"
+        self.module.import_mineru_output(
+            self.config, self.auto_dir, mineru_version="1.3.0"
         )
+        (self.markdown_dir / "images" / "figure-1.png").unlink()
         report = self.module.validate_conversion(self.markdown_dir)
-        self.assertEqual("invalid", report.status)
-        self.assertEqual(1, report.blocking_count)
+        self.assertEqual("failed", report.status)
+        self.assertGreaterEqual(report.blocking_count, 1)
         self.assertIn("missing_image", [issue.code for issue in report.issues])
 
 
@@ -286,15 +306,20 @@ class BookPackageInitializationTests(unittest.TestCase):
         self.module = load_ingestion()
         self.markdown_dir = self.root / "markdown" / "商业管理" / "系统思考"
         self.chapter_dir = self.markdown_dir / "拆分" / "章节"
-        (self.markdown_dir / "images").mkdir(parents=True)
-        self.chapter_dir.mkdir(parents=True)
-        (self.markdown_dir / "images" / "feedback.png").write_bytes(b"feedback")
-        (self.markdown_dir / "images" / "unused.png").write_bytes(b"unused")
-        (self.chapter_dir / "01-第一章 系统.md").write_text(
-            "# 第一章 系统\n\n第一段。\n\n![反馈](../../images/feedback.png)\n\n第二段。\n",
-            encoding="utf-8",
+        self.pdf = self.root / "系统思考.pdf"
+        self.pdf.write_bytes(b"%PDF-1.7 /Type /Page")
+        self.config = self.module.IngestionConfig(
+            pdf=self.pdf,
+            markdown_root=self.root / "markdown",
+            books_root=self.root / "books",
+            category="商业管理",
+            title="系统思考",
         )
-        self._write_manifest(status="passed", blocking_count=0)
+        self.auto_dir = self.root / "auto"
+        self._rebuild_conversion(
+            "# 第一章 系统\n\n第一段。\n\n![反馈](images/feedback.png)\n\n第二段。\n",
+            {"feedback.png": b"feedback", "unused.png": b"unused"},
+        )
 
     def tearDown(self):
         self._tempdir.cleanup()
@@ -303,21 +328,44 @@ class BookPackageInitializationTests(unittest.TestCase):
         self,
         status,
         blocking_count,
-        sha256="a" * 64,
-        title="系统思考",
-        pdf="/sources/系统思考.pdf",
+        sha256=None,
+        title=None,
+        pdf=None,
     ):
-        self.markdown_dir.mkdir(parents=True, exist_ok=True)
-        (self.markdown_dir / "conversion-manifest.json").write_text(
-            json.dumps(
-                {
-                    "book": {"title": title, "category": "商业管理", "language": "ch"},
-                    "source": {"pdf": pdf, "sha256": sha256},
-                    "engine": {"name": "MinerU", "version": "1.3.0"},
-                    "validation": {"status": status, "blocking_count": blocking_count},
-                }
-            ),
+        path = self.markdown_dir / "conversion-manifest.json"
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        manifest["validation"]["status"] = status
+        manifest["validation"]["blocking_count"] = blocking_count
+        if sha256 is not None:
+            manifest["source"]["sha256"] = sha256
+        if title is not None:
+            manifest["book"]["title"] = title
+        if pdf is not None:
+            manifest["source"]["pdf"] = pdf
+        path.write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
+        )
+
+    def _rebuild_conversion(
+        self, markdown: str, images: dict[str, bytes] | None = None
+    ):
+        if self.markdown_dir.exists():
+            shutil.rmtree(self.markdown_dir)
+        if self.auto_dir.exists():
+            shutil.rmtree(self.auto_dir)
+        (self.auto_dir / "images").mkdir(parents=True)
+        (self.auto_dir / "book.md").write_text(markdown, encoding="utf-8")
+        (self.auto_dir / "book_content_list_v2.json").write_text(
+            '{"pages": [{"page_idx": 0, "type": "text"}]}\n',
+            encoding="utf-8",
+        )
+        for name, payload in (images or {}).items():
+            target = self.auto_dir / "images" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(payload)
+        return self.module.import_mineru_output(
+            self.config, self.auto_dir, "1.3.0", conflict_policy="replace"
         )
 
     def test_initialize_package_copies_staging_sources_and_referenced_assets(self):
@@ -337,13 +385,17 @@ class BookPackageInitializationTests(unittest.TestCase):
         self.assertTrue((package / "chapters" / "ch01" / "assets" / "feedback.png").is_file())
         self.assertFalse((package / "chapters" / "ch01" / "assets" / "unused.png").exists())
         self.assertIn("assets/feedback.png", source.read_text(encoding="utf-8"))
-        self.assertIn("source_pdf_sha256: \"" + "a" * 64 + "\"", manifest)
+        self.assertIn(
+            "source_pdf_sha256: \"" + self.module.sha256_file(self.pdf) + "\"",
+            manifest,
+        )
         self.assertIn("gate_status: \"passed\"", manifest)
 
     def test_initialize_package_does_not_create_package_when_conversion_gate_fails(self):
         self._write_manifest(status="invalid", blocking_count=1)
         with self.assertRaises(self.module.IngestionError):
             self.module.initialize_book_package(self.markdown_dir, self.root / "books")
+        self.assertFalse((self.root / "books" / "系统思考").exists())
 
 
     def test_initialize_package_rejects_existing_package_with_different_pdf_hash(self):
@@ -357,10 +409,8 @@ class BookPackageInitializationTests(unittest.TestCase):
         package = self.module.initialize_book_package(self.markdown_dir, self.root / "books")
         source = package / "chapters" / "ch01" / "source.md"
         source.write_text("preserved existing package\n", encoding="utf-8")
-        self.assertEqual(
-            package,
-            self.module.initialize_book_package(self.markdown_dir, self.root / "books"),
-        )
+        with self.assertRaises(self.module.IngestionError):
+            self.module.initialize_book_package(self.markdown_dir, self.root / "books")
         self.assertEqual("preserved existing package\n", source.read_text(encoding="utf-8"))
 
     def test_add_stable_paragraph_ids_preserves_markdown_constructs(self):
@@ -433,20 +483,23 @@ class BookPackageInitializationTests(unittest.TestCase):
         nested_asset = self.markdown_dir / "拆分" / "figures" / "nested.png"
         nested_asset.parent.mkdir(parents=True)
         nested_asset.write_bytes(b"nested")
-        (self.chapter_dir / "01-第一章 系统.md").write_text(
-            "# 第一章 系统\n\n![嵌套](../figures/nested.png)\n", encoding="utf-8"
+        chapter_source = self.chapter_dir / "01-第一章 系统.md"
+        markdown = "# 第一章 系统\n\n![嵌套](../figures/nested.png)\n"
+        chapter_source.write_text(markdown, encoding="utf-8")
+        chapter = self.root / "chapter-copy"
+        rewritten = self.module.copy_chapter_assets(
+            markdown, self.markdown_dir, chapter, chapter_source
         )
-        package = self.module.initialize_book_package(self.markdown_dir, self.root / "books")
-        source = (package / "chapters" / "ch01" / "source.md").read_text(encoding="utf-8")
-        self.assertTrue((package / "chapters" / "ch01" / "assets" / "拆分" / "figures" / "nested.png").is_file())
-        self.assertIn("assets/拆分/figures/nested.png", source)
+        self.assertTrue(
+            (chapter / "assets" / "拆分" / "figures" / "nested.png").is_file()
+        )
+        self.assertIn("assets/拆分/figures/nested.png", rewritten)
 
     def test_initialize_package_copies_reference_style_chapter_asset(self):
-        (self.markdown_dir / "images" / "reference.png").write_bytes(b"reference")
-        (self.chapter_dir / "01-第一章 系统.md").write_text(
+        self._rebuild_conversion(
             "# 第一章 系统\n\n![引用图][system-figure]\n\n"
-            "[system-figure]: ../../images/reference.png\n",
-            encoding="utf-8",
+            "[system-figure]: images/reference.png\n",
+            {"reference.png": b"reference"},
         )
         package = self.module.initialize_book_package(self.markdown_dir, self.root / "books")
         source = (package / "chapters" / "ch01" / "source.md").read_text(encoding="utf-8")
@@ -455,11 +508,10 @@ class BookPackageInitializationTests(unittest.TestCase):
         self.assertIn("[system-figure]: assets/reference.png", source)
 
     def test_initialize_package_copies_shortcut_reference_chapter_asset(self):
-        (self.markdown_dir / "images" / "shortcut.png").write_bytes(b"shortcut")
-        (self.chapter_dir / "01-第一章 系统.md").write_text(
+        self._rebuild_conversion(
             "# 第一章 系统\n\n![shortcut-figure]\n\n"
-            "[shortcut-figure]: ../../images/shortcut.png\n",
-            encoding="utf-8",
+            "[shortcut-figure]: images/shortcut.png\n",
+            {"shortcut.png": b"shortcut"},
         )
         package = self.module.initialize_book_package(self.markdown_dir, self.root / "books")
         source = (package / "chapters" / "ch01" / "source.md").read_text(encoding="utf-8")
@@ -468,11 +520,10 @@ class BookPackageInitializationTests(unittest.TestCase):
         self.assertIn("[shortcut-figure]: assets/shortcut.png", source)
 
     def test_initialize_package_preserves_external_reference_images(self):
-        (self.chapter_dir / "01-第一章 系统.md").write_text(
+        self._rebuild_conversion(
             "# 第一章 系统\n\n![远程][remote-image]\n![数据][data-image]\n\n"
             "[remote-image]: https://example.com/remote.png\n"
             "[data-image]: data:image/png;base64,AAAA\n",
-            encoding="utf-8",
         )
         package = self.module.initialize_book_package(self.markdown_dir, self.root / "books")
         source = (package / "chapters" / "ch01" / "source.md").read_text(encoding="utf-8")
@@ -486,6 +537,13 @@ class BookPackageInitializationTests(unittest.TestCase):
         (self.chapter_dir / "01-第一章 系统.md").write_text(
             "# 第一章 系统\n\n![逃逸](../../../../outside.png)\n", encoding="utf-8"
         )
+        self.assertIn(
+            "image_path_escape",
+            {
+                issue.code
+                for issue in self.module.validate_conversion(self.markdown_dir).issues
+            },
+        )
         with self.assertRaises(self.module.IngestionError):
             self.module.initialize_book_package(self.markdown_dir, self.root / "books")
         self.assertFalse((self.root / "books" / "系统思考").exists())
@@ -496,17 +554,40 @@ class BookPackageInitializationTests(unittest.TestCase):
                 (self.chapter_dir / "01-第一章 系统.md").write_text(
                     f"# 第一章 系统\n\n![Windows]({target})\n", encoding="utf-8"
                 )
+                self.assertIn(
+                    "image_path_escape",
+                    {
+                        issue.code
+                        for issue in self.module.validate_conversion(
+                            self.markdown_dir
+                        ).issues
+                    },
+                )
                 with self.assertRaises(self.module.IngestionError):
                     self.module.initialize_book_package(self.markdown_dir, self.root / "books")
                 self.assertFalse((self.root / "books" / "系统思考").exists())
         (self.chapter_dir / "01-第一章 系统.md").write_text(
             "# 第一章 系统\n\n![绝对路径](/tmp/unsafe.png)\n", encoding="utf-8"
         )
+        self.assertIn(
+            "image_path_escape",
+            {
+                issue.code
+                for issue in self.module.validate_conversion(self.markdown_dir).issues
+            },
+        )
         with self.assertRaises(self.module.IngestionError):
             self.module.initialize_book_package(self.markdown_dir, self.root / "books")
         self.assertFalse((self.root / "books" / "系统思考").exists())
         (self.chapter_dir / "01-第一章 系统.md").write_text(
             "# 第一章 系统\n\n![缺失](../../images/missing.png)\n", encoding="utf-8"
+        )
+        self.assertIn(
+            "missing_image",
+            {
+                issue.code
+                for issue in self.module.validate_conversion(self.markdown_dir).issues
+            },
         )
         with self.assertRaises(self.module.IngestionError):
             self.module.initialize_book_package(self.markdown_dir, self.root / "books")
@@ -519,8 +600,9 @@ class BookPackageInitializationTests(unittest.TestCase):
         self.assertFalse((self.root / "books" / "系统思考").exists())
 
     def test_initialize_package_copies_multiple_chapters_and_root_synthesis_templates(self):
-        (self.chapter_dir / "02-第二章 反馈.md").write_text(
-            "# 第二章 反馈\n\n反馈正文。\n", encoding="utf-8"
+        self._rebuild_conversion(
+            "# 第一章 系统\n\n系统正文。\n\n"
+            "# 第二章 反馈\n\n反馈正文。\n"
         )
         package = self.module.initialize_book_package(self.markdown_dir, self.root / "books")
         self.assertTrue((package / "BOOK.md").is_file())
@@ -528,14 +610,29 @@ class BookPackageInitializationTests(unittest.TestCase):
         self.assertTrue((package / "chapters" / "ch02" / "source.md").is_file())
 
     def test_initialize_package_yaml_quotes_hostile_title_and_path(self):
-        title = '系统: "思考"\nextra: true'
-        pdf = 'C:\\books\\source: "unsafe"\nextra.pdf'
-        self._write_manifest("passed", 0, title=title, pdf=pdf)
-        package = self.module.initialize_book_package(self.markdown_dir, self.root / "books")
+        title = '系统: "思考"'
+        pdf = self.root / 'source: "unsafe".pdf'
+        pdf.write_bytes(b"%PDF-1.7 /Type /Page")
+        config = self.module.IngestionConfig(
+            pdf=pdf,
+            markdown_root=self.root / "hostile-markdown",
+            books_root=self.root / "hostile-books",
+            category="商业管理",
+            title=title,
+        )
+        auto = self.root / "hostile-auto"
+        auto.mkdir()
+        (auto / "book.md").write_text("# 第一章 正文\n\n内容。\n", encoding="utf-8")
+        (auto / "book_content_list_v2.json").write_text(
+            '{"pages": [{"page_idx": 0}]}\n', encoding="utf-8"
+        )
+        conversion = self.module.import_mineru_output(config, auto, "1.3.0")
+        package = self.module.initialize_book_package(
+            conversion.manifest_path.parent, config.books_root
+        )
         manifest = (package / "manifest.yaml").read_text(encoding="utf-8")
-        self.assertIn('title: "系统: \\"思考\\"\\nextra: true"', manifest)
-        self.assertIn('"C:\\\\books\\\\source: \\"unsafe\\"\\nextra.pdf"', manifest)
-        self.assertNotIn("\nextra: true\n", manifest)
+        self.assertIn('title: "系统: \\"思考\\""', manifest)
+        self.assertIn('source: \\"unsafe\\".pdf', manifest)
 
     def test_initialize_package_normalizes_unreadable_existing_manifest_error(self):
         package = self.root / "books" / "系统思考"
@@ -580,7 +677,7 @@ class PdfIngestionCliTests(unittest.TestCase):
             encoding="utf-8",
         )
         (mineru_output / "book_content_list_v2.json").write_text(
-            '{"pages": []}\n', encoding="utf-8"
+            '{"pages": [{"page_idx": 0, "type": "text"}]}\n', encoding="utf-8"
         )
         (mineru_output / "images" / "figure-1.png").write_bytes(b"figure")
 
@@ -599,6 +696,68 @@ class PdfIngestionCliTests(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertIn(str((self.root / "markdown" / "商业管理" / "系统思考").resolve()), result.stdout)
         self.assertIn(str((self.root / "books" / "系统思考").resolve()), result.stdout)
+
+    def test_validate_prints_json_and_exits_one_for_blockers(self):
+        conversion_dir = self.root / "conversion"
+        conversion_dir.mkdir()
+        (conversion_dir / "book.md").write_text(
+            "![缺图](images/missing.png)\n", encoding="utf-8"
+        )
+
+        result = self._run_cli("validate", "--conversion-dir", str(conversion_dir))
+
+        self.assertEqual(1, result.returncode)
+        payload = json.loads(result.stdout)
+        self.assertEqual("failed", payload["status"])
+        self.assertEqual(1, payload["blocking_count"])
+        self.assertEqual("manifest_missing", payload["issues"][0]["code"])
+
+    def test_ingestion_error_is_concise_and_exits_two(self):
+        result = self._run_cli(
+            "import-mineru",
+            "--pdf",
+            str(self.root / "missing.pdf"),
+            "--mineru-output",
+            str(self.root / "missing-mineru-output"),
+            "--category",
+            "商业管理",
+            "--title",
+            "系统思考",
+        )
+
+        self.assertEqual(2, result.returncode)
+        self.assertEqual("", result.stdout)
+        self.assertTrue(result.stderr.startswith("error: "))
+        self.assertNotIn("Traceback", result.stderr)
+
+    def test_invalid_category_and_title_are_concise_ingestion_errors(self):
+        pdf = self.root / "book.pdf"
+        pdf.write_bytes(b"synthetic pdf")
+        mineru_output = self.root / "mineru-output" / "auto"
+        mineru_output.mkdir(parents=True)
+        (mineru_output / "book.md").write_text("# 第一章 正文\n", encoding="utf-8")
+        (mineru_output / "book_content_list_v2.json").write_text(
+            '{"pages":[{"page_idx":0}]}\n', encoding="utf-8"
+        )
+        for option, value in (("--category", "../escape"), ("--title", "../escape")):
+            arguments = [
+                "import-mineru",
+                "--pdf",
+                str(pdf),
+                "--mineru-output",
+                str(self.root / "mineru-output"),
+                "--category",
+                "商业管理",
+                "--title",
+                "系统思考",
+            ]
+            arguments[arguments.index(option) + 1] = value
+            result = self._run_cli(*arguments)
+            with self.subTest(option=option):
+                self.assertEqual(2, result.returncode)
+                self.assertEqual("", result.stdout)
+                self.assertTrue(result.stderr.startswith("error: "))
+                self.assertNotIn("Traceback", result.stderr)
 
 
 if __name__ == "__main__":

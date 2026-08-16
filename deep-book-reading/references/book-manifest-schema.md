@@ -30,6 +30,7 @@ ingestion:
   parser: "__INGESTION_PARSER__"
   conversion_dir: "__CONVERSION_DIR__"
   conversion_manifest: "__CONVERSION_MANIFEST__"
+  provenance_index: "ingestion-provenance.json"
   source_pdf_sha256: "__SOURCE_PDF_SHA256__"
   gate_status: "__GATE_STATUS__"
   imported_at: "__ISO_8601__"
@@ -58,6 +59,8 @@ state:
   blocking_issues: []
 ```
 
-`ingestion` records the validated conversion provenance: `type` identifies the importer, `parser` identifies its parser/version, `conversion_dir` and `conversion_manifest` identify the staged conversion, `source_pdf_sha256` binds the package to its PDF, `gate_status` must be `passed`, and `imported_at` is an ISO-8601 UTC timestamp. Package initialization is allowed only when the conversion manifest records `validation.status: passed` and `validation.blocking_count: 0`.
+`ingestion` records validated conversion provenance: `type` identifies the importer; `parser` identifies its parser/version; `conversion_dir` must resolve below the project `markdown/` root; `conversion_manifest` must resolve to that directory's `conversion-manifest.json`; `provenance_index` must resolve inside the package to `ingestion-provenance.json`; `source_pdf_sha256` binds the package to its existing original PDF; `gate_status` must be `passed`; and `imported_at` is an ISO-8601 UTC timestamp. Relative paths resolve from the package root and may not escape the documented roots.
+
+Package initialization and reuse rerun authoritative Gate P rather than trusting status text. `ingestion-provenance.json` records the conversion-manifest hash and, for every source unit, the chapter ID, contained conversion path/hash, contained package `source.md` path/hash, and an `assets` list of the package paths/SHA-256 values/byte sizes referenced by that source. The ordered source-unit IDs and paths must exactly reconcile with `split-index.json` and the actual `chapters/chNN/` set. Reuse additionally requires all root, chapter, and synthesis artifacts, every current package Markdown image link, every copied asset hash, and every expected chapter identity to match.
 
 Set `source_state: sealed` only after source fidelity and locator checks. Store a SHA-256 for each sealed chapter Source or a deterministic combined Source hash. A correction after sealing creates `source_version: N+1`, records `supersedes`, and preserves the previous version or its hash.

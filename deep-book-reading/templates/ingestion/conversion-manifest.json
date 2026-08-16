@@ -1,25 +1,61 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "book": {
     "title": "",
     "category": "",
+    "slug": "",
     "language": ""
   },
   "source": {
     "pdf": "",
     "sha256": "",
-    "auto_dir": ""
+    "size": 0,
+    "mtime_ns": 0,
+    "fingerprinted_at": ""
   },
   "engine": {
-    "name": "",
-    "version": ""
+    "name": "MinerU",
+    "version": "",
+    "backend": "",
+    "language": "",
+    "executable": "",
+    "command": [],
+    "mode": ""
+  },
+  "timestamps": {
+    "started_at": "",
+    "mineru_completed_at": "",
+    "conversion_completed_at": ""
+  },
+  "pages": {
+    "source_count": null,
+    "mineru_count": 0,
+    "reconciliation": "pending",
+    "records": []
+  },
+  "artifacts": {
+    "raw_markdown": {},
+    "formatted_markdown": {},
+    "normalization_log": {},
+    "split_index": {}
   },
   "stages": {
-    "imported": false,
-    "formatted": false,
-    "split": false
+    "imported": {
+      "status": "pending",
+      "completed_at": "",
+      "outputs": []
+    },
+    "formatted": {
+      "status": "pending",
+      "completed_at": "",
+      "outputs": []
+    },
+    "split": {
+      "status": "pending",
+      "completed_at": "",
+      "outputs": []
+    }
   },
-  "pages": [],
   "resources": {
     "images": [],
     "mineru_json": []
@@ -28,6 +64,7 @@
   "validation": {
     "status": "pending",
     "blocking_count": 0,
-    "issues": []
+    "issues": [],
+    "validated_at": ""
   }
 }

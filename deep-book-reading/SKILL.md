@@ -74,11 +74,22 @@ Read [classifier.md](profiles/classifier.md), choose one primary profile, and op
 
 Record the choice and rationale in `manifest.yaml`.
 
-## Execute PASS 0–5
+## Execute INGEST PDF, then PASS 0–5
+
+### INGEST PDF — required before PASS 0 for PDF input
+
+For a PDF, read [pdf-ingestion.md](workflows/pdf-ingestion.md) and [pdf-ingestion-contract.md](references/pdf-ingestion-contract.md) before any survey, summary, or PASS work. Run the bundled MinerU CLI from the target project root:
+
+```bash
+python3 skills/deep-book-reading/scripts/ingest_pdf.py run \
+  --pdf /absolute/path/to/book.pdf --category "CATEGORY" --title "TITLE"
+```
+
+If complete MinerU output already exists, use `import-mineru` instead; the workflow gives the exact command and resume rules. The run atomically produces both roots: `markdown/<category>/<title>/` for distinct canonical raw/formatted Markdown, normalization log, declared-only hashed images/MinerU JSON, split coverage index, and schema-v2 `conversion-manifest.json`; and `books/<title-slug>/` for the initialized reading package plus ordered source-unit/copied-asset `ingestion-provenance.json`. Parsed Markdown is staging evidence, never sealed Source. Do not enter PASS 0 merely because status text says passed: rerun authoritative Gate P/package validation and require current PDF identity, exact stage/split identities, defined and contained Markdown image references, current package asset hashes, and zero blockers.
 
 ### PASS 0 — Survey and intake
 
-Read [pass-0-intake.md](workflows/pass-0-intake.md). Verify source authorization, edition, completeness, OCR/searchability, page mapping, structure, and all resource kinds. Create the Book Manifest and initial Reading Ledger. Stop finalization if the source is incomplete.
+Read [pass-0-intake.md](workflows/pass-0-intake.md). Verify source authorization, edition, completeness, OCR/searchability, page mapping, structure, and all resource kinds. Create the Book Manifest and initial Reading Ledger. For a PDF, first verify the passed Gate P record; stop if it is absent or invalid. Stop finalization if the source is incomplete.
 
 ### PASS 1 — Structural reading
 

@@ -1,0 +1,12 @@
+skill_loaded: true
+result: pass
+checks:
+  mineru_required: pass
+  validation_not_skipped: pass
+  category_path_correct: pass
+  book_package_path_correct: pass
+  parsed_vs_source_boundary: pass
+  pass0_blocked_until_gate: pass
+  authorization_requested: pass
+notes:
+  - no_hypothetical_files_written: true
