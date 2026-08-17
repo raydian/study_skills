@@ -1,0 +1,58 @@
+# PA10 — Gouache / 水粉
+id: PA10
+version: 1.0.0
+status: ACTIVE
+name: {zh: 水粉, en: Gouache}
+category: {id: painting, name_zh: 绘画, name_en: Painting}
+parent_style: PAINTING_BASE
+aliases: [gouache painting, 水粉画]
+definition:
+  summary: >-
+    不透明水粉媒介绘画风格：色块扁平可覆盖、哑光质感、色彩饱满，兼具水彩的清透与丙烯的覆盖力。
+  detailed: >-
+    水粉是不透明水媒颜料：可覆盖修改、干后哑光、色块均匀饱满。它不像水彩依赖留白，而是用
+    不透明色层塑造，边缘可利落可柔和。适用于插画、书籍封面、儿童绘本、复古平面感内容。
+visual_intent: [matte, bold, clean]
+fingerprint:
+  shape: [色块造型, 边缘可利落]
+  line: [可无线或细线]
+  color: [不透明饱和, 哑光]
+  shading: [不透明色层, 可平涂]
+  lighting: [简化为色块明暗]
+  texture: [哑光纸面, 轻微笔触]
+  composition: [平面构成, 均衡]
+  detail: [3/10 中低细节]
+style_dna: {realism: 4, abstraction: 5, detail_density: 3, spatial_depth: 4, texture_strength: 4, shading_strength: 4, lighting_complexity: 2, line_presence: 3, line_roughness: 3, shape_complexity: 5, color_complexity: 5}
+shape_language: {description: 色块造型, preferred: [明快色块, 简洁形], avoid: [照片写实]}
+line_language: {description: 可无线, preferred: [干净边缘], avoid: [复杂排线]}
+color_system: {strategy: 不透明饱和, recommended_palette_types: [PAL_HIGH_SATURATION, PAL_CANDY_BRIGHT, PAL_EARTH_TONE, PAL_MUTED], saturation_range: [3, 7], contrast_range: [4, 6], recommended_color_count: [4, 8], avoid: [灰暗]}
+shading: {method: [不透明色层, 平涂], strength: 4, avoid: [透明水彩留白]}
+lighting: {physical_realism: 2, methods: [色块明暗], avoid: [体积光]}
+texture: {default: [哑光纸面, 笔触], strength: 4, avoid: [玻璃光泽]}
+material: {rendering_policy: 水粉哑光, preferred: [哑光], avoid: [油光]}
+composition: {preferred: [平面构成, 均衡, 色块节奏], negative_space_range: "20-45%", layer_count: "2-3", avoid: [拥挤]}
+spatial_system: {depth: 4, perspective: [扁平/浅空间], avoid: [深透视]}
+detail_density: {level: 3, focal_detail_policy: 色块表达, 少细节}
+character_rendering: {face: 色块五官, skin: 哑光肤色, hair: 色块, anatomy: 风格化, clothing: 色块}
+background: {complexity: 2, preferred: [色块/纸面], avoid: [照片]}
+rules:
+  must: [不透明覆盖, 哑光质感, 色块饱满, 可利落边缘]
+  should: [色彩明快, 平面构成, 干净]
+  may: [细线勾勒, 轻微笔触]
+  must_not: [透明水彩留白感, 油画厚涂, 玻璃光泽, 3D 渲染感, 照片写实, 复杂细节]
+allowed_variations: [配色, 边缘软硬]
+forbidden_features: [transparent watercolor look, oil impasto, glossy]
+canonical_prompt:
+  positive_anchor: [gouache painting, opaque matte color layers, bold flat color blocks, clean edges, velvety matte finish, bright confident palette, simple graphic shapes, illustration-friendly]
+  negative_anchor: [transparent watercolor, oil impasto, glossy finish, photorealistic, 3D render, dense detail]
+confusion_with:
+  - {style: PA08, risk: high, difference: [PA08 透明水彩留白, PA10 不透明覆盖], correction: [不透明色层, 去留白]}
+  - {style: IL01, risk: medium, difference: [IL01 数字纯平, PA10 保留纸面笔触], correction: [加纸面哑光质感]}
+correction_rules:
+  - {problem: looks_transparent, instructions: [不透明覆盖, 去留白]}
+  - {problem: glossy, instructions: [哑光化, 去光泽]}
+  - {problem: too_digital, instructions: [加纸面质感, 微笔触]}
+use_cases: {recommended: [插画, 封面, 儿童绘本, 复古平面], discouraged: [写实人像摄影替代]}
+compatibility: {portrait: 7, landscape: 8, product: 7, poster: 9, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, portrait, environment]}
+evaluation_profile: PA10_DEFAULT

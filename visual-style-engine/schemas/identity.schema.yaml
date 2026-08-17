@@ -1,0 +1,59 @@
+# ============================================================
+# Project Visual Identity Schema — 项目级视觉身份
+# 依据：《AI Visual Style Skill System 设计方案》第 24 节 + 附录 F
+# 原则：多图项目必须用 Visual Identity 控制一致性（PICS）
+# ============================================================
+schema: identity
+version: "1.0.0"
+
+project_id: string    # 必填。如 book_sapiens_001
+version: string       # 必填。SemVer
+status: enum          # 可选。DRAFT | ACTIVE | DEPRECATED（默认 ACTIVE）
+
+primary_style:
+  id: string          # 必填。如 IL03
+  version: string     # 必填。锁定版本，保证可复现
+
+secondary_styles:     # 可选。白名单，仅这些 Style 可用于变化场景
+  - id: string
+    version: string
+    usage: string     # 可选。用途说明
+
+palette: string       # 可选。palette id，如 PAL_MUTED_EARTH
+texture: string       # 可选。texture id，如 TEX_FINE_GRAIN
+
+mood:
+  base: [string]      # 基准情绪，如 [intellectual, reflective]
+  range: [string]     # 允许变化范围
+
+era: string           # 可选。era attribute id
+
+contrast:
+  min: number         # 0–10
+  max: number         # 0–10
+
+composition_policy: {}    # 可选。构图政策
+  # preferred: []
+  # avoid: []
+
+style_lock:           # 各维度锁定强度：high | medium | low
+  shape: string
+  line: string
+  palette: string
+  lighting: string
+  texture: string
+  composition: string
+
+references:           # 项目参考图
+  project: [string]   # 参考图 id 列表
+  # line: []
+  # palette: []
+  # texture: []
+  # character: []
+
+allowed_variations: [string]   # 允许的属性级变化
+forbidden_styles: [string]     # 禁止的 Style id
+
+style_distribution: {}    # 可选。风格分布（书/系列场景）
+  # IL03: 0.60
+  # CI08: 0.25

@@ -1,0 +1,27 @@
+# Strategy — 产品内容域
+schema: strategy
+domain: product
+version: "1.0.0"
+
+# 产品：主体展示优先，材质还原，背景纯净
+
+primary:
+  - PH08          # 产品摄影
+  - TD02          # 产品 CGI
+
+secondary:
+  - TD01          # 照片级 CGI
+  - IL01          # 扁平插画（产品场景插图）
+  - VE01          # 极简矢量（产品示意图）
+
+information:
+  - IN06          # 分解图
+  - IN07          # 剖面图
+
+avoid:
+  - DR07          # 复古松弛（模糊材质）
+  - PA08          # 水彩（材质不实）
+  - FA05          # 超现实（误导）
+
+# 产品与人物分离（第 51 节）
+rule: 产品 Identity 与 Style Identity 分离；换画风不改产品形态，换产品不漂风格

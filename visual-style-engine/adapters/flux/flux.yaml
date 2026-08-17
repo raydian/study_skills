@@ -1,0 +1,38 @@
+# Flux Adapter
+model_family: flux
+version: 1.0.0
+status: DRAFT
+
+prompt_behavior:
+  natural_language: medium
+  keyword_density: high
+  long_prompt_tolerance: medium
+
+capabilities:
+  reference_image: partial
+  multiple_reference_images: false
+  typography: weak
+  negative_prompt: weak
+  image_editing: partial
+
+compile_rules:
+  subject: 简短短语（3-8 词）
+  scene: 简短短语
+  style: 关键词短语，压缩为高信号词（如 "minimal vector illustration, flat 2D, smooth shapes, muted palette"）
+  attributes: 关键词短语
+  composition: 关键词短语
+  negative: 弱；靠正向描述锚定，避免依赖负向
+  reference: 部分支持，优先整体风格参考
+
+example:
+  compiled: >-
+    minimal vector illustration, flat 2D, simplified shapes, smooth contours,
+    muted earth palette, negative space, farmer in geometric farmland, overcast
+
+fallback_rules:
+  - feature: negative_prompt
+    fallback: {positive_anchoring: true}
+unsupported_features: [multiple_reference_images]
+style_overrides: {}
+
+# 说明：Flux 简洁高效，堆叠长句反而稀释信号；核心词保持 Style 强锁定语义。

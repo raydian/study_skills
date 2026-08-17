@@ -1,0 +1,40 @@
+# ============================================================
+# Attribute Schema — 跨 Style 可组合视觉参数
+# 依据：《AI Visual Style Skill System 设计方案》第 11 节 + 附录 B
+# 原则：颜色/光影/构图等不无限膨胀为新 Style，而是 Attribute
+# ============================================================
+schema: attribute
+version: "1.0.0"
+
+id: string            # 必填。如 PAL_CANDY_BRIGHT / LIGHT_GOLDEN_HOUR / CMP_RULE_OF_THIRDS
+version: string       # 必填。SemVer
+type: string          # 必填。palette | lighting | composition | camera | texture | material | line | shape | mood | era
+
+name:
+  zh: string          # 必填
+  en: string          # 必填
+
+description: string   # 可选。1–2 句说明
+
+# 类型化参数（按 type 使用对应字段组，未涉及的留空）：
+parameters: {}        # 类型化参数
+  # palette:  saturation / brightness / contrast / color_tendency / color_temperature
+  # lighting: source / hardness / direction / shadow_behavior / contrast
+  # composition: layout / balance / depth_strategy / focal_policy
+  # camera: lens / angle / distance / movement
+  # texture: strength / scale / application
+  # mood: intensity / energy / connotation
+  # era: period / cultural_region
+
+compatible_styles: [string]     # 兼容 Style id / 分类 id（可选，空 = 通用）
+incompatible_styles: [string]   # 不兼容 Style id（如 PBR 材质与 Flat Vector）
+
+rules:
+  must: [string]      # 使用该属性时必须遵守
+  avoid: [string]     # 使用该属性时避免
+
+prompt_anchor:        # 模型无关的 Prompt 锚点
+  positive: [string]
+  negative: [string]
+
+# 可选：跨模型表达差异由 adapters/ 处理，本文件不写模型参数

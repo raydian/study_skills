@@ -1,0 +1,25 @@
+# ============================================================
+# Reference Schema — 参考图元数据
+# 依据：《AI Visual Style Skill System 设计方案》第 31 节
+# 原则：参考"视觉语言"而非固定人物/内容
+# ============================================================
+schema: reference
+version: "1.0.0"
+
+id: string            # 必填。如 REF_IL03_01
+source: string        # 必填。来源（URL / 路径 / 说明）
+license: string       # 必填。许可信息
+style_id: string      # 必填。关联 Style id
+style_version: string # 必填。关联 Style 版本
+role: string          # 必填。overall_style | line | palette | texture | composition | character
+subject: string       # 可选。画面内容主题（portrait / still_life / environment / architecture / complex_scene / abstract）
+approved: boolean     # 必填。是否人工审阅通过
+created_at: string    # 必填。ISO 日期
+notes: string         # 可选。备注（如"该图参考了视觉语言而非角色"）
+
+# 参考图质量检查项（由 style-reference-manager 执行）：
+# 1. 是否覆盖不同 Subject
+# 2. 是否过度依赖某个具体内容
+# 3. 是否包含错误 Style 特征
+# 4. 色彩是否代表 Style 而非单一 Preset
+# 5. 是否存在过强角色 Identity

@@ -1,0 +1,59 @@
+# PA15 — Digital Painting / 数字绘画
+id: PA15
+version: 1.0.0
+status: ACTIVE
+name: {zh: 数字绘画, en: Digital Painting}
+category: {id: painting, name_zh: 绘画, name_en: Painting}
+parent_style: PAINTING_BASE
+aliases: [digital painting, 数字板绘, CG 绘画]
+definition:
+  summary: >-
+    以数字工具模拟绘画质感：笔刷层次、光影氛围、可写实可风格化，数字创作的绘画语言。
+  detailed: >-
+    数字绘画是 CG 时代的主流绘画形式：用数字笔刷模拟油画/水彩/厚涂等质感，保留绘画性笔触
+    同时有数字的精细可控。风格跨度大（写实厚涂到概念速涂），核心是"绘画质感而非渲染质感"。
+    适用于概念设计、游戏美术、插画封面、电影美术。
+visual_intent: [painterly, polished, artistic]
+fingerprint:
+  shape: [绘画造型, 笔触塑形]
+  line: [可线可无线, 笔刷线]
+  color: [丰富色彩, 氛围调色]
+  shading: [笔触体积, 光影层次]
+  lighting: [氛围光, 艺术化]
+  texture: [笔刷肌理, 数字纸感]
+  composition: [绘画构图, 焦点引导]
+  detail: [6/10 笔触细节]
+style_dna: {realism: 6, abstraction: 4, detail_density: 6, spatial_depth: 7, texture_strength: 6, shading_strength: 7, lighting_complexity: 7, line_presence: 3, line_roughness: 4, shape_complexity: 6, color_complexity: 6}
+shape_language: {description: 绘画造型, preferred: [笔触塑形, 艺术化形], avoid: [渲染生硬]}
+line_language: {description: 笔刷线, preferred: [绘画性边缘], avoid: [矢量生硬]}
+color_system: {strategy: 氛围调色, recommended_palette_types: [PAL_MUTED, PAL_DARK, PAL_HIGH_SATURATION, PAL_EARTH_TONE], saturation_range: [3, 7], contrast_range: [4, 7], recommended_color_count: [5, 9], avoid: [脏浊]}
+shading: {method: [笔触体积, 光影层次], strength: 7, avoid: [3D 渲染光照]}
+lighting: {physical_realism: 6, methods: [氛围光, 艺术化光], avoid: [渲染器光]}
+texture: {default: [笔刷肌理], strength: 6, avoid: [照片噪点]}
+material: {rendering_policy: 绘画化材质, preferred: [笔触表达], avoid: [PBR 展示]}
+composition: {preferred: [绘画构图, 焦点引导], negative_space_range: "15-35%", layer_count: "3-4", avoid: [无焦点]}
+spatial_system: {depth: 7, perspective: [艺术化透视], avoid: [机械]}
+detail_density: {level: 6, focal_detail_policy: 焦点笔触精细, 其余概括}
+character_rendering: {face: 绘画质感, skin: 笔触肤色, hair: 笔触束, anatomy: 艺术化, clothing: 笔触织物}
+background: {complexity: 5, preferred: [氛围环境], avoid: [空白纯色]}
+rules:
+  must: [绘画质感, 笔触在场, 光影氛围, 艺术化处理]
+  should: [焦点引导, 色彩丰富, 构图讲究]
+  may: [厚涂/薄涂混用, 概念速涂感]
+  must_not: [3D 渲染生硬光, 照片直出, 矢量平涂（非意图时）, 荧光, 脏乱无章]
+allowed_variations: [厚涂/薄涂, 写实度]
+forbidden_features: [3D render light, photoreal passthrough, dirty mud]
+canonical_prompt:
+  positive_anchor: [digital painting, painterly brushwork, artistic lighting and atmosphere, rich color harmony, focal composition, concept art quality, polished illustration finish]
+  negative_anchor: [3D render lighting, photorealistic passthrough, flat vector look, neon, muddy colors]
+confusion_with:
+  - {style: PA16, risk: high, difference: [PA16 更明显笔触艺术, PA15 更均衡完成度], correction: [按完成度调整]}
+  - {style: GA01, risk: medium, difference: [GA01 概念氛围探索, PA15 完成绘画], correction: [提高完成度]}
+correction_rules:
+  - {problem: render_like, instructions: [加笔触, 艺术化光]}
+  - {problem: flat_vector, instructions: [厚涂体积, 笔触层次]}
+  - {problem: muddy, instructions: [清色彩关系, 补色整理]}
+use_cases: {recommended: [概念设计, 游戏美术, 插画封面, 电影美术], discouraged: [写实摄影替代, 精确图表]}
+compatibility: {portrait: 8, landscape: 9, product: 6, poster: 8, education: 6, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, complex_scene]}
+evaluation_profile: PA15_DEFAULT

@@ -1,0 +1,76 @@
+# Eastern Art Catalog — 东方艺术类（14）
+category: eastern-art
+name_zh: 东方艺术
+name_en: Eastern Art
+
+styles:
+  - id: EA01
+    name_zh: 中国水墨
+    name_en: Chinese Ink Wash
+    status: ACTIVE
+    desc: 墨分五色、水韵晕染、留白意境
+  - id: EA02
+    name_zh: 写意山水
+    name_en: Freehand Landscape
+    status: DRAFT
+    desc: 文人山水、笔意洒脱
+  - id: EA03
+    name_zh: 工笔
+    name_en: Gongbi
+    status: ACTIVE
+    desc: 精细线描 + 矿物色渲染
+  - id: EA04
+    name_zh: 青绿山水
+    name_en: Blue-Green Landscape
+    status: DRAFT
+    desc: 石青石绿矿物色山水
+  - id: EA05
+    name_zh: 白描
+    name_en: Fine Outline / Bai Miao
+    status: DRAFT
+    desc: 纯线描、无染
+  - id: EA06
+    name_zh: 宋代美学
+    name_en: Song Dynasty Aesthetic
+    status: ACTIVE
+    desc: 素雅、留白、极致的克制
+  - id: EA07
+    name_zh: 敦煌矿物色
+    name_en: Dunhuang Mineral Color
+    status: ACTIVE
+    desc: 土红/石青/石绿/金，壁画质感
+  - id: EA08
+    name_zh: 唐代壁画
+    name_en: Tang Mural
+    status: DRAFT
+    desc: 唐墓室/石窟壁画气象
+  - id: EA09
+    name_zh: 中国年画
+    name_en: Chinese Woodblock New Year Print
+    status: DRAFT
+    desc: 民间木版年画、喜庆用色
+  - id: EA10
+    name_zh: 新中式
+    name_en: Neo-Chinese
+    status: ACTIVE
+    desc: 东方元素 + 现代设计语言
+  - id: EA11
+    name_zh: 国潮
+    name_en: Guochao
+    status: DRAFT
+    desc: 传统符号 + 潮流图形
+  - id: EA12
+    name_zh: 禅意东方极简
+    name_en: Zen Eastern Minimalism
+    status: DRAFT
+    desc: 极少元素、极大留白
+  - id: EA13
+    name_zh: 浮世绘
+    name_en: Ukiyo-e
+    status: DRAFT
+    desc: 江户版画、平涂套色、装饰线
+  - id: EA14
+    name_zh: 日本传统木版画
+    name_en: Traditional Japanese Woodblock
+    status: DRAFT
+    desc: 木板套色印刷质感

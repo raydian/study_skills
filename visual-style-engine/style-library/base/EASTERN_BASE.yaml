@@ -1,0 +1,28 @@
+# EASTERN_BASE — 东方艺术父类基线
+# 子 Style（EA01–EA14）只描述差异
+id: EASTERN_BASE
+version: 1.0.0
+name: {zh: 东方艺术基线, en: Eastern Art Base}
+kind: base
+
+baseline:
+  dimensionality: 2D
+  edge_policy: calligraphic
+  realistic_material: false
+  pbr: false
+  photographic_depth_of_field: false
+
+inherited_rules:
+  must:
+    - 东方视觉传统（水墨/矿物色/线描/留白）
+    - 笔意或线意在场
+  must_not:
+    - 西方写实油画笔触堆叠（非对应场景时）
+    - PBR 材质
+    - 摄影景深
+    - 3D render look
+
+# EA01 Chinese Ink Wash / EA02 Freehand Landscape / EA03 Gongbi / EA04 Blue-Green Landscape
+# EA05 Bai Miao / EA06 Song Dynasty Aesthetic / EA07 Dunhuang Mineral Color
+# EA08 Tang Mural / EA09 Chinese Woodblock New Year Print / EA10 Neo-Chinese
+# EA11 Guochao / EA12 Zen Eastern Minimalism / EA13 Ukiyo-e / EA14 Traditional Japanese Woodblock

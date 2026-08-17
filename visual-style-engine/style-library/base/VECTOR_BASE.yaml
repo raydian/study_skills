@@ -1,0 +1,42 @@
+# VECTOR_BASE — 矢量艺术父类基线
+# 子 Style（VE01–VE12）只描述差异，公共属性在此定义
+id: VECTOR_BASE
+version: 1.0.0
+name: {zh: 矢量艺术基线, en: Vector Art Base}
+kind: base
+
+baseline:
+  dimensionality: 2D
+  edge_policy: clean
+  realistic_material: false
+  pbr: false
+  photographic_depth_of_field: false
+
+inherited_rules:
+  must:
+    - 保持二维平面视觉
+    - 边缘干净清晰
+    - 不模拟 PBR 材质
+  must_not:
+    - photorealistic rendering
+    - photographic depth of field
+    - PBR materials
+    - realistic skin pores
+    - volumetric cinematic lighting
+    - oil painting brush strokes
+    - watercolor bleeding
+    - dense photographic detail
+
+# 子类差异说明：
+# VE01 Minimal Vector        → 极简、留白、低复杂度
+# VE02 Flat Vector           → 纯扁平色块、无渐变
+# VE03 Editorial Vector      → 编辑排版式构图
+# VE04 Geometric Vector      → 几何形驱动
+# VE05 Organic Vector        → 有机曲面
+# VE06 Candy Vector          → 糖果色 + 圆润
+# VE07 Soft Gradient Vector  → 柔和渐变
+# VE08 Monoline              → 单一线宽
+# VE09 Continuous Line       → 连续线
+# VE10 Abstract Vector       → 抽象
+# VE11 Corporate Vector      → 企业商务风
+# VE12 UI Illustration       → 界面插画

@@ -1,0 +1,68 @@
+# Camera Library — 镜头属性
+schema: attribute_library
+type: camera
+version: "1.0.0"
+
+# 镜头属性用于摄影/电影类 Style 的参数化；插画类一般不使用。
+# 用法：attributes: {camera: CAM_85MM_PORTRAIT}
+
+cameras:
+  - id: CAM_35MM
+    name: {zh: 35mm 标准, en: 35mm Standard}
+    description: 接近人眼视角，自然
+    parameters: {lens: "35mm", fov: "54°", distortion: low}
+    prompt_anchor: [35mm lens, natural human perspective]
+
+  - id: CAM_50MM
+    name: {zh: 50mm 标准, en: 50mm Standard}
+    description: 经典人像/纪实视角
+    parameters: {lens: "50mm", fov: "40°", distortion: low}
+    prompt_anchor: [50mm lens, classic standard view]
+
+  - id: CAM_85MM_PORTRAIT
+    name: {zh: 85mm 人像, en: 85mm Portrait}
+    description: 人像压缩感，背景虚化
+    parameters: {lens: "85mm", fov: "28°", compression: high}
+    prompt_anchor: [85mm portrait lens, flattering compression]
+
+  - id: CAM_135MM
+    name: {zh: 135mm 长焦, en: 135mm Telephoto}
+    description: 强烈压缩，空间拉近
+    parameters: {lens: "135mm", compression: very high}
+    prompt_anchor: [135mm telephoto, compressed background]
+
+  - id: CAM_24MM
+    name: {zh: 24mm 广角, en: 24mm Wide}
+    description: 环境感强，边缘轻微拉伸
+    parameters: {lens: "24mm", fov: "84°", distortion: medium}
+    prompt_anchor: [24mm wide angle, environmental context]
+
+  - id: CAM_16MM
+    name: {zh: 16mm 超广角, en: 16mm Ultra Wide}
+    description: 强烈空间感，夸张透视
+    parameters: {lens: "16mm", fov: "107°", distortion: high}
+    prompt_anchor: [16mm ultra wide, dramatic perspective]
+
+  - id: CAM_MACRO
+    name: {zh: 微距, en: Macro}
+    description: 极近特写，微距细节
+    parameters: {lens: "macro 100mm", focus: extreme close}
+    prompt_anchor: [macro lens, extreme close-up detail]
+
+  - id: CAM_TILT_SHIFT
+    name: {zh: 移轴, en: Tilt-Shift}
+    description: 微缩景观效果
+    parameters: {lens: "tilt-shift", effect: miniature}
+    prompt_anchor: [tilt-shift lens, miniature model effect]
+
+  - id: CAM_FISHEYE
+    name: {zh: 鱼眼, en: Fisheye}
+    description: 极端变形，圆形画面
+    parameters: {lens: "fisheye", distortion: extreme}
+    prompt_anchor: [fisheye lens, extreme barrel distortion]
+
+  - id: CAM_ANAMORPHIC
+    name: {zh: 变形宽银幕, en: Anamorphic}
+    description: 电影宽画幅，椭圆光斑
+    parameters: {lens: "anamorphic", flare: horizontal blue}
+    prompt_anchor: [anamorphic lens, cinematic widescreen with oval bokeh]

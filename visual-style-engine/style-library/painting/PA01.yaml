@@ -1,0 +1,58 @@
+# PA01 — Classical Oil Painting / 古典油画
+id: PA01
+version: 1.0.0
+status: ACTIVE
+name: {zh: 古典油画, en: Classical Oil Painting}
+category: {id: painting, name_zh: 绘画, name_en: Painting}
+parent_style: PAINTING_BASE
+aliases: [classical oil, old master painting, 古典油画风]
+definition:
+  summary: >-
+    古典大师油画语言：罩染光影、典雅色调、严谨构图与人物描绘，历史与宗教感厚重。
+  detailed: >-
+    古典油画继承文艺复兴至 19 世纪学院传统：多层罩染产生深邃光影，色调典雅（赭、金、深褐、
+    暗绿），构图遵循古典法则，人物描绘严谨。适用于历史、经典文学、宗教文化、古典美学内容。
+visual_intent: [classical, grand, timeless]
+fingerprint:
+  shape: [古典造型, 严谨人物]
+  line: [隐于光影, 无描边]
+  color: [典雅深色调, 暖褐金色]
+  shading: [罩染层次, 深邃光影]
+  lighting: [古典布光, 明暗对照]
+  texture: [油画布质感, 罩染光泽]
+  composition: [古典构图, 金字塔式]
+  detail: [8/10 精细细节]
+style_dna: {realism: 8, abstraction: 2, detail_density: 8, spatial_depth: 7, texture_strength: 7, shading_strength: 9, lighting_complexity: 7, line_presence: 1, line_roughness: 3, shape_complexity: 6, color_complexity: 4}
+shape_language: {description: 古典造型, preferred: [古典人体比例, 严谨形], avoid: [卡通]}
+line_language: {description: 隐于光影, preferred: [无描边], avoid: [轮廓线]}
+color_system: {strategy: 典雅深色调, recommended_palette_types: [PAL_EARTH_TONE, PAL_DARK, PAL_CREAM, PAL_TRADITIONAL_CHINESE], saturation_range: [2, 4], contrast_range: [5, 7], recommended_color_count: [4, 8], avoid: [荧光糖果]}
+shading: {method: [罩染, 明暗对照], strength: 9, avoid: [平涂]}
+lighting: {physical_realism: 8, methods: [古典布光, 窗口光], avoid: [霓虹]}
+texture: {default: [油画布, 罩染光泽], strength: 7, avoid: [数字纯净]}
+material: {rendering_policy: 古典油画材质, preferred: [油彩质感], avoid: [塑料]}
+composition: {preferred: [古典构图, 金字塔式, 均衡庄严], negative_space_range: "15-35%", layer_count: "3", avoid: [现代碎片化]}
+spatial_system: {depth: 7, perspective: [古典透视], avoid: [鱼眼]}
+detail_density: {level: 8, focal_detail_policy: 人物服饰细节充分}
+character_rendering: {face: 古典庄重, skin: 罩染肤色, hair: 精细, anatomy: 严谨, clothing: 古典服饰}
+background: {complexity: 6, preferred: [古典环境, 暗背景], avoid: [现代场景]}
+rules:
+  must: [罩染光影, 典雅色调, 古典构图, 严谨人物]
+  should: [明暗对照, 油画质感, 历史氛围]
+  may: [古典画框感, 神话宗教元素]
+  must_not: [卡通, 荧光糖果色, 3D 渲染感, 现代物件, 扁平插画, 粗犷现代笔触, 生硬轮廓线]
+allowed_variations: [题材（肖像/历史/静物）]
+forbidden_features: [cartoon, neon, flat illustration look]
+canonical_prompt:
+  positive_anchor: [classical oil painting, old master technique, glazing light and shadow, dignified composition, elegant earth-tone palette, refined figures, canvas texture, timeless monumental mood]
+  negative_anchor: [cartoon, neon colors, flat illustration, 3D render, modern objects, crude strokes]
+confusion_with:
+  - {style: PA02, risk: medium, difference: [PA02 现代写实油画, PA01 古典罩染语言], correction: [增强罩染与古典构图]}
+  - {style: PA03, risk: medium, difference: [PA03 印象派笔触分离, PA01 古典平滑], correction: [平滑化, 罩染光影]}
+correction_rules:
+  - {problem: became_modern, instructions: [去现代元素, 古典化构图]}
+  - {problem: brush_too_visible_impressionist, instructions: [平滑罩染, 减笔触]}
+  - {problem: palette_bright, instructions: [典雅化, 深褐色调]}
+use_cases: {recommended: [历史, 经典文学, 宗教文化, 古典美学], discouraged: [科技, 儿童内容]}
+compatibility: {portrait: 9, landscape: 8, product: 4, poster: 7, education: 5, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: PA01_DEFAULT

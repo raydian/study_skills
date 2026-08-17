@@ -1,0 +1,59 @@
+# PH12 — Documentary Photography / 纪实摄影
+id: PH12
+version: 1.0.0
+status: ACTIVE
+name: {zh: 纪实摄影, en: Documentary Photography}
+category: {id: photography, name_zh: 摄影, name_en: Photography}
+parent_style: null
+aliases: [documentary photo, 纪实影像]
+definition:
+  summary: >-
+    以客观记录真实事件与人物状态为目标的摄影风格：不摆拍、不干预、克制调色，信息与情感并重。
+  detailed: >-
+    纪实摄影追求"真相在场感"：抓拍决定性瞬间，不干预被摄对象，构图服从内容，影调克制。
+    它记录人物、社会、历史现场，常用于新闻、历史、人文类内容。区别于艺术摄影的唯美与
+    电影剧照的戏剧化。
+visual_intent: [truthful, human, historical]
+fingerprint:
+  shape: [真实人物与场景, 决定性瞬间]
+  line: [无描边, 自然边缘]
+  color: [纪实克制, 低干预]
+  shading: [环境光, 真实光比]
+  lighting: [现场光, 不补光]
+  texture: [真实颗粒, 现场质感]
+  composition: [内容优先, 瞬间捕捉]
+  detail: [6/10 真实细节]
+style_dna: {realism: 9, abstraction: 0, detail_density: 6, spatial_depth: 7, texture_strength: 6, shading_strength: 6, lighting_complexity: 6, line_presence: 0, line_roughness: 1, shape_complexity: 6, color_complexity: 4}
+shape_language: {description: 真实场景人物, preferred: [现场真实形态], avoid: [摆拍造型]}
+line_language: {description: 无描边, preferred: [自然边缘], avoid: [描边]}
+color_system: {strategy: 纪实克制, recommended_palette_types: [PAL_NATURAL, PAL_MUTED, PAL_VINTAGE_FADED], saturation_range: [2, 5], contrast_range: [4, 7], recommended_color_count: [5, 9], avoid: [高饱和滤镜]}
+shading: {method: [现场光], strength: 6, avoid: [影棚光]}
+lighting: {physical_realism: 9, methods: [现场光, 自然光], avoid: [人工补光, 戏剧光]}
+texture: {default: [胶片颗粒/现场质感], strength: 6, avoid: [塑料]}
+material: {rendering_policy: 真实材质, preferred: [真实], avoid: [失真]}
+composition: {preferred: [决定性瞬间, 内容优先, 真实取景], negative_space_range: "15-35%", layer_count: "2-3", avoid: [唯美摆拍构图]}
+spatial_system: {depth: 7, perspective: [真实透视], avoid: [炫技]}
+detail_density: {level: 6, focal_detail_policy: 真实呈现, 不过度修饰}
+character_rendering: {face: 真实情绪, skin: 真实, hair: 真实, anatomy: 真实, clothing: 现场真实}
+background: {complexity: 6, preferred: [真实环境], avoid: [纯色棚]}
+rules:
+  must: [真实记录, 不摆拍, 不干预, 现场光]
+  should: [捕捉瞬间, 构图服从内容, 克制调色]
+  may: [黑白纪实, 轻微颗粒]
+  must_not: [摆拍造型, 影棚补光, 高饱和滤镜, 卡通化, 3D 渲染观感, 戏剧化布光, 过度后期]
+allowed_variations: [黑白/彩色, 胶片/数码]
+forbidden_features: [studio light, heavy filters, staging look]
+canonical_prompt:
+  positive_anchor: [documentary photography, candid real moment, unposed subjects, available light, restrained color, authentic human condition, content-first framing]
+  negative_anchor: [studio lighting, staged posing, heavy filters, cartoon, 3D rendering, dramatic cinematic light]
+confusion_with:
+  - {style: PH01, risk: medium, difference: [PH01 侧重光线美感, PH12 侧重事件记录], correction: [强调内容与瞬间]}
+  - {style: CI11, risk: medium, difference: [CI11 纪录片电影语言, PH12 静态纪实照片], correction: [去电影化]}
+correction_rules:
+  - {problem: staged_look, instructions: [去摆拍感, 抓自然瞬间]}
+  - {problem: over_styled, instructions: [降低滤镜强度, 还原真实]}
+  - {problem: studio_light, instructions: [用现场光, 去人工光]}
+use_cases: {recommended: [新闻, 历史人文, 社会记录], discouraged: [梦幻艺术, 产品展示]}
+compatibility: {portrait: 8, landscape: 8, product: 4, poster: 6, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, complex_scene]}
+evaluation_profile: PH12_DEFAULT

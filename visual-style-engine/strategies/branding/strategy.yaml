@@ -1,0 +1,29 @@
+# Strategy — 品牌内容域
+schema: strategy
+domain: branding
+version: "1.0.0"
+
+# 品牌：Identity 优先级最高（冲突解决顺序 #2），全物料统一
+
+primary:
+  - VE01          # 极简矢量（现代品牌）
+  - IL03          # 概念插画（理念品牌）
+  - GD01          # 瑞士设计（秩序品牌）
+  - EA10          # 新中式（东方品牌）
+
+secondary:
+  - IL06          # 极简插画
+  - VE03          # 编辑矢量
+  - TD05          # 柔和 3D（科技新品牌）
+
+avoid:
+  - DR07          # 复古松弛（除非复古品牌定位）
+  - FA05          # 超现实（可识别度风险）
+  - GD08          # 孟菲斯（除非潮流品牌）
+
+# 品牌 Identity 强制项
+mandatory_identity:
+  - primary_style 锁定版本
+  - palette_lock
+  - style_lock: {shape: high, line: high, texture: high}
+  - 参考图集 approved

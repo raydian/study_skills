@@ -1,0 +1,288 @@
+# IL03 — Conceptual Illustration / 概念插画
+# 说明：端到端示例（第 61 节）主角 Style，书视频/知识内容高频首选
+id: IL03
+version: 1.2.0
+status: ACTIVE
+
+name:
+  zh: 概念插画
+  en: Conceptual Illustration
+
+category:
+  id: illustration
+  name_zh: 插画
+  name_en: Illustration
+
+parent_style: null
+
+aliases:
+  - conceptual illustration
+  - 概念图解
+  - symbolic editorial art
+
+definition:
+  summary: >-
+    以视觉传达抽象概念的插画风格。画面服务于"把抽象观点变成可读的象征画面"：概念、关系、
+    因果、张力通过隐喻与象征物像表达，是知识类内容的首选视觉语言。
+  detailed: >-
+    IL03 介于写实与极简之间：它不追求照片级真实，也不退化为简单图形，而是用精心选择的物像、
+    克制的场景与明确的象征关系来传达概念。主体与场景经过编辑化取舍，通常有 1–2 个视觉中心，
+    前景/中景/背景层次清晰；颜色倾向成体系的低到中饱和色调，偶用局部强调色指向关键概念。
+    光影写实但简化，服务于氛围而非炫技。其构图常为"象征中心式"——主体居中或略偏，周围留出
+    让概念呼吸的空间。适合历史、心理、社科、商业等成人知识内容的概念页，也是书视频插画、
+    编辑插图与海报底图的高频选择。
+
+visual_intent:
+  - conceptual
+  - symbolic
+  - editorial
+  - intellectual
+
+fingerprint:
+  shape:
+    - 具象但经过编辑化取舍的物像
+    - 象征性 silhouette
+    - 前景/中景/背景分层
+  line:
+    - 中等线感，可无描边
+    - 边缘干净但不僵硬
+  color:
+    - 成体系低到中饱和色调
+    - 局部强调色指向关键概念
+    - 色彩关系克制
+  shading:
+    - 简化光影（soft flat / gentle gradient）
+    - 支持概念对比的明暗
+  lighting:
+    - 写实但简化的光源
+    - 氛围优先，不炫技
+  texture:
+    - 轻度 grain / 纸感可选
+    - 默认干净
+  composition:
+    - 象征中心式
+    - 1–2 个视觉中心
+    - 前景/中景/背景分层
+  detail:
+    - 4/10 中细节，焦点概念处可增强
+
+style_dna:
+  realism: 4
+  abstraction: 6
+  detail_density: 4
+  spatial_depth: 5
+  texture_strength: 2
+  shading_strength: 4
+  lighting_complexity: 3
+  line_presence: 4
+  line_roughness: 2
+  shape_complexity: 5
+  color_complexity: 5
+
+shape_language:
+  description: 具象物像经编辑化取舍，突出象征性轮廓与层次。
+  preferred: [recognizable symbolic objects, layered foreground/midground/background, editorial cropping]
+  avoid: [dense ornament, photographic clutter, pure abstract forms]
+
+line_language:
+  description: 中等线感，可无描边；边缘干净但不僵硬。
+  preferred: [clean soft edge, optional thin contour, gentle definition]
+  avoid: [heavy outline cartoon, rough sketchy scribble]
+
+color_system:
+  strategy: systemized muted palette with focal accent
+  recommended_palette_types: [PAL_MUTED_EARTH, PAL_MORANDI, PAL_DUSTY_BLUE, PAL_VINTAGE_FADED, PAL_CREAM]
+  saturation_range: [2, 5]
+  contrast_range: [4, 6]
+  recommended_color_count: [4, 8]
+  avoid: [neon, full rainbow, muddy all-over brown]
+
+shading:
+  method: [soft flat, gentle gradient, subtle cast shadow]
+  strength: 4
+  avoid: [photographic softbox realism, cel-shaded toon]
+
+lighting:
+  physical_realism: 4
+  methods: [motivated soft light, overcast light, window light]
+  avoid: [volumetric god rays as main effect, dramatic noir]
+
+texture:
+  default: [clean, optional fine grain]
+  strength: 2
+  avoid: [heavy canvas, photographic noise]
+
+material:
+  rendering_policy: simplified realistic materials, no PBR showcase
+  preferred: [matte surfaces, gentle material suggestion]
+  avoid: [material close-up photography, glossy commercial render]
+
+composition:
+  preferred: [symbolic center, editorial balance, layered depth, clear reading order]
+  negative_space_range: "20-45%"
+  layer_count: "2-3"
+  avoid: [cluttered multi-story collage]
+
+spatial_system:
+  depth: 5
+  perspective: [soft perspective, layered depth, slight atmosphere]
+  avoid: [extreme forced perspective, flat poster stacking]
+
+detail_density:
+  level: 4
+  focal_detail_policy: 焦点概念物像可增强细节与强调色，背景保持简化
+
+character_rendering:
+  face: 简化写实，情绪可读
+  skin: 柔和色调
+  hair: 概括笔触
+  anatomy: 自然比例，可轻微风格化
+  clothing: 时代/语境合理，简化褶皱
+
+background:
+  complexity: 3
+  preferred: [simplified environment, atmospheric depth, muted backdrop]
+  avoid: [blank flat color as default, photographic backdrop]
+
+rules:
+  must:
+    - 画面传达一个明确概念
+    - 使用可辨识的象征物像
+    - 保持 1–2 个视觉中心
+    - 色彩成体系、克制
+    - 光影服务于氛围
+    - 层次（前/中/背景）清晰
+  should:
+    - 使用低到中饱和色调
+    - 用强调色指向关键概念
+    - 留白支持概念呼吸
+    - 构图有阅读顺序
+    - 保持编辑化取舍（非堆砌）
+  may:
+    - 加入轻度 grain
+    - 使用柔和渐变
+    - 允许象征性超现实元素
+    - 使用简化角色
+  must_not:
+    - 照片级真实渲染
+    - 强烈体积光炫技
+    - 高饱和糖果色满铺
+    - 卡通描边风
+    - 密集装饰堆砌
+    - 无概念的纯装饰
+    - 3D 渲染观感
+    - 摄影景深
+
+allowed_variations:
+  - palette 换用 muted 系列不同色板
+  - 象征元素随主题变化（自由）
+  - 光影强度在 soft 范围内变化
+
+forbidden_features:
+  - photorealism
+  - neon saturation overload
+  - cartoon outline style
+  - 3D render look
+
+canonical_prompt:
+  positive_anchor:
+    - "conceptual illustration"
+    - "symbolic editorial visual language"
+    - "recognizable metaphorical objects"
+    - "layered foreground midground background depth"
+    - "systemized muted color palette"
+    - "restrained focal accent color"
+    - "simplified motivated soft lighting"
+    - "clear single visual focus"
+    - "editorial composition with breathing space"
+    - "intellectual restrained mood"
+  negative_anchor:
+    - "photorealistic rendering"
+    - "photographic depth of field"
+    - "3D rendering"
+    - "cartoon heavy outlines"
+    - "neon bright saturated colors"
+    - "volumetric dramatic lighting"
+    - "dense decorative clutter"
+    - "PBR materials showcase"
+
+confusion_with:
+  - style: VE01
+    risk: high
+    difference:
+      - IL03 允许更丰富物像与叙事细节
+      - VE01 退化为纯几何色块极简
+    correction:
+      - add recognizable subject matter
+      - enrich the scene slightly
+      - keep symbolic meaning explicit
+  - style: CI08
+    risk: high
+    difference:
+      - IL03 是平面编辑插画语言
+      - CI08 是电影帧式写实
+    correction:
+      - flatten the rendering
+      - reduce photographic realism
+      - strengthen symbolic composition
+  - style: IL04
+    risk: medium
+    difference:
+      - IL03 表达概念，画面静止
+      - IL04 讲述事件，有时间性
+    correction:
+      - remove narrative action beats
+      - emphasize symbolic relationship over event
+
+correction_rules:
+  - problem: drifted_to_photography
+    instructions:
+      - reduce photographic realism
+      - restore conceptual editorial rendering
+      - simplify physical lighting
+      - strengthen symbolic illustration language
+  - problem: lost_concept_focus
+    instructions:
+      - identify the core concept
+      - choose 1-2 symbolic objects to carry it
+      - remove decorative extras
+  - problem: palette_too_colorful
+    instructions:
+      - mute the palette
+      - keep one focal accent color
+      - enforce color system coherence
+  - problem: composition_cluttered
+    instructions:
+      - reduce element count
+      - establish clear reading order
+      - add breathing space
+  - problem: style_drift_to_IL04_narrative
+    instructions:
+      - freeze the action
+      - emphasize symbolic arrangement
+
+use_cases:
+  recommended:
+    - 历史/心理/社科概念页
+    - 书视频章节配图
+    - 编辑文章插图
+    - 知识海报底图
+    - 品牌概念视觉
+  discouraged:
+    - 产品实拍图
+    - 需要精确信息标注的图表
+    - 儿童童话（建议 IL12）
+
+compatibility:
+  portrait: 8
+  landscape: 9
+  product: 7
+  poster: 9
+  education: 9
+  book_video: 10
+
+reference_policy:
+  minimum_reference_count: 3
+  reference_types: [portrait, still_life, environment, complex_scene]
+
+evaluation_profile: IL03_DEFAULT

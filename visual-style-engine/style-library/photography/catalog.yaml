@@ -1,0 +1,86 @@
+# Photography Catalog — 摄影类（16）
+category: photography
+name_zh: 摄影
+name_en: Photography
+
+styles:
+  - id: PH01
+    name_zh: 自然摄影
+    name_en: Natural Photography
+    status: ACTIVE
+    desc: 自然光、真实场景、无干预感的纪实美学
+  - id: PH02
+    name_zh: 超写实摄影
+    name_en: Hyperreal Photography
+    status: DRAFT
+    desc: 极高细节密度、超越肉眼观察的锐利
+  - id: PH03
+    name_zh: 肖像摄影
+    name_en: Portrait Photography
+    status: ACTIVE
+    desc: 以人物为主体，关注表情神态与光线塑造
+  - id: PH04
+    name_zh: 环境肖像
+    name_en: Environmental Portrait
+    status: DRAFT
+    desc: 人物与环境并重，用环境讲述人物
+  - id: PH05
+    name_zh: 时尚摄影
+    name_en: Fashion Photography
+    status: DRAFT
+    desc: 造型、姿态、服装与风格化布光
+  - id: PH06
+    name_zh: 美妆摄影
+    name_en: Beauty Photography
+    status: DRAFT
+    desc: 面部特写、皮肤质感、精致光影
+  - id: PH07
+    name_zh: 商业摄影
+    name_en: Commercial Photography
+    status: DRAFT
+    desc: 服务于商业目的的干净利落影像
+  - id: PH08
+    name_zh: 产品摄影
+    name_en: Product Photography
+    status: ACTIVE
+    desc: 产品主体突出、布光精细、无干扰背景
+  - id: PH09
+    name_zh: 静物摄影
+    name_en: Still Life Photography
+    status: DRAFT
+    desc: 物体组合、光影质感、构图经营
+  - id: PH10
+    name_zh: 美食摄影
+    name_en: Food Photography
+    status: DRAFT
+    desc: 食物诱人质感、色调与食欲氛围
+  - id: PH11
+    name_zh: 街头摄影
+    name_en: Street Photography
+    status: DRAFT
+    desc: 城市街头的偶发瞬间与人文观察
+  - id: PH12
+    name_zh: 纪实摄影
+    name_en: Documentary Photography
+    status: ACTIVE
+    desc: 真实事件记录、客观克制、不摆拍
+  - id: PH13
+    name_zh: 建筑摄影
+    name_en: Architectural Photography
+    status: DRAFT
+    desc: 建筑形态、线条、材质与空间的秩序感
+  - id: PH14
+    name_zh: 风景摄影
+    name_en: Landscape Photography
+    status: DRAFT
+    desc: 自然风景的壮阔或静谧、光影层次
+  - id: PH15
+    name_zh: 微距摄影
+    name_en: Macro Photography
+    status: DRAFT
+    desc: 极近距离的细节放大、浅景深
+  - id: PH16
+    name_zh: 模拟胶片摄影
+    name_en: Analog Film Photography
+    status: ACTIVE
+    desc: 胶片颗粒、色偏、宽容度的复古影像质感

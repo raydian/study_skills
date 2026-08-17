@@ -1,0 +1,48 @@
+# Seedream Adapter
+model_family: seedream
+version: 1.0.0
+status: ACTIVE
+
+prompt_behavior:
+  natural_language: strong
+  keyword_density: medium
+  long_prompt_tolerance: high
+
+capabilities:
+  reference_image: true
+  multiple_reference_images: true
+  typography: medium
+  negative_prompt: medium
+  image_editing: true
+
+compile_rules:
+  subject: 自然语言描述主体与动作（中文或英文均可，可中英混排）
+  scene: 自然语言描述环境与时间
+  style: 保留 Canonical 英文风格锚点（强锁定），可整段保留
+  attributes: 转为自然语言短句（palette/lighting/mood 分别成句）
+  composition: 自然语言描述构图
+  negative: 使用模型支持的负向表达；能力弱时以正向约束替代
+  reference: 支持多图参考，按 overall_style/line/palette 角色分别提供
+
+# 编译示例（VE01 风格）
+example:
+  canonical: "minimal vector illustration, clean flat 2D, large simplified shapes..."
+  compiled: >-
+    A lone farmer standing in a vast geometric grid of farmland, overcast day.
+    minimal vector illustration, clean flat 2D visual language,
+    large simplified organic and geometric shapes, smooth crisp contours,
+    limited controlled color palette, clear color separation, minimal shading,
+    low visual complexity, generous negative space, balanced editorial composition.
+    Muted earth palette, soft diffused light, symbolic center composition.
+
+fallback_rules:
+  - feature: complex_typography
+    fallback: {image_without_text: true, typography_postprocess: required}
+  - feature: precise_logo
+    fallback: {svg_or_postprocess: required}
+
+unsupported_features: []
+style_overrides: {}
+
+# 说明：Seedream 对长 Prompt 容忍度高，可完整保留 Core + Support anchor；
+# 参考图能力强，多图项目优先使用 ReferenceSet（第 31 节）。

@@ -1,0 +1,58 @@
+# PR04 — Etching / 蚀刻版画
+id: PR04
+version: 1.0.0
+status: ACTIVE
+name: {zh: 蚀刻版画, en: Etching}
+category: {id: print, name_zh: 印刷艺术, name_en: Print Art}
+parent_style: PRINT_BASE
+aliases: [etching print, 蚀刻, 铜版蚀刻]
+definition:
+  summary: >-
+    以酸蚀线条为语言的铜版画风格：细密规则线条、松动画意、复古文献气质。
+  detailed: >-
+    蚀刻版画用酸蚀刻出凹线，印刷后线条细密而有金属版的"呼吸感"：线密度高、方向有规则、
+    边缘带版压的柔和晕染。黑白为主，偶见纸色。适用于古典文献、历史插图、文学封面、复古美学。
+visual_intent: [vintage, literary, refined]
+fingerprint:
+  shape: [线构图形, 版画造型]
+  line: [细密蚀刻线, 规则方向]
+  color: [墨黑纸白, 单色]
+  shading: [线网层次, 平行线]
+  lighting: [线密度光感]
+  texture: [版压晕染, 纸面]
+  composition: [文献式, 古典章法]
+  detail: [7/10 线细节]
+style_dna: {realism: 5, abstraction: 3, detail_density: 7, spatial_depth: 5, texture_strength: 5, shading_strength: 5, lighting_complexity: 2, line_presence: 10, line_roughness: 4, shape_complexity: 5, color_complexity: 1}
+shape_language: {description: 线构图形, preferred: [版画造型], avoid: [柔涂]}
+line_language: {description: 细密蚀刻线, preferred: [规则排线, 方向层次], avoid: [粗犷刀痕]}
+color_system: {strategy: 墨黑纸白单色, recommended_palette_types: [PAL_BLACK_WHITE, PAL_IVORY_CHARCOAL, PAL_MONOCHROME], saturation_range: [0, 1], contrast_range: [5, 7], recommended_color_count: [1, 2], avoid: [彩色]}
+shading: {method: [线网层次, 平行线], strength: 5, avoid: [灰度渐变]}
+lighting: {physical_realism: 2, methods: [线密度], avoid: [体积光]}
+texture: {default: [版压晕染, 纸面], strength: 5, avoid: [数码]}
+material: {rendering_policy: 铜版油墨纸, preferred: [墨印纸感], avoid: [塑料]}
+composition: {preferred: [文献式, 古典章法], negative_space_range: "25-50%", layer_count: "2-3", avoid: [现代碎片]}
+spatial_system: {depth: 5, perspective: [版画透视], avoid: [深广角]}
+detail_density: {level: 7, focal_detail_policy: 线细节充分}
+character_rendering: {face: 线描五官, skin: 线网, hair: 细线, anatomy: 古典, clothing: 线褶}
+background: {complexity: 2, preferred: [纸面留白], avoid: [照片]}
+rules:
+  must: [细密蚀刻线, 线方向规则, 单色墨印, 版画质感]
+  should: [排线层次, 文献气质, 古典章法]
+  may: [版压晕染, 纸色泛黄]
+  must_not: [粗犷木刻刀痕, 水彩渗色, 3D 渲染感, 多彩, 照片柔涂, 平滑矢量]
+allowed_variations: [线密度, 纸色]
+forbidden_features: [woodcut roughness, watercolor bleed, color]
+canonical_prompt:
+  positive_anchor: [etching print, fine regular engraved lines, directional hatching, ink on paper with plate pressure, monochrome refined look, vintage literary quality, classical composition]
+  negative_anchor: [woodcut rough marks, watercolor bleed, color, 3D render, photographic soft shading, smooth vector]
+confusion_with:
+  - {style: DR10, risk: high, difference: [DR10 手绘蚀刻感线稿, PR04 印刷版画], correction: [印刷介质质感]}
+  - {style: PR03, risk: medium, difference: [PR03 雕刻更规则锐利, PR04 蚀刻更松动], correction: [松动线条]}
+correction_rules:
+  - {problem: became_woodcut, instructions: [细密规则线化, 去粗痕]}
+  - {problem: gray_smooth, instructions: [线网层次, 去柔涂]}
+  - {problem: colored, instructions: [单色化, 墨印]}
+use_cases: {recommended: [古典文献, 历史插图, 文学封面, 复古美学], discouraged: [现代科技, 商业促销]}
+compatibility: {portrait: 8, landscape: 8, product: 5, poster: 8, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: PR04_DEFAULT

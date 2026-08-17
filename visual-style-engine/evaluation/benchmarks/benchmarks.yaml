@@ -1,0 +1,59 @@
+# Benchmarks — Style Benchmark 模板与场景
+schema: benchmarks
+version: "1.0.0"
+
+# 每个 Style 至少跑 5 类测试场景（第 35 节）：
+# 不能只测人物——某些 Style 生人物正常，生建筑可能变 3D，生复杂场景可能漂到摄影
+
+scenarios:
+  - id: portrait
+    name: 人物
+    subjects: [一位中老年女性, 一位年轻男子, 儿童]
+    purpose: 检查人物渲染与风格的一致性
+
+  - id: still_life
+    name: 静物
+    subjects: [桌上的水果与陶罐, 书与眼镜, 一束花与花瓶]
+    purpose: 检查材质与色彩系统
+
+  - id: environment
+    name: 环境/建筑
+    subjects: [城市街道, 乡村农舍, 现代建筑立面]
+    purpose: 检查空间与透视是否漂移（易变 3D）
+
+  - id: nature
+    name: 自然
+    subjects: [森林晨雾, 海边礁石, 秋天的田野]
+    purpose: 检查风景中的材质与氛围
+
+  - id: complex_scene
+    name: 复杂多物体场景
+    subjects: [集市一角, 繁忙的港口, 图书馆内部]
+    purpose: 检查复杂场景下是否保持风格（易漂到摄影）
+
+# 跨模型 Benchmark（第 36 节）：Core 40 至少测 Seedream / GPT Image / Flux / MJ
+cross_model:
+  models: [seedream, gpt-image, flux, midjourney]
+  acceptance:
+    per_model_min_score: 80
+    cross_model_min_score: 80
+
+# 端到端示例（第 61 节摘要）：《人类简史》"农业革命"章节 16:9 配图
+e2e_example:
+  user_request: 有历史感但不是普通历史照片，表达"农业带来了稳定，也带来了新的束缚"
+  visual_intent: {domain: history, visual_role: conceptual_explanation, narrative_mode: metaphorical, mood: [reflective, slightly_oppressive], realism_need: medium}
+  selected: {primary: IL03, secondary: [CI08, PR04], score: 0.94}
+  attributes: {palette: PAL_MUTED_EARTH, texture: TEX_FINE_GRAIN, composition: CMP_SYMBOLIC_CENTER, mood: [reflective, restrained]}
+  scene: 规则农田形成巨大几何网格，农民立于田间，远处粮仓象征稳定，农田边界逐渐形成类似牢笼的视觉结构
+  style_lock: IL03 的 Shape/Rendering/Detail/Negative/Composition
+  drift_detection: "Style Drift: IL03 → CI08"
+  correction:
+    - reduce photographic realism
+    - restore conceptual editorial rendering
+    - simplify physical lighting
+    - strengthen symbolic illustration language
+
+# 基准数据回填（Cross-model Benchmark 表，第 36 节示例；待实测回填）
+sample_scores:
+  - {style: VE01, seedream: 91, gpt_image: 89, flux: 85, midjourney: 87, cross_model: 88, status: 待实测回填}
+  - {style: DR07, seedream: 90, gpt_image: 88, flux: 86, midjourney: 84, cross_model: 87, status: 待实测回填}

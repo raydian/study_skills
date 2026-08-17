@@ -1,0 +1,122 @@
+# visual_request — 《人类简史》农业革命章节配图
+# 由 visual-style-engine 技能链路生成（intent → selector → library → compiler → adapter）
+# 生成时间：2026-08-17
+
+meta:
+  project: "人类简史 Sapiens · 农业革命章节"
+  usage: book
+  medium: "16:9"
+  user_requirement: "历史感但不是历史照片"
+
+visual_intent:
+  domain: history
+  content_type: nonfiction
+  visual_role: conceptual_explanation
+  mood: [reflective, intellectual, nostalgic]
+  information_density: medium
+  narrative_mode: symbolic
+  realism_need: low
+  abstraction_need: medium
+
+style:
+  candidates:
+    - {style: IL03, score: 0.91}
+    - {style: DR07, score: 0.80}
+    - {style: PA08, score: 0.76}
+  excluded:
+    - {style: CI08, reason: "用户显式要求非历史照片；CI08 为电影帧式写实，会 drift to photography（命中 IL03 混淆项），按冲突顺序 Explicit user scene > Style 定义，故排除"}
+  selected:
+    style: IL03
+    version: 1.2.0
+    confidence: 0.91
+  reason:
+    - "conceptual_explanation：农业革命是抽象概念（从采集到农耕的转折），需象征化表达而非纪实"
+    - "book 策略 primary 首推 IL03（book_video 兼容 10/10）"
+    - "muted earth + 复古质感可落地'历史感'而不滑向照片写实"
+    - "must_not 含 photorealistic rendering / photographic depth of field，天然满足'不是历史照片'"
+
+generation:
+  prompt_ast:
+    subject:
+      main: "lone early human farmer sowing wheat"
+      action: "kneeling, hands cradling a handful of grain, sowing into tilled soil"
+      attributes: []
+    scene:
+      environment: "wide Neolithic landscape — cultivated wheat fields, terraces, mud-brick round huts, distant wild grassland"
+      time: "soft diffused daylight"
+    style: {id: IL03, version: 1.2.0}
+    attributes:
+      palette: PAL_EARTH_TONE
+      lighting: LIGHT_OVERCAST_SOFT
+      composition: CMP_SYMBOLIC_CENTER
+      mood: [reflective, intellectual, nostalgic]
+    locks:
+      style: true
+      palette: true
+    negative:
+      inherit_style_negative: true
+  canonical_prompt: >-
+    [SUBJECT] A lone early human farmer sowing wheat seeds into tilled soil, kneeling,
+    hands cradling a handful of grain. [SCENE] Wide agricultural landscape at the dawn of
+    the Neolithic: behind the figure, orderly cultivated wheat fields and terraces with
+    simple mud-brick round huts stretch toward low rolling hills; on the far side, wild
+    grassland hints at the foraging past — a quiet transition from nomad to settler.
+    [STYLE LOCK] conceptual illustration, symbolic editorial visual language, recognizable
+    metaphorical objects, layered foreground-midground-background depth, systemized muted
+    color palette, restrained focal accent color, simplified motivated soft lighting, clear
+    single visual focus, editorial composition with breathing space, intellectual restrained
+    mood. [VISUAL ATTRIBUTES] palette: PAL_EARTH_TONE (warm terracotta, ochre, olive, sand,
+    deep brown, slightly aged/faded); lighting: soft diffused daylight, gentle motivated
+    light; composition: symbolic center, editorial balance, layered depth; mood: reflective,
+    intellectual, nostalgic. [COMPOSITION] 16:9 wide, figure lower-left third, fields receding
+    to right, generous sky. [RENDERING REQUIREMENTS] simplified soft flat / gentle gradient
+    shading, clean soft edges, no photographic realism. [NEGATIVE STYLE LOCK] photorealistic
+    rendering, photographic depth of field, 3D rendering, cartoon heavy outlines, neon bright
+    saturated colors, volumetric dramatic lighting, dense decorative clutter, PBR materials.
+  negative_prompt: >-
+    photorealistic rendering, photographic depth of field, 3D rendering, cartoon heavy
+    outlines, neon bright saturated colors, volumetric dramatic lighting, dense decorative
+    clutter, PBR materials showcase
+  model:
+    adapter: gpt-image
+    adapter_version: 1.0.0
+    aspect_ratio: "16:9"
+  compiled_prompt: >-
+    A lone early human farmer kneeling to sow wheat seeds into freshly tilled soil, hands
+    cradling a handful of grain, set within a wide Neolithic landscape. Behind them, orderly
+    cultivated wheat fields and low terraced plots with simple mud-brick round huts stretch
+    toward gentle rolling hills; on the far edge, wild open grassland hints at the older
+    foraging world — a quiet visual transition from nomad to settled farmer. In the style of a
+    conceptual editorial illustration with recognizable symbolic objects, layered
+    foreground-midground-background depth, a systemized muted earth palette of warm terracotta,
+    ochre, olive and sand with a single restrained accent, simplified soft lighting, and a calm
+    single visual focus with breathing space. Use an editorial wide composition in 16:9. Do not
+    make it photorealistic, no photographic depth of field, no 3D rendering, no cartoon
+    outlines, no neon or heavily saturated colors, no dramatic volumetric lighting.
+  conflicts: []
+
+output_image: /Users/mac/jay/hs_knowledge/study_skills/visual-style-engine/references/projects/A_lone_early_human_farmer_knee_2026-08-17T14-07-47.png
+
+evaluation:
+  profile: IL03_DEFAULT
+  status: completed
+  decision: PASS
+  total_score: 82
+  dimensions:
+    shape: 9/10
+    line: 8/10
+    color: 8/10
+    shading: 8/10
+    lighting: 8/10
+    texture: 7/10
+    composition: 9/10
+    detail: 8/10
+  hard_fail_check:
+    photorealism: false
+    three_d_render: false
+    cartoon_outline: false
+    neon_saturated: false
+    volumetric_dramatic_light: false
+  issues:
+    - "平台水印/文字 'AI生成 WORKBUDDY' 出现在右下角，属于生成器产物，非 IL03 风格失败；图书使用前建议裁剪或加入 'no text, no watermark' 负向约束后重试"
+  correction: "若需出版级无字底图，可在 negative 中追加 'no text, no watermark, no signature' 并重新生成；当前图可直接裁切右下角后作为底图"

@@ -1,0 +1,58 @@
+# VE05 — Organic Vector / 有机矢量
+id: VE05
+version: 1.0.0
+status: ACTIVE
+name: {zh: 有机矢量, en: Organic Vector}
+category: {id: vector, name_zh: 矢量艺术, name_en: Vector}
+parent_style: VECTOR_BASE
+aliases: [organic vector, 有机形态矢量]
+definition:
+  summary: >-
+    以自由曲面与生物形态为主的矢量风格：圆润流动、柔和自然，区别于几何矢量。
+  detailed: >-
+    VE05 用曲线与自由曲面构成有机形态：植物、流体、身体、抽象生物形状，边缘平滑、形体饱满。
+    配色可温和可明快。适用于自然主题、健康生活、有机品牌、柔和知识内容。
+visual_intent: [organic, soft, natural]
+fingerprint:
+  shape: [自由曲面, 生物形态, 圆润]
+  line: [平滑流动曲线]
+  color: [柔和自然色调]
+  shading: [平涂, 可浅渐变]
+  lighting: [无, 柔光感]
+  texture: [无]
+  composition: [流动布局, 均衡]
+  detail: [2/10 低细节]
+style_dna: {realism: 1, abstraction: 8, detail_density: 2, spatial_depth: 3, texture_strength: 1, shading_strength: 1, lighting_complexity: 1, line_presence: 4, line_roughness: 1, shape_complexity: 5, color_complexity: 4}
+shape_language: {description: 自由曲面生物形, preferred: [曲线, 流体, 有机形], avoid: [锐利几何]}
+line_language: {description: 平滑流动, preferred: [流动曲线], avoid: [折线]}
+color_system: {strategy: 柔和自然, recommended_palette_types: [PAL_NATURAL, PAL_SAGE_GREEN, PAL_PASTEL, PAL_EARTH_TONE], saturation_range: [2, 6], contrast_range: [3, 5], recommended_color_count: [3, 6], avoid: [荧光]}
+shading: {method: [平涂, 浅渐变], strength: 1, avoid: [硬阴影]}
+lighting: {physical_realism: 0, methods: [无], avoid: [体积光]}
+texture: {default: [无], strength: 1, avoid: [纹理]}
+material: {rendering_policy: 无, preferred: [纯色], avoid: [材质]}
+composition: {preferred: [流动布局, 均衡, 曲线引导], negative_space_range: "20-45%", layer_count: "2-3", avoid: [生硬堆叠]}
+spatial_system: {depth: 3, perspective: [扁平], avoid: [机械透视]}
+detail_density: {level: 2, focal_detail_policy: 形态简洁, 曲面为主}
+character_rendering: {face: 柔和简化, skin: 色块, hair: 曲面, anatomy: 风格化圆润, clothing: 曲面}
+background: {complexity: 1, preferred: [纯色/留白], avoid: [照片]}
+rules:
+  must: [自由曲面, 有机形态, 边缘平滑, 形体圆润]
+  should: [柔和配色, 流动感, 均衡构图]
+  may: [浅渐变, 抽象生物形]
+  must_not: [锐利几何堆叠, 照片写实, 油画笔触, 3D 渲染感, 荧光霓虹, 生硬折线]
+allowed_variations: [配色, 曲面密度]
+forbidden_features: [sharp geometry, photoreal, neon]
+canonical_prompt:
+  positive_anchor: [organic vector illustration, free-form curved shapes, smooth flowing contours, soft rounded biomorphic forms, gentle natural palette, flat clean rendering, balanced flowing composition]
+  negative_anchor: [sharp geometric grids, photorealistic, oil strokes, 3D render, neon, angular edges]
+confusion_with:
+  - {style: VE04, risk: high, difference: [VE04 几何形驱动, VE05 有机曲面], correction: [去直角, 用曲线]}
+  - {style: VE01, risk: medium, difference: [VE01 可含几何极简, VE05 必须有机], correction: [强化有机曲面]}
+correction_rules:
+  - {problem: became_geometric, instructions: [圆化形状, 换曲面]}
+  - {problem: too_sharp, instructions: [柔化边缘, 增加流动感]}
+  - {problem: colors_harsh, instructions: [改柔和自然配色]}
+use_cases: {recommended: [自然主题, 健康生活, 有机品牌, 柔和知识], discouraged: [科技硬核, 建筑]}
+compatibility: {portrait: 7, landscape: 8, product: 8, poster: 8, education: 8, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, environment, nature]}
+evaluation_profile: VE05_DEFAULT

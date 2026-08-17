@@ -1,0 +1,59 @@
+# PR07 — Risograph / 孔版印刷
+id: PR07
+version: 1.0.0
+status: ACTIVE
+name: {zh: 孔版印刷, en: Risograph}
+category: {id: print, name_zh: 印刷艺术, name_en: Print Art}
+parent_style: PRINT_BASE
+aliases: [riso print, risograph, 孔版, 复印机印刷感]
+definition:
+  summary: >-
+    孔版印刷（RISO）风格：荧光撞色、错位套印、颗粒纹理、明快复古的独立出版气质。
+  detailed: >-
+    Risograph 是小型孔版印刷机：每色一版、套印错位、墨色荧光/高饱和（荧光粉、荧光橙、
+    天蓝等）、颗粒纸感与网孔纹理。气质明快复古、独立出版/杂志/艺术场景感强。适用于
+    独立出版物、艺术海报、复古排版、青年文化。
+visual_intent: [bold, printed, indie]
+fingerprint:
+  shape: [印刷图形, 色块错位]
+  line: [套印错位线, 颗粒边缘]
+  color: [荧光撞色, 高饱和套色]
+  shading: [平涂 + 错位叠色]
+  lighting: [无]
+  texture: [孔版颗粒, 纸感]
+  composition: [排版构成, 印刷排版]
+  detail: [3/10 印刷细节]
+style_dna: {realism: 2, abstraction: 6, detail_density: 3, spatial_depth: 2, texture_strength: 7, shading_strength: 2, lighting_complexity: 0, line_presence: 4, line_roughness: 3, shape_complexity: 4, color_complexity: 6}
+shape_language: {description: 印刷图形, preferred: [色块形, 错位叠加], avoid: [照片柔边]}
+line_language: {description: 套印线, preferred: [错位线, 颗粒边], avoid: [精确矢量]}
+color_system: {strategy: 荧光撞色套印, recommended_palette_types: [PAL_HIGH_SATURATION, PAL_CANDY_BRIGHT, PAL_PASTEL, PAL_MACARON], saturation_range: [5, 9], contrast_range: [4, 6], recommended_color_count: [2, 4], avoid: [灰暗]}
+shading: {method: [平涂错位叠色], strength: 2, avoid: [空气渐变]}
+lighting: {physical_realism: 0, methods: [无], avoid: [光]}
+texture: {default: [孔版颗粒, 纸感], strength: 7, avoid: [数码平滑]}
+material: {rendering_policy: 孔版油墨纸, preferred: [墨粒纸感], avoid: [塑料]}
+composition: {preferred: [排版构成, 印刷排版, 错位节奏], negative_space_range: "20-45%", layer_count: "2", avoid: [照片构图]}
+spatial_system: {depth: 2, perspective: [平面], avoid: [深透视]}
+detail_density: {level: 3, focal_detail_policy: 印刷色块表达}
+character_rendering: {face: 印刷色块, skin: 套色, hair: 色块, anatomy: 风格化, clothing: 色块}
+background: {complexity: 1, preferred: [纸色], avoid: [照片]}
+rules:
+  must: [荧光/高饱和撞色, 套印错位, 颗粒纸感, 明快复古]
+  should: [2-4 色套印, 印刷排版, 独立出版气质]
+  may: [错位重影, 网孔纹理]
+  must_not: [写实照片, 精确矢量平滑, 3D 渲染感, 灰暗, 精细细节]
+allowed_variations: [色组, 错位程度]
+forbidden_features: [photoreal, smooth vector, gray]
+canonical_prompt:
+  positive_anchor: [risograph print, fluorescent ink colors, misregistered overlapping plates, visible screen grain, paper texture, bold indie publishing look, retro bright palette, printed composition]
+  negative_anchor: [photorealistic, smooth vector, 3D render, dull gray, fine detail]
+confusion_with:
+  - {style: IL07, risk: high, difference: [IL07 插画颗粒感, PR07 荧光套印错位], correction: [荧光撞色, 套印错位]}
+  - {style: PR06, risk: medium, difference: [PR06 丝网套色更干净, PR07 孔版颗粒错位], correction: [加颗粒错位]}
+correction_rules:
+  - {problem: colors_dull, instructions: [荧光高饱和化]}
+  - {problem: registration_perfect, instructions: [加套印错位, 颗粒]}
+  - {problem: too_clean_digital, instructions: [纸感颗粒, 网孔纹理]}
+use_cases: {recommended: [独立出版, 艺术海报, 复古排版, 青年文化], discouraged: [严肃企业, 写实]}
+compatibility: {portrait: 6, landscape: 8, product: 7, poster: 10, education: 5, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: PR07_DEFAULT

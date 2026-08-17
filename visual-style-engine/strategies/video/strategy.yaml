@@ -1,0 +1,33 @@
+# Strategy — 知识视频内容域
+schema: strategy
+domain: video
+version: "1.0.0"
+
+# 视频：系列帧/章节插画统一，封面与内页分角色
+
+primary:
+  - IL03          # 概念插画（知识讲解主视觉）
+  - IL01          # 扁平插画（科普活泼）
+
+secondary:
+  - CI08          # 历史电影（历史类视频）
+  - IN03          # 教育插画
+  - EA01          # 水墨（人文诗词类）
+  - TD06          # 黏土 3D（轻松科普）
+
+information:
+  - IN12
+  - IN13
+
+avoid:
+  - PH01          # 照片类（除非纪实栏目）
+  - GD09          # 粗野主义
+  - FA03          # 黑暗奇幻
+
+# 书视频（图书精读，第 49 节）
+book_video:
+  primary: [IL03]
+  allowed_secondary: [CI08, PR04]
+  palette_lock: PAL_MUTED_EARTH
+  texture_lock: TEX_FINE_GRAIN
+  style_distribution: {IL03: 0.60, CI08: 0.25, PR04: 0.15}

@@ -1,0 +1,59 @@
+# VE06 — Candy Vector / 糖果矢量
+id: VE06
+version: 1.0.0
+status: ACTIVE
+name: {zh: 糖果矢量, en: Candy Vector}
+category: {id: vector, name_zh: 矢量艺术, name_en: Vector}
+parent_style: VECTOR_BASE
+aliases: [candy vector, 糖果风, 甜点矢量]
+definition:
+  summary: >-
+    糖果色 + 圆润可爱造型的矢量风格：明快甜美、轻盈俏皮，低龄友好。
+  detailed: >-
+    VE06 使用高亮度糖果色系（粉、柠檬黄、薄荷、天蓝、淡紫），造型圆润饱满、线条平滑，
+    常带小装饰（星星、波点、糖果）。氛围甜美活泼。适用于儿童内容、甜品饮品品牌、社交贴纸、
+    轻松消费品牌。
+visual_intent: [cute, playful, sweet]
+fingerprint:
+  shape: [圆润可爱, 小装饰元素]
+  line: [平滑圆润]
+  color: [糖果色, 高亮度]
+  shading: [无或极简]
+  lighting: [无]
+  texture: [无]
+  composition: [活泼均衡, 装饰感]
+  detail: [2/10 低细节]
+style_dna: {realism: 0, abstraction: 8, detail_density: 2, spatial_depth: 2, texture_strength: 0, shading_strength: 1, lighting_complexity: 0, line_presence: 3, line_roughness: 0, shape_complexity: 4, color_complexity: 5}
+shape_language: {description: 圆润可爱, preferred: [圆角, 胖乎乎形], avoid: [锐利]}
+line_language: {description: 平滑圆润, preferred: [圆滑线], avoid: [生硬]}
+color_system: {strategy: 糖果色高亮, recommended_palette_types: [PAL_CANDY_BRIGHT, PAL_MACARON, PAL_PASTEL], saturation_range: [5, 8], contrast_range: [3, 5], recommended_color_count: [4, 8], avoid: [暗色浊色]}
+shading: {method: [无], strength: 1, avoid: [写实体积]}
+lighting: {physical_realism: 0, methods: [无], avoid: [光效]}
+texture: {default: [无], strength: 0, avoid: [纹理]}
+material: {rendering_policy: 无, preferred: [纯色], avoid: [材质]}
+composition: {preferred: [活泼均衡, 装饰感], negative_space_range: "15-40%", layer_count: "2", avoid: [拥挤]}
+spatial_system: {depth: 2, perspective: [扁平], avoid: [深透视]}
+detail_density: {level: 2, focal_detail_policy: 简洁可爱, 小装饰点缀}
+character_rendering: {face: 可爱简化, skin: 糖果肤色, hair: 圆润色块, anatomy: Q 版, clothing: 糖果色}
+background: {complexity: 1, preferred: [纯色/波点装饰], avoid: [照片]}
+rules:
+  must: [糖果色系, 圆润造型, 明快甜美, 轻盈俏皮]
+  should: [平滑边缘, 小装饰, 高亮度]
+  may: [波点/星星装饰, 微表情]
+  must_not: [暗色浊色, 写实, 锐利几何, 油画笔触, 3D 渲染感, 严肃压抑, 复杂细节]
+allowed_variations: [配色组合, 装饰元素]
+forbidden_features: [dark mood, realism, sharp shapes]
+canonical_prompt:
+  positive_anchor: [candy vector illustration, bright candy colors, cute rounded shapes, playful sweet mood, smooth clean lines, small decorative elements, high brightness cheerful palette, friendly low detail]
+  negative_anchor: [dark muted colors, photorealistic, sharp angular shapes, oil strokes, 3D render, serious mood]
+confusion_with:
+  - {style: VE01, risk: medium, difference: [VE01 克制中性, VE06 糖果甜美], correction: [提高亮度饱和度, 圆润化]}
+  - {style: VE05, risk: medium, difference: [VE05 自然有机, VE06 糖果装饰], correction: [糖果色, 加装饰]}
+correction_rules:
+  - {problem: colors_muted, instructions: [提亮糖果色, 增饱和度]}
+  - {problem: too_serious, instructions: [圆润化, 加装饰, 提亮度]}
+  - {problem: edges_sharp, instructions: [圆角化, 平滑轮廓]}
+use_cases: {recommended: [儿童内容, 甜品饮品品牌, 贴纸, 轻松消费], discouraged: [严肃学术, 高端商务]}
+compatibility: {portrait: 8, landscape: 8, product: 9, poster: 8, education: 8, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: VE06_DEFAULT

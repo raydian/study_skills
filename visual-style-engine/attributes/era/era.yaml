@@ -1,0 +1,92 @@
+# Era Library — 年代属性
+schema: attribute_library
+type: era
+version: "1.0.0"
+
+# 年代属性描述画面所处时代语境；当年代视觉成为主语言时改用 retro/ 分类的 Style。
+# 用法：attributes: {era: ERA_TANG_DYNASTY}
+
+eras:
+  - id: ERA_ANCIENT
+    name: {zh: 上古/古代, en: Ancient}
+    period: 公元前–5世纪
+    prompt_anchor: [ancient era, archaic setting]
+    compatible: [CI08, PA01, EA07]
+
+  - id: ERA_TANG_DYNASTY
+    name: {zh: 唐代, en: Tang Dynasty}
+    period: 618–907
+    prompt_anchor: [tang dynasty china, tang-era costumes and architecture]
+    compatible: [EA08, EA07, CI08]
+
+  - id: ERA_SONG_DYNASTY
+    name: {zh: 宋代, en: Song Dynasty}
+    period: 960–1279
+    prompt_anchor: [song dynasty, refined song-era aesthetics]
+    compatible: [EA06, EA01, EA03]
+
+  - id: ERA_MING_QING
+    name: {zh: 明清, en: Ming & Qing}
+    period: 1368–1912
+    prompt_anchor: [ming qing dynasty, late imperial china]
+    compatible: [EA03, EA10, CI08]
+
+  - id: ERA_OLD_SHANGHAI
+    name: {zh: 老上海, en: Old Shanghai}
+    period: 1920–1949
+    prompt_anchor: [old shanghai 1930s, republican era metropolis]
+    compatible: [RT11, PH16, DR07]
+
+  - id: ERA_VICTORIAN
+    name: {zh: 维多利亚, en: Victorian}
+    period: 1837–1901
+    prompt_anchor: [victorian era, gaslight and lace]
+    compatible: [RT01, PA01, PR04]
+
+  - id: ERA_1920S
+    name: {zh: 1920年代, en: 1920s}
+    period: 1920–1929
+    prompt_anchor: [1920s, jazz age art deco]
+    compatible: [RT02, GD05, PH16]
+
+  - id: ERA_1950S
+    name: {zh: 1950年代, en: 1950s}
+    period: 1950–1959
+    prompt_anchor: [1950s, postwar optimism retro ads]
+    compatible: [RT05, GD07, PH16]
+
+  - id: ERA_1980S
+    name: {zh: 1980年代, en: 1980s}
+    period: 1980–1989
+    prompt_anchor: [1980s, neon synthwave vibes]
+    compatible: [RT08, AN11, FA12]
+
+  - id: ERA_1990S
+    name: {zh: 1990年代, en: 1990s}
+    period: 1990–1999
+    prompt_anchor: [1990s, early digital and print era]
+    compatible: [RT09, AN12, PR07]
+
+  - id: ERA_Y2K
+    name: {zh: 千禧, en: Y2K}
+    period: 1998–2005
+    prompt_anchor: [y2k era, futuristic optimism chrome and pastel]
+    compatible: [RT10, TD15, VE07]
+
+  - id: ERA_EDO_JAPAN
+    name: {zh: 江户日本, en: Edo Japan}
+    period: 1603–1868
+    prompt_anchor: [edo period japan, ukiyo-e era]
+    compatible: [EA13, EA14, EA01]
+
+  - id: ERA_SOVIET
+    name: {zh: 苏联, en: Soviet Era}
+    period: 1917–1991
+    prompt_anchor: [soviet era, constructivist propaganda]
+    compatible: [RT14, GD04, PR01]
+
+  - id: ERA_FUTURE
+    name: {zh: 未来, en: Future}
+    period: 2100+
+    prompt_anchor: [futuristic era, advanced technology setting]
+    compatible: [CI07, GA04, TD15, FA12]

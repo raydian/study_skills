@@ -1,0 +1,77 @@
+# Retro / Era Catalog — 复古年代类（14）
+# 实现注意：Retro 同时可作为 Era Attribute；年代视觉成为画面主语言时才作为主 Style 使用
+category: retro
+name_zh: 复古年代
+name_en: Retro / Era
+
+styles:
+  - id: RT01
+    name_zh: 维多利亚时代
+    name_en: Victorian
+    status: DRAFT
+    desc: 华丽装饰、厚重织物、煤气灯
+  - id: RT02
+    name_zh: 1920年代
+    name_en: 1920s
+    status: DRAFT
+    desc: 装饰艺术、爵士、摩登女郎
+  - id: RT03
+    name_zh: 1930年代
+    name_en: 1930s
+    status: DRAFT
+    desc: 大萧条时代的质感
+  - id: RT04
+    name_zh: 1940年代
+    name_en: 1940s
+    status: DRAFT
+    desc: 战时海报、胶片质感
+  - id: RT05
+    name_zh: 1950年代
+    name_en: 1950s
+    status: DRAFT
+    desc: 战后乐观、复古广告
+  - id: RT06
+    name_zh: 1960年代
+    name_en: 1960s
+    status: DRAFT
+    desc: 太空时代、迷幻初现
+  - id: RT07
+    name_zh: 1970年代
+    name_en: 1970s
+    status: DRAFT
+    desc: 大地色、复古插画
+  - id: RT08
+    name_zh: 1980年代
+    name_en: 1980s
+    status: DRAFT
+    desc: 霓虹、磁带、Y2K 前夜
+  - id: RT09
+    name_zh: 1990年代
+    name_en: 1990s
+    status: DRAFT
+    desc: 90年代数码与印刷质感
+  - id: RT10
+    name_zh: 千禧风
+    name_en: Y2K
+    status: DRAFT
+    desc: 未来乐观、金属光泽、糖果蓝紫
+  - id: RT11
+    name_zh: 老上海
+    name_en: Old Shanghai
+    status: DRAFT
+    desc: 月份牌、旗袍、洋场风情
+  - id: RT12
+    name_zh: 香港复古
+    name_en: Hong Kong Retro
+    status: DRAFT
+    desc: 港风招牌、霓虹街景
+  - id: RT13
+    name_zh: 昭和日本
+    name_en: Showa Japan
+    status: DRAFT
+    desc: 昭和海报与生活质感
+  - id: RT14
+    name_zh: 苏联复古
+    name_en: Soviet Retro
+    status: DRAFT
+    desc: 构成主义宣传画、粗粝印刷

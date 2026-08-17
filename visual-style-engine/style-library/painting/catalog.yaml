@@ -1,0 +1,86 @@
+# Painting Catalog — 绘画类（16）
+category: painting
+name_zh: 绘画
+name_en: Painting
+
+styles:
+  - id: PA01
+    name_zh: 古典油画
+    name_en: Classical Oil Painting
+    status: ACTIVE
+    desc: 古典构图、罩染光影、典雅色调
+  - id: PA02
+    name_zh: 写实油画
+    name_en: Realistic Oil Painting
+    status: DRAFT
+    desc: 写实再现、笔触细腻
+  - id: PA03
+    name_zh: 印象派
+    name_en: Impressionism
+    status: ACTIVE
+    desc: 光影色彩笔触分离、氛围优先
+  - id: PA04
+    name_zh: 后印象派
+    name_en: Post-Impressionism
+    status: DRAFT
+    desc: 主观色彩、形体重构
+  - id: PA05
+    name_zh: 表现主义
+    name_en: Expressionism
+    status: DRAFT
+    desc: 情绪化色彩与变形
+  - id: PA06
+    name_zh: 现代油画
+    name_en: Modern Oil Painting
+    status: DRAFT
+    desc: 现代主义语言、实验性
+  - id: PA07
+    name_zh: 厚涂
+    name_en: Impasto
+    status: DRAFT
+    desc: 厚重颜料堆叠、笔触立体
+  - id: PA08
+    name_zh: 传统水彩
+    name_en: Traditional Watercolor
+    status: ACTIVE
+    desc: 透明水色、渗化、纸面水痕
+  - id: PA09
+    name_zh: 柔和水彩
+    name_en: Soft Watercolor
+    status: DRAFT
+    desc: 清淡柔和、低对比
+  - id: PA10
+    name_zh: 水粉
+    name_en: Gouache
+    status: ACTIVE
+    desc: 不透明水粉、扁平色块、可覆盖
+  - id: PA11
+    name_zh: 丙烯画
+    name_en: Acrylic Painting
+    status: DRAFT
+    desc: 快干颜料、现代平面感
+  - id: PA12
+    name_zh: 粉彩画
+    name_en: Pastel Painting
+    status: DRAFT
+    desc: 粉质颗粒、柔和过渡
+  - id: PA13
+    name_zh: 蛋彩画
+    name_en: Tempera
+    status: DRAFT
+    desc: 古老蛋彩、哑光细腻
+  - id: PA14
+    name_zh: 湿壁画
+    name_en: Fresco
+    status: DRAFT
+    desc: 墙面矿物色、古朴哑光
+  - id: PA15
+    name_zh: 数字绘画
+    name_en: Digital Painting
+    status: ACTIVE
+    desc: 数字媒介的绘画质感
+  - id: PA16
+    name_zh: 绘画感数字艺术
+    name_en: Painterly Digital Art
+    status: DRAFT
+    desc: 笔触明显的数字艺术

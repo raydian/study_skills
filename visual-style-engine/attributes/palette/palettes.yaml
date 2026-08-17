@@ -1,0 +1,256 @@
+# Palette Library — 首批 25 个标准色板
+# 用法：作为 Attribute 挂载到 Style（palette: PAL_XXX），不独立成 Style
+schema: attribute_library
+type: palette
+version: "1.0.0"
+
+palettes:
+  - id: PAL_NATURAL
+    name: {zh: 自然色, en: Natural}
+    saturation: 4
+    brightness: 6
+    contrast: 5
+    color_tendency: [草绿, 土褐, 天空蓝, 米白, 石灰]
+    rules: {must: [真实自然和谐], avoid: [荧光, 霓虹]}
+    prompt_anchor: [natural color palette, true-to-life muted greens and earth tones]
+    compatible: [PH01, PH12, PH14, EA01, IL04]
+
+  - id: PAL_PASTEL
+    name: {zh: 柔和粉彩, en: Pastel}
+    saturation: 3
+    brightness: 8
+    contrast: 3
+    color_tendency: [淡粉, 浅蓝, 薄荷, 淡紫, 奶油白]
+    rules: {must: [柔和轻盈], avoid: [暗沉, 浓艳]}
+    prompt_anchor: [soft pastel color palette, gentle light colors]
+    compatible: [TD06, TD05, AN08, VE06, IL12]
+
+  - id: PAL_CANDY_BRIGHT
+    name: {zh: 明亮糖果色, en: Candy Bright}
+    saturation: 7
+    brightness: 8
+    contrast: 5
+    color_tendency: [珊瑚粉, 柠檬黄, 薄荷绿, 天蓝, 淡紫]
+    rules: {must: [干净明快], avoid: [泥棕, 脏灰, 过量黑]}
+    prompt_anchor: [bright candy color palette, clean playful colors]
+    compatible: [VE06, AN04, TD04, IL01]
+
+  - id: PAL_MORANDI
+    name: {zh: 莫兰迪, en: Morandi}
+    saturation: 2
+    brightness: 5
+    contrast: 3
+    color_tendency: [灰粉, 灰蓝, 灰绿, 米灰, 藕荷]
+    rules: {must: [灰调高级感], avoid: [高饱和, 荧光]}
+    prompt_anchor: [morandi muted gray-tone palette, refined quiet colors]
+    compatible: [IL03, IL06, VE01, EA06, IL02]
+
+  - id: PAL_EARTH_TONE
+    name: {zh: 大地色, en: Earth Tone}
+    saturation: 4
+    brightness: 5
+    contrast: 5
+    color_tendency: [赭石, 陶土, 橄榄绿, 沙色, 深褐]
+    rules: {must: [温暖厚重], avoid: [冰冷数码感]}
+    prompt_anchor: [earth tone palette, warm terracotta and ochre]
+    compatible: [DR07, CI08, EA07, PA01, IL04]
+
+  - id: PAL_MONOCHROME
+    name: {zh: 单色, en: Monochrome}
+    saturation: 0
+    brightness: 5
+    contrast: 6
+    color_tendency: [单色阶的深浅变化]
+    rules: {must: [同色系层次], avoid: [多色]}
+    prompt_anchor: [monochrome palette, single hue value gradation]
+    compatible: [DR01, DR04, IL06, CI04]
+
+  - id: PAL_BLACK_WHITE
+    name: {zh: 黑白, en: Black & White}
+    saturation: 0
+    brightness: 5
+    contrast: 8
+    color_tendency: [纯黑, 纯白, 灰阶]
+    rules: {must: [强烈黑白], avoid: [彩色残留]}
+    prompt_anchor: [black and white palette, high contrast monochrome]
+    compatible: [CI04, PR01, PR04, DR08]
+
+  - id: PAL_MUTED
+    name: {zh: 低饱和柔和, en: Muted}
+    saturation: 2
+    brightness: 5
+    contrast: 4
+    color_tendency: [灰调蓝绿, 灰褐, 雾紫, 旧米色]
+    rules: {must: [克制沉稳], avoid: [荧光, 高亮]}
+    prompt_anchor: [muted desaturated palette, restrained sophisticated colors]
+    compatible: [IL03, IL02, CI08, VE03, FA05]
+
+  - id: PAL_HIGH_SATURATION
+    name: {zh: 高饱和, en: High Saturation}
+    saturation: 8
+    brightness: 6
+    contrast: 6
+    color_tendency: [纯红, 纯蓝, 纯黄, 纯绿]
+    rules: {must: [有力醒目], avoid: [脏灰]}
+    prompt_anchor: [high saturation vivid palette, bold pure colors]
+    compatible: [IL01, VE06, GD01, PR07]
+
+  - id: PAL_LOW_SATURATION
+    name: {zh: 低饱和, en: Low Saturation}
+    saturation: 2
+    brightness: 5
+    contrast: 4
+    color_tendency: [灰调自然色]
+    rules: {must: [柔和含蓄], avoid: [鲜艳]}
+    prompt_anchor: [low saturation palette, subtle understated colors]
+    compatible: [PH12, CI08, EA06]
+
+  - id: PAL_WARM
+    name: {zh: 暖色, en: Warm}
+    saturation: 5
+    brightness: 6
+    contrast: 4
+    color_tendency: [橙, 金黄, 暖红, 奶油]
+    rules: {must: [温暖氛围], avoid: [冷蓝主导]}
+    prompt_anchor: [warm color palette, golden orange glow]
+    compatible: [PH16, CI09, PA08, IL09]
+
+  - id: PAL_COOL
+    name: {zh: 冷色, en: Cool}
+    saturation: 5
+    brightness: 6
+    contrast: 4
+    color_tendency: [蓝, 青, 冷绿, 紫]
+    rules: {must: [冷静氛围], avoid: [暖橙主导]}
+    prompt_anchor: [cool color palette, blue teal tones]
+    compatible: [CI07, PH13, EA04, GA04]
+
+  - id: PAL_TEAL_ORANGE
+    name: {zh: 青橙对比, en: Teal & Orange}
+    saturation: 6
+    brightness: 6
+    contrast: 7
+    color_tendency: [青蓝, 橙肤色, 深褐]
+    rules: {must: [电影感对比], avoid: [杂乱多色]}
+    prompt_anchor: [teal and orange cinematic palette, blockbuster color grade]
+    compatible: [CI01, CI08, GA10]
+
+  - id: PAL_VINTAGE_FADED
+    name: {zh: 复古褪色, en: Vintage Faded}
+    saturation: 2
+    brightness: 5
+    contrast: 3
+    color_tendency: [褪色红, 旧黄, 灰蓝, 米褐]
+    rules: {must: [旧物褪色感], avoid: [鲜艳新色]}
+    prompt_anchor: [vintage faded palette, aged print colors]
+    compatible: [DR07, PH16, PR09, RT07, CI08]
+
+  - id: PAL_CREAM
+    name: {zh: 奶油米白, en: Cream}
+    saturation: 2
+    brightness: 8
+    contrast: 3
+    color_tendency: [米白, 奶油, 浅褐, 焦糖]
+    rules: {must: [温暖纸感], avoid: [冷白]}
+    prompt_anchor: [cream ivory palette, warm paper tones]
+    compatible: [PA10, IL11, EA06, VE03]
+
+  - id: PAL_MACARON
+    name: {zh: 马卡龙, en: Macaron}
+    saturation: 5
+    brightness: 8
+    contrast: 3
+    color_tendency: [粉彩糖果感, 淡蓝粉, 嫩绿]
+    rules: {must: [精致甜美], avoid: [暗沉]}
+    prompt_anchor: [macaron pastel palette, refined sweet colors]
+    compatible: [VE06, TD05, AN13]
+
+  - id: PAL_NEON
+    name: {zh: 霓虹, en: Neon}
+    saturation: 9
+    brightness: 7
+    contrast: 7
+    color_tendency: [荧光粉, 电蓝, 荧光绿, 紫]
+    rules: {must: [夜感发光], avoid: [白天自然感]}
+    prompt_anchor: [neon palette, electric glowing colors]
+    compatible: [FA12, RT08, AN11, CI05]
+
+  - id: PAL_DARK
+    name: {zh: 暗色, en: Dark}
+    saturation: 3
+    brightness: 3
+    contrast: 6
+    color_tendency: [深蓝黑, 深褐, 暗紫, 石墨]
+    rules: {must: [深色氛围], avoid: [浅色满铺]}
+    prompt_anchor: [dark moody palette, deep shadow colors]
+    compatible: [CI04, FA03, PA01, FA05]
+
+  - id: PAL_BLACK_GOLD
+    name: {zh: 黑金, en: Black Gold}
+    saturation: 4
+    brightness: 5
+    contrast: 8
+    color_tendency: [黑, 金, 深褐, 象牙]
+    rules: {must: [奢华高级], avoid: [廉价荧光]}
+    prompt_anchor: [black and gold palette, luxury metallic contrast]
+    compatible: [EA10, GD05, TD02, PA01]
+
+  - id: PAL_TRADITIONAL_CHINESE
+    name: {zh: 中国传统色, en: Traditional Chinese}
+    saturation: 5
+    brightness: 5
+    contrast: 4
+    color_tendency: [朱砂, 石青, 石绿, 藤黄, 墨色, 胭脂]
+    rules: {must: [东方韵味], avoid: [西式荧光]}
+    prompt_anchor: [traditional chinese pigment palette, cinnabar azurite malachite]
+    compatible: [EA01, EA03, EA07, EA10, EA06]
+
+  - id: PAL_NORDIC
+    name: {zh: 北欧, en: Nordic}
+    saturation: 3
+    brightness: 7
+    contrast: 4
+    color_tendency: [雾蓝, 浅灰, 白, 浅木色]
+    rules: {must: [清爽简约], avoid: [浓艳]}
+    prompt_anchor: [nordic scandinavian palette, light airy minimal]
+    compatible: [GD11, VE03, IL06]
+
+  - id: PAL_SAGE_GREEN
+    name: {zh: 鼠尾草绿, en: Sage Green}
+    saturation: 4
+    brightness: 6
+    contrast: 4
+    color_tendency: [鼠尾草绿, 米白, 浅棕, 燕麦]
+    rules: {must: [自然疗愈], avoid: [荧光绿]}
+    prompt_anchor: [sage green palette, calm botanical tones]
+    compatible: [VE05, IL09, TD06, PA08]
+
+  - id: PAL_DUSTY_BLUE
+    name: {zh: 雾蓝, en: Dusty Blue}
+    saturation: 3
+    brightness: 5
+    contrast: 4
+    color_tendency: [雾蓝, 灰蓝, 米灰, 旧白]
+    rules: {must: [静谧克制], avoid: [鲜亮宝蓝]}
+    prompt_anchor: [dusty blue palette, muted nostalgic blue]
+    compatible: [IL03, IL05, RT07, PR04]
+
+  - id: PAL_TERRACOTTA
+    name: {zh: 陶土色, en: Terracotta}
+    saturation: 6
+    brightness: 6
+    contrast: 5
+    color_tendency: [陶土红, 沙色, 橄榄, 奶油]
+    rules: {must: [温暖手作感], avoid: [冰冷灰]}
+    prompt_anchor: [terracotta palette, warm clay red tones]
+    compatible: [TD06, IL09, CR09, PA08]
+
+  - id: PAL_IVORY_CHARCOAL
+    name: {zh: 象牙黑炭, en: Ivory Charcoal}
+    saturation: 1
+    brightness: 6
+    contrast: 7
+    color_tendency: [象牙白, 炭黑, 灰]
+    rules: {must: [黑白纸感], avoid: [彩色]}
+    prompt_anchor: [ivory and charcoal palette, elegant monochrome warmth]
+    compatible: [DR07, DR01, PR04, IL06]

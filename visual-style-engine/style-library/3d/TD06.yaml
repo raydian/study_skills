@@ -1,0 +1,252 @@
+# TD06 — Clay 3D / 黏土 3D
+id: TD06
+version: 1.0.0
+status: ACTIVE
+
+name:
+  zh: 黏土 3D
+  en: Clay 3D
+
+category:
+  id: 3d
+  name_zh: 3D / CGI
+  name_en: 3D / CGI
+
+parent_style: null
+
+aliases:
+  - clay render
+  - claymation style
+  - 黏土动画风
+
+definition:
+  summary: >-
+    以黏土手作质感呈现的三维风格：圆润造型、手捏痕迹、哑光材质、柔和光照。
+    亲切治愈，适合教育内容、儿童内容与品牌吉祥物。
+  detailed: >-
+    TD06 模拟黏土动画/黏土模型的视觉：形体圆润饱满、带轻微手捏的不规则感；表面为哑光黏土
+    材质，可见轻微指纹/揉捏痕迹，无高光反射或 PBR 金属感；光照柔和（diffuse + soft shadow），
+    常有微缩布景与手工质感的地面。它不像"塑料 3D"那样光滑高光，也不像"照片级 CGI"那样真实，
+    而是刻意保留"手作"的温度感。适合教育插画、儿童内容、吉祥物、轻松科普。
+    注意：需要可爱治愈时优先 TD06；需要精致产品感时选 TD02/TD05。
+
+visual_intent:
+  - cute
+  - handmade
+  - warm
+  - friendly
+
+fingerprint:
+  shape:
+    - 圆润饱满造型
+    - 轻微手捏不规则
+    - 微缩比例
+  line:
+    - 无描边
+    - 光影边缘柔和
+  color:
+    - 柔和饱和色
+    - 哑光固有色
+  shading:
+    - soft diffuse 阴影
+    - 无强烈高光
+  lighting:
+    - 柔和主光 + 环境光
+    - 柔化阴影
+  texture:
+    - 哑光黏土
+    - 轻微指纹/揉捏痕
+  composition:
+    - 微缩布景
+    - 居中/均衡
+  detail:
+    - 3/10 低细节，干净
+
+style_dna:
+  realism: 3
+  abstraction: 6
+  detail_density: 3
+  spatial_depth: 4
+  texture_strength: 4
+  shading_strength: 4
+  lighting_complexity: 2
+  line_presence: 1
+  line_roughness: 1
+  shape_complexity: 4
+  color_complexity: 4
+
+shape_language:
+  description: 圆润、微缩、手作感。
+  preferred: [rounded blobby forms, miniature scale, slight asymmetry from handling]
+  avoid: [sharp mechanical edges, exact symmetry]
+
+line_language:
+  description: 无描边，柔和体积边缘。
+  preferred: [soft volumetric edges, none]
+  avoid: [outlines, sketch lines]
+
+color_system:
+  strategy: soft saturated clay colors
+  recommended_palette_types: [PAL_PASTEL, PAL_MACARON, PAL_CANDY_BRIGHT]
+  saturation_range: [4, 7]
+  contrast_range: [3, 5]
+  recommended_color_count: [3, 6]
+  avoid: [neon, muddy browns, photoreal skin]
+
+shading:
+  method: [soft diffuse shadow, ambient occlusion]
+  strength: 4
+  avoid: [hard directional shadows, glossy specular]
+
+lighting:
+  physical_realism: 4
+  methods: [soft key light, fill light, gentle ambient]
+  avoid: [harsh rim light, neon, dramatic noir]
+
+texture:
+  default: [matte clay, subtle finger marks]
+  strength: 4
+  avoid: [glossy plastic, metal, photographic skin]
+
+material:
+  rendering_policy: matte clay material, no PBR showcase
+  preferred: [matte, slight surface irregularity]
+  avoid: [reflective, glossy, metallic]
+
+composition:
+  preferred: [miniature set, centered, balanced, playful arrangement]
+  negative_space_range: "20-40%"
+  layer_count: "2-3"
+  avoid: [dense cluttered scenes]
+
+spatial_system:
+  depth: 4
+  perspective: [normal soft perspective, miniature depth of field allowed]
+  avoid: [extreme wide dramatic perspective]
+
+detail_density:
+  level: 3
+  focal_detail_policy: 主体圆润干净，道具少量点缀
+
+character_rendering:
+  face: 圆润可爱五官
+  skin: 哑光黏土肤色
+  hair: 黏土条状
+  anatomy: 比例可爱化
+  clothing: 黏土块面
+
+background:
+  complexity: 2
+  preferred: [miniature set, soft color backdrop, simple props]
+  avoid: [photographic environments]
+
+rules:
+  must:
+    - 黏土材质感（哑光）
+    - 圆润造型
+    - 柔和光照
+    - 手作感（轻微不规则）
+    - 无高光反射
+  should:
+    - 微缩布景
+    - 色彩柔和饱和
+    - 阴影柔和
+    - 干净低细节
+  may:
+    - 指纹/揉捏痕
+    - 场景小道具
+    - 居中构图
+  must_not:
+    - 高光塑料
+    - PBR 金属反射
+    - 照片级皮肤
+    - 硬阴影
+    - 霓虹光
+    - 写实解剖
+
+allowed_variations:
+  - 色调（pastel / candy / macaron）
+  - 微缩场景复杂度
+
+forbidden_features:
+  - glossy plastic
+  - metallic PBR
+  - photoreal skin
+  - hard shadows
+
+canonical_prompt:
+  positive_anchor:
+    - "clay 3D render"
+    - "handmade clay figurine look"
+    - "rounded soft miniature forms"
+    - "matte clay material with subtle finger marks"
+    - "soft diffused lighting"
+    - "gentle ambient occlusion"
+    - "warm friendly pastel color palette"
+    - "clean low detail miniature set"
+    - "cute approachable mood"
+  negative_anchor:
+    - "glossy plastic"
+    - "metallic PBR reflections"
+    - "photorealistic skin"
+    - "hard directional shadows"
+    - "neon lighting"
+    - "dense clutter"
+
+confusion_with:
+  - style: TD05
+    risk: high
+    difference:
+      - TD05 柔滑如软糖、更精致
+      - TD06 保留黏土手作质感
+    correction:
+      - add matte clay surface
+      - introduce slight hand-made irregularity
+  - style: TD07
+    risk: medium
+    difference:
+      - TD07 塑料玩具光滑高光
+      - TD06 哑光黏土无高光
+    correction:
+      - remove specular highlights
+      - matte the material
+
+correction_rules:
+  - problem: looks_plastic
+    instructions:
+      - remove glossy highlights
+      - matte the surface
+      - add subtle clay texture
+  - problem: too_realistic
+    instructions:
+      - simplify forms
+      - reduce material realism
+      - soften lighting
+  - problem: shadows_too_hard
+    instructions:
+      - diffuse the light
+      - soften shadow edges
+
+use_cases:
+  recommended:
+    - 教育内容插画
+    - 儿童内容
+    - 吉祥物/品牌形象
+    - 轻松科普
+  discouraged:
+    - 严肃纪实
+    - 高端产品图
+
+compatibility:
+  portrait: 6
+  landscape: 8
+  product: 7
+  poster: 8
+  education: 9
+  book_video: 8
+
+reference_policy:
+  minimum_reference_count: 3
+  reference_types: [portrait, still_life, environment]
+
+evaluation_profile: TD06_DEFAULT

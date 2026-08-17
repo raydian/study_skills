@@ -1,0 +1,58 @@
+# DR04 — Ink Line Drawing / 墨线画
+id: DR04
+version: 1.0.0
+status: ACTIVE
+name: {zh: 墨线画, en: Ink Line Drawing}
+category: {id: drawing, name_zh: 素描线绘, name_en: Drawing}
+parent_style: null
+aliases: [ink line art, 墨线稿, 钢笔线稿]
+definition:
+  summary: >-
+    以清晰有力的墨线表达形体的风格：线条承载结构与走势，可配少量墨色，干净利落。
+  detailed: >-
+    墨线画以线条为主要语言：轮廓清晰、走势果断，线宽可有变化但整体干净利落；可辅以少量
+    墨色块面或水染。常用于插画线稿、版画感、印刷感、装饰画。
+visual_intent: [linear, crisp, graphic]
+fingerprint:
+  shape: [线构造型, 轮廓清晰]
+  line: [果断墨线, 走势有力]
+  color: [墨黑为主, 可辅色]
+  shading: [线排/点排, 少量墨块]
+  lighting: [无真实光, 线密疏表现]
+  texture: [纸面, 墨色均匀]
+  composition: [线构图, 装饰平衡]
+  detail: [4/10 线条细节]
+style_dna: {realism: 4, abstraction: 5, detail_density: 4, spatial_depth: 4, texture_strength: 3, shading_strength: 4, lighting_complexity: 1, line_presence: 10, line_roughness: 3, shape_complexity: 5, color_complexity: 2}
+shape_language: {description: 线构造型, preferred: [轮廓清晰形], avoid: [模糊块]}
+line_language: {description: 果断墨线, preferred: [有力走势, 清晰轮廓], avoid: [犹豫碎线]}
+color_system: {strategy: 墨黑为主, recommended_palette_types: [PAL_BLACK_WHITE, PAL_IVORY_CHARCOAL, PAL_MONOCHROME], saturation_range: [0, 3], contrast_range: [5, 8], recommended_color_count: [1, 3], avoid: [多彩]}
+shading: {method: [排线, 点排, 墨块], strength: 4, avoid: [灰度渐变照片]}
+lighting: {physical_realism: 1, methods: [线疏密], avoid: [体积光]}
+texture: {default: [纸面], strength: 3, avoid: [照片纹理]}
+material: {rendering_policy: 墨线媒介, preferred: [纸墨], avoid: [油光]}
+composition: {preferred: [线构图, 装饰平衡], negative_space_range: "25-50%", layer_count: "2", avoid: [拥挤]}
+spatial_system: {depth: 4, perspective: [线透视], avoid: [深渐变]}
+detail_density: {level: 4, focal_detail_policy: 焦点线密, 其余留白}
+character_rendering: {face: 线描五官, skin: 留白, hair: 线束, anatomy: 线构, clothing: 线褶}
+background: {complexity: 1, preferred: [纸面留白], avoid: [照片]}
+rules:
+  must: [清晰墨线, 轮廓明确, 走势有力, 墨色干净]
+  should: [线宽变化自然, 留白, 装饰平衡]
+  may: [排线阴影, 辅色点缀]
+  must_not: [犹豫碎线, 照片灰度, 3D 渲染感, 水彩渗色（非意图）, 油画笔触, 多彩杂乱]
+allowed_variations: [线宽, 辅色]
+forbidden_features: [photo gray, 3D render, watercolor bleed]
+canonical_prompt:
+  positive_anchor: [ink line drawing, crisp confident ink lines, clear contour, strong line direction, clean paper background, minimal ink washes, graphic balance, print-friendly line art]
+  negative_anchor: [hesitant broken lines, photographic grayscale, 3D render, watercolor bleeding, oil strokes, colorful clutter]
+confusion_with:
+  - {style: DR03, risk: high, difference: [DR03 钢笔流畅线, DR04 墨线更结构], correction: [强化结构走势]}
+  - {style: DR07, risk: medium, difference: [DR07 松弛断续, DR04 干净果断], correction: [线更肯定, 去碎线]}
+correction_rules:
+  - {problem: hesitant_lines, instructions: [线条果断化, 走势清晰]}
+  - {problem: gray_photo, instructions: [去灰度, 线墨语言]}
+  - {problem: lost_contrast, instructions: [加强轮廓, 明确线密度]}
+use_cases: {recommended: [插画线稿, 版画感, 印刷感, 装饰画], discouraged: [柔和水彩感]}
+compatibility: {portrait: 8, landscape: 8, product: 6, poster: 8, education: 7, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: DR04_DEFAULT

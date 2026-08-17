@@ -1,0 +1,66 @@
+# Craft Catalog — 手工类（12）
+category: craft
+name_zh: 手工艺
+name_en: Craft
+
+styles:
+  - id: CR01
+    name_zh: 剪纸
+    name_en: Paper Cut
+    status: DRAFT
+    desc: 平面剪纸、镂空边缘
+  - id: CR02
+    name_zh: 纸艺
+    name_en: Paper Craft
+    status: DRAFT
+    desc: 纸的折叠/拼贴立体感
+  - id: CR03
+    name_zh: 折纸
+    name_en: Origami
+    status: DRAFT
+    desc: 折痕几何、纸面光影
+  - id: CR04
+    name_zh: 手工黏土
+    name_en: Handmade Clay
+    status: DRAFT
+    desc: 手捏痕迹、陶土色
+  - id: CR05
+    name_zh: 毛毡艺术
+    name_en: Felt Art
+    status: DRAFT
+    desc: 羊毛毡、绒面质感
+  - id: CR06
+    name_zh: 编织艺术
+    name_en: Knitted Art
+    status: DRAFT
+    desc: 针织纹路、线材肌理
+  - id: CR07
+    name_zh: 刺绣
+    name_en: Embroidery
+    status: DRAFT
+    desc: 绣线针迹、布面基底
+  - id: CR08
+    name_zh: 织物纺织
+    name_en: Fabric Textile
+    status: DRAFT
+    desc: 布面图案、织物质感
+  - id: CR09
+    name_zh: 陶艺
+    name_en: Ceramic Art
+    status: DRAFT
+    desc: 陶土造型、釉面
+  - id: CR10
+    name_zh: 瓷器艺术
+    name_en: Porcelain Art
+    status: DRAFT
+    desc: 瓷白细腻、青花等纹饰
+  - id: CR11
+    name_zh: 马赛克
+    name_en: Mosaic
+    status: DRAFT
+    desc: 碎块拼贴、缝隙节奏
+  - id: CR12
+    name_zh: 手工拼贴
+    name_en: Handmade Collage
+    status: DRAFT
+    desc: 纸片/材料拼贴层次

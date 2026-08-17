@@ -1,0 +1,58 @@
+# PH01 — Natural Photography / 自然摄影
+id: PH01
+version: 1.0.0
+status: ACTIVE
+name: {zh: 自然摄影, en: Natural Photography}
+category: {id: photography, name_zh: 摄影, name_en: Photography}
+parent_style: null
+aliases: [natural light photography, 自然光摄影]
+definition:
+  summary: >-
+    以自然光线与真实场景为主的摄影风格，无摆拍感、无过度调色，强调真实记录与光线本身的质感。
+  detailed: >-
+    自然摄影依赖日光/环境光，画面保留真实场景的氛围与空气感；构图自然不刻意，色彩处理克制，
+    保留胶片或传感器的真实质感。适用于纪实、旅行、自然科普、生活类内容。
+visual_intent: [authentic, natural, documentary]
+fingerprint:
+  shape: [真实物像, 自然取景]
+  line: [无描边, 真实边缘]
+  color: [真实色彩, 低干预调色]
+  shading: [自然光比, 真实阴影]
+  lighting: [自然光/环境光, 无人工主光]
+  texture: [真实表面, 轻微颗粒]
+  composition: [自然构图, 纪实取景]
+  detail: [6/10 真实细节]
+style_dna: {realism: 9, abstraction: 1, detail_density: 6, spatial_depth: 7, texture_strength: 6, shading_strength: 6, lighting_complexity: 6, line_presence: 0, line_roughness: 1, shape_complexity: 6, color_complexity: 5}
+shape_language: {description: 真实物像自然取景, preferred: [真实场景], avoid: [摆拍布景]}
+line_language: {description: 无描边真实边缘, preferred: [自然边缘], avoid: [描边]}
+color_system: {strategy: 真实色彩低干预, recommended_palette_types: [PAL_NATURAL, PAL_EARTH_TONE], saturation_range: [3, 6], contrast_range: [4, 7], recommended_color_count: [6, 10], avoid: [重度调色, 霓虹]}
+shading: {method: [自然光比], strength: 6, avoid: [硬影棚光]}
+lighting: {physical_realism: 9, methods: [自然光, 环境光], avoid: [人工主光, 霓虹]}
+texture: {default: [真实表面, 轻微颗粒], strength: 6, avoid: [塑料感]}
+material: {rendering_policy: 真实材质, preferred: [自然表面], avoid: [PBR 展示]}
+composition: {preferred: [自然构图, 纪实取景], negative_space_range: "15-40%", layer_count: "2-3", avoid: [过度摆拍]}
+spatial_system: {depth: 7, perspective: [真实透视], avoid: [畸变炫技]}
+detail_density: {level: 6, focal_detail_policy: 真实自然呈现}
+character_rendering: {face: 真实自然, skin: 真实肤质, hair: 自然, anatomy: 真实, clothing: 日常真实}
+background: {complexity: 5, preferred: [真实环境], avoid: [纯色影棚]}
+rules:
+  must: [自然光线, 真实场景, 无摆拍感, 色彩低干预]
+  should: [构图自然, 保留空气感, 细节真实]
+  may: [轻微胶片颗粒, 逆光剪影]
+  must_not: [重度 HDR, 霓虹调色, 影棚人工光, 卡通化, 3D 渲染观感, 过度锐化]
+allowed_variations: [胶片/数码质感, 环境变化]
+forbidden_features: [studio flash look, heavy HDR, neon grading]
+canonical_prompt:
+  positive_anchor: [natural light photography, authentic real scene, unposed documentary feel, true-to-life color, realistic texture and atmosphere]
+  negative_anchor: [studio lighting, heavy HDR, neon color grading, cartoon look, 3D rendering]
+confusion_with:
+  - {style: PH12, risk: high, difference: [PH12 强调事件纪实, PH01 侧重光线美感], correction: [强调氛围与光线]}
+  - {style: CI01, risk: medium, difference: [CI01 电影布光构图, PH01 自然不干预], correction: [去除电影化布光]}
+correction_rules:
+  - {problem: looks_staged, instructions: [让画面更自然, 去摆拍感]}
+  - {problem: over_graded, instructions: [还原真实色彩, 降低干预]}
+  - {problem: studio_look, instructions: [改用自然光, 去人工主光]}
+use_cases: {recommended: [旅行, 自然科普, 纪实生活], discouraged: [奇幻概念, 产品广告]}
+compatibility: {portrait: 8, landscape: 9, product: 6, poster: 7, education: 7, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, nature]}
+evaluation_profile: PH01_DEFAULT

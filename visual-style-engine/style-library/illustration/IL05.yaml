@@ -1,0 +1,59 @@
+# IL05 — Metaphorical Illustration / 隐喻插画
+id: IL05
+version: 1.0.0
+status: ACTIVE
+name: {zh: 隐喻插画, en: Metaphorical Illustration}
+category: {id: illustration, name_zh: 插画, name_en: Illustration}
+parent_style: null
+aliases: [metaphor illustration, 比喻插画, 象征隐喻]
+definition:
+  summary: >-
+    把抽象关系、观点或感受具象为可读画面的插画风格：以喻体传达本体，视觉有"言外之意"。
+  detailed: >-
+    隐喻插画用"看得见的比喻"表达"看不见的道理"：比如用棋盘表现博弈、用锚与船表现羁绊。
+    画面需在"理解门槛"与"表达张力"间平衡——喻体选择准确、视觉干净、不直白说教。适用于
+    心理学、商业观点、哲学、社科类内容。
+visual_intent: [metaphorical, insightful, intellectual]
+fingerprint:
+  shape: [喻体物像, 关系化构成]
+  line: [干净, 可细线]
+  color: [克制, 焦点强调]
+  shading: [简化, 层次]
+  lighting: [氛围化]
+  texture: [轻介质感]
+  composition: [关系表达, 喻体结构]
+  detail: [4/10 中低细节]
+style_dna: {realism: 4, abstraction: 6, detail_density: 4, spatial_depth: 4, texture_strength: 2, shading_strength: 3, lighting_complexity: 2, line_presence: 4, line_roughness: 1, shape_complexity: 5, color_complexity: 4}
+shape_language: {description: 喻体物像, preferred: [可辨识喻体, 关系构成], avoid: [无喻体纯抽象]}
+line_language: {description: 干净可细线, preferred: [清晰边缘], avoid: [粗糙]}
+color_system: {strategy: 克制 + 焦点强调, recommended_palette_types: [PAL_MUTED, PAL_MORANDI, PAL_CREAM, PAL_DUSTY_BLUE], saturation_range: [2, 5], contrast_range: [4, 6], recommended_color_count: [3, 6], avoid: [满铺鲜艳]}
+shading: {method: [简化层次], strength: 3, avoid: [写实照片]}
+lighting: {physical_realism: 2, methods: [氛围化], avoid: [体积光]}
+texture: {default: [轻介质], strength: 2, avoid: [照片]}
+material: {rendering_policy: 图形化, preferred: [简化], avoid: [写实材质]}
+composition: {preferred: [关系表达, 喻体并置, 干净留白], negative_space_range: "25-50%", layer_count: "2-3", avoid: [直白堆砌]}
+spatial_system: {depth: 4, perspective: [扁平/浅空间], avoid: [深透视]}
+detail_density: {level: 4, focal_detail_policy: 喻体焦点明确}
+character_rendering: {face: 简化, skin: 简化, hair: 简化, anatomy: 风格化, clothing: 图形化}
+background: {complexity: 2, preferred: [留白/色块], avoid: [照片]}
+rules:
+  must: [以喻体传达本体, 画面有言外之意, 喻体可辨识, 视觉干净]
+  should: [克制配色, 焦点强调, 不过度直白]
+  may: [超现实元素, 双关视觉]
+  must_not: [无喻体堆砌, 直白照片式表达, 卡通低龄, 3D 渲染感, 高饱和满铺, 过度说教]
+allowed_variations: [喻体选择, 表现手法]
+forbidden_features: [no metaphor, photoreal, juvenile cartoon]
+canonical_prompt:
+  positive_anchor: [metaphorical illustration, visible metaphor for abstract idea, recognizable symbolic objects in relation, clean insightful composition, restrained palette with focal accent, intellectual wit, generous negative space]
+  negative_anchor: [no metaphor plain scene, photoreal, juvenile cartoon, neon overload, preachy literal]
+confusion_with:
+  - {style: IL03, risk: medium, difference: [IL03 概念象征整体, IL05 强调明确喻体关系], correction: [突出喻体对应关系]}
+  - {style: FA05, risk: medium, difference: [FA05 超现实梦境逻辑, IL05 理性比喻逻辑], correction: [保持喻体清晰可读]}
+correction_rules:
+  - {problem: metaphor_unclear, instructions: [换更直观喻体, 明确本体喻体对应]}
+  - {problem: became_literal, instructions: [引入比喻结构, 增加象征层]}
+  - {problem: cluttered, instructions: [精简元素, 留白, 焦点突出]}
+use_cases: {recommended: [心理学, 商业观点, 哲学, 社科], discouraged: [写实记录, 操作说明]}
+compatibility: {portrait: 6, landscape: 8, product: 6, poster: 9, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, environment, abstract]}
+evaluation_profile: IL05_DEFAULT

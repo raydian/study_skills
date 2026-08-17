@@ -1,0 +1,76 @@
+# Information / Scientific Catalog — 信息科学类（14）
+category: information
+name_zh: 信息与科学
+name_en: Information / Scientific
+
+styles:
+  - id: IN01
+    name_zh: 信息图
+    name_en: Infographic
+    status: DRAFT
+    desc: 数据/信息视觉化编排
+  - id: IN02
+    name_zh: 科学插画
+    name_en: Scientific Illustration
+    status: DRAFT
+    desc: 科学对象准确呈现
+  - id: IN03
+    name_zh: 教育插画
+    name_en: Educational Illustration
+    status: DRAFT
+    desc: 教学友好、信息清晰
+  - id: IN04
+    name_zh: 技术图表
+    name_en: Technical Diagram
+    status: DRAFT
+    desc: 原理图、接线、结构图
+  - id: IN05
+    name_zh: 蓝图
+    name_en: Blueprint
+    status: DRAFT
+    desc: 蓝底白线工程图
+  - id: IN06
+    name_zh: 分解图
+    name_en: Exploded View
+    status: DRAFT
+    desc: 零件分解展开
+  - id: IN07
+    name_zh: 剖面图
+    name_en: Cutaway Illustration
+    status: DRAFT
+    desc: 剖开内部结构
+  - id: IN08
+    name_zh: 解剖插画
+    name_en: Anatomical Illustration
+    status: DRAFT
+    desc: 生物/人体结构
+  - id: IN09
+    name_zh: 植物图版
+    name_en: Botanical Plate
+    status: DRAFT
+    desc: 标本式植物图版
+  - id: IN10
+    name_zh: 地图插画
+    name_en: Map Illustration
+    status: DRAFT
+    desc: 风格化地图、图例友好
+  - id: IN11
+    name_zh: 时间轴视觉
+    name_en: Timeline Visual
+    status: DRAFT
+    desc: 历史/进程时间轴
+  - id: IN12
+    name_zh: 流程插画
+    name_en: Process Illustration
+    status: DRAFT
+    desc: 步骤/流程可视化
+  - id: IN13
+    name_zh: 等距信息图
+    name_en: Isometric Infographic
+    status: DRAFT
+    desc: 等距视角信息场景
+  - id: IN14
+    name_zh: 数据插画
+    name_en: Data Illustration
+    status: DRAFT
+    desc: 数据的故事化呈现

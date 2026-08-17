@@ -1,0 +1,55 @@
+# Line Library — 线条属性
+schema: attribute_library
+type: line
+version: "1.0.0"
+
+# 线条属性用于线感强的 Style（DR/VE/EA 类）的粗细、质地与走势调节。
+
+lines:
+  - id: LINE_UNIFORM
+    name: {zh: 均匀线宽, en: Uniform Stroke}
+    parameters: {width: 1, variation: none}
+    prompt_anchor: [uniform stroke width, consistent line]
+    compatible: [VE08, GD01, VE12]
+
+  - id: LINE_HAIRLINE
+    name: {zh: 发丝线, en: Hairline}
+    parameters: {width: 0.3, variation: low}
+    prompt_anchor: [hairline strokes, delicate fine lines]
+    compatible: [EA03, EA05, DR05, DR11]
+
+  - id: LINE_BOLD
+    name: {zh: 粗线, en: Bold Stroke}
+    parameters: {width: 3, variation: low}
+    prompt_anchor: [bold thick strokes, strong outlines]
+    compatible: [GD08, PR01, AN05]
+
+  - id: LINE_VARIABLE
+    name: {zh: 变化线宽, en: Variable Weight}
+    parameters: {width: 0.5-4, variation: natural}
+    prompt_anchor: [variable line weight, natural hand variation]
+    compatible: [DR07, DR04, EA01]
+
+  - id: LINE_BROKEN
+    name: {zh: 断续线, en: Broken Line}
+    parameters: {continuity: broken, overlap: allowed}
+    prompt_anchor: [broken interrupted lines, sketchy overlap]
+    compatible: [DR07, DR06]
+
+  - id: LINE_CONTINUOUS
+    name: {zh: 连续线, en: Continuous Line}
+    parameters: {continuity: single-pass, flow: unbroken}
+    prompt_anchor: [continuous single line, unbroken flow]
+    compatible: [VE09, DR09, DR08]
+
+  - id: LINE_CROSSHATCH
+    name: {zh: 交叉排线, en: Crosshatch}
+    parameters: {density: variable, direction: multi}
+    prompt_anchor: [crosshatch lines, dense directional hatching]
+    compatible: [PR03, PR04, DR01]
+
+  - id: LINE_CALLIGRAPHIC
+    name: {zh: 书法线, en: Calligraphic Line}
+    parameters: {pressure: expressive, tapering: yes}
+    prompt_anchor: [calligraphic brush lines, pressure-varied strokes]
+    compatible: [EA01, EA02, EA05, DR04]

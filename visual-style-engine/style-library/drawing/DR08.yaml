@@ -1,0 +1,58 @@
+# DR08 — Minimal Line Art / 极简线画
+id: DR08
+version: 1.0.0
+status: ACTIVE
+name: {zh: 极简线画, en: Minimal Line Art}
+category: {id: drawing, name_zh: 素描线绘, name_en: Drawing}
+parent_style: null
+aliases: [minimal line art, one line feel, 极简线条]
+definition:
+  summary: >-
+    用最少的线表达形状与表情的极简线条风格：线条干净克制，留白极大，符号感强。
+  detailed: >-
+    极简线画以"少"为美学：一根或几根流畅线勾勒轮廓，几乎无阴影、无细节、无填充，
+    靠线条的曲直与节奏传达形状与情绪。常用于现代品牌、封面、极简装饰、社交视觉。
+visual_intent: [minimal, elegant, modern]
+fingerprint:
+  shape: [单线轮廓, 极简形]
+  line: [极少量线, 平滑流畅]
+  color: [单色线为主]
+  shading: [无]
+  lighting: [无]
+  texture: [无]
+  composition: [极大留白, 符号焦点]
+  detail: [1/10 极低]
+style_dna: {realism: 1, abstraction: 9, detail_density: 1, spatial_depth: 2, texture_strength: 0, shading_strength: 0, lighting_complexity: 0, line_presence: 10, line_roughness: 1, shape_complexity: 3, color_complexity: 1}
+shape_language: {description: 单线轮廓, preferred: [极简形, 符号形], avoid: [复杂形]}
+line_language: {description: 极少量平滑线, preferred: [流畅单线], avoid: [多线堆叠]}
+color_system: {strategy: 单色线, recommended_palette_types: [PAL_BLACK_WHITE, PAL_MONOCHROME, PAL_CREAM], saturation_range: [0, 2], contrast_range: [5, 8], recommended_color_count: [1, 2], avoid: [多彩]}
+shading: {method: [无], strength: 0, avoid: [排线]}
+lighting: {physical_realism: 0, methods: [无], avoid: [光]}
+texture: {default: [无], strength: 0, avoid: [纹理]}
+material: {rendering_policy: 无, preferred: [线], avoid: [材质]}
+composition: {preferred: [大留白, 符号焦点, 居中/偏离], negative_space_range: "50-75%", layer_count: "1", avoid: [满铺]}
+spatial_system: {depth: 2, perspective: [无], avoid: [深透视]}
+detail_density: {level: 1, focal_detail_policy: 一根线表达一切}
+character_rendering: {face: 单线五官, skin: 无, hair: 线, anatomy: 符号化, clothing: 线}
+background: {complexity: 0, preferred: [纯色留白], avoid: [环境]}
+rules:
+  must: [极少线, 平滑流畅, 大留白, 符号化]
+  should: [线有节奏, 形状可辨, 优雅克制]
+  may: [单线连续, 单色点缀]
+  must_not: [多线堆叠, 阴影, 填充复杂, 3D 渲染感, 纹理, 细节, 杂乱]
+allowed_variations: [线宽, 单色]
+forbidden_features: [multi-line, shading, detail]
+canonical_prompt:
+  positive_anchor: [minimal line art, few smooth elegant lines, single-line contour, generous negative space, symbolic simple shape, modern calm composition, monochrome]
+  negative_anchor: [many lines, shading, detail, texture, 3D render, clutter]
+confusion_with:
+  - {style: VE08, risk: high, difference: [VE08 单线画矢量均匀线宽, DR08 手绘线感], correction: [手绘线质感]}
+  - {style: IL06, risk: medium, difference: [IL06 可色块符号, DR08 纯线], correction: [去色块, 纯线]}
+correction_rules:
+  - {problem: too_many_lines, instructions: [删线, 只留必要轮廓]}
+  - {problem: shading_appeared, instructions: [去阴影, 纯线]}
+  - {problem: lost_rhythm, instructions: [线节奏化, 曲直变化]}
+use_cases: {recommended: [现代品牌, 封面, 极简装饰, 社交视觉], discouraged: [丰富叙事, 写实]}
+compatibility: {portrait: 8, landscape: 9, product: 8, poster: 9, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, abstract]}
+evaluation_profile: DR08_DEFAULT

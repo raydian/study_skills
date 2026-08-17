@@ -1,0 +1,187 @@
+# Composition Library — 26 个标准构图属性
+schema: attribute_library
+type: composition
+version: "1.0.0"
+
+compositions:
+  - id: CMP_CENTERED
+    name: {zh: 居中构图, en: Centered}
+    description: 主体居中，庄重稳定
+    prompt_anchor: [centered composition, symmetrical focal balance]
+    compatible: [PH08, TD02, VE01, GD01]
+    incompatible: []
+
+  - id: CMP_SYMMETRICAL
+    name: {zh: 对称构图, en: Symmetrical}
+    description: 左右镜像对称，庄重秩序
+    prompt_anchor: [symmetrical composition, mirror balance]
+    compatible: [EA07, GD01, PA01, CI06]
+    incompatible: [DR07]
+
+  - id: CMP_RULE_OF_THIRDS
+    name: {zh: 三分法, en: Rule of Thirds}
+    description: 主体置于三分线交点
+    prompt_anchor: [rule of thirds composition, off-center focal point]
+    compatible: [PH01, CI01, CI08, IL04]
+    incompatible: []
+
+  - id: CMP_GOLDEN_RATIO
+    name: {zh: 黄金分割, en: Golden Ratio}
+    description: 主体位于黄金比例位置
+    prompt_anchor: [golden ratio composition, harmonic placement]
+    compatible: [PH03, PA01, CI01, IL03]
+    incompatible: []
+
+  - id: CMP_DIAGONAL
+    name: {zh: 对角线构图, en: Diagonal}
+    description: 主要元素沿对角线分布，动感
+    prompt_anchor: [diagonal composition, dynamic axis]
+    compatible: [CI01, FA05, GA06, CI04]
+    incompatible: [GD01]
+
+  - id: CMP_LEADING_LINES
+    name: {zh: 引导线, en: Leading Lines}
+    description: 用线条引导视线到主体
+    prompt_anchor: [leading lines composition, visual path to subject]
+    compatible: [PH13, PH14, CI08, CI01]
+    incompatible: []
+
+  - id: CMP_FRAME_WITHIN_FRAME
+    name: {zh: 框中框, en: Frame within Frame}
+    description: 用前景框架包裹主体
+    prompt_anchor: [frame within frame composition, foreground framing]
+    compatible: [CI01, CI08, PH13, PH12]
+    incompatible: [IL06]
+
+  - id: CMP_NEGATIVE_SPACE
+    name: {zh: 负空间, en: Negative Space}
+    description: 大留白突出主体
+    prompt_anchor: [negative space composition, generous empty area]
+    compatible: [VE01, IL06, GD11, DR08, IL03]
+    incompatible: [PH12]
+
+  - id: CMP_CLOSE_UP
+    name: {zh: 特写, en: Close-up}
+    description: 主体极近，细节放大
+    prompt_anchor: [close-up composition, magnified subject detail]
+    compatible: [PH03, PH06, PH15, FA05]
+    incompatible: []
+
+  - id: CMP_MEDIUM_SHOT
+    name: {zh: 中景, en: Medium Shot}
+    description: 主体与部分环境
+    prompt_anchor: [medium shot composition, subject with context]
+    compatible: [IL04, CI01, PH12]
+    incompatible: []
+
+  - id: CMP_WIDE_SHOT
+    name: {zh: 全景, en: Wide Shot}
+    description: 环境为主，主体小
+    prompt_anchor: [wide shot composition, environment dominant]
+    compatible: [PH14, CI06, GA01, CI08]
+    incompatible: [PH03]
+
+  - id: CMP_EXTREME_WIDE
+    name: {zh: 大远景, en: Extreme Wide}
+    description: 宏大环境，主体极渺小
+    prompt_anchor: [extreme wide shot, vast scale, tiny subject]
+    compatible: [CI06, PH14, FA05, GA01]
+    incompatible: [PH08]
+
+  - id: CMP_BIRDS_EYE
+    name: {zh: 鸟瞰, en: Bird's-eye View}
+    description: 高空俯视
+    prompt_anchor: [bird's eye view, high angle overhead]
+    compatible: [PH14, IN13, GA01, FA05]
+    incompatible: [PH03]
+
+  - id: CMP_TOP_DOWN
+    name: {zh: 俯视, en: Top-down}
+    description: 正上方垂直俯视
+    prompt_anchor: [top-down view, straight overhead]
+    compatible: [IN13, PH08, TD10, FA05]
+    incompatible: []
+
+  - id: CMP_LOW_ANGLE
+    name: {zh: 仰视, en: Low Angle}
+    description: 低机位仰拍，主体高大
+    prompt_anchor: [low angle shot, subject from below, imposing]
+    compatible: [CI06, CI04, GA02, CI08]
+    incompatible: []
+
+  - id: CMP_HIGH_ANGLE
+    name: {zh: 俯拍, en: High Angle}
+    description: 高机位俯拍，主体渺小
+    prompt_anchor: [high angle shot, looking down at subject]
+    compatible: [FA05, CI10, PH12]
+    incompatible: []
+
+  - id: CMP_DUTCH_ANGLE
+    name: {zh: 荷兰角, en: Dutch Angle}
+    description: 画面倾斜，不安感
+    prompt_anchor: [dutch angle, tilted camera, tension]
+    compatible: [CI04, CI10, FA05]
+    incompatible: [GD01, VE01]
+
+  - id: CMP_ISOMETRIC
+    name: {zh: 等距视角, en: Isometric}
+    description: 等距三维视角，UI/游戏常用
+    prompt_anchor: [isometric view, axonometric 3D angle]
+    compatible: [TD10, IN13, VE12]
+    incompatible: [PH14]
+
+  - id: CMP_EDITORIAL_LAYOUT
+    name: {zh: 编辑排版构图, en: Editorial Layout}
+    description: 图文节奏的编辑式版面
+    prompt_anchor: [editorial layout composition, typographic rhythm]
+    compatible: [IL02, VE03, GD12, GD13]
+    incompatible: []
+
+  - id: CMP_POSTER_LAYOUT
+    name: {zh: 海报式构图, en: Poster Layout}
+    description: 标题与主体并置的海报结构
+    prompt_anchor: [poster layout composition, title and hero structure]
+    compatible: [GD14, GD15, IL03, PR07]
+    incompatible: []
+
+  - id: CMP_LAYERED_DEPTH
+    name: {zh: 分层景深, en: Layered Depth}
+    description: 前/中/背景多层
+    prompt_anchor: [layered depth composition, foreground midground background]
+    compatible: [IL03, IL04, CI08, GA01]
+    incompatible: [IL06]
+
+  - id: CMP_MINIMAL
+    name: {zh: 极简构图, en: Minimal Composition}
+    description: 少元素大留白
+    prompt_anchor: [minimal composition, few elements, big whitespace]
+    compatible: [IL06, VE01, GD11, EA06]
+    incompatible: [PH12]
+
+  - id: CMP_HERO
+    name: {zh: 英雄构图, en: Hero Composition}
+    description: 单一主体撑满画面，冲击力
+    prompt_anchor: [hero composition, single dominant subject]
+    compatible: [GA06, PH08, CI06, IL03]
+    incompatible: []
+
+  - id: CMP_SPLIT
+    name: {zh: 分割构图, en: Split Composition}
+    description: 画面分割对比（新旧/二元）
+    prompt_anchor: [split composition, divided contrasting halves]
+    compatible: [IL03, IL05, FA05, IN12]
+    incompatible: []
+
+  - id: CMP_RADIAL
+    name: {zh: 放射构图, en: Radial Composition}
+    description: 元素自中心放射
+    prompt_anchor: [radial composition, elements radiating from center]
+    compatible: [EA07, GA06, FA11]
+    incompatible: []
+
+  - id: CMP_GRID
+    name: {zh: 网格构图, en: Grid Composition}
+    description: 多元素网格化排列
+    prompt_anchor: [grid composition, structured multi-element layout]
+    compatible: [GD01, IN01, IN13, VE12]
+    incompatible: [CI04]

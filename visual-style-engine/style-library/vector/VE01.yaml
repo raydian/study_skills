@@ -1,0 +1,306 @@
+# VE01 — Minimal Vector Illustration / 极简矢量插画
+id: VE01
+version: 1.0.0
+status: ACTIVE
+
+name:
+  zh: 极简矢量插画
+  en: Minimal Vector Illustration
+
+category:
+  id: vector
+  name_zh: 矢量艺术
+  name_en: Vector
+
+parent_style: VECTOR_BASE
+
+aliases:
+  - minimalist vector illustration
+  - clean vector art
+  - 极简矢量
+  - 干净扁平插画
+
+definition:
+  summary: >-
+    一种以二维平面图形为主要表达方式的视觉风格。主体通过少量经过高度概括的几何形或有机形构成，
+    不追求真实材质、真实光学或精细解剖，而强调轮廓识别、色彩关系、视觉节奏与留白。
+  detailed: >-
+    VE01 的核心是"少而准"：用最少的形状与最克制的色彩讲清楚一个画面。形状层面，主体被简化为
+    清晰的 silhouette，由圆、椭圆、圆角矩形与自由曲面构成，几何复杂度低；线条平滑连续、数量少、
+    线宽统一或最多两级。色彩采用 3–7 个主要颜色、大面积纯色、色块边界清晰，允许轻微渐变但不以
+    渐变塑造体积。阴影为 Flat 或 0–15% 的极弱阴影，不表现复杂体积光；纹理默认缺席，至多极轻微
+    全局 grain。构图上保留 30–60% 留白、单一视觉中心、2–4 个空间层级，适合编辑出版、知识图解、
+    品牌视觉与教育内容。它不追求"像"，而追求"能立刻认出来"。
+
+visual_intent:
+  - clean
+  - modern
+  - simplified
+  - intellectual
+
+fingerprint:
+  shape:
+    - 简化 silhouette
+    - 大面积有机色块
+    - 圆、椭圆、圆角矩形、自由曲面
+    - 低几何复杂度
+  line:
+    - 平滑
+    - 连续
+    - 少量
+    - 线宽统一或最多两级
+  color:
+    - 3–7 个主要颜色
+    - 色块边界清晰
+    - 大面积纯色
+    - 允许轻微渐变
+  shading:
+    - flat
+    - 0–15% 阴影强度
+    - 不表现复杂体积光
+  lighting:
+    - 不强调真实物理光源
+    - 通过浅色/深色区分层级
+  texture:
+    - 默认无纹理
+    - 允许极轻微全局 grain
+  composition:
+    - 30–60% 留白
+    - 单一视觉中心
+    - 2–4 个空间层级
+  detail:
+    - 2/10 低细节密度
+
+style_dna:
+  realism: 1
+  abstraction: 8
+  detail_density: 2
+  spatial_depth: 2
+  texture_strength: 1
+  shading_strength: 1
+  lighting_complexity: 1
+  line_presence: 5
+  line_roughness: 1
+  shape_complexity: 3
+  color_complexity: 4
+
+shape_language:
+  description: 以简化 silhouette 与大面积有机/几何色块为主，低几何复杂度。
+  preferred: [circle, ellipse, rounded rectangle, free-form curve, simplified silhouette]
+  avoid: [complex ornament, dense geometric grid, realistic anatomy]
+
+line_language:
+  description: 平滑、连续、少量，线宽统一或最多两级。
+  preferred: [smooth continuous contour, uniform or two-level stroke width, crisp edge]
+  avoid: [rough hatching, broken sketchy line, high-density crosshatch]
+
+color_system:
+  strategy: limited palette with clear separation
+  recommended_palette_types: [PAL_MORANDI, PAL_MUTED, PAL_CREAM, PAL_HIGH_SATURATION, PAL_CANDY_BRIGHT]
+  saturation_range: [3, 7]
+  contrast_range: [4, 7]
+  recommended_color_count: [3, 7]
+  avoid: [photographic gradient blends, muddy brown dominance, neon glow]
+
+shading:
+  method: [flat, minimal flat shadow]
+  strength: 1
+  avoid: [soft volumetric shading, cel-shaded complex shadow, airbrush]
+
+lighting:
+  physical_realism: 1
+  methods: [no explicit light source, light-dark value layering]
+  avoid: [volumetric light, god rays, dramatic rim light, physical light source]
+
+texture:
+  default: [clean flat, no texture]
+  strength: 1
+  avoid: [canvas texture, paper grain visible, photographic noise]
+
+material:
+  rendering_policy: no PBR materials, flat matte color regions
+  preferred: [matte flat color, uniform fill]
+  avoid: [metal reflection, glass refraction, fabric weave, skin pores]
+
+composition:
+  preferred: [negative space, single focal point, editorial balance, centered hero]
+  negative_space_range: "30-60%"
+  layer_count: "2-4"
+  avoid: [dense collage, multi-focal clutter, full-bleed clutter]
+
+spatial_system:
+  depth: 2
+  perspective: [flat 2D, layered depth, minimal overlap]
+  avoid: [one-point perspective interior, forced deep perspective]
+
+detail_density:
+  level: 2
+  focal_detail_policy: 焦点元素可略增细节，其余保持抽象；禁止全局细节拉满
+
+character_rendering:
+  face: 简化五官，圆点/弧线即可
+  skin: 单一扁平肤色
+  hair: 简化色块，不逐根绘制
+  anatomy: 不追求真实解剖，比例可适度风格化
+  clothing: 简化色块 + 轮廓
+
+background:
+  complexity: 1
+  preferred: [solid color, subtle flat shape, negative space]
+  avoid: [photographic bokeh, detailed environment, texture-rich backdrop]
+
+rules:
+  must:
+    - 保持二维平面视觉
+    - 使用简化形状
+    - 使用清晰色块
+    - 保持低细节密度
+    - 保持平滑轮廓
+    - 物体缩小后 silhouette 仍清晰
+    - 色块边界干净利落
+    - 留白充足（30–60%）
+  should:
+    - 限制主色 3–7 个
+    - 用深浅色区分层级而非真实光照
+    - 单一视觉中心
+    - 线条数量少、宽窄统一
+    - 允许轻微扁平阴影
+  may:
+    - 使用极轻微全局 grain
+    - 使用轻微渐变
+    - 加入抽象几何背景元素
+    - 圆角与自由曲面混合
+  must_not:
+    - 真实皮肤毛孔
+    - 摄影景深
+    - PBR 材质
+    - 强烈体积光
+    - 油画笔触
+    - 水彩渗色
+    - 高密度交叉排线
+    - 复杂真实反射
+    - 真实毛发细节
+    - 照片级噪点
+    - 3D 渲染观感
+    - 密集装饰细节
+
+allowed_variations:
+  - palette 换用不同色板（Attribute 层）
+  - 轻微 grain 强度变化
+  - 圆角程度 / 有机程度（VE04/VE05 边界内）
+
+forbidden_features:
+  - photorealistic rendering
+  - PBR materials
+  - volumetric lighting
+  - photographic depth of field
+  - watercolor / oil texture
+  - dense detail
+
+canonical_prompt:
+  positive_anchor:
+    - "minimal vector illustration"
+    - "clean flat 2D visual language"
+    - "large simplified organic and geometric shapes"
+    - "smooth crisp contours"
+    - "limited controlled color palette"
+    - "clear color separation"
+    - "minimal shading"
+    - "low visual complexity"
+    - "simple recognizable silhouettes"
+    - "generous negative space"
+    - "balanced contemporary editorial composition"
+  negative_anchor:
+    - "photorealistic"
+    - "realistic skin pores"
+    - "photographic depth of field"
+    - "3D rendering"
+    - "PBR materials"
+    - "complex realistic reflections"
+    - "volumetric cinematic lighting"
+    - "oil painting brush strokes"
+    - "watercolor bleeding"
+    - "rough pencil shading"
+    - "dense visual details"
+
+confusion_with:
+  - style: IL01
+    risk: high
+    difference:
+      - VE01 更依赖干净几何轮廓与留白
+      - IL01 允许更复杂叙事细节与场景
+    correction:
+      - simplify shapes
+      - reduce texture
+      - strengthen crisp vector edges
+      - increase negative space
+  - style: DR08
+    risk: medium
+    difference:
+      - VE01 依赖色块构成
+      - DR08 依赖线条表达
+    correction:
+      - emphasize flat color regions
+      - minimize line reliance
+  - style: VE06
+    risk: medium
+    difference:
+      - VE06 使用糖果色与圆润可爱造型
+      - VE01 保持克制中性用色
+    correction:
+      - reduce saturation
+      - remove playful candy accents
+
+correction_rules:
+  - problem: texture_too_realistic
+    instructions:
+      - eliminate realistic material microtexture
+      - return to flat color regions
+      - remove photographic surface reflections
+  - problem: drifted_to_photography
+    instructions:
+      - reduce photographic realism
+      - restore flat 2D rendering
+      - simplify physical lighting
+      - remove depth of field
+  - problem: too_many_colors
+    instructions:
+      - reduce palette to 3-7 dominant colors
+      - enforce clear color separation
+      - remove muddy intermediates
+  - problem: lost_negative_space
+    instructions:
+      - open up composition
+      - reduce element count
+      - enlarge margins
+  - problem: shapes_too_complex
+    instructions:
+      - abstract details into simplified silhouettes
+      - reduce geometric complexity
+      - favor clean contours
+
+use_cases:
+  recommended:
+    - 知识图解 / 概念说明
+    - 品牌视觉与图标语言
+    - 编辑出版封面与内页
+    - 教育课件配图
+    - 企业报告视觉
+  discouraged:
+    - 需要写实质感的美食/产品实拍感
+    - 情感浓重的艺术叙事画面
+    - 数据密集的复杂图表
+
+compatibility:
+  portrait: 7
+  landscape: 9
+  product: 8
+  poster: 9
+  education: 9
+  book_video: 9
+
+reference_policy:
+  minimum_reference_count: 3
+  reference_types: [portrait, still_life, environment, architecture]
+
+evaluation_profile: VE01_DEFAULT

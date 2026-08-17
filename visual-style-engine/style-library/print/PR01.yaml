@@ -1,0 +1,58 @@
+# PR01 — Woodcut / 木刻
+id: PR01
+version: 1.0.0
+status: ACTIVE
+name: {zh: 木刻, en: Woodcut}
+category: {id: print, name_zh: 印刷艺术, name_en: Print Art}
+parent_style: PRINT_BASE
+aliases: [woodcut print, 木刻版画, 黑白木刻]
+definition:
+  summary: >-
+    以木版刀具刻痕为语言的版画风格：黑白强烈、刀痕分明、粗犷有力的印刷质感。
+  detailed: >-
+    木刻以刀在木版上刻出图形，印刷后保留刀痕的边缘与黑白对比：线条由刻刀产生，粗细由刀法决定，
+    常有留白与墨块的强烈节奏。黑白为主，可套色。适用于革命文艺、复古印刷、民俗、海报。
+visual_intent: [bold, graphic, folk]
+fingerprint:
+  shape: [刀刻图形, 黑白块面]
+  line: [刀痕线, 有力边缘]
+  color: [黑白为主, 可套色]
+  shading: [刀刻排线, 黑白层次]
+  lighting: [无真实光, 黑白对比]
+  texture: [木刻刀痕, 印刷墨感]
+  composition: [装饰构成, 民俗结构]
+  detail: [4/10 刀痕细节]
+style_dna: {realism: 4, abstraction: 5, detail_density: 4, spatial_depth: 3, texture_strength: 7, shading_strength: 5, lighting_complexity: 1, line_presence: 7, line_roughness: 7, shape_complexity: 5, color_complexity: 2}
+shape_language: {description: 刀刻图形, preferred: [黑白块面, 刻痕形], avoid: [照片柔边]}
+line_language: {description: 刀痕线, preferred: [刀痕边缘, 有力线], avoid: [平滑矢量]}
+color_system: {strategy: 黑白为主, recommended_palette_types: [PAL_BLACK_WHITE, PAL_MONOCHROME, PAL_TRADITIONAL_CHINESE], saturation_range: [0, 3], contrast_range: [6, 9], recommended_color_count: [1, 3], avoid: [多彩渐变]}
+shading: {method: [刀刻排线, 黑白层次], strength: 5, avoid: [灰度渐变]}
+lighting: {physical_realism: 0, methods: [黑白对比], avoid: [体积光]}
+texture: {default: [木刻刀痕, 墨印], strength: 7, avoid: [数码平滑]}
+material: {rendering_policy: 木版油墨, preferred: [墨印纸感], avoid: [塑料]}
+composition: {preferred: [装饰构成, 民俗结构], negative_space_range: "15-40%", layer_count: "2", avoid: [照片构图]}
+spatial_system: {depth: 3, perspective: [平面装饰], avoid: [深透视]}
+detail_density: {level: 4, focal_detail_policy: 刀法表达}
+character_rendering: {face: 刀刻五官, skin: 黑白块, hair: 刀刻线, anatomy: 民俗比例, clothing: 刀痕衣纹}
+background: {complexity: 2, preferred: [纸面留白], avoid: [照片]}
+rules:
+  must: [刀痕可见, 黑白强烈, 印刷质感, 图形化]
+  should: [排线刀法, 装饰构成, 民俗气质]
+  may: [套色, 版画纸纹]
+  must_not: [照片柔边, 平滑矢量, 3D 渲染感, 水彩渗色, 多彩渐变, 精细写实]
+allowed_variations: [套色, 刀法密度]
+forbidden_features: [photo soft edge, smooth vector, 3D render]
+canonical_prompt:
+  positive_anchor: [woodcut print, bold black and white, visible knife-cut edges, strong graphic shapes, carved line shading, ink on paper texture, folk decorative composition, powerful rough energy]
+  negative_anchor: [photographic soft edges, smooth vector, 3D rendering, watercolor bleed, colorful gradients, fine realism]
+confusion_with:
+  - {style: PR04, risk: high, difference: [PR04 蚀刻细密线, PR01 木刻粗犷刀痕], correction: [粗犷化, 刀痕化]}
+  - {style: EA09, risk: high, difference: [EA09 中国年画套色喜庆, PR01 黑白木刻], correction: [黑白为主]}
+correction_rules:
+  - {problem: became_etching, instructions: [粗刀痕化, 黑白强烈]}
+  - {problem: smooth_digital, instructions: [加刀痕, 印刷墨感]}
+  - {problem: colors_multi, instructions: [回黑白, 减套色]}
+use_cases: {recommended: [革命文艺, 复古印刷, 民俗, 海报], discouraged: [细腻写真]}
+compatibility: {portrait: 7, landscape: 8, product: 5, poster: 9, education: 6, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: PR01_DEFAULT

@@ -1,0 +1,32 @@
+# Strategy — 图书内容域
+schema: strategy
+domain: book
+version: "1.0.0"
+
+# 一本书：主 Style 统一，场景 Style 有限变化，Palette/Texture 统一，Mood 在范围内变化
+
+primary:
+  - IL03          # 概念插画（知识书主视觉）
+  - IL04          # 叙事插画（小说/传记）
+
+secondary:
+  - CI08          # 历史电影（历史场景）
+  - PR04          # 蚀刻版画（古典文献）
+  - PA08          # 水彩（文学诗意）
+  - IN10          # 地图插画（地理类）
+  - IN12          # 流程插画（操作类）
+
+information:
+  - IN01
+  - IN11
+
+avoid:
+  - VE06          # 糖果矢量（低龄感）
+  - TD06          # 黏土 3D（除非童书）
+  - GD08          # 孟菲斯（花哨）
+
+# 文学类（设计文档 23.4 示例）
+literature:
+  primary: [IL04, CI01, PA08]
+  secondary: [PA01, FA05, PR04]
+  mood_weight: high

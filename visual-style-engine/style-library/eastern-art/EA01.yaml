@@ -1,0 +1,256 @@
+# EA01 — Chinese Ink Wash / 中国水墨
+id: EA01
+version: 1.0.0
+status: ACTIVE
+
+name:
+  zh: 中国水墨
+  en: Chinese Ink Wash
+
+category:
+  id: eastern-art
+  name_zh: 东方艺术
+  name_en: Eastern Art
+
+parent_style: EASTERN_BASE
+
+aliases:
+  - ink wash painting
+  - shuimo
+  - 水墨画
+  - 写意水墨
+
+definition:
+  summary: >-
+    以水墨为媒介、以"墨分五色"为语言的中国传统绘画风格：水韵晕染、笔意留白、气韵生动。
+    适合东方文化、诗歌意境、历史人文类内容。
+  detailed: >-
+    EA01 的视觉身份建立在毛笔与水墨的物理行为上：浓淡枯湿由水量与墨量控制，形成"墨分五色"的
+    层次；笔触承载笔意（中锋/侧锋/飞白），是情绪与功力的直接载体；大面积留白不是空缺，而是
+    画面的组成部分（计白当黑）。对象常取山水、花鸟、人物、器物，造型写意——抓神韵而不求形似。
+    纸张多为宣纸，墨迹边缘有渗化。它不等于"黑白的画"：关键在笔法、水韵与留白的东方美学逻辑。
+    适合中国传统文化内容、诗歌意境配图、东方美学品牌。
+
+visual_intent:
+  - poetic
+  - oriental
+  - meditative
+  - literary
+
+fingerprint:
+  shape:
+    - 写意造型，神韵优先
+    - 计白当黑的画面构成
+  line:
+    - 笔意线条（中锋/侧锋/飞白）
+    - 线是笔触而非描边
+  color:
+    - 墨色为主（焦浓重淡清）
+    - 可辅赭石/花青/朱砂淡彩
+  shading:
+    - 墨色浓淡渲染
+    - 水墨晕染体积
+  lighting:
+    - 无真实光源
+    - 靠墨色留白表达光感
+  texture:
+    - 宣纸渗化
+    - 飞白枯笔
+  composition:
+    - 留白构图（计白当黑）
+    - 虚实相生
+  detail:
+    - 3/10 中低细节，写意
+
+style_dna:
+  realism: 3
+  abstraction: 7
+  detail_density: 3
+  spatial_depth: 4
+  texture_strength: 6
+  shading_strength: 6
+  lighting_complexity: 1
+  line_presence: 8
+  line_roughness: 6
+  shape_complexity: 4
+  color_complexity: 2
+
+shape_language:
+  description: 写意造型，以神韵取舍形态。
+  preferred: [expressive silhouettes, essence-over-exactness, asymmetric organic forms]
+  avoid: [precise mechanical shapes, photographic accuracy]
+
+line_language:
+  description: 毛笔笔意，线条承载笔法节奏。
+  preferred: [brush strokes, flying white, center/side brush, calligraphic energy]
+  avoid: [uniform vector strokes, sketchy pencil hatching]
+
+color_system:
+  strategy: ink-dominant with restrained mineral accents
+  recommended_palette_types: [PAL_TRADITIONAL_CHINESE, PAL_IVORY_CHARCOAL]
+  saturation_range: [1, 3]
+  contrast_range: [4, 6]
+  recommended_color_count: [2, 4]
+  avoid: [neon, full spectrum, heavy European palette]
+
+shading:
+  method: [ink wash gradation, layered wet washes]
+  strength: 6
+  avoid: [airbrush gradient, photographic shadow]
+
+lighting:
+  physical_realism: 0
+  methods: [ink-light illusion, paper white as light]
+  avoid: [physical light sources, god rays]
+
+texture:
+  default: [xuan paper, ink bleed, flying white]
+  strength: 6
+  avoid: [digital clean, photographic grain]
+
+material:
+  rendering_policy: brush + ink + xuan paper, no PBR
+  preferred: [ink absorption, paper texture]
+  avoid: [metal/glass realism, glossy render]
+
+composition:
+  preferred: [asymmetric balance, blank space as part of composition, void-substance contrast]
+  negative_space_range: "35-65%"
+  layer_count: "2-3"
+  avoid: [symmetric poster, dense full-bleed]
+
+spatial_system:
+  depth: 4
+  perspective: [floating perspective, atmospheric, no strict vanishing point]
+  avoid: [mechanical perspective grids]
+
+detail_density:
+  level: 3
+  focal_detail_policy: 焦点处笔意浓墨增强，其余留白
+
+character_rendering:
+  face: 写意几笔传神
+  skin: 淡墨或留白
+  hair: 浓墨笔触
+  anatomy: 写意比例
+  clothing: 大笔块面
+
+background:
+  complexity: 1
+  preferred: [paper blank, faint wash, mist]
+  avoid: [photographic backdrop]
+
+rules:
+  must:
+    - 墨色层次（焦浓重淡清）
+    - 笔意在场（笔触可辨）
+    - 留白构图（计白当黑）
+    - 宣纸渗化质感
+    - 写意造型，神韵优先
+  should:
+    - 虚实相生
+    - 浓淡枯湿变化
+    - 构图不对称而有平衡
+    - 辅色克制（淡彩）
+  may:
+    - 落款印章式元素
+    - 飞白枯笔
+    - 大面积晕染
+  must_not:
+    - 西方写实油画堆叠
+    - 均匀矢量线条
+    - 高饱和西洋用色
+    - 摄影景深
+    - 3D 渲染观感
+    - 生硬对称海报排版
+
+allowed_variations:
+  - 淡彩辅色（赭石/花青/朱砂）
+  - 纸面色调（米白/仿古）
+
+forbidden_features:
+  - Western oil impasto
+  - uniform vector lines
+  - photographic depth of field
+  - 3D render look
+
+canonical_prompt:
+  positive_anchor:
+    - "traditional Chinese ink wash painting"
+    - "sumi-e style brush work"
+    - "five ink tones with water gradation"
+    - "expressive calligraphic brush strokes"
+    - "flying white dry brush"
+    - "xuan paper with soft ink bleed"
+    - "large poetic negative space"
+    - "asymmetric void-substance composition"
+    - "restrained mineral accent color"
+    - "meditative oriental mood"
+  negative_anchor:
+    - "western oil painting impasto"
+    - "photographic depth of field"
+    - "uniform vector outlines"
+    - "high saturation western palette"
+    - "3D rendering look"
+    - "photorealistic rendering"
+
+confusion_with:
+  - style: EA02
+    risk: high
+    difference:
+      - EA02 专指山水题材写意
+      - EA01 不限题材（花鸟/人物/器物）
+    correction:
+      - keep the ink language, adjust subject matter
+  - style: DR01
+    risk: medium
+    difference:
+      - DR01 是铅笔灰度造型
+      - EA01 是毛笔墨韵笔意
+    correction:
+      - replace graphite with brush ink
+      - introduce xuan paper bleed
+      - add calligraphic energy
+
+correction_rules:
+  - problem: turned_pencil_shading
+    instructions:
+      - replace gray gradation with ink washes
+      - introduce brush energy
+  - problem: lost_paper_bleed
+    instructions:
+      - add xuan paper texture
+      - allow ink edge bleeding
+  - problem: too_dense_composition
+    instructions:
+      - open up negative space
+      - reduce element count
+      - apply void-substance contrast
+  - problem: colors_too_heavy
+    instructions:
+      - return to ink dominance
+      - restrict accent to one mineral color
+
+use_cases:
+  recommended:
+    - 中国传统文化内容
+    - 诗歌/诗词意境配图
+    - 东方美学品牌
+    - 历史人文
+  discouraged:
+    - 西方商业产品
+    - 科技数据
+
+compatibility:
+  portrait: 7
+  landscape: 9
+  product: 4
+  poster: 8
+  education: 7
+  book_video: 8
+
+reference_policy:
+  minimum_reference_count: 3
+  reference_types: [still_life, environment, nature]
+
+evaluation_profile: EA01_DEFAULT

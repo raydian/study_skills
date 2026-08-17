@@ -1,0 +1,80 @@
+# Material Library — 材质属性
+schema: attribute_library
+type: material
+version: "1.0.0"
+
+# 材质属性描述画面表面的渲染政策；常与 Style 的 material 规则配合使用。
+# 注意：对 VE/IL/DR 等非写实 Style，材质应"简化表达"而非 PBR 展示。
+
+materials:
+  - id: MAT_MATTE
+    name: {zh: 哑光, en: Matte}
+    parameters: {reflectivity: 0, specular: none}
+    prompt_anchor: [matte surfaces, no reflections]
+    compatible: [TD06, PA10, IL01, VE01]
+
+  - id: MAT_GLOSSY
+    name: {zh: 光泽, en: Glossy}
+    parameters: {reflectivity: 7, specular: high}
+    prompt_anchor: [glossy surfaces, polished sheen]
+    compatible: [TD02, TD07, PH08]
+
+  - id: MAT_METAL
+    name: {zh: 金属, en: Metal}
+    parameters: {reflectivity: 9, specular: sharp}
+    prompt_anchor: [metallic surfaces, sharp reflections]
+    compatible: [TD01, TD02, GA04]
+
+  - id: MAT_CLAY
+    name: {zh: 黏土, en: Clay}
+    parameters: {reflectivity: 1, texture: hand-formed}
+    prompt_anchor: [clay material, hand-formed matte]
+    compatible: [TD06, CR04]
+
+  - id: MAT_PLASTIC
+    name: {zh: 塑料, en: Plastic}
+    parameters: {reflectivity: 4, specular: soft}
+    prompt_anchor: [plastic material, molded smooth]
+    compatible: [TD07, TD04, VE06]
+
+  - id: MAT_GLASS
+    name: {zh: 玻璃, en: Glass}
+    parameters: {transparency: 9, refraction: true}
+    prompt_anchor: [glass material, transparent refractive]
+    compatible: [TD01, PH08, FA05]
+
+  - id: MAT_FABRIC
+    name: {zh: 织物, en: Fabric}
+    parameters: {weave: visible, softness: high}
+    prompt_anchor: [fabric material, woven textile]
+    compatible: [CR08, CR05, IL11, CI08]
+
+  - id: MAT_PAPER
+    name: {zh: 纸张, en: Paper}
+    parameters: {grain: visible, opacity: 1}
+    prompt_anchor: [paper material, textured matte]
+    compatible: [DR07, PA08, IL11, PR04]
+
+  - id: MAT_CERAMIC
+    name: {zh: 陶瓷, en: Ceramic}
+    parameters: {glaze: optional, hardness: high}
+    prompt_anchor: [ceramic material, glaze or bisque]
+    compatible: [CR09, CR10, EA03, EA06]
+
+  - id: MAT_WOOD
+    name: {zh: 木材, en: Wood}
+    parameters: {grain: natural, warmth: high}
+    prompt_anchor: [wood material, natural grain]
+    compatible: [TD01, EA06, CR09]
+
+  - id: MAT_STONE
+    name: {zh: 石材, en: Stone}
+    parameters: {grain: coarse, matte: true}
+    prompt_anchor: [stone material, carved matte rock]
+    compatible: [CI08, GA01, EA07]
+
+  - id: MAT_PIGMENT
+    name: {zh: 颜料介质, en: Pigment}
+    parameters: {media: watercolor/oil/ink, behavior: media-specific}
+    prompt_anchor: [pigment media behavior]
+    compatible: [PA08, PA01, EA01, PA10]

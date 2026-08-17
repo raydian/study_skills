@@ -1,0 +1,215 @@
+# Mood Library — 30 个标准情绪属性
+schema: attribute_library
+type: mood
+version: "1.0.0"
+
+moods:
+  - id: MOOD_CALM
+    name: {zh: 平静, en: Calm}
+    intensity: 2
+    connotation: 安宁稳定
+    prompt_anchor: [calm serene mood]
+    compatible: [EA06, EA01, IL09, PA08]
+
+  - id: MOOD_HEALING
+    name: {zh: 疗愈, en: Healing}
+    intensity: 2
+    connotation: 温柔修复
+    prompt_anchor: [healing gentle mood]
+    compatible: [TD06, PA08, IL09, AN08]
+
+  - id: MOOD_WARM
+    name: {zh: 温暖, en: Warm}
+    intensity: 4
+    connotation: 亲切温度
+    prompt_anchor: [warm cozy mood]
+    compatible: [PH16, IL09, DR07, PA10]
+
+  - id: MOOD_ROMANTIC
+    name: {zh: 浪漫, en: Romantic}
+    intensity: 5
+    connotation: 柔情氛围
+    prompt_anchor: [romantic tender mood]
+    compatible: [CI09, PA08, FA06]
+
+  - id: MOOD_POETIC
+    name: {zh: 诗意, en: Poetic}
+    intensity: 4
+    connotation: 文学意境
+    prompt_anchor: [poetic literary mood]
+    compatible: [EA01, PA08, DR07, IL03]
+
+  - id: MOOD_DREAMY
+    name: {zh: 梦幻, en: Dreamy}
+    intensity: 5
+    connotation: 飘渺虚幻
+    prompt_anchor: [dreamy ethereal mood]
+    compatible: [FA06, FA05, AN03]
+
+  - id: MOOD_MYSTERIOUS
+    name: {zh: 神秘, en: Mysterious}
+    intensity: 6
+    connotation: 未知悬念
+    prompt_anchor: [mysterious enigmatic mood]
+    compatible: [FA05, CI10, GA01]
+
+  - id: MOOD_DARK
+    name: {zh: 黑暗, en: Dark}
+    intensity: 8
+    connotation: 压抑阴沉
+    prompt_anchor: [dark oppressive mood]
+    compatible: [CI04, FA03, CI10, PA01]
+
+  - id: MOOD_LONELY
+    name: {zh: 孤独, en: Lonely}
+    intensity: 6
+    connotation: 疏离寂寥
+    prompt_anchor: [lonely isolated mood]
+    compatible: [FA05, IL03, PH12]
+
+  - id: MOOD_MELANCHOLIC
+    name: {zh: 忧郁, en: Melancholic}
+    intensity: 6
+    connotation: 淡淡的悲伤
+    prompt_anchor: [melancholic wistful mood]
+    compatible: [CI08, PA08, DR07, PH16]
+
+  - id: MOOD_HOPEFUL
+    name: {zh: 希望, en: Hopeful}
+    intensity: 5
+    connotation: 曙光向光
+    prompt_anchor: [hopeful uplifting mood]
+    compatible: [FA14, IL03, PH14]
+
+  - id: MOOD_JOYFUL
+    name: {zh: 喜悦, en: Joyful}
+    intensity: 7
+    connotation: 明快开心
+    prompt_anchor: [joyful cheerful mood]
+    compatible: [VE06, AN04, IL12]
+
+  - id: MOOD_PLAYFUL
+    name: {zh: 俏皮, en: Playful}
+    intensity: 7
+    connotation: 活泼有趣
+    prompt_anchor: [playful whimsical mood]
+    compatible: [VE06, TD06, GD08]
+
+  - id: MOOD_ENERGETIC
+    name: {zh: 活力, en: Energetic}
+    intensity: 8
+    connotation: 动感力量
+    prompt_anchor: [energetic dynamic mood]
+    compatible: [AN05, GA06, PR07]
+
+  - id: MOOD_EPIC
+    name: {zh: 史诗, en: Epic}
+    intensity: 9
+    connotation: 宏大壮阔
+    prompt_anchor: [epic grand scale mood]
+    compatible: [CI06, GA03, CI08]
+
+  - id: MOOD_MAJESTIC
+    name: {zh: 庄严, en: Majestic}
+    intensity: 7
+    connotation: 崇高肃穆
+    prompt_anchor: [majestic solemn mood]
+    compatible: [EA07, PA01, CI06]
+
+  - id: MOOD_SERIOUS
+    name: {zh: 严肃, en: Serious}
+    intensity: 6
+    connotation: 庄重认真
+    prompt_anchor: [serious weighty mood]
+    compatible: [GD01, IL02, PH12]
+
+  - id: MOOD_INTELLECTUAL
+    name: {zh: 智性, en: Intellectual}
+    intensity: 4
+    connotation: 思辨理性
+    prompt_anchor: [intellectual thoughtful mood]
+    compatible: [IL03, IL02, IL05, GD01]
+
+  - id: MOOD_ELEGANT
+    name: {zh: 优雅, en: Elegant}
+    intensity: 4
+    connotation: 精致品位
+    prompt_anchor: [elegant refined mood]
+    compatible: [EA03, EA06, GD05, PA01]
+
+  - id: MOOD_LUXURY
+    name: {zh: 奢华, en: Luxury}
+    intensity: 6
+    connotation: 高级昂贵
+    prompt_anchor: [luxury opulent mood]
+    compatible: [PAL_BLACK_GOLD 搭配, GD05, TD02]
+
+  - id: MOOD_MINIMAL
+    name: {zh: 极简, en: Minimal}
+    intensity: 2
+    connotation: 少即是多
+    prompt_anchor: [minimal calm restraint]
+    compatible: [IL06, VE01, GD11, EA06]
+
+  - id: MOOD_FUTURISTIC
+    name: {zh: 未来感, en: Futuristic}
+    intensity: 6
+    connotation: 科技前瞻
+    prompt_anchor: [futuristic forward-looking mood]
+    compatible: [CI07, GA04, TD15, FA12]
+
+  - id: MOOD_NOSTALGIC
+    name: {zh: 怀旧, en: Nostalgic}
+    intensity: 5
+    connotation: 旧时光眷恋
+    prompt_anchor: [nostalgic retro mood]
+    compatible: [PH16, DR07, RT07, PR09]
+
+  - id: MOOD_SACRED
+    name: {zh: 神圣, en: Sacred}
+    intensity: 7
+    connotation: 崇高精神
+    prompt_anchor: [sacred reverent mood]
+    compatible: [EA07, PA01, CI06]
+
+  - id: MOOD_TENSE
+    name: {zh: 紧张, en: Tense}
+    intensity: 8
+    connotation: 压迫不安
+    prompt_anchor: [tense suspenseful mood]
+    compatible: [CI10, CI04, FA03]
+
+  - id: MOOD_INTROSPECTIVE
+    name: {zh: 内省, en: Introspective}
+    intensity: 4
+    connotation: 沉思独处
+    prompt_anchor: [introspective contemplative mood]
+    compatible: [IL03, IL05, FA05, EA01]
+
+  - id: MOOD_DOCUMENTARY
+    name: {zh: 纪实, en: Documentary}
+    intensity: 3
+    connotation: 客观真实
+    prompt_anchor: [documentary objective mood]
+    compatible: [PH12, CI11, PH01]
+
+  - id: MOOD_YOUTHFUL
+    name: {zh: 青春, en: Youthful}
+    intensity: 7
+    connotation: 少年感朝气
+    prompt_anchor: [youthful vibrant mood]
+    compatible: [AN04, VE06, PR07]
+
+  - id: MOOD_WHIMSICAL
+    name: {zh: 奇想, en: Whimsical}
+    intensity: 6
+    connotation: 异想天开
+    prompt_anchor: [whimsical imaginative mood]
+    compatible: [TD12, FA06, IL12]
+
+  - id: MOOD_MEDITATIVE
+    name: {zh: 冥想, en: Meditative}
+    intensity: 2
+    connotation: 静谧入定
+    prompt_anchor: [meditative serene mood]
+    compatible: [EA01, EA12, EA06, PA08]

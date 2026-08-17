@@ -1,0 +1,56 @@
+# Print Art Catalog — 印刷艺术类（10）
+category: print
+name_zh: 印刷艺术
+name_en: Print Art
+
+styles:
+  - id: PR01
+    name_zh: 木刻
+    name_en: Woodcut
+    status: ACTIVE
+    desc: 木版刀具刻痕、黑白强烈
+  - id: PR02
+    name_zh: 木版画
+    name_en: Woodblock
+    status: DRAFT
+    desc: 套色木版印刷
+  - id: PR03
+    name_zh: 雕刻版画
+    name_en: Engraving
+    status: DRAFT
+    desc: 金属版刻线、精细规则
+  - id: PR04
+    name_zh: 蚀刻版画
+    name_en: Etching
+    status: ACTIVE
+    desc: 酸蚀线条、松动画意
+  - id: PR05
+    name_zh: 石版画
+    name_en: Lithograph
+    status: DRAFT
+    desc: 平版印刷、颗粒墨感
+  - id: PR06
+    name_zh: 丝网印刷
+    name_en: Screen Print
+    status: DRAFT
+    desc: 套色分层、色彩干净
+  - id: PR07
+    name_zh: 孔版印刷
+    name_en: Risograph
+    status: ACTIVE
+    desc: 荧光/撞色、错位套印、颗粒
+  - id: PR08
+    name_zh: 半色调印刷
+    name_en: Halftone Print
+    status: DRAFT
+    desc: 网点构成灰度/色彩
+  - id: PR09
+    name_zh: 复古印刷
+    name_en: Vintage Print
+    status: DRAFT
+    desc: 旧印刷品的褪色与介质感
+  - id: PR10
+    name_zh: 报纸插画
+    name_en: Newspaper Illustration
+    status: DRAFT
+    desc: 黑白报纸制版插画

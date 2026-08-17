@@ -1,0 +1,58 @@
+# EA03 — Gongbi / 工笔
+id: EA03
+version: 1.0.0
+status: ACTIVE
+name: {zh: 工笔, en: Gongbi}
+category: {id: eastern-art, name_zh: 东方艺术, name_en: Eastern Art}
+parent_style: EASTERN_BASE
+aliases: [gongbi painting, 工笔画, 工笔重彩]
+definition:
+  summary: >-
+    精细线描 + 矿物色渲染的中国传统工笔画风：线条严谨流畅、敷色工整、绢纸质感典雅。
+  detailed: >-
+    工笔画以"工"著称：细匀有力的白描线稿、层层分染的矿物/植物色、绢本或熟宣上的细腻过渡。
+    造型严谨、设色雅致，常见花鸟、仕女、器物题材。适用于传统文化、古典美学、高端东方品牌。
+visual_intent: [refined, classical, oriental]
+fingerprint:
+  shape: [严谨造型, 精细结构]
+  line: [细匀白描线, 流畅有力]
+  color: [矿物色雅致, 层层渲染]
+  shading: [分染层次, 细腻过渡]
+  lighting: [无真实光, 设色明暗]
+  texture: [绢/熟宣, 细腻]
+  composition: [典雅构图, 传统章法]
+  detail: [8/10 精细]
+style_dna: {realism: 6, abstraction: 3, detail_density: 8, spatial_depth: 4, texture_strength: 4, shading_strength: 6, lighting_complexity: 1, line_presence: 8, line_roughness: 1, shape_complexity: 6, color_complexity: 4}
+shape_language: {description: 严谨造型, preferred: [精细结构形], avoid: [粗放]}
+line_language: {description: 细匀白描, preferred: [铁线/游丝描], avoid: [粗糙随意]}
+color_system: {strategy: 矿物色雅致, recommended_palette_types: [PAL_TRADITIONAL_CHINESE, PAL_CREAM, PAL_MUTED], saturation_range: [2, 5], contrast_range: [3, 5], recommended_color_count: [3, 6], avoid: [荧光]}
+shading: {method: [分染, 罩染], strength: 6, avoid: [西方素描]}
+lighting: {physical_realism: 0, methods: [设色明暗], avoid: [体积光]}
+texture: {default: [绢面/熟宣], strength: 4, avoid: [照片]}
+material: {rendering_policy: 矿物色绢纸, preferred: [绢面细腻], avoid: [油光]}
+composition: {preferred: [传统章法, 典雅构图], negative_space_range: "25-50%", layer_count: "2-3", avoid: [杂乱]}
+spatial_system: {depth: 4, perspective: [传统散点], avoid: [西洋焦点]}
+detail_density: {level: 8, focal_detail_policy: 全幅精细, 焦点尤甚}
+character_rendering: {face: 白描五官, skin: 分染肤色, hair: 细线发丝, anatomy: 传统比例, clothing: 线描衣纹}
+background: {complexity: 2, preferred: [绢纸留白/淡染], avoid: [照片]}
+rules:
+  must: [细匀线描, 矿物色渲染, 层层分染, 绢纸质感]
+  should: [造型严谨, 设色雅致, 过渡细腻]
+  may: [金箔点缀, 传统图案背景]
+  must_not: [粗放笔触, 西方写实素描光影, 油画堆叠, 3D 渲染感, 荧光, 现代商业感]
+allowed_variations: [题材, 色系]
+forbidden_features: [rough strokes, western chiaroscuro, oil impasto]
+canonical_prompt:
+  positive_anchor: [gongbi painting, fine even line drawing, mineral color layering, delicate graduated washes, silk or xuan paper texture, refined classical composition, elegant oriental aesthetics]
+  negative_anchor: [rough strokes, western oil shading, 3D render, neon, commercial modern look]
+confusion_with:
+  - {style: EA05, risk: high, difference: [EA05 纯白描无染, EA03 分染设色], correction: [加分染设色]}
+  - {style: EA01, risk: medium, difference: [EA01 写意水墨, EA03 工整精细], correction: [精细线描化]}
+correction_rules:
+  - {problem: became_sketchy, instructions: [线描精细化, 均匀流畅]}
+  - {problem: western_shadow, instructions: [去素描光影, 分染设色]}
+  - {problem: color_flat, instructions: [层层分染, 过渡细腻]}
+use_cases: {recommended: [传统文化, 古典美学, 高端东方品牌], discouraged: [现代科技, 街头风]}
+compatibility: {portrait: 8, landscape: 8, product: 6, poster: 8, education: 6, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, nature]}
+evaluation_profile: EA03_DEFAULT

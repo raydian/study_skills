@@ -1,0 +1,86 @@
+# Illustration Catalog — 插画类（16）
+category: illustration
+name_zh: 插画
+name_en: Illustration
+
+styles:
+  - id: IL01
+    name_zh: 扁平插画
+    name_en: Flat Illustration
+    status: ACTIVE
+    desc: 纯色块、无渐变阴影、图形化叙事
+  - id: IL02
+    name_zh: 编辑插画
+    name_en: Editorial Illustration
+    status: ACTIVE
+    desc: 为文章/报道服务的概念化插图，图文关系优先
+  - id: IL03
+    name_zh: 概念插画
+    name_en: Conceptual Illustration
+    status: ACTIVE
+    desc: 以视觉传达抽象概念，象征与隐喻为主
+  - id: IL04
+    name_zh: 叙事插画
+    name_en: Narrative Illustration
+    status: ACTIVE
+    desc: 讲述一个场景/故事，有时间与情节
+  - id: IL05
+    name_zh: 隐喻插画
+    name_en: Metaphorical Illustration
+    status: ACTIVE
+    desc: 把抽象关系/观点具象成可读画面
+  - id: IL06
+    name_zh: 极简插画
+    name_en: Minimal Illustration
+    status: ACTIVE
+    desc: 大量留白、少元素、强符号
+  - id: IL07
+    name_zh: 颗粒插画
+    name_en: Grain Illustration
+    status: ACTIVE
+    desc: 色块 + 颗粒噪点纹理，杂志感
+  - id: IL08
+    name_zh: 商业插画
+    name_en: Commercial Illustration
+    status: DRAFT
+    desc: 干净讨喜、服务商业传播
+  - id: IL09
+    name_zh: 生活方式插画
+    name_en: Lifestyle Illustration
+    status: DRAFT
+    desc: 日常生活场景、温暖惬意
+  - id: IL10
+    name_zh: 时尚插画
+    name_en: Fashion Illustration
+    status: DRAFT
+    desc: 时装造型、线条洒脱
+  - id: IL11
+    name_zh: 书籍插画
+    name_en: Book Illustration
+    status: DRAFT
+    desc: 内页插图、呼应文本、介质质感
+  - id: IL12
+    name_zh: 童书插画
+    name_en: Children's Illustration
+    status: DRAFT
+    desc: 明快、故事性、亲和力
+  - id: IL13
+    name_zh: 科学插画
+    name_en: Scientific Illustration
+    status: DRAFT
+    desc: 科学对象准确呈现，兼顾美学
+  - id: IL14
+    name_zh: 植物插画
+    name_en: Botanical Illustration
+    status: DRAFT
+    desc: 植物形态精准、版式典雅
+  - id: IL15
+    name_zh: 医学插画
+    name_en: Medical Illustration
+    status: DRAFT
+    desc: 解剖/病理清晰表达
+  - id: IL16
+    name_zh: 教育插画
+    name_en: Educational Illustration
+    status: DRAFT
+    desc: 教学友好、信息清晰、去干扰

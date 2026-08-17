@@ -1,0 +1,43 @@
+# SDXL Adapter
+model_family: sdxl
+version: 1.0.0
+status: DRAFT
+
+prompt_behavior:
+  natural_language: weak
+  keyword_density: high
+  long_prompt_tolerance: high
+
+capabilities:
+  reference_image: medium
+  multiple_reference_images: true
+  typography: weak
+  negative_prompt: strong
+  image_editing: partial
+
+compile_rules:
+  subject: 关键词短语
+  scene: 关键词短语
+  style: 关键词 + quality tags（masterpiece, best quality）+ 可选 LoRA 触发词
+  attributes: 关键词短语
+  composition: 关键词短语
+  negative: 独立 negative prompt（强），完整保留 Style Negative Anchor
+  reference: IP-Adapter 支持，按角色参考
+
+example:
+  compiled: >-
+    minimal vector illustration, flat 2d, simplified geometric shapes,
+    smooth contours, muted earth palette, negative space, farmer, farmland,
+    masterpiece, best quality
+  negative: >-
+    photorealistic, skin pores, depth of field, 3d render, pbr, reflections,
+    volumetric light, oil painting, watercolor, crosshatch, dense detail
+
+fallback_rules:
+  - feature: typography
+    fallback: {postprocess_typography: true}
+unsupported_features: []
+style_overrides:
+  quality_tags: "masterpiece, best quality"
+
+# 说明：SDXL 强在独立负向 Prompt；可挂 LoRA 强化画风（需与 Style 定义一致，禁止改变 MUST/MUST NOT）。

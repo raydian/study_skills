@@ -1,0 +1,66 @@
+# Drawing Catalog — 素描/线绘类（12）
+category: drawing
+name_zh: 素描线绘
+name_en: Drawing
+
+styles:
+  - id: DR01
+    name_zh: 铅笔素描
+    name_en: Pencil Drawing
+    status: ACTIVE
+    desc: 石墨层次、纸面颗粒、灰度造型
+  - id: DR02
+    name_zh: 炭笔素描
+    name_en: Charcoal Drawing
+    status: DRAFT
+    desc: 深黑炭粉、涂抹层次
+  - id: DR03
+    name_zh: 钢笔线绘
+    name_en: Pen Line Drawing
+    status: DRAFT
+    desc: 流畅钢笔线、可排线
+  - id: DR04
+    name_zh: 墨线画
+    name_en: Ink Line Drawing
+    status: ACTIVE
+    desc: 硬朗墨线、强调轮廓与走势
+  - id: DR05
+    name_zh: 建筑线稿
+    name_en: Architectural Line Drawing
+    status: DRAFT
+    desc: 建筑制图语言、透视准确
+  - id: DR06
+    name_zh: 速写
+    name_en: Quick Gesture Sketch
+    status: DRAFT
+    desc: 抓动态、线条自由
+  - id: DR07
+    name_zh: 复古松弛墨线速写
+    name_en: Vintage Loose Ink Sketch
+    status: ACTIVE
+    desc: 手绘不完美、断续重复线、纸张质感
+  - id: DR08
+    name_zh: 极简线画
+    name_en: Minimal Line Art
+    status: ACTIVE
+    desc: 最少的线表达形状
+  - id: DR09
+    name_zh: 连续线画
+    name_en: Continuous Line Drawing
+    status: DRAFT
+    desc: 一笔成型、走势连贯
+  - id: DR10
+    name_zh: 复古蚀刻线绘
+    name_en: Vintage Etching Drawing
+    status: DRAFT
+    desc: 蚀刻版画式密集线
+  - id: DR11
+    name_zh: 科学图版线绘
+    name_en: Scientific Plate Drawing
+    status: DRAFT
+    desc: 标本图版、标注感
+  - id: DR12
+    name_zh: 产品设计草图
+    name_en: Product Design Sketch
+    status: DRAFT
+    desc: 工业设计手绘、爆炸图感

@@ -1,0 +1,59 @@
+# IL04 — Narrative Illustration / 叙事插画
+id: IL04
+version: 1.0.0
+status: ACTIVE
+name: {zh: 叙事插画, en: Narrative Illustration}
+category: {id: illustration, name_zh: 插画, name_en: Illustration}
+parent_style: null
+aliases: [narrative illustration, 故事插画, 场景叙事]
+definition:
+  summary: >-
+    以插画形式讲述一个场景或故事的风格：有时间性、有情节、有人物与环境互动，画面即"故事的一瞬"。
+  detailed: >-
+    叙事插画的核心是"把故事讲进画面"：人物动作、环境细节、时间暗示（光/季节/衣物）共同构成
+    可被读出的情节。渲染形式较自由（写实/半写实/风格化），但叙事优先于纯形式。适用于文学配图、
+    儿童故事、历史场景、传记内容。
+visual_intent: [storytelling, warm, scene]
+fingerprint:
+  shape: [人物与环境互动, 场景细节]
+  line: [形式随风格, 可软可硬]
+  color: [故事氛围色调, 和谐]
+  shading: [故事光影, 氛围]
+  lighting: [时间暗示光（晨昏/烛火）]
+  texture: [介质感, 呼应叙事]
+  composition: [情节焦点, 叙事取景]
+  detail: [5/10 中细节, 场景充分]
+style_dna: {realism: 5, abstraction: 4, detail_density: 5, spatial_depth: 6, texture_strength: 4, shading_strength: 5, lighting_complexity: 5, line_presence: 3, line_roughness: 2, shape_complexity: 6, color_complexity: 5}
+shape_language: {description: 人物环境互动, preferred: [情节动作, 场景结构], avoid: [静态无情节]}
+line_language: {description: 形式随风格, preferred: [和谐边缘], avoid: [与叙事冲突]}
+color_system: {strategy: 故事氛围色调, recommended_palette_types: [PAL_EARTH_TONE, PAL_PASTEL, PAL_NATURAL, PAL_VINTAGE_FADED], saturation_range: [3, 6], contrast_range: [4, 6], recommended_color_count: [5, 9], avoid: [刺眼霓虹]}
+shading: {method: [故事光影, 柔和], strength: 5, avoid: [写实照片]}
+lighting: {physical_realism: 5, methods: [时间光, 场景光], avoid: [无时间感平光]}
+texture: {default: [介质感], strength: 4, avoid: [照片噪点]}
+material: {rendering_policy: 叙事化材质, preferred: [呼应时代场景], avoid: [PBR 展示]}
+composition: {preferred: [情节焦点, 叙事取景, 动作瞬间], negative_space_range: "15-40%", layer_count: "3", avoid: [无焦点铺陈]}
+spatial_system: {depth: 6, perspective: [场景透视], avoid: [平面堆叠]}
+detail_density: {level: 5, focal_detail_policy: 情节焦点细节充分}
+character_rendering: {face: 情绪可读, skin: 自然, hair: 时代合理, anatomy: 自然, clothing: 场景合理}
+background: {complexity: 5, preferred: [场景环境], avoid: [空白]}
+rules:
+  must: [有时间性与情节, 人物环境互动, 场景细节, 叙事焦点]
+  should: [氛围光影, 故事色调, 动作瞬间]
+  may: [多格感, 时间暗示]
+  must_not: [静态无情节, 纯装饰, 3D 渲染感, 高饱和霓虹, 无焦点铺陈, 照片直用]
+allowed_variations: [渲染形式, 故事题材]
+forbidden_features: [static scene, decorative only, neon]
+canonical_prompt:
+  positive_anchor: [narrative illustration, storytelling scene, characters in action, environment with story details, time-of-day lighting, warm cohesive palette, clear narrative focal point, book-like illustration quality]
+  negative_anchor: [static composition, pure decoration, neon saturation, photoreal, 3D render, cluttered no-focus]
+confusion_with:
+  - {style: IL03, risk: medium, difference: [IL03 静止概念, IL04 有时间情节], correction: [加入动作与时间感]}
+  - {style: IL12, risk: medium, difference: [IL12 童书低龄, IL04 不限年龄], correction: [按受众调细节与色彩]}
+correction_rules:
+  - {problem: static_scene, instructions: [加入动作瞬间, 增加时间暗示]}
+  - {problem: lost_focus, instructions: [明确情节焦点, 减次要元素]}
+  - {problem: became_illustration_post, instructions: [重叙事, 加情节互动]}
+use_cases: {recommended: [文学配图, 历史场景, 传记, 故事内容], discouraged: [纯概念抽象]}
+compatibility: {portrait: 8, landscape: 9, product: 5, poster: 8, education: 7, book_video: 9}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, complex_scene]}
+evaluation_profile: IL04_DEFAULT

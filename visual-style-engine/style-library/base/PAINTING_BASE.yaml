@@ -1,0 +1,28 @@
+# PAINTING_BASE — 绘画艺术父类基线
+# 子 Style（PA01–PA16）只描述差异
+id: PAINTING_BASE
+version: 1.0.0
+name: {zh: 绘画艺术基线, en: Painting Base}
+kind: base
+
+baseline:
+  dimensionality: 2D
+  edge_policy: painterly
+  realistic_material: false
+  pbr: false
+  photographic_depth_of_field: false
+
+inherited_rules:
+  must:
+    - 保留颜料/笔触的材质证据
+    - 非摄影渲染
+  must_not:
+    - photorealistic photographic rendering
+    - PBR materials
+    - UI 扁平矢量边缘
+    - 3D render look
+
+# PA01 Classical Oil / PA02 Realistic Oil / PA03 Impressionism / PA04 Post-Impressionism
+# PA05 Expressionism / PA06 Modern Oil / PA07 Impasto / PA08 Traditional Watercolor
+# PA09 Soft Watercolor / PA10 Gouache / PA11 Acrylic / PA12 Pastel / PA13 Tempera
+# PA14 Fresco / PA15 Digital Painting / PA16 Painterly Digital Art

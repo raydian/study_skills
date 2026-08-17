@@ -1,0 +1,59 @@
+# EA07 — Dunhuang Mineral Color / 敦煌矿物色
+id: EA07
+version: 1.0.0
+status: ACTIVE
+name: {zh: 敦煌矿物色, en: Dunhuang Mineral Color}
+category: {id: eastern-art, name_zh: 东方艺术, name_en: Eastern Art}
+parent_style: EASTERN_BASE
+aliases: [dunhuang art, 敦煌壁画, 敦煌风]
+definition:
+  summary: >-
+    以敦煌壁画矿物色为特征的东方风格：土红石青石绿金色、飞天意象、壁画斑驳质感，瑰丽古拙。
+  detailed: >-
+    敦煌壁画风格以矿物颜料的高饱和与斑驳质感著称：土红、石青、石绿、金构成标志性色系；
+    飞天、藻井、经变画等题材充满流动线条与装饰结构；岁月剥蚀带来的斑驳肌理是其重要质感。
+    适用于丝路文化、东方传统、文旅文创、宗教美学。
+visual_intent: [majestic, ancient, colorful]
+fingerprint:
+  shape: [飞天动势, 藻井结构, 装饰形]
+  line: [流动线, 飞天飘带]
+  color: [土红石青石绿金, 高饱和矿物]
+  shading: [矿物平涂渲染, 斑驳]
+  lighting: [无真实光, 壁画平光]
+  texture: [壁画斑驳, 矿物颗粒]
+  composition: [对称装饰, 叙事长卷]
+  detail: [7/10 装饰细节]
+style_dna: {realism: 4, abstraction: 5, detail_density: 7, spatial_depth: 3, texture_strength: 7, shading_strength: 4, lighting_complexity: 1, line_presence: 6, line_roughness: 4, shape_complexity: 7, color_complexity: 6}
+shape_language: {description: 飞天藻井装饰, preferred: [流动装饰形], avoid: [现代几何]}
+line_language: {description: 流动线, preferred: [飞天飘带线], avoid: [生硬]}
+color_system: {strategy: 矿物色高饱和, recommended_palette_types: [PAL_TRADITIONAL_CHINESE, PAL_EARTH_TONE], saturation_range: [4, 8], contrast_range: [4, 6], recommended_color_count: [4, 7], avoid: [荧光]}
+shading: {method: [矿物平涂渲染], strength: 4, avoid: [西洋素描]}
+lighting: {physical_realism: 0, methods: [壁画平光], avoid: [体积光]}
+texture: {default: [壁画斑驳, 矿物颗粒], strength: 7, avoid: [数码平滑]}
+material: {rendering_policy: 矿物颜料墙壁, preferred: [斑驳墙面], avoid: [塑料]}
+composition: {preferred: [对称装饰, 叙事长卷, 藻井结构], negative_space_range: "10-30%", layer_count: "3", avoid: [现代留白式]}
+spatial_system: {depth: 3, perspective: [装饰平面], avoid: [西洋透视]}
+detail_density: {level: 7, focal_detail_policy: 装饰细节丰富}
+character_rendering: {face: 飞天面容, skin: 矿物肤色, hair: 装饰发髻, anatomy: 传统, clothing: 飘带天衣}
+background: {complexity: 6, preferred: [藻井/华盖/云纹], avoid: [空白现代]}
+rules:
+  must: [土红石青石绿金色系, 壁画斑驳质感, 流动线条, 装饰结构]
+  should: [飞天/藻井等传统母题, 对称或叙事构图, 矿物颗粒感]
+  may: [金线, 岁月剥蚀感]
+  must_not: [现代卡通, 荧光色, 3D 渲染感, 西洋写实光影, 干净数码平涂]
+allowed_variations: [题材（飞天/本生/藻井）, 剥蚀程度]
+forbidden_features: [modern cartoon, fluorescent, digital clean]
+canonical_prompt:
+  positive_anchor: [Dunhuang mural style, mineral pigment colors, terracotta red malachite green azurite gold, flying apsaras with flowing ribbons, decorative ceiling patterns, aged fresco texture, majestic ancient oriental beauty]
+  negative_anchor: [modern cartoon, fluorescent colors, 3D render, western realistic lighting, clean digital flat]
+confusion_with:
+  - {style: EA08, risk: high, difference: [EA08 唐墓室壁画, EA07 敦煌特色], correction: [敦煌色系与飞天母题]}
+  - {style: EA03, risk: medium, difference: [EA03 工笔精细绢面, EA07 壁画斑驳], correction: [加斑驳, 矿物色]}
+correction_rules:
+  - {problem: became_clean_gongbi, instructions: [加壁画斑驳, 矿物色饱和]}
+  - {problem: colors_wrong, instructions: [土红石青石绿金化]}
+  - {problem: lost_decor, instructions: [加飞天/藻井/云纹]}
+use_cases: {recommended: [丝路文化, 东方传统, 文旅文创, 宗教美学], discouraged: [极简现代商业]}
+compatibility: {portrait: 7, landscape: 8, product: 5, poster: 8, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, complex_scene]}
+evaluation_profile: EA07_DEFAULT

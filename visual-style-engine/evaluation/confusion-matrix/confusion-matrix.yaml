@@ -1,0 +1,66 @@
+# Confusion Matrix — 易混淆 Style 关系网
+# 每个 Style 文件内的 confusion_with 是权威来源；本文件提供跨分类高发混淆的快速参考
+schema: confusion_matrix
+version: "1.0.0"
+
+high_risk_pairs:
+  - pair: [VE01, IL01]
+    risk: high
+    resolution: VE01 更依赖干净几何轮廓与留白；IL01 允许复杂叙事细节。修正：simplify shapes / strengthen vector edges。
+  - pair: [VE01, DR08]
+    risk: medium
+    resolution: VE01 依赖色块，DR08 依赖线条。
+  - pair: [DR07, DR04]
+    risk: high
+    resolution: DR07 松弛断续重复笔迹；DR04 干净果断墨线。
+  - pair: [DR07, PR04]
+    risk: medium
+    resolution: PR04 蚀刻规则密线；DR07 手绘松散线。
+  - pair: [IL03, CI08]
+    risk: high
+    resolution: IL03 平面编辑插画语言；CI08 电影帧写实。修正：flatten rendering / reduce photographic realism。
+  - pair: [IL03, IL04]
+    risk: medium
+    resolution: IL03 静止概念；IL04 有时间情节。
+  - pair: [PA08, PA10]
+    risk: high
+    resolution: PA08 透明水彩留白；PA10 不透明覆盖哑光。
+  - pair: [PA08, PA09]
+    risk: high
+    resolution: PA08 保留水痕渗化证据；PA09 更清淡无结构。
+  - pair: [EA01, DR01]
+    risk: medium
+    resolution: EA01 毛笔墨韵宣纸；DR01 铅笔灰度。
+  - pair: [EA03, EA05]
+    risk: high
+    resolution: EA05 纯白描无染；EA03 分染设色。
+  - pair: [EA07, EA08]
+    risk: high
+    resolution: EA07 敦煌色系飞天母题；EA08 唐墓室壁画。
+  - pair: [TD06, TD05]
+    risk: high
+    resolution: TD06 黏土哑光手作；TD05 柔滑精致。
+  - pair: [TD06, TD07]
+    risk: medium
+    resolution: TD07 塑料高光；TD06 哑光黏土。
+  - pair: [PR01, PR04]
+    risk: high
+    resolution: PR01 粗犷刀痕黑白；PR04 细密蚀刻线。
+  - pair: [PR07, IL07]
+    risk: high
+    resolution: PR07 荧光套印错位；IL07 插画颗粒感。
+  - pair: [CI01, CI08]
+    risk: medium
+    resolution: CI08 强时代语境；CI01 通用电影。
+  - pair: [CI04, CI05]
+    risk: high
+    resolution: CI04 黑白经典；CI05 新黑色电影带霓虹彩。
+  - pair: [FA05, FA06]
+    risk: high
+    resolution: FA05 物像清晰关系错置；FA06 柔和模糊飘浮。
+  - pair: [GD01, GD02]
+    risk: high
+    resolution: GD01 网格视觉更强；GD02 字体主导。
+  - pair: [EA10, EA11]
+    risk: high
+    resolution: EA10 新中式克制；EA11 国潮潮流撞色。
