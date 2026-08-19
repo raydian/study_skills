@@ -1,0 +1,34 @@
+# Strategy — 教育内容域
+schema: strategy
+domain: education
+version: "1.0.0"
+
+# 教育：信息清晰优先，去干扰，按学龄调整
+
+primary:
+  - IN03          # 教育插画
+  - IL16          # 教育插画（教材系）
+  - IL01          # 扁平插画
+
+secondary:
+  - IN01          # 信息图
+  - IN13          # 等距信息图
+  - VE01          # 极简矢量
+  - TD06          # 黏土 3D（低龄）
+  - TD05          # 柔和 3D
+
+information:
+  - IN04
+  - IN12
+  - IN11
+
+avoid:
+  - FA05          # 超现实（误导）
+  - CI04          # 黑色电影
+  - DR07          # 复古松弛（识字障碍）
+
+# 学龄分层
+age_groups:
+  primary_school: [IL12, TD06, VE06, IN03]
+  middle_school: [IL01, IL03, IN03, TD05]
+  high_school_adult: [IL03, IN03, VE01, CI08]

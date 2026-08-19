@@ -1,0 +1,59 @@
+# GD01 — Swiss Design / 瑞士设计
+id: GD01
+version: 1.0.0
+status: ACTIVE
+name: {zh: 瑞士设计, en: Swiss Design}
+category: {id: graphic-design, name_zh: 平面设计, name_en: Graphic Design}
+parent_style: null
+aliases: [swiss style, international style, 瑞士风格, 网格设计]
+definition:
+  summary: >-
+    以网格系统与无衬线字体为核心的现代主义设计风格：客观、秩序、留白、几何构成。
+  detailed: >-
+    瑞士设计（国际主义风格）以严谨网格为骨架：无衬线字体（Helvetica 气质）、客观理性构图、
+    大量留白、几何元素与摄影的克制编排。风格中性、清晰、可信。适用于品牌视觉、报告、界面、
+    现代编辑。
+visual_intent: [objective, orderly, modern]
+fingerprint:
+  shape: [几何元素, 网格结构]
+  line: [干净利落线, 无衬线字感]
+  color: [黑白灰 + 单强调色, 克制]
+  shading: [无, 平面]
+  lighting: [无]
+  texture: [无或极轻]
+  composition: [网格系统, 留白, 不对称平衡]
+  detail: [2/10 极简]
+style_dna: {realism: 1, abstraction: 7, detail_density: 2, spatial_depth: 2, texture_strength: 0, shading_strength: 0, lighting_complexity: 0, line_presence: 4, line_roughness: 0, shape_complexity: 3, color_complexity: 2}
+shape_language: {description: 几何网格, preferred: [矩形, 圆形, 网格元素], avoid: [装饰繁杂]}
+line_language: {description: 干净利落, preferred: [细直线, 网格线], avoid: [手绘]}
+color_system: {strategy: 黑白灰 + 单色强调, recommended_palette_types: [PAL_BLACK_WHITE, PAL_MONOCHROME, PAL_CREAM, PAL_HIGH_SATURATION], saturation_range: [0, 5], contrast_range: [5, 8], recommended_color_count: [2, 4], avoid: [多彩]}
+shading: {method: [无], strength: 0, avoid: [体积]}
+lighting: {physical_realism: 0, methods: [无], avoid: [光]}
+texture: {default: [无], strength: 0, avoid: [纹理]}
+material: {rendering_policy: 无, preferred: [平面], avoid: [材质]}
+composition: {preferred: [网格系统, 留白, 不对称平衡, 排版层级], negative_space_range: "30-60%", layer_count: "2", avoid: [碎片混乱]}
+spatial_system: {depth: 2, perspective: [平面], avoid: [深透视]}
+detail_density: {level: 2, focal_detail_policy: 排版与几何为焦点}
+character_rendering: {face: 客观简化, skin: 平面, hair: 平面, anatomy: 简化, clothing: 平面}
+background: {complexity: 0, preferred: [纯色/留白], avoid: [照片装饰]}
+rules:
+  must: [网格系统, 无衬线字感, 客观理性, 大量留白]
+  should: [黑白灰 + 单强调色, 不对称平衡, 几何元素]
+  may: [照片黑白化编排, 大字号排版]
+  must_not: [装饰繁杂, 手绘混乱, 多彩渐变, 3D 渲染感, 拟物材质, 复古装饰, 卡通化]
+allowed_variations: [强调色, 网格密度]
+forbidden_features: [ornate decoration, hand-drawn mess, skeuomorphism]
+canonical_prompt:
+  positive_anchor: [swiss design, grid system layout, helvetica-style sans-serif typography, objective orderly composition, generous white space, black white with single accent color, geometric elements, modern editorial clarity]
+  negative_anchor: [ornate decoration, hand-drawn chaos, colorful gradients, 3D render, skeuomorphic material, cartoon]
+confusion_with:
+  - {style: GD02, risk: high, difference: [GD02 国际字体风格更字体主导, GD01 网格视觉更强], correction: [网格几何平衡]}
+  - {style: GD11, risk: medium, difference: [GD11 极简平面更符号化, GD01 网格秩序], correction: [网格化, 排版层级]}
+correction_rules:
+  - {problem: lost_grid, instructions: [网格化, 对齐, 排版层级]}
+  - {problem: too_decorative, instructions: [去装饰, 黑白灰克制]}
+  - {problem: colors_multi, instructions: [收敛到单强调色]}
+use_cases: {recommended: [品牌视觉, 报告, 界面, 现代编辑], discouraged: [民俗传统, 童书]}
+compatibility: {portrait: 5, landscape: 8, product: 8, poster: 9, education: 7, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, abstract, environment]}
+evaluation_profile: GD01_DEFAULT

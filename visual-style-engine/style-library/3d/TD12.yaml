@@ -1,0 +1,59 @@
+# TD12 — Diorama / 立体模型
+id: TD12
+version: 1.0.0
+status: ACTIVE
+name: {zh: 立体模型, en: Diorama}
+category: {id: 3d, name_zh: 3D / CGI, name_en: 3D / CGI}
+parent_style: null
+aliases: [diorama, 微缩立体场景, 桌面剧场]
+definition:
+  summary: >-
+    手工立体微缩场景风格：桌面剧场感、材质混搭、微缩比例、温暖手工质感。
+  detailed: >-
+    Diorama 是"立体模型剧场"：微缩比例的场景（建筑、自然、人物小模型），材质手工感强
+    （纸、木、黏土、织物混搭），常有柔和棚内光与微缩景深。比 TD06 黏土更"场景化"，
+    比 TD11 微缩更"戏剧性"。适用于创意内容、品牌场景、童话科普、手工美学。
+visual_intent: [crafted, miniature, whimsical]
+fingerprint:
+  shape: [微缩比例场景, 手工造型]
+  line: [无描边, 模型边缘]
+  color: [手工配色, 温和]
+  shading: [柔和棚内光, 微缩阴影]
+  lighting: [柔光, 微缩景深]
+  texture: [材质混搭（纸木织物）, 手工痕迹]
+  composition: [场景剧场, 微缩景深]
+  detail: [5/10 场景细节]
+style_dna: {realism: 5, abstraction: 4, detail_density: 5, spatial_depth: 5, texture_strength: 6, shading_strength: 4, lighting_complexity: 3, line_presence: 1, line_roughness: 2, shape_complexity: 5, color_complexity: 4}
+shape_language: {description: 微缩场景, preferred: [模型形, 手工造型], avoid: [真实比例写实]}
+line_language: {description: 无描边, preferred: [模型边缘], avoid: [描边]}
+color_system: {strategy: 手工温和配色, recommended_palette_types: [PAL_EARTH_TONE, PAL_PASTEL, PAL_MUTED, PAL_CREAM], saturation_range: [3, 6], contrast_range: [3, 5], recommended_color_count: [4, 7], avoid: [荧光]}
+shading: {method: [柔和棚光], strength: 4, avoid: [硬影]}
+lighting: {physical_realism: 4, methods: [柔光箱, 微缩棚光], avoid: [真实环境光]}
+texture: {default: [纸木织物混搭, 手工痕迹], strength: 6, avoid: [完美 CGI]}
+material: {rendering_policy: 手工材质混搭, preferred: [纸木织物], avoid: [PBR 展示]}
+composition: {preferred: [场景剧场, 微缩景深, 前景层], negative_space_range: "15-40%", layer_count: "3-4", avoid: [真实比例]}
+spatial_system: {depth: 5, perspective: [微缩透视, 浅景深], avoid: [真实尺度]}
+detail_density: {level: 5, focal_detail_policy: 场景焦点手工细节}
+character_rendering: {face: 小模型面容, skin: 模型材质, hair: 模型, anatomy: 微缩比例, clothing: 织物}
+background: {complexity: 3, preferred: [微缩环境, 纸板背景], avoid: [真实照片背景]}
+rules:
+  must: [微缩比例, 手工材质感, 场景剧场感, 柔光]
+  should: [材质混搭, 手工痕迹, 微缩景深]
+  may: [纸板/毛毡道具, 前景遮挡]
+  must_not: [真实比例写实, 完美 CGI 渲染, 硬影, 荧光, 3D 游戏感, 无手工痕迹]
+allowed_variations: [场景题材, 材质组合]
+forbidden_features: [real scale, perfect CGI, hard shadows]
+canonical_prompt:
+  positive_anchor: [diorama miniature scene, handcrafted model, mixed materials paper wood fabric, soft studio light, miniature depth of field, theatrical vignette composition, warm crafted feel, whimsical mood]
+  negative_anchor: [real scale, perfect CGI render, hard shadows, neon, game render look, no handmade traces]
+confusion_with:
+  - {style: TD06, risk: high, difference: [TD06 黏土单物, TD12 场景剧场], correction: [场景化, 材质混搭]}
+  - {style: TD11, risk: medium, difference: [TD11 微缩景观更写实, TD12 手工剧场], correction: [手工感, 剧场化]}
+correction_rules:
+  - {problem: looks_cgi, instructions: [手工材质化, 减完美渲染]}
+  - {problem: real_scale, instructions: [微缩比例, 加景深]}
+  - {problem: lost_scene, instructions: [场景剧场化, 加前景层]}
+use_cases: {recommended: [创意内容, 品牌场景, 童话科普, 手工美学], discouraged: [严肃纪实, 产品实拍]}
+compatibility: {portrait: 6, landscape: 9, product: 7, poster: 8, education: 8, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [environment, complex_scene, still_life]}
+evaluation_profile: TD12_DEFAULT

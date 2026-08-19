@@ -1,0 +1,26 @@
+# PRINT_BASE — 印刷艺术父类基线
+# 子 Style（PR01–PR10）只描述差异
+id: PRINT_BASE
+version: 1.0.0
+name: {zh: 印刷艺术基线, en: Print Art Base}
+kind: base
+
+baseline:
+  dimensionality: 2D
+  edge_policy: pressed
+  realistic_material: false
+  pbr: false
+  photographic_depth_of_field: false
+
+inherited_rules:
+  must:
+    - 印刷介质质感（版痕/网点/纸面）
+    - 平面化、图形化表达
+  must_not:
+    - photorealistic photographic rendering
+    - 无介质感的数字纯平色块（无纹理）
+    - PBR 材质
+    - 3D render look
+
+# PR01 Woodcut / PR02 Woodblock / PR03 Engraving / PR04 Etching / PR05 Lithograph
+# PR06 Screen Print / PR07 Risograph / PR08 Halftone Print / PR09 Vintage Print / PR10 Newspaper Illustration

@@ -1,0 +1,248 @@
+# Lighting Library — 22 个标准光影属性
+# 每项描述：source / hardness / direction / shadow_behavior / contrast / allowed / incompatible
+schema: attribute_library
+type: lighting
+version: "1.0.0"
+
+lightings:
+  - id: LIGHT_NATURAL
+    name: {zh: 自然光, en: Natural Light}
+    source: 太阳/天空
+    hardness: 中
+    direction: 多变
+    shadow_behavior: 真实阴影
+    contrast: 中
+    prompt_anchor: [natural daylight, true-to-life lighting]
+    allowed_styles: [PH01, PH12, PH14, IL04]
+    incompatible: [CI04, FA05]
+
+  - id: LIGHT_SOFT_DIFFUSED
+    name: {zh: 柔和漫射光, en: Soft Diffused Light}
+    source: 散射光源/柔光箱
+    hardness: 软
+    direction: 均匀
+    shadow_behavior: 柔化阴影
+    contrast: 低
+    prompt_anchor: [soft diffused light, gentle even illumination]
+    allowed_styles: [TD06, TD05, PA08, IL03, IL09]
+    incompatible: [CI04]
+
+  - id: LIGHT_WINDOW
+    name: {zh: 窗光, en: Window Light}
+    source: 窗户
+    hardness: 中
+    direction: 单侧
+    shadow_behavior: 拉长投影
+    contrast: 中高
+    prompt_anchor: [window light, directional soft daylight from window]
+    allowed_styles: [PH03, PA01, IL04, CI08]
+    incompatible: []
+
+  - id: LIGHT_GOLDEN_HOUR
+    name: {zh: 黄金时刻, en: Golden Hour}
+    source: 低角度太阳
+    hardness: 中
+    direction: 低角度
+    shadow_behavior: 长暖影
+    contrast: 中
+    prompt_anchor: [golden hour light, warm low sun glow]
+    allowed_styles: [PH01, PH14, CI01, CI09]
+    incompatible: [CI04]
+
+  - id: LIGHT_BLUE_HOUR
+    name: {zh: 蓝调时刻, en: Blue Hour}
+    source: 日落后天空
+    hardness: 软
+    direction: 环境
+    shadow_behavior: 蓝调环境影
+    contrast: 低中
+    prompt_anchor: [blue hour light, cool twilight atmosphere]
+    allowed_styles: [CI01, CI07, PH14]
+    incompatible: [PA08]
+
+  - id: LIGHT_BACKLIGHT
+    name: {zh: 逆光, en: Backlight}
+    source: 主体后方
+    hardness: 中
+    direction: 逆光
+    shadow_behavior: 剪影/轮廓
+    contrast: 高
+    prompt_anchor: [backlight, rim silhouette glow]
+    allowed_styles: [PH01, CI01, PH03]
+    incompatible: [VE01, GD01]
+
+  - id: LIGHT_RIM
+    name: {zh: 轮廓光, en: Rim Light}
+    source: 侧后方窄光
+    hardness: 硬
+    direction: 轮廓边缘
+    shadow_behavior: 边缘亮线
+    contrast: 高
+    prompt_anchor: [rim light, edge highlight separation]
+    allowed_styles: [CI01, CI08, FA05, PH03]
+    incompatible: [IL01, VE01]
+
+  - id: LIGHT_SIDE
+    name: {zh: 侧光, en: Side Light}
+    source: 侧面
+    hardness: 中
+    direction: 90°侧
+    shadow_behavior: 半脸阴影
+    contrast: 中高
+    prompt_anchor: [side light, dramatic half shadow]
+    allowed_styles: [PH03, CI01, PA01]
+    incompatible: []
+
+  - id: LIGHT_TOP
+    name: {zh: 顶光, en: Top Light}
+    source: 顶部
+    hardness: 中
+    direction: 俯照
+    shadow_behavior: 下压阴影
+    contrast: 中
+    prompt_anchor: [top light, overhead illumination]
+    allowed_styles: [PH08, TD01]
+    incompatible: [PH03, PA08]
+
+  - id: LIGHT_STUDIO
+    name: {zh: 影棚光, en: Studio Light}
+    source: 影棚灯具
+    hardness: 可调
+    direction: 可控
+    shadow_behavior: 可控阴影
+    contrast: 可调
+    prompt_anchor: [studio lighting, controlled professional setup]
+    allowed_styles: [PH03, PH08, TD02]
+    incompatible: [PH12, DR07]
+
+  - id: LIGHT_HIGH_KEY
+    name: {zh: 高调, en: High Key}
+    source: 强光环境
+    hardness: 软
+    direction: 均匀
+    shadow_behavior: 极少阴影
+    contrast: 低
+    prompt_anchor: [high key lighting, bright airy low contrast]
+    allowed_styles: [PH05, AN08, PA08, TD05]
+    incompatible: [CI04]
+
+  - id: LIGHT_LOW_KEY
+    name: {zh: 低调, en: Low Key}
+    source: 弱光环境
+    hardness: 中
+    direction: 局部
+    shadow_behavior: 深暗阴影
+    contrast: 高
+    prompt_anchor: [low key lighting, dark moody shadow dominant]
+    allowed_styles: [CI04, FA03, CI10, PA01]
+    incompatible: [PA08, VE06]
+
+  - id: LIGHT_CINEMATIC_MOTIVATED
+    name: {zh: 电影动机光, en: Cinematic Motivated Light}
+    source: 场景内光源（窗/灯/火）
+    hardness: 中
+    direction: 叙事导向
+    shadow_behavior: 电影化阴影
+    contrast: 中高
+    prompt_anchor: [cinematic motivated lighting, light from in-scene sources]
+    allowed_styles: [CI01, CI08, IL04]
+    incompatible: []
+
+  - id: LIGHT_DRAMATIC
+    name: {zh: 戏剧光, en: Dramatic Light}
+    source: 强烈光源
+    hardness: 硬
+    direction: 明确
+    shadow_behavior: 强烈投影
+    contrast: 高
+    prompt_anchor: [dramatic lighting, strong chiaroscuro]
+    allowed_styles: [CI04, FA05, PA01, CI10]
+    incompatible: [IL01, VE01]
+
+  - id: LIGHT_VOLUMETRIC
+    name: {zh: 体积光, en: Volumetric Light}
+    source: 光束穿介质
+    hardness: 软
+    direction: 光束
+    shadow_behavior: 光束可见
+    contrast: 中
+    prompt_anchor: [volumetric light, visible god rays through haze]
+    allowed_styles: [CI06, FA05, GA01, CI08]
+    incompatible: [VE01, GD01, IL06]
+
+  - id: LIGHT_GOD_RAYS
+    name: {zh: 丁达尔光, en: God Rays}
+    source: 强光穿缝隙
+    hardness: 软
+    direction: 放射
+    shadow_behavior: 光束放射
+    contrast: 中
+    prompt_anchor: [god rays, sunbeams through gaps]
+    allowed_styles: [PH14, CI06, FA05]
+    incompatible: [VE01, IL01]
+
+  - id: LIGHT_NEON
+    name: {zh: 霓虹光, en: Neon Light}
+    source: 霓虹灯
+    hardness: 中
+    direction: 灯源扩散
+    shadow_behavior: 彩色环境光
+    contrast: 中
+    prompt_anchor: [neon lighting, colored glow reflections]
+    allowed_styles: [FA12, RT08, CI05, AN11]
+    incompatible: [PA08, EA01, DR07]
+
+  - id: LIGHT_OVERCAST
+    name: {zh: 阴天漫射光, en: Overcast Light}
+    source: 云层散射
+    hardness: 软
+    direction: 均匀
+    shadow_behavior: 无清晰阴影
+    contrast: 低
+    prompt_anchor: [overcast soft light, flat diffused daylight]
+    allowed_styles: [PH12, PH01, IL03, CI08]
+    incompatible: [CI04]
+
+  - id: LIGHT_CANDLE
+    name: {zh: 烛光, en: Candle Light}
+    source: 烛火
+    hardness: 软
+    direction: 局部
+    shadow_behavior: 暖色明灭阴影
+    contrast: 中高
+    prompt_anchor: [candlelight, warm flickering glow]
+    allowed_styles: [CI08, PA01, CI04, DR07]
+    incompatible: []
+
+  - id: LIGHT_MOONLIGHT
+    name: {zh: 月光, en: Moonlight}
+    source: 月亮
+    hardness: 软硬中
+    direction: 单侧
+    shadow_behavior: 冷调阴影
+    contrast: 中
+    prompt_anchor: [moonlight, cool silver night glow]
+    allowed_styles: [FA05, CI07, FA03, EA01]
+    incompatible: [VE06]
+
+  - id: LIGHT_FLAT_GRAPHIC
+    name: {zh: 扁平图形光, en: Flat Graphic Light}
+    source: 无
+    hardness: 无
+    direction: 无
+    shadow_behavior: 无阴影
+    contrast: 靠色块
+    prompt_anchor: [flat graphic lighting, no physical light source]
+    allowed_styles: [VE01, VE02, IL01, IL06, GD01]
+    incompatible: [PH03, CI01, TD01]
+
+  - id: LIGHT_AMBIENT_SOFT
+    name: {zh: 环境柔光, en: Ambient Soft Light}
+    source: 环境光
+    hardness: 软
+    direction: 均匀
+    shadow_behavior: 柔和环境影
+    contrast: 低
+    prompt_anchor: [ambient soft light, gentle overall illumination]
+    allowed_styles: [PA08, TD06, IL09, EA06]
+    incompatible: [CI04]

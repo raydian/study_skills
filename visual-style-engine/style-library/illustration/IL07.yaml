@@ -1,0 +1,59 @@
+# IL07 — Grain Illustration / 颗粒插画
+id: IL07
+version: 1.0.0
+status: ACTIVE
+name: {zh: 颗粒插画, en: Grain Illustration}
+category: {id: illustration, name_zh: 插画, name_en: Illustration}
+parent_style: null
+aliases: [grain illustration, grain texture art, 噪点插画, 杂志颗粒感]
+definition:
+  summary: >-
+    在色块插画上叠加颗粒噪点纹理的风格：既有扁平色彩关系，又有杂志印刷的质感与温度。
+  detailed: >-
+    颗粒插画 = 扁平色块 + 颗粒（grain）纹理：色块建立结构，颗粒提供介质温度，两者结合产生
+    杂志、海报、独立出版的"印刷感"。颗粒强度通常中等，不过度掩盖图形。适用于杂志风格内容、
+    独立出版、生活方式、音乐/艺术类视觉。
+visual_intent: [printed, warm, editorial]
+fingerprint:
+  shape: [色块图形, 印刷感造型]
+  line: [干净, 可细线]
+  color: [色块体系, 印刷色感]
+  shading: [平涂 + 颗粒层次]
+  lighting: [无真实光, 颗粒明暗]
+  texture: [颗粒噪点, 印刷介质感]
+  composition: [杂志式, 均衡]
+  detail: [3/10 中低细节]
+style_dna: {realism: 2, abstraction: 6, detail_density: 3, spatial_depth: 3, texture_strength: 6, shading_strength: 2, lighting_complexity: 1, line_presence: 3, line_roughness: 1, shape_complexity: 4, color_complexity: 4}
+shape_language: {description: 色块图形, preferred: [印刷图形, 简化形], avoid: [写实照片形]}
+line_language: {description: 干净, preferred: [清晰边缘], avoid: [粗糙线]}
+color_system: {strategy: 印刷色感, recommended_palette_types: [PAL_MUTED, PAL_EARTH_TONE, PAL_CREAM, PAL_VINTAGE_FADED, PAL_HIGH_SATURATION], saturation_range: [3, 7], contrast_range: [4, 6], recommended_color_count: [4, 8], avoid: [荧光]} 
+shading: {method: [平涂 + 颗粒], strength: 2, avoid: [空气渐变]}
+lighting: {physical_realism: 1, methods: [无], avoid: [体积光]}
+texture: {default: [颗粒噪点, 印刷介质], strength: 6, avoid: [无纹理纯平]}
+material: {rendering_policy: 印刷介质, preferred: [纸感], avoid: [塑料]}
+composition: {preferred: [杂志式, 均衡, 图形节奏], negative_space_range: "20-45%", layer_count: "2-3", avoid: [拥挤]}
+spatial_system: {depth: 3, perspective: [扁平], avoid: [深透视]}
+detail_density: {level: 3, focal_detail_policy: 图形化, 颗粒统一覆盖}
+character_rendering: {face: 简化, skin: 色块, hair: 色块, anatomy: 风格化, clothing: 色块}
+background: {complexity: 2, preferred: [色块/留白], avoid: [照片]}
+rules:
+  must: [色块 + 颗粒纹理, 印刷介质感, 色彩关系清晰]
+  should: [颗粒适中, 图形简化, 杂志气质]
+  may: [细描边, 印刷套色错位感]
+  must_not: [照片写实, 无颗粒纯平（那是 IL01）, 3D 渲染感, 油画笔触, 荧光霓虹, 高密度交叉排线]
+allowed_variations: [颗粒强度, 印刷色]
+forbidden_features: [photoreal, flat-no-grain, 3D render]
+canonical_prompt:
+  positive_anchor: [grain illustration, flat color blocks with grain texture, printed magazine feel, cohesive palette, simple graphic shapes, subtle noise texture, warm analog quality]
+  negative_anchor: [photorealistic, pure flat without grain, 3D rendering, oil brush, neon glow, heavy crosshatch]
+confusion_with:
+  - {style: IL01, risk: high, difference: [IL01 纯平无颗粒, IL07 带颗粒纹理], correction: [加颗粒纹理]}
+  - {style: PR07, risk: medium, difference: [PR07 孔版印刷撞色错位, IL07 插画颗粒], correction: [保留图形主体, 弱化套色]}
+correction_rules:
+  - {problem: grain_missing, instructions: [叠加颗粒噪点, 印刷介质感]}
+  - {problem: grain_too_heavy, instructions: [降低颗粒强度, 保持图形可读]}
+  - {problem: became_flat_il01, instructions: [加回颗粒纹理, 印刷色感]}
+use_cases: {recommended: [杂志内容, 独立出版, 生活方式, 音乐艺术], discouraged: [严肃图表, 写实记录]}
+compatibility: {portrait: 7, landscape: 8, product: 7, poster: 9, education: 6, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: IL07_DEFAULT

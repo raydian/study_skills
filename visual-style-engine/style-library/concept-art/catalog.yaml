@@ -1,0 +1,66 @@
+# Concept / Game Art Catalog — 概念/游戏美术类（12）
+category: concept-art
+name_zh: 概念与游戏美术
+name_en: Concept / Game Art
+
+styles:
+  - id: GA01
+    name_zh: 环境概念设计
+    name_en: Environment Concept Art
+    status: DRAFT
+    desc: 场景氛围探索、光影叙事
+  - id: GA02
+    name_zh: 角色概念设计
+    name_en: Character Concept Art
+    status: DRAFT
+    desc: 角色设定、服装武器细节
+  - id: GA03
+    name_zh: 奇幻概念设计
+    name_en: Fantasy Concept Art
+    status: DRAFT
+    desc: 魔法世界构建
+  - id: GA04
+    name_zh: 科幻概念设计
+    name_en: Sci-Fi Concept Art
+    status: DRAFT
+    desc: 未来科技世界构建
+  - id: GA05
+    name_zh: 数字绘景
+    name_en: Matte Painting
+    status: DRAFT
+    desc: 电影级背景绘景
+  - id: GA06
+    name_zh: 游戏宣传图
+    name_en: Game Splash Art
+    status: DRAFT
+    desc: 高冲击力宣传视觉
+  - id: GA07
+    name_zh: 卡牌插画
+    name_en: Card Illustration
+    status: DRAFT
+    desc: 卡牌画面、边框友好
+  - id: GA08
+    name_zh: RPG 插画
+    name_en: RPG Illustration
+    status: DRAFT
+    desc: 角色扮演游戏美术
+  - id: GA09
+    name_zh: 策略游戏美术
+    name_en: Strategy Game Art
+    status: DRAFT
+    desc: 地图/单位美术
+  - id: GA10
+    name_zh: AAA 游戏视觉
+    name_en: AAA Game Visual
+    status: DRAFT
+    desc: 3A 级写实游戏画面
+  - id: GA11
+    name_zh: 游戏加载画面
+    name_en: Game Loading Screen
+    status: DRAFT
+    desc: 信息区域留白、氛围图
+  - id: GA12
+    name_zh: 世界观构建
+    name_en: Worldbuilding Art
+    status: DRAFT
+    desc: 架空世界整体视觉设定

@@ -1,0 +1,59 @@
+# CI01 — Cinematic Film Still / 电影剧照
+id: CI01
+version: 1.0.0
+status: ACTIVE
+name: {zh: 电影剧照, en: Cinematic Film Still}
+category: {id: cinematic, name_zh: 电影感, name_en: Cinematic}
+parent_style: null
+aliases: [film still, movie frame, 电影感画面]
+definition:
+  summary: >-
+    以电影帧为标准的画面风格：构图、布光、调色均按电影语言执行，叙事感与氛围感强。
+  detailed: >-
+    CI01 呈现"电影的一帧"：讲究的构图（三分法、纵深、前景遮挡）、电影布光（动机光、光比、
+    轮廓光）、电影调色（统一色阶、情绪色调）与场景氛围。人物与环境共同叙事。适用于视频封面、
+    故事性内容、氛围化配图。
+visual_intent: [cinematic, dramatic, narrative]
+fingerprint:
+  shape: [电影式取景, 前景遮挡, 主体轮廓]
+  line: [无描边, 光影边缘]
+  color: [电影调色, 统一色阶]
+  shading: [电影光影, soft shadows]
+  lighting: [动机光, 光比讲究]
+  texture: [胶片/数字质感, 氛围]
+  composition: [三分法, 纵深, 叙事构图]
+  detail: [7/10 叙事细节]
+style_dna: {realism: 8, abstraction: 2, detail_density: 7, spatial_depth: 8, texture_strength: 6, shading_strength: 8, lighting_complexity: 8, line_presence: 1, line_roughness: 1, shape_complexity: 6, color_complexity: 5}
+shape_language: {description: 电影取景, preferred: [前景遮挡, 主体轮廓], avoid: [平铺直叙]}
+line_language: {description: 无描边, preferred: [光影边缘], avoid: [描边]}
+color_system: {strategy: 电影调色, recommended_palette_types: [PAL_MUTED, PAL_DARK, PAL_TEAL_ORANGE, PAL_VINTAGE_FADED], saturation_range: [2, 5], contrast_range: [5, 8], recommended_color_count: [5, 9], avoid: [高饱和商业色]}
+shading: {method: [电影光影, 光比], strength: 8, avoid: [扁平无层次]}
+lighting: {physical_realism: 8, methods: [动机光, 轮廓光, 场景光比], avoid: [平光]}
+texture: {default: [胶片颗粒/数字质感], strength: 6, avoid: [塑料]}
+material: {rendering_policy: 真实材质, preferred: [真实], avoid: [失真]}
+composition: {preferred: [三分法, 纵深, 前景遮挡, 叙事取景], negative_space_range: "15-35%", layer_count: "3-4", avoid: [扁平海报式]}
+spatial_system: {depth: 8, perspective: [电影透视, 大气透视], avoid: [平面]}
+detail_density: {level: 7, focal_detail_policy: 焦点叙事细节充分}
+character_rendering: {face: 情绪电影感, skin: 真实, hair: 真实, anatomy: 真实, clothing: 场景合理}
+background: {complexity: 6, preferred: [氛围场景, 环境叙事], avoid: [纯色棚]}
+rules:
+  must: [电影构图, 电影布光, 电影调色, 叙事氛围]
+  should: [光比讲究, 前景遮挡纵深, 情绪统一]
+  may: [画幅感, 胶片颗粒]
+  must_not: [平铺直叙, 高饱和商业色, 卡通化, 3D 游戏感, 影楼摆拍光, 杂乱无章]
+allowed_variations: [题材色调, 电影类型语言]
+forbidden_features: [flat light, commercial saturation, cartoon]
+canonical_prompt:
+  positive_anchor: [cinematic film still, movie frame composition, motivated lighting with contrast ratio, film color grading, depth layering and foreground framing, narrative atmosphere, emotional mood]
+  negative_anchor: [flat even lighting, high saturation commercial colors, cartoon look, 3D game render, staged studio portrait light]
+confusion_with:
+  - {style: CI08, risk: medium, difference: [CI08 强时代语境, CI01 通用电影], correction: [无时代要素时用 CI01]}
+  - {style: PH12, risk: medium, difference: [PH12 客观纪实, CI01 电影化叙事], correction: [加强布光与构图]}
+correction_rules:
+  - {problem: flat_lighting, instructions: [引入动机光, 加强光比]}
+  - {problem: lost_atmosphere, instructions: [加氛围雾/尘埃, 统一色调]}
+  - {problem: commercial_look, instructions: [去商业高饱和, 走电影调色]}
+use_cases: {recommended: [视频封面, 故事内容, 氛围配图], discouraged: [纯数据, 产品目录]}
+compatibility: {portrait: 8, landscape: 10, product: 5, poster: 9, education: 6, book_video: 9}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, complex_scene]}
+evaluation_profile: CI01_DEFAULT

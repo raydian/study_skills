@@ -1,0 +1,58 @@
+# VE03 — Editorial Vector / 编辑矢量
+id: VE03
+version: 1.0.0
+status: ACTIVE
+name: {zh: 编辑矢量, en: Editorial Vector}
+category: {id: vector, name_zh: 矢量艺术, name_en: Vector}
+parent_style: VECTOR_BASE
+aliases: [editorial vector, 编辑风格矢量]
+definition:
+  summary: >-
+    矢量语言 + 编辑排版逻辑：图文节奏、版面结构、克制备色，杂志/出版气质。
+  detailed: >-
+    VE03 在矢量干净的基础上引入编辑设计思维：版面有明确的网格/节奏/图文关系，配色讲究、
+    构图有出版气质。常用于杂志版面、文章配图、出版视觉。
+visual_intent: [editorial, structured, refined]
+fingerprint:
+  shape: [编辑式构图, 图形节奏]
+  line: [干净平滑, 矢量边缘]
+  color: [克制备色, 编辑感]
+  shading: [无或极简]
+  lighting: [无]
+  texture: [无或极轻]
+  composition: [网格, 图文节奏, 版面结构]
+  detail: [2/10 低细节]
+style_dna: {realism: 1, abstraction: 7, detail_density: 2, spatial_depth: 3, texture_strength: 1, shading_strength: 1, lighting_complexity: 1, line_presence: 4, line_roughness: 1, shape_complexity: 4, color_complexity: 4}
+shape_language: {description: 编辑式构图, preferred: [图形节奏, 版面结构], avoid: [杂乱]}
+line_language: {description: 干净平滑, preferred: [矢量边缘], avoid: [粗糙]}
+color_system: {strategy: 克制备色, recommended_palette_types: [PAL_MUTED, PAL_CREAM, PAL_MORANDI, PAL_HIGH_SATURATION], saturation_range: [2, 6], contrast_range: [4, 6], recommended_color_count: [3, 6], avoid: [霓虹]}
+shading: {method: [无, 平涂], strength: 1, avoid: [体积]}
+lighting: {physical_realism: 0, methods: [无], avoid: [光效]}
+texture: {default: [无], strength: 1, avoid: [纹理]}
+material: {rendering_policy: 无, preferred: [纯色], avoid: [材质]}
+composition: {preferred: [网格, 图文节奏, 版面结构], negative_space_range: "25-50%", layer_count: "2-3", avoid: [无结构]}
+spatial_system: {depth: 3, perspective: [扁平], avoid: [深透视]}
+detail_density: {level: 2, focal_detail_policy: 版面元素精简}
+character_rendering: {face: 简化, skin: 色块, hair: 色块, anatomy: 风格化, clothing: 色块}
+background: {complexity: 1, preferred: [留白/色块], avoid: [照片]}
+rules:
+  must: [矢量干净, 编辑排版结构, 图文节奏, 克制备色]
+  should: [网格感, 出版气质, 元素精简]
+  may: [细线, 版面装饰元素]
+  must_not: [照片写实, 油画笔触, 3D 渲染感, 霓虹, 杂乱满铺, 水彩渗色, 粗糙笔触]
+allowed_variations: [配色, 网格密度]
+forbidden_features: [photoreal, texture heavy, clutter]
+canonical_prompt:
+  positive_anchor: [editorial vector illustration, structured layout, grid-based composition, refined limited palette, clean vector shapes, magazine publishing feel, typography-friendly negative space]
+  negative_anchor: [photorealistic, oil texture, 3D rendering, neon, cluttered, rough strokes]
+confusion_with:
+  - {style: IL02, risk: medium, difference: [IL02 插画媒介更自由, VE03 矢量语言], correction: [强化矢量干净边缘]}
+  - {style: VE01, risk: medium, difference: [VE01 极简符号, VE03 版面编辑结构], correction: [引入网格与节奏]}
+correction_rules:
+  - {problem: lost_structure, instructions: [加网格感, 编辑节奏]}
+  - {problem: became_too_minimal, instructions: [增加版面元素与节奏]}
+  - {problem: texture_leak, instructions: [去纹理, 矢量纯色]}
+use_cases: {recommended: [杂志版面, 文章配图, 出版视觉], discouraged: [纯装饰情绪画]}
+compatibility: {portrait: 6, landscape: 9, product: 8, poster: 9, education: 8, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, environment, abstract]}
+evaluation_profile: VE03_DEFAULT

@@ -1,0 +1,59 @@
+# PA03 — Impressionism / 印象派
+id: PA03
+version: 1.0.0
+status: ACTIVE
+name: {zh: 印象派, en: Impressionism}
+category: {id: painting, name_zh: 绘画, name_en: Painting}
+parent_style: PAINTING_BASE
+aliases: [impressionist painting, 印象派油画, 印象主义]
+definition:
+  summary: >-
+    以光影与色彩笔触分离为语言的绘画风格：捕捉瞬间氛围，用分离笔触与补色表现光感。
+  detailed: >-
+    印象派追求"对光与氛围的即时印象"：笔触短促分离，色彩并置产生光感（补色相邻），阴影用
+    色彩而非黑色，题材多为日常与风景。画面松快、空气感强。适用于自然风景、生活氛围、
+    文艺气质内容。
+visual_intent: [atmospheric, light-filled, poetic]
+fingerprint:
+  shape: [形从光色中浮现, 松散形]
+  line: [笔触而非线]
+  color: [明亮色彩, 补色并置]
+  shading: [色彩阴影, 无黑]
+  lighting: [户外光, 光感斑驳]
+  texture: [可见笔触, 画布肌理]
+  composition: [生活化取景, 开放式构图]
+  detail: [4/10 笔触细节]
+style_dna: {realism: 6, abstraction: 4, detail_density: 4, spatial_depth: 6, texture_strength: 7, shading_strength: 6, lighting_complexity: 7, line_presence: 1, line_roughness: 6, shape_complexity: 5, color_complexity: 7}
+shape_language: {description: 形从光色浮现, preferred: [松散形, 光影形], avoid: [硬边精确]}
+line_language: {description: 笔触而非线, preferred: [无轮廓线], avoid: [描边]}
+color_system: {strategy: 明亮补色并置, recommended_palette_types: [PAL_NATURAL, PAL_PASTEL, PAL_HIGH_SATURATION], saturation_range: [4, 8], contrast_range: [4, 6], recommended_color_count: [6, 10], avoid: [灰褐浊色]}
+shading: {method: [色彩阴影, 补色], strength: 6, avoid: [黑色阴影]}
+lighting: {physical_realism: 7, methods: [户外日光, 斑驳光], avoid: [影棚]}
+texture: {default: [可见笔触, 画布肌理], strength: 7, avoid: [平滑数码]}
+material: {rendering_policy: 油彩笔触, preferred: [笔触肌理], avoid: [塑料]}
+composition: {preferred: [生活化取景, 开放式构图], negative_space_range: "15-35%", layer_count: "2-3", avoid: [对称僵化]}
+spatial_system: {depth: 6, perspective: [大气透视], avoid: [机械透视]}
+detail_density: {level: 4, focal_detail_policy: 笔触表达, 不抠细节}
+character_rendering: {face: 笔触概括, skin: 光色肤色, hair: 笔触, anatomy: 自然松散, clothing: 笔触块}
+background: {complexity: 5, preferred: [自然场景, 氛围], avoid: [空白]}
+rules:
+  must: [笔触分离可见, 色彩光影, 补色并置, 氛围感]
+  should: [无黑色阴影, 明亮配色, 户外光感]
+  may: [画布肌理, 空气感]
+  must_not: [平滑罩染, 黑色阴影, 硬边精确, 3D 渲染感, 单调单色, 照片平滑, 描边]
+allowed_variations: [题材, 笔触强度]
+forbidden_features: [smooth glazing, black shadows, hard edges]
+canonical_prompt:
+  positive_anchor: [impressionist painting, visible separated brush strokes, luminous color juxtaposition, complementary color shadows, outdoor light atmosphere, loose painterly forms, canvas texture, poetic fleeting mood]
+  negative_anchor: [smooth glazing, black shadows, hard precise edges, 3D render, monochrome flat, outline]
+confusion_with:
+  - {style: PA04, risk: high, difference: [PA04 后印象派主观重构, PA03 光影印象], correction: [保持客观光影, 减少变形]}
+  - {style: PA08, risk: medium, difference: [PA08 水彩透明, PA03 油彩笔触], correction: [油彩厚重笔触感]}
+correction_rules:
+  - {problem: became_smooth, instructions: [分离笔触, 增加肌理]}
+  - {problem: black_shadows, instructions: [换色彩阴影, 补色]}
+  - {problem: lost_light, instructions: [提亮, 补色并置光感]}
+use_cases: {recommended: [自然风景, 生活氛围, 文艺气质], discouraged: [科技图表, 建筑制图]}
+compatibility: {portrait: 7, landscape: 9, product: 4, poster: 8, education: 5, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, nature]}
+evaluation_profile: PA03_DEFAULT

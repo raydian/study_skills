@@ -1,0 +1,205 @@
+# Texture Library — 25 个标准纹理属性
+schema: attribute_library
+type: texture
+version: "1.0.0"
+
+textures:
+  - id: TEX_CLEAN_VECTOR
+    name: {zh: 干净矢量, en: Clean Vector}
+    strength: 0
+    application: 无纹理纯色块
+    prompt_anchor: [clean vector, no texture]
+    compatible: [VE01, VE02, IL01, GD01]
+    incompatible: [DR07, PA08]
+
+  - id: TEX_PAPER
+    name: {zh: 纸张纹理, en: Paper Texture}
+    strength: 5
+    application: 全图纸面
+    prompt_anchor: [paper texture, subtle paper grain]
+    compatible: [DR07, PA08, PR04, IL11]
+    incompatible: [TD01]
+
+  - id: TEX_FINE_GRAIN
+    name: {zh: 细颗粒, en: Fine Grain}
+    strength: 3
+    application: 全图轻微颗粒
+    prompt_anchor: [fine grain texture, subtle film-like grain]
+    compatible: [IL03, IL07, CI08, PH16]
+    incompatible: [VE01 需极轻]
+
+  - id: TEX_FILM_GRAIN
+    name: {zh: 胶片颗粒, en: Film Grain}
+    strength: 5
+    application: 全图胶片颗粒
+    prompt_anchor: [film grain, photographic silver grain]
+    compatible: [PH16, CI01, CI08, RT08]
+    incompatible: [VE01, GD01]
+
+  - id: TEX_CANVAS
+    name: {zh: 画布纹理, en: Canvas}
+    strength: 5
+    application: 油画布底
+    prompt_anchor: [canvas texture, woven painting surface]
+    compatible: [PA01, PA03, PA15]
+    incompatible: [VE01, PH01]
+
+  - id: TEX_WATERCOLOR_PAPER
+    name: {zh: 水彩纸, en: Watercolor Paper}
+    strength: 5
+    application: 水彩纸纹
+    prompt_anchor: [watercolor paper texture, textured art paper]
+    compatible: [PA08, PA09, PA10]
+    incompatible: [CI01]
+
+  - id: TEX_ROUGH_PAPER
+    name: {zh: 粗糙纸面, en: Rough Paper}
+    strength: 6
+    application: 粗纸面
+    prompt_anchor: [rough paper texture, toothy surface]
+    compatible: [DR01, DR07, PR05]
+    incompatible: [TD05]
+
+  - id: TEX_INK_BLEED
+    name: {zh: 墨渗, en: Ink Bleed}
+    strength: 4
+    application: 墨线渗化边缘
+    prompt_anchor: [ink bleed, wet ink feathering edges]
+    compatible: [DR07, EA01, DR04]
+    incompatible: [VE01, GD01]
+
+  - id: TEX_HALFTONE
+    name: {zh: 半色调网点, en: Halftone}
+    strength: 5
+    application: 网点制版
+    prompt_anchor: [halftone dots, print screening texture]
+    compatible: [PR07, PR08, PR01, RT14]
+    incompatible: [TD01]
+
+  - id: TEX_NOISE
+    name: {zh: 噪点, en: Noise}
+    strength: 3
+    application: 数字噪点
+    prompt_anchor: [noise texture, digital sensor noise]
+    compatible: [PH01, FA05, GA01]
+    incompatible: [VE01]
+
+  - id: TEX_MATTE
+    name: {zh: 哑光, en: Matte}
+    strength: 2
+    application: 表面哑光
+    prompt_anchor: [matte surface, non-reflective finish]
+    compatible: [TD06, PA10, IL01]
+    incompatible: []
+
+  - id: TEX_GLOSSY
+    name: {zh: 光泽, en: Glossy}
+    strength: 5
+    application: 高光表面
+    prompt_anchor: [glossy surface, reflective sheen]
+    compatible: [TD07, PH08, TD02]
+    incompatible: [PA08, DR07]
+
+  - id: TEX_BRUSHED_METAL
+    name: {zh: 拉丝金属, en: Brushed Metal}
+    strength: 6
+    application: 金属表面拉丝
+    prompt_anchor: [brushed metal texture, directional metal grain]
+    compatible: [TD01, TD02, GA04]
+    incompatible: [VE01, EA01]
+
+  - id: TEX_GLASS
+    name: {zh: 玻璃, en: Glass}
+    strength: 5
+    application: 透明/折射
+    prompt_anchor: [glass texture, transparency and refraction]
+    compatible: [TD01, PH08, FA05]
+    incompatible: [DR07]
+
+  - id: TEX_CERAMIC
+    name: {zh: 陶瓷, en: Ceramic}
+    strength: 4
+    application: 釉面/素坯
+    prompt_anchor: [ceramic texture, glaze or bisque surface]
+    compatible: [CR10, CR09, EA03, EA06]
+    incompatible: []
+
+  - id: TEX_CLAY
+    name: {zh: 黏土, en: Clay}
+    strength: 5
+    application: 黏土材质
+    prompt_anchor: [clay texture, hand-formed matte clay]
+    compatible: [TD06, CR04, TD05]
+    incompatible: [GD01]
+
+  - id: TEX_FABRIC
+    name: {zh: 织物, en: Fabric}
+    strength: 5
+    application: 布面肌理
+    prompt_anchor: [fabric texture, woven textile surface]
+    compatible: [CR08, CR05, IL11]
+    incompatible: []
+
+  - id: TEX_WOOD
+    name: {zh: 木材, en: Wood}
+    strength: 5
+    application: 木纹
+    prompt_anchor: [wood texture, natural grain]
+    compatible: [TD01, CR09, EA06]
+    incompatible: []
+
+  - id: TEX_STONE
+    name: {zh: 石材, en: Stone}
+    strength: 5
+    application: 石面
+    prompt_anchor: [stone texture, carved rock surface]
+    compatible: [CI08, TD01, GA01]
+    incompatible: []
+
+  - id: TEX_CONCRETE
+    name: {zh: 混凝土, en: Concrete}
+    strength: 5
+    application: 水泥面
+    prompt_anchor: [concrete texture, raw cement surface]
+    compatible: [GD09, CI07, FA12]
+    incompatible: [PA08]
+
+  - id: TEX_PLASTIC
+    name: {zh: 塑料, en: Plastic}
+    strength: 4
+    application: 塑料表面
+    prompt_anchor: [plastic texture, smooth molded surface]
+    compatible: [TD07, VE06, TD04]
+    incompatible: [DR07]
+
+  - id: TEX_TRANSLUCENT
+    name: {zh: 半透明, en: Translucent}
+    strength: 3
+    application: 透光材质
+    prompt_anchor: [translucent material, light passing through]
+    compatible: [TD01, FA05, TD05]
+    incompatible: []
+
+  - id: TEX_HOLOGRAPHIC
+    name: {zh: 全息, en: Holographic}
+    strength: 6
+    application: 虹彩光变
+    prompt_anchor: [holographic texture, iridescent color shift]
+    compatible: [TD16, RT10, VE07]
+    incompatible: [PA08]
+
+  - id: TEX_AGED_PRINT
+    name: {zh: 陈年印刷, en: Aged Print}
+    strength: 5
+    application: 旧印刷品氧化
+    prompt_anchor: [aged print texture, yellowed vintage ink]
+    compatible: [PR09, DR07, RT11, PH16]
+    incompatible: [TD02]
+
+  - id: TEX_RISO_GRAIN
+    name: {zh: 孔版颗粒, en: Risograph Grain}
+    strength: 6
+    application: 孔版印刷颗粒
+    prompt_anchor: [risograph grain, coarse print screening]
+    compatible: [PR07, PR08, IL07]
+    incompatible: [TD01]

@@ -1,0 +1,77 @@
+# Anime / Manga Catalog — 动漫类（14）
+# 注意：具体在世艺术家/工作室名称不作为 Canonical Style ID，用可解释视觉特征定义
+category: anime
+name_zh: 动漫
+name_en: Anime / Manga
+
+styles:
+  - id: AN01
+    name_zh: 日本动漫
+    name_en: Japanese Anime
+    status: DRAFT
+    desc: 经典日式动画综合视觉：线稿 + 色指定 + 平涂阴影
+  - id: AN02
+    name_zh: 赛璐璐动漫
+    name_en: Cel Shading Anime
+    status: DRAFT
+    desc: 明确二分/三分阴影、干净色块
+  - id: AN03
+    name_zh: 动画电影视觉
+    name_en: Anime Film Visual
+    status: DRAFT
+    desc: 剧场版品质：精细背景、丰富光影
+  - id: AN04
+    name_zh: 青春动漫
+    name_en: Youth Anime
+    status: DRAFT
+    desc: 校园/青春题材、明亮活泼
+  - id: AN05
+    name_zh: 少年漫画
+    name_en: Shonen Manga
+    status: DRAFT
+    desc: 黑白网点漫画、动感、速度线
+  - id: AN06
+    name_zh: 少女漫画
+    name_en: Shojo Manga
+    status: DRAFT
+    desc: 纤细线条、花卉/光点装饰、柔美
+  - id: AN07
+    name_zh: 青年漫画
+    name_en: Seinen Manga
+    status: DRAFT
+    desc: 写实笔触、灰调、深度叙事
+  - id: AN08
+    name_zh: 日常系动漫
+    name_en: Slice-of-Life Anime
+    status: DRAFT
+    desc: 生活场景、柔和光线、治愈氛围
+  - id: AN09
+    name_zh: 奇幻动漫
+    name_en: Fantasy Anime
+    status: DRAFT
+    desc: 魔法/异世界、华丽设定
+  - id: AN10
+    name_zh: 科幻动漫
+    name_en: Sci-Fi Anime
+    status: DRAFT
+    desc: 机甲/未来都市、冷调
+  - id: AN11
+    name_zh: 80年代复古动漫
+    name_en: 1980s Retro Anime
+    status: DRAFT
+    desc: 手绘赛璐璐、复古配色、胶片颗粒
+  - id: AN12
+    name_zh: 90年代动漫
+    name_en: 1990s Anime
+    status: DRAFT
+    desc: 90年代作画风格、手工上色感
+  - id: AN13
+    name_zh: 萌系
+    name_en: Chibi
+    status: DRAFT
+    desc: 大头身小、Q版圆润
+  - id: AN14
+    name_zh: 半写实动漫
+    name_en: Semi-realistic Anime
+    status: DRAFT
+    desc: 动漫结构 + 更真实的材质光影

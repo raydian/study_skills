@@ -1,0 +1,58 @@
+# IL06 — Minimal Illustration / 极简插画
+id: IL06
+version: 1.0.0
+status: ACTIVE
+name: {zh: 极简插画, en: Minimal Illustration}
+category: {id: illustration, name_zh: 插画, name_en: Illustration}
+parent_style: null
+aliases: [minimal illustration, 极简风插画]
+definition:
+  summary: >-
+    以极少元素、大量留白与强符号表达内容的插画风格：少即是多，画面剩"必要"。
+  detailed: >-
+    极简插画删除一切非必要元素：单一主体、大留白、克制配色、强 silhouette。它靠"选择"
+    而非"填充"建立画面，符号感强。适用于封面、品牌、现代编辑、抽象概念。
+visual_intent: [minimal, clean, symbolic]
+fingerprint:
+  shape: [单一主体, 强 silhouette]
+  line: [少量干净线]
+  color: [极简配色, 可单色]
+  shading: [无或极简]
+  lighting: [无]
+  texture: [无]
+  composition: [大留白, 主体聚焦]
+  detail: [1/10 极低细节]
+style_dna: {realism: 1, abstraction: 9, detail_density: 1, spatial_depth: 2, texture_strength: 0, shading_strength: 0, lighting_complexity: 0, line_presence: 3, line_roughness: 1, shape_complexity: 3, color_complexity: 2}
+shape_language: {description: 单一主体强符号, preferred: [强 silhouette, 简洁形], avoid: [多元素]}
+line_language: {description: 少量干净线, preferred: [必要线], avoid: [多余线]}
+color_system: {strategy: 极简配色, recommended_palette_types: [PAL_MONOCHROME, PAL_CREAM, PAL_MUTED, PAL_BLACK_WHITE], saturation_range: [1, 4], contrast_range: [4, 7], recommended_color_count: [1, 3], avoid: [多彩]}
+shading: {method: [无], strength: 0, avoid: [体积]}
+lighting: {physical_realism: 0, methods: [无], avoid: [光效]}
+texture: {default: [无], strength: 0, avoid: [纹理]}
+material: {rendering_policy: 无, preferred: [纯色], avoid: [材质]}
+composition: {preferred: [大留白, 主体聚焦, 居中或偏离], negative_space_range: "50-75%", layer_count: "1-2", avoid: [满铺]}
+spatial_system: {depth: 2, perspective: [无], avoid: [深透视]}
+detail_density: {level: 1, focal_detail_policy: 全画面极简, 无装饰}
+character_rendering: {face: 极简符号, skin: 单色, hair: 单形, anatomy: 符号化, clothing: 单块}
+background: {complexity: 0, preferred: [纯色/留白], avoid: [环境]}
+rules:
+  must: [极少元素, 大留白, 强符号, 克制备色]
+  should: [单一主体, 必要线, 高识别 silhouette]
+  may: [单色点缀, 微排版元素]
+  must_not: [多元素, 满铺, 写实细节, 纹理, 体积光, 卡通复杂, 3D 渲染感, 杂乱]
+allowed_variations: [配色, 留白比例]
+forbidden_features: [clutter, detail, texture]
+canonical_prompt:
+  positive_anchor: [minimal illustration, single strong symbol, generous negative space, extremely limited palette, clean essential lines, high recognition silhouette, modern calm composition]
+  negative_anchor: [clutter, dense detail, texture, volume light, cartoon complexity, 3D render]
+confusion_with:
+  - {style: VE01, risk: medium, difference: [VE01 矢量色块, IL06 不限媒介但更符号化], correction: [强化符号与留白]}
+  - {style: DR08, risk: medium, difference: [DR08 线条表达, IL06 可色块], correction: [少线, 多留白]}
+correction_rules:
+  - {problem: cluttered, instructions: [删元素, 留主体, 加大留白]}
+  - {problem: detail_leak, instructions: [简化细节, 符号化]}
+  - {problem: colors_multi, instructions: [收敛到 1-3 色]}
+use_cases: {recommended: [封面, 品牌, 现代编辑, 抽象概念], discouraged: [丰富叙事, 信息图]}
+compatibility: {portrait: 7, landscape: 9, product: 8, poster: 9, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, abstract, portrait]}
+evaluation_profile: IL06_DEFAULT

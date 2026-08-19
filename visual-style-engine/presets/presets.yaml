@@ -1,0 +1,77 @@
+# Presets — Style + Attribute 稳定组合
+# 用法：用户指定 preset_id 即可直接获得完整视觉规格；底层仍保持 Style 与 Attribute 分离
+schema: preset_library
+version: "1.0.0"
+
+presets:
+  - id: PRESET_MINIMAL_CANDY
+    version: 1.0.0
+    name: {zh: 极简矢量 · 糖果清新, en: Minimal Vector Candy}
+    base_style: {id: VE01, version: 1.0.0}
+    attributes: {palette: PAL_CANDY_BRIGHT, lighting: LIGHT_FLAT_GRAPHIC, composition: CMP_NEGATIVE_SPACE, mood: [playful, youthful]}
+    use_cases: [儿童知识, 轻松科普, 社交贴纸]
+    avoid_use_cases: [严肃学术]
+    compatibility: {portrait: 7, landscape: 9, product: 8, poster: 9, education: 8, book_video: 8}
+
+  - id: PRESET_MINIMAL_CORPORATE
+    version: 1.0.0
+    name: {zh: 极简矢量 · 企业科技, en: Minimal Vector Corporate}
+    base_style: {id: VE01, version: 1.0.0}
+    attributes: {palette: PAL_MUTED, lighting: LIGHT_FLAT_GRAPHIC, composition: CMP_GRID, mood: [serious, intellectual]}
+    use_cases: [企业报告, 商业演示, 科技说明]
+    avoid_use_cases: [童书]
+    compatibility: {portrait: 6, landscape: 9, product: 9, poster: 8, education: 9, book_video: 8}
+
+  - id: PRESET_MINIMAL_MORANDI
+    version: 1.0.0
+    name: {zh: 极简矢量 · 莫兰迪生活, en: Minimal Vector Morandi}
+    base_style: {id: VE01, version: 1.0.0}
+    attributes: {palette: PAL_MORANDI, lighting: LIGHT_AMBIENT_SOFT, composition: CMP_EDITORIAL_LAYOUT, mood: [calm, elegant]}
+    use_cases: [生活方式, 家居美学, 女性向内容]
+    avoid_use_cases: [科技硬核]
+    compatibility: {portrait: 8, landscape: 8, product: 8, poster: 9, education: 7, book_video: 8}
+
+  - id: PRESET_VINTAGE_IVORY
+    version: 1.0.0
+    name: {zh: 复古线稿 · 米黄纸张, en: Vintage Ink Ivory}
+    base_style: {id: DR07, version: 1.0.0}
+    attributes: {palette: PAL_IVORY_CHARCOAL, texture: TEX_AGED_PRINT, composition: CMP_NEGATIVE_SPACE, mood: [nostalgic, poetic]}
+    use_cases: [文学配图, 复古专栏, 旧书插图]
+    avoid_use_cases: [科技产品]
+    compatibility: {portrait: 8, landscape: 8, product: 5, poster: 8, education: 6, book_video: 8}
+
+  - id: PRESET_CINEMA_HISTORY
+    version: 1.0.0
+    name: {zh: 电影剧照 · 历史纪实, en: Historical Cinema}
+    base_style: {id: CI08, version: 1.0.0}
+    attributes: {palette: PAL_VINTAGE_FADED, lighting: LIGHT_CINEMATIC_MOTIVATED, texture: TEX_FILM_GRAIN, composition: CMP_RULE_OF_THIRDS, mood: [documentary, reflective]}
+    use_cases: [历史纪录片, 时代剧内容]
+    avoid_use_cases: [现代科技]
+    compatibility: {portrait: 8, landscape: 10, product: 4, poster: 8, education: 7, book_video: 9}
+
+  - id: PRESET_WATERCOLOR_POETRY
+    version: 1.0.0
+    name: {zh: 水彩 · 诗意文学, en: Watercolor Poetry}
+    base_style: {id: PA08, version: 1.0.0}
+    attributes: {palette: PAL_PASTEL, lighting: LIGHT_HIGH_KEY, texture: TEX_WATERCOLOR_PAPER, composition: CMP_NEGATIVE_SPACE, mood: [poetic, dreamy]}
+    use_cases: [诗歌, 文学, 治愈系]
+    avoid_use_cases: [数据图表]
+    compatibility: {portrait: 7, landscape: 9, product: 6, poster: 8, education: 7, book_video: 8}
+
+  - id: PRESET_CLAY_KIDS
+    version: 1.0.0
+    name: {zh: 黏土 3D · 儿童教育, en: Clay 3D Kids}
+    base_style: {id: TD06, version: 1.0.0}
+    attributes: {palette: PAL_PASTEL, lighting: LIGHT_SOFT_DIFFUSED, composition: CMP_CENTERED, mood: [playful, warm]}
+    use_cases: [儿童内容, 幼教, 吉祥物]
+    avoid_use_cases: [严肃纪实]
+    compatibility: {portrait: 6, landscape: 8, product: 7, poster: 8, education: 9, book_video: 8}
+
+  - id: PRESET_INK_CHINESE
+    version: 1.0.0
+    name: {zh: 水墨 · 东方意境, en: Chinese Ink Eastern}
+    base_style: {id: EA01, version: 1.0.0}
+    attributes: {palette: PAL_TRADITIONAL_CHINESE, lighting: LIGHT_AMBIENT_SOFT, composition: CMP_NEGATIVE_SPACE, mood: [meditative, poetic]}
+    use_cases: [传统文化, 诗词, 东方品牌]
+    avoid_use_cases: [西方商业产品]
+    compatibility: {portrait: 7, landscape: 9, product: 4, poster: 8, education: 7, book_video: 8}

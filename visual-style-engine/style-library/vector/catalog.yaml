@@ -1,0 +1,66 @@
+# Vector Catalog — 矢量类（12）
+category: vector
+name_zh: 矢量艺术
+name_en: Vector
+
+styles:
+  - id: VE01
+    name_zh: 极简矢量插画
+    name_en: Minimal Vector Illustration
+    status: ACTIVE
+    desc: 简化形状、清晰色块、留白、低细节
+  - id: VE02
+    name_zh: 扁平矢量
+    name_en: Flat Vector
+    status: DRAFT
+    desc: 纯扁平色块、无渐变无阴影
+  - id: VE03
+    name_zh: 编辑矢量
+    name_en: Editorial Vector
+    status: ACTIVE
+    desc: 杂志编辑式构图、图文节奏
+  - id: VE04
+    name_zh: 几何矢量
+    name_en: Geometric Vector
+    status: DRAFT
+    desc: 几何形驱动、秩序感强
+  - id: VE05
+    name_zh: 有机矢量
+    name_en: Organic Vector
+    status: ACTIVE
+    desc: 自由曲面、生物形态、柔润
+  - id: VE06
+    name_zh: 糖果矢量
+    name_en: Candy Vector
+    status: ACTIVE
+    desc: 糖果色 + 圆润可爱
+  - id: VE07
+    name_zh: 柔和渐变矢量
+    name_en: Soft Gradient Vector
+    status: DRAFT
+    desc: 柔和渐变、轻盈
+  - id: VE08
+    name_zh: 单线画
+    name_en: Monoline
+    status: DRAFT
+    desc: 单一均匀线宽、线性表达
+  - id: VE09
+    name_zh: 连续线画
+    name_en: Continuous Line
+    status: DRAFT
+    desc: 一笔到底的连续线条
+  - id: VE10
+    name_zh: 抽象矢量
+    name_en: Abstract Vector
+    status: DRAFT
+    desc: 形状/色彩构成、非具象
+  - id: VE11
+    name_zh: 企业矢量
+    name_en: Corporate Vector
+    status: DRAFT
+    desc: 商务蓝灰、规整、可信赖
+  - id: VE12
+    name_zh: UI 插画
+    name_en: UI Illustration
+    status: DRAFT
+    desc: 界面场景、简洁图标语言

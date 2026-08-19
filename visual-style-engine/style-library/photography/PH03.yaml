@@ -1,0 +1,58 @@
+# PH03 — Portrait Photography / 肖像摄影
+id: PH03
+version: 1.0.0
+status: ACTIVE
+name: {zh: 肖像摄影, en: Portrait Photography}
+category: {id: photography, name_zh: 摄影, name_en: Photography}
+parent_style: null
+aliases: [portrait photo, 人物肖像]
+definition:
+  summary: >-
+    以人物为主体的摄影风格，通过光线塑造、表情神态与简洁背景突出人物个性与情绪。
+  detailed: >-
+    肖像摄影关注人物本身：面部光线塑造（伦勃朗光/蝴蝶光/侧光等）、神态捕捉、简洁或有叙事性的
+    背景。画幅多为人像构图，景深常控制以突出主体。适用于人物专栏、传记内容、封面人物。
+visual_intent: [human, emotional, focused]
+fingerprint:
+  shape: [人物主体, 面部结构]
+  line: [无描边, 光影轮廓]
+  color: [肤色调和, 环境色克制]
+  shading: [面部光影塑造, 伦勃朗/侧光]
+  lighting: [肖像布光, 主光+补光]
+  texture: [真实肤质, 细腻过渡]
+  composition: [人物构图, 眼神引导]
+  detail: [7/10 面部细节]
+style_dna: {realism: 9, abstraction: 1, detail_density: 7, spatial_depth: 6, texture_strength: 7, shading_strength: 8, lighting_complexity: 7, line_presence: 0, line_roughness: 1, shape_complexity: 5, color_complexity: 4}
+shape_language: {description: 人物主体面部结构, preferred: [清晰面部轮廓], avoid: [人物过小]}
+line_language: {description: 无描边光影轮廓, preferred: [自然轮廓], avoid: [描边]}
+color_system: {strategy: 肤色调和, recommended_palette_types: [PAL_MUTED, PAL_CREAM, PAL_EARTH_TONE], saturation_range: [2, 5], contrast_range: [4, 7], recommended_color_count: [4, 8], avoid: [怪异肤色调]}
+shading: {method: [伦勃朗光, 侧光, 蝴蝶光], strength: 8, avoid: [顶光惨白]}
+lighting: {physical_realism: 8, methods: [主光+补光, 窗光, 影棚柔光], avoid: [霓虹, 杂乱光]}
+texture: {default: [真实肤质, 细腻], strength: 7, avoid: [磨皮塑料感]}
+material: {rendering_policy: 真实肤质与织物, preferred: [真实质感], avoid: [塑料]}
+composition: {preferred: [人物构图, 眼神引导, 简洁背景], negative_space_range: "20-45%", layer_count: "2-3", avoid: [杂乱背景]}
+spatial_system: {depth: 6, perspective: [标准人像透视], avoid: [广角畸变]}
+detail_density: {level: 7, focal_detail_policy: 面部细节充分, 背景简洁}
+character_rendering: {face: 情绪神态, skin: 真实肤质, hair: 细节真实, anatomy: 自然, clothing: 环境合理}
+background: {complexity: 2, preferred: [简洁/虚化/环境叙事], avoid: [杂乱]}
+rules:
+  must: [人物为主体, 面部光线塑造, 神态捕捉, 背景简洁或叙事]
+  should: [眼神清晰, 肤质真实, 景深控制]
+  may: [环境肖像, 黑白处理]
+  must_not: [人物过小, 顶光惨白, 过度磨皮, 卡通化, 3D 渲染观感, 背景杂乱抢主体]
+allowed_variations: [布光方式, 黑白/彩色]
+forbidden_features: [wax skin, cartoon, 3D render]
+canonical_prompt:
+  positive_anchor: [portrait photography, expressive face, sculpted studio or window lighting, real skin texture, shallow depth of field, clean background, emotional presence]
+  negative_anchor: [wax smooth skin, cartoon, 3D rendering, cluttered background, harsh top light]
+confusion_with:
+  - {style: PH04, risk: high, difference: [PH04 环境与人物并重, PH03 人物绝对主体], correction: [弱化环境, 强化人物]}
+  - {style: PH06, risk: medium, difference: [PH06 美妆特写精致, PH03 自然情绪], correction: [更自然, 少妆感]}
+correction_rules:
+  - {problem: wax_skin, instructions: [恢复真实肤质, 去过度磨皮]}
+  - {problem: subject_too_small, instructions: [拉近人物, 突出主体]}
+  - {problem: cluttered_bg, instructions: [简化背景, 加强景深]}
+use_cases: {recommended: [人物专栏, 传记封面, 品牌人物], discouraged: [纯风景, 数据图]}
+compatibility: {portrait: 10, landscape: 6, product: 6, poster: 8, education: 6, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment]}
+evaluation_profile: PH03_DEFAULT

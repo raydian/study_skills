@@ -1,0 +1,66 @@
+# Cinematic Catalog — 电影类（12）
+category: cinematic
+name_zh: 电影感
+name_en: Cinematic
+
+styles:
+  - id: CI01
+    name_zh: 电影剧照
+    name_en: Cinematic Film Still
+    status: ACTIVE
+    desc: 构图/布光/调色均按电影帧标准，叙事感强
+  - id: CI02
+    name_zh: 好莱坞电影
+    name_en: Hollywood Cinema
+    status: DRAFT
+    desc: 商业大片视觉：高对比、强戏剧光、精良制作
+  - id: CI03
+    name_zh: 独立电影
+    name_en: Indie Film
+    status: DRAFT
+    desc: 自然光、手持感、写实克制
+  - id: CI04
+    name_zh: 黑色电影
+    name_en: Film Noir
+    status: ACTIVE
+    desc: 高反差黑白或低饱和、硬光、阴影叙事
+  - id: CI05
+    name_zh: 新黑色电影
+    name_en: Neo-Noir
+    status: DRAFT
+    desc: 黑色电影基底 + 现代彩色/霓虹
+  - id: CI06
+    name_zh: 史诗电影
+    name_en: Epic Cinematic
+    status: DRAFT
+    desc: 宏大场面、全景构图、气势磅礴
+  - id: CI07
+    name_zh: 科幻电影
+    name_en: Sci-Fi Cinema
+    status: DRAFT
+    desc: 未来环境、科技感布光、硬朗几何
+  - id: CI08
+    name_zh: 历史电影
+    name_en: Historical Cinema
+    status: ACTIVE
+    desc: 时代质感、服饰器物考究、纪实电影光
+  - id: CI09
+    name_zh: 浪漫电影
+    name_en: Romantic Cinema
+    status: DRAFT
+    desc: 柔和光、暖调、氛围感强
+  - id: CI10
+    name_zh: 惊悚电影
+    name_en: Thriller Cinema
+    status: DRAFT
+    desc: 紧张构图、阴影压迫、低照度
+  - id: CI11
+    name_zh: 纪录电影
+    name_en: Documentary Cinema
+    status: DRAFT
+    desc: 客观写实、自然光、克制调色
+  - id: CI12
+    name_zh: 复古电影
+    name_en: Retro Cinema
+    status: DRAFT
+    desc: 特定年代的电影质感（颗粒/色偏/镜头语言）

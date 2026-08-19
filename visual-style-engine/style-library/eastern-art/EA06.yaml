@@ -1,0 +1,59 @@
+# EA06 — Song Dynasty Aesthetic / 宋代美学
+id: EA06
+version: 1.0.0
+status: ACTIVE
+name: {zh: 宋代美学, en: Song Dynasty Aesthetic}
+category: {id: eastern-art, name_zh: 东方艺术, name_en: Eastern Art}
+parent_style: EASTERN_BASE
+aliases: [song aesthetic, 宋韵, 极简东方]
+definition:
+  summary: >-
+    以宋代审美为核心的东方极简：素雅、留白、含蓄、克制，一器一物皆有"格物"之美。
+  detailed: >-
+    宋代美学是东方审美的巅峰范式：色彩素雅（天青、月白、墨色）、造型简洁内敛、大量留白、
+    含蓄克制的气质。器物如汝窑天青釉，画面如宋画山水的烟岚留白。适用于传统文化、茶道香道、
+    高端东方品牌、禅意空间。
+visual_intent: [quiet, refined, oriental]
+fingerprint:
+  shape: [简洁内敛造型, 器物线条]
+  line: [含蓄线, 少而准]
+  color: [素雅色（天青月白墨色）, 极克制]
+  shading: [淡雅渲染, 无强烈对比]
+  lighting: [朦胧含蓄]
+  texture: [釉面/绢纸/宣纸质感]
+  composition: [大留白, 静物章法]
+  detail: [4/10 含蓄细节]
+style_dna: {realism: 4, abstraction: 5, detail_density: 4, spatial_depth: 4, texture_strength: 4, shading_strength: 3, lighting_complexity: 2, line_presence: 4, line_roughness: 1, shape_complexity: 3, color_complexity: 2}
+shape_language: {description: 简洁内敛, preferred: [素形, 器物美], avoid: [繁复]}
+line_language: {description: 含蓄少线, preferred: [少而准线], avoid: [张扬]}
+color_system: {strategy: 素雅极克制, recommended_palette_types: [PAL_TRADITIONAL_CHINESE, PAL_CREAM, PAL_MUTED, PAL_IVORY_CHARCOAL], saturation_range: [1, 3], contrast_range: [2, 4], recommended_color_count: [2, 4], avoid: [鲜艳]}
+shading: {method: [淡雅渲染], strength: 3, avoid: [强烈光影]}
+lighting: {physical_realism: 2, methods: [朦胧含蓄], avoid: [戏剧光]}
+texture: {default: [釉面/绢纸/宣纸], strength: 4, avoid: [塑料]}
+material: {rendering_policy: 器物材质含蓄, preferred: [釉/木/纸], avoid: [油亮]}
+composition: {preferred: [大留白, 静物章法, 不对称], negative_space_range: "40-65%", layer_count: "2", avoid: [满铺]}
+spatial_system: {depth: 4, perspective: [含蓄浅空间], avoid: [深透视]}
+detail_density: {level: 4, focal_detail_policy: 器物局部细腻, 余者留白}
+character_rendering: {face: 含蓄, skin: 素色, hair: 简洁, anatomy: 端正, clothing: 素衣}
+background: {complexity: 1, preferred: [大留白/淡墨], avoid: [照片]}
+rules:
+  must: [素雅色, 大留白, 含蓄克制, 器物美学]
+  should: [造型简洁, 材质含蓄, 静物章法]
+  may: [淡墨远山, 单件器物]
+  must_not: [鲜艳繁复, 浓烈装饰, 西方写实光影, 3D 渲染感, 商业高饱和, 堆砌元素]
+allowed_variations: [器物题材, 色系微调]
+forbidden_features: [vivid clutter, western lighting, commercial saturation]
+canonical_prompt:
+  positive_anchor: [Song dynasty aesthetic, quiet refined oriental minimalism, restrained celadon palette, generous negative space, simple elegant objects, subtle ink atmosphere, understated timeless beauty]
+  negative_anchor: [vivid clutter, western dramatic lighting, commercial saturation, 3D render, ornate decoration]
+confusion_with:
+  - {style: EA12, risk: high, difference: [EA12 禅意更抽象极简, EA06 器物/山水具象含蓄], correction: [保留器物具象]}
+  - {style: EA01, risk: medium, difference: [EA01 水墨笔意浓, EA06 素雅克制], correction: [减笔意, 更静]}
+correction_rules:
+  - {problem: too_busy, instructions: [删元素, 大留白]}
+  - {problem: colors_vivid, instructions: [素雅化, 天青月白墨色]}
+  - {problem: lost_restraint, instructions: [含蓄化, 减装饰]}
+use_cases: {recommended: [传统文化, 茶道香道, 高端东方品牌, 禅意空间], discouraged: [街头潮流, 商业促销]}
+compatibility: {portrait: 7, landscape: 9, product: 8, poster: 8, education: 6, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, environment, nature]}
+evaluation_profile: EA06_DEFAULT

@@ -1,0 +1,58 @@
+# IL01 — Flat Illustration / 扁平插画
+id: IL01
+version: 1.0.0
+status: ACTIVE
+name: {zh: 扁平插画, en: Flat Illustration}
+category: {id: illustration, name_zh: 插画, name_en: Illustration}
+parent_style: null
+aliases: [flat illustration, 扁平风插画]
+definition:
+  summary: >-
+    以纯色块与图形化语言组织的插画风格：无渐变阴影、边缘干净、叙事图形化，现代感强。
+  detailed: >-
+    扁平插画取消立体感表现，用色块面积、形状与位置关系传达内容；可带叙事细节与场景，但全部
+    以扁平图形呈现。色彩通常明快、成体系。适用于 UI 场景、营销插画、儿童与知识图解。
+visual_intent: [clean, graphic, modern]
+fingerprint:
+  shape: [图形化造型, 简化场景]
+  line: [可无描边或细描边, 干净边缘]
+  color: [明快色块, 成体系]
+  shading: [无阴影或纯平色块]
+  lighting: [无真实光, 色块层次]
+  texture: [无纹理或极轻]
+  composition: [图形化布局, 叙事场景]
+  detail: [3/10 低细节]
+style_dna: {realism: 1, abstraction: 7, detail_density: 3, spatial_depth: 3, texture_strength: 1, shading_strength: 1, lighting_complexity: 1, line_presence: 3, line_roughness: 1, shape_complexity: 5, color_complexity: 5}
+shape_language: {description: 图形化造型, preferred: [简化形, 场景图形化], avoid: [写实解剖]}
+line_language: {description: 可无描边, preferred: [干净边缘, 细描边], avoid: [粗糙线]}
+color_system: {strategy: 明快色块体系, recommended_palette_types: [PAL_CANDY_BRIGHT, PAL_HIGH_SATURATION, PAL_PASTEL, PAL_MORANDI], saturation_range: [3, 8], contrast_range: [4, 7], recommended_color_count: [4, 8], avoid: [灰暗浊色]}
+shading: {method: [无, 纯色块], strength: 1, avoid: [渐变体积]}
+lighting: {physical_realism: 0, methods: [无, 色块层次], avoid: [体积光]}
+texture: {default: [无], strength: 1, avoid: [纹理堆叠]}
+material: {rendering_policy: 无材质表现, preferred: [纯色], avoid: [材质真实]}
+composition: {preferred: [图形布局, 叙事场景, 均衡], negative_space_range: "15-40%", layer_count: "2-3", avoid: [拥挤混乱]}
+spatial_system: {depth: 3, perspective: [扁平层次], avoid: [深透视]}
+detail_density: {level: 3, focal_detail_policy: 图形化表达, 不做写实细节}
+character_rendering: {face: 简化五官, skin: 扁平肤色, hair: 色块, anatomy: 风格化, clothing: 色块}
+background: {complexity: 3, preferred: [色块背景, 场景图形], avoid: [照片背景]}
+rules:
+  must: [纯色块, 无渐变阴影, 边缘干净, 图形化表达]
+  should: [色彩成体系, 叙事场景, 现代感]
+  may: [细描边, 极轻纹理]
+  must_not: [写实渐变, 体积光, 照片质感, 油画笔触, 3D 渲染感, 粗糙笔触, 复杂真实反射]
+allowed_variations: [描边有无, 配色体系]
+forbidden_features: [gradient shading, photoreal, texture heavy]
+canonical_prompt:
+  positive_anchor: [flat illustration, clean color blocks, no gradient shading, graphic modern composition, simplified characters and scenes, cohesive bright palette, crisp edges]
+  negative_anchor: [gradient shading, photorealistic, oil brush, 3D rendering, rough texture, complex reflections]
+confusion_with:
+  - {style: VE01, risk: high, difference: [VE01 更极简留白, IL01 允许叙事场景], correction: [丰富场景或简化留白]}
+  - {style: IL07, risk: medium, difference: [IL07 带颗粒纹理, IL01 纯平], correction: [去颗粒]}
+correction_rules:
+  - {problem: gradient_leak, instructions: [去渐变, 纯色块化]}
+  - {problem: too_flat_empty, instructions: [加入叙事元素, 丰富场景]}
+  - {problem: texture_appeared, instructions: [清除纹理, 保持干净]}
+use_cases: {recommended: [UI 场景, 营销插画, 知识图解, 儿童内容], discouraged: [高端质感, 情感浓重艺术]}
+compatibility: {portrait: 7, landscape: 8, product: 8, poster: 9, education: 8, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, still_life]}
+evaluation_profile: IL01_DEFAULT

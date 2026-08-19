@@ -1,0 +1,43 @@
+# Shape Library — 形状属性
+schema: attribute_library
+type: shape
+version: "1.0.0"
+
+# 形状属性用于调节造型语言的几何/有机倾向与简化程度。
+
+shapes:
+  - id: SHAPE_GEOMETRIC
+    name: {zh: 几何形, en: Geometric}
+    parameters: {base: rect-circle-triangle, complexity: low}
+    prompt_anchor: [geometric shapes, clean primitives]
+    compatible: [VE04, GD01, GD16]
+
+  - id: SHAPE_ORGANIC
+    name: {zh: 有机形, en: Organic}
+    parameters: {base: free-form curves, complexity: medium}
+    prompt_anchor: [organic free-form shapes, flowing curves]
+    compatible: [VE05, PA08, FA06]
+
+  - id: SHAPE_SIMPLIFIED
+    name: {zh: 简化形, en: Simplified}
+    parameters: {abstraction: high, detail: minimal}
+    prompt_anchor: [simplified silhouettes, minimal form]
+    compatible: [VE01, IL06, DR08]
+
+  - id: SHAPE_REALISTIC
+    name: {zh: 写实形, en: Realistic}
+    parameters: {abstraction: low, anatomy: accurate}
+    prompt_anchor: [realistic forms, accurate proportions]
+    compatible: [PH01, CI08, PA02]
+
+  - id: SHAPE_GEOMETRIC_DECO
+    name: {zh: 几何装饰形, en: Geometric Deco}
+    parameters: {base: deco motifs, symmetry: high}
+    prompt_anchor: [art deco geometric ornaments, symmetrical motifs]
+    compatible: [GD05, EA07, RT02]
+
+  - id: SHAPE_SYMBOLIC
+    name: {zh: 象征形, en: Symbolic}
+    parameters: {semantic: high, clarity: high}
+    prompt_anchor: [symbolic recognizable shapes, clear icons]
+    compatible: [IL03, IL05, IL06, VE12]

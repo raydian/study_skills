@@ -1,0 +1,41 @@
+# ============================================================
+# Evaluation Profile Schema — 风格一致性评估配置
+# 依据：《AI Visual Style Skill System 设计方案》第 32/33 节 + 附录 D
+# 原则：维度级评分，可覆盖权重，可配置阈值与硬失败
+# ============================================================
+schema: evaluation_profile
+version: "1.0.0"
+
+id: string            # 必填。如 VE01_DEFAULT / DR07_LINE_HEAVY
+style_id: string      # 必填。关联 Style id
+style_version: string # 必填。关联 Style 版本
+
+# 维度权重（默认总和 = 1.00；不同 Style 可覆盖，如 DR07 提高 line/texture）
+weights:
+  shape: 0.20
+  line: 0.15
+  color: 0.15
+  shading: 0.10
+  lighting: 0.10
+  texture: 0.10
+  composition: 0.10
+  detail: 0.10
+
+# 判定阈值
+thresholds:
+  strong_pass: 85     # 85–100 Strong Pass
+  pass: 80            # 80–84 Pass
+  correction: 65      # 65–79 Correction；<65 Regenerate
+
+# 硬失败：任一条触发即 REGENERATE
+hard_fail:
+  - violates_must_not   # 出现任一 MUST NOT 特征
+  - wrong_rendering_method  # 渲染方法错误（如矢量变摄影）
+
+# 问题维度 → 纠偏规则映射（correction-rules 索引）
+correction_map: {}
+  # texture_too_realistic: [eliminate realistic material microtexture, ...]
+
+# 项目级额外指标（第 33 节）
+project_metrics:
+  pics_threshold: 85        # Project Identity Consistency Score 阈值

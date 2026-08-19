@@ -1,0 +1,58 @@
+# PH08 — Product Photography / 产品摄影
+id: PH08
+version: 1.0.0
+status: ACTIVE
+name: {zh: 产品摄影, en: Product Photography}
+category: {id: photography, name_zh: 摄影, name_en: Photography}
+parent_style: null
+aliases: [product photo, 商品图]
+definition:
+  summary: >-
+    以产品为绝对主体的摄影风格：精细布光、材质还原、无干扰背景，商业目的明确。
+  detailed: >-
+    产品摄影服务于展示产品本身：布光突出材质与结构（高光、轮廓、反射控制），背景纯净或场景化，
+    构图以产品为绝对中心。适合商品详情、产品目录、电商与商业展示。
+visual_intent: [clean, commercial, precise]
+fingerprint:
+  shape: [产品主体, 结构清晰]
+  line: [无描边, 轮廓光]
+  color: [产品本色还原, 背景克制]
+  shading: [精细布光, 轮廓与高光]
+  lighting: [影棚布光, 产品光]
+  texture: [材质精准还原]
+  composition: [产品居中, 纯净背景]
+  detail: [8/10 材质细节]
+style_dna: {realism: 9, abstraction: 0, detail_density: 8, spatial_depth: 5, texture_strength: 8, shading_strength: 8, lighting_complexity: 7, line_presence: 0, line_roughness: 0, shape_complexity: 5, color_complexity: 4}
+shape_language: {description: 产品结构清晰, preferred: [完整产品轮廓], avoid: [遮挡过多]}
+line_language: {description: 无描边, preferred: [自然边缘], avoid: [描边]}
+color_system: {strategy: 产品本色, recommended_palette_types: [PAL_CREAM, PAL_MUTED], saturation_range: [3, 6], contrast_range: [4, 6], recommended_color_count: [3, 6], avoid: [偏色]}
+shading: {method: [影棚布光, 高光控制], strength: 8, avoid: [杂乱光]}
+lighting: {physical_realism: 8, methods: [柔光箱, 主光+辅光+轮廓光], avoid: [霓虹, 环境杂光]}
+texture: {default: [材质精准], strength: 8, avoid: [塑料感失真]}
+material: {rendering_policy: 材质精准还原, preferred: [真实材质], avoid: [失真]}
+composition: {preferred: [产品居中, 纯净背景, 黄金比例], negative_space_range: "20-50%", layer_count: "2", avoid: [杂乱布景]}
+spatial_system: {depth: 5, perspective: [标准产品视角], avoid: [夸张畸变]}
+detail_density: {level: 8, focal_detail_policy: 产品材质细节拉满, 背景极简}
+character_rendering: {face: "", skin: "", hair: "", anatomy: "", clothing: ""}
+background: {complexity: 1, preferred: [纯色/渐变/场景台], avoid: [杂乱]}
+rules:
+  must: [产品为主体, 布光精细, 背景无干扰, 材质还原]
+  should: [构图居中或黄金比例, 高光轮廓控制, 画面干净]
+  may: [场景化展示, 阴影自然]
+  must_not: [背景杂乱, 严重偏色, 卡通化, 3D 渲染观感（非 CGI 需求时）, 产品被遮挡, 过度修图失真]
+allowed_variations: [纯色背景/场景台, 光型变化]
+forbidden_features: [cluttered bg, color cast, cartoon]
+canonical_prompt:
+  positive_anchor: [product photography, precise studio lighting, true material rendering, clean uncluttered background, centered composition, crisp focus on product]
+  negative_anchor: [cluttered background, color cast, cartoon look, 3D render, heavy retouching artifacts]
+confusion_with:
+  - {style: TD02, risk: medium, difference: [TD02 是 CGI 渲染, PH08 是真实摄影], correction: [保持摄影质感, 若需渲染改 TD02]}
+  - {style: PH09, risk: medium, difference: [PH09 静物组合构图, PH08 单产品展示], correction: [突出单一产品]}
+correction_rules:
+  - {problem: cluttered_bg, instructions: [净化背景, 简化道具]}
+  - {problem: color_cast, instructions: [还原产品本色, 白平衡校准]}
+  - {problem: lost_focus, instructions: [对焦产品主体, 锐化材质]}
+use_cases: {recommended: [商品详情, 产品目录, 电商, 商业展示], discouraged: [情感叙事, 抽象艺术]}
+compatibility: {portrait: 4, landscape: 7, product: 10, poster: 8, education: 5, book_video: 6}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, product]}
+evaluation_profile: PH08_DEFAULT

@@ -1,0 +1,245 @@
+# FA05 — Surrealism / 超现实主义
+id: FA05
+version: 1.0.0
+status: ACTIVE
+
+name:
+  zh: 超现实主义
+  en: Surrealism
+
+category:
+  id: fantasy
+  name_zh: 奇幻与超现实
+  name_en: Fantasy / Surreal
+
+parent_style: null
+
+aliases:
+  - surreal art
+  - 超现实
+  - dream logic art
+
+definition:
+  summary: >-
+    以梦境逻辑组织画面的视觉风格：物像错置、比例失调、心理空间、象征并置。
+    适合心理、哲学、梦境、隐喻类内容，表达理性无法直说的感受。
+  detailed: >-
+    FA05 的核心是"熟悉的物体处于陌生的关系"：日常物像被放大/缩小、悬浮、错位、融合，
+    空间遵循心理而非物理逻辑。画面往往精致写实地渲染每个元素（写实感是张力来源），
+    但元素间的关系违背常识，制造梦境般的隐喻张力。色彩可梦幻可阴郁，光影真实但服务于氛围。
+    它区别于"魔幻"（有魔法设定）与"梦境感"（柔和模糊）：FA05 保持高清晰度的物像，
+    靠关系错置制造超现实。适合心理/哲学/梦境主题、隐喻视觉、实验海报。
+
+visual_intent:
+  - surreal
+  - dreamlike
+  - metaphorical
+  - introspective
+
+fingerprint:
+  shape:
+    - 写实渲染的物像（清晰可辨）
+    - 物像比例/位置异化
+  line:
+    - 无描边
+    - 精细边缘
+  color:
+    - 梦幻或阴郁色调
+    - 可高对比
+  shading:
+    - 写实渲染
+    - 精致的体积感
+  lighting:
+    - 真实但氛围化
+    - 可戏剧光
+  texture:
+    - 物像材质精细
+  composition:
+    - 心理空间
+    - 象征并置
+    - 悬浮/错位结构
+  detail:
+    - 6/10 精细物像细节
+
+style_dna:
+  realism: 7
+  abstraction: 5
+  detail_density: 6
+  spatial_depth: 7
+  texture_strength: 5
+  shading_strength: 7
+  lighting_complexity: 6
+  line_presence: 1
+  line_roughness: 1
+  shape_complexity: 6
+  color_complexity: 5
+
+shape_language:
+  description: 写实物像，关系异化是核心。
+  preferred: [recognizable objects in impossible relations, scale shifts, floating elements]
+  avoid: [abstract blobs, cartoon simplification]
+
+line_language:
+  description: 无描边，精细渲染边缘。
+  preferred: [fine rendered edges, none]
+  avoid: [outlines, sketches]
+
+color_system:
+  strategy: dreamlike or oppressive palette per mood
+  recommended_palette_types: [PAL_MUTED, PAL_DARK, PAL_VINTAGE_FADED, PAL_DUSTY_BLUE]
+  saturation_range: [2, 6]
+  contrast_range: [4, 8]
+  recommended_color_count: [4, 8]
+  avoid: [flat candy, corporate gray]
+
+shading:
+  method: [realistic rendering, precise volume]
+  strength: 7
+  avoid: [flat vector shading]
+
+lighting:
+  physical_realism: 7
+  methods: [realistic but staged, dramatic light, haze]
+  avoid: [flat studio boring]
+
+texture:
+  default: [fine material texture on objects]
+  strength: 5
+  avoid: [clean vector flat]
+
+material:
+  rendering_policy: realistic material rendering as contrast vehicle
+  preferred: [precise material believability]
+  avoid: [PBR showcase plastic]
+
+composition:
+  preferred: [dream logic, symbolic juxtaposition, floating arrangement, central anomaly]
+  negative_space_range: "15-40%"
+  layer_count: "3-4"
+  avoid: [mundane everyday composition]
+
+spatial_system:
+  depth: 7
+  perspective: [impossible perspective, psychological space, floating planes]
+  avoid: [strict architectural perspective]
+
+detail_density:
+  level: 6
+  focal_detail_policy: 焦点物像细节精细，氛围区域可虚化
+
+character_rendering:
+  face: 写实或面具化，情绪疏离
+  skin: 真实质感
+  hair: 精细
+  anatomy: 可异化（比例/数量）
+  clothing: 写实织物
+
+background:
+  complexity: 5
+  preferred: [dream space, void, staged environment, fog]
+  avoid: [blank flat color]
+
+rules:
+  must:
+    - 物像清晰可辨（写实渲染）
+    - 元素间存在超现实关系（错置/比例/悬浮）
+    - 心理空间逻辑
+    - 具有隐喻张力
+  should:
+    - 精致渲染每个物像
+    - 光影氛围化
+    - 构图有象征结构
+  may:
+    - 物像融合/重复
+    - 比例极端化
+    - 超自然光影
+  must_not:
+    - 纯粹抽象无物像
+    - 卡通化
+    - 日常平庸构图
+    - 照片式如实记录
+    - 3D 游戏 CG 观感（无超现实关系时）
+
+allowed_variations:
+  - 色调在梦幻/阴郁间变化
+  - 超现实手法（错置/放大/悬浮/融合）
+
+forbidden_features:
+  - mundane composition
+  - pure abstraction without objects
+  - cartoon style
+
+canonical_prompt:
+  positive_anchor:
+    - "surrealist art"
+    - "dream logic composition"
+    - "recognizable objects in impossible relations"
+    - "scale shifts and floating elements"
+    - "psychological space"
+    - "precise realistic rendering of each object"
+    - "symbolic juxtaposition"
+    - "atmospheric dramatic lighting"
+    - "metaphorical tension"
+  negative_anchor:
+    - "mundane everyday composition"
+    - "cartoon rendering"
+    - "abstract blob shapes"
+    - "photographic documentary realism"
+    - "flat vector look"
+
+confusion_with:
+  - style: FA06
+    risk: high
+    difference:
+      - FA05 物像高清晰、关系错置
+      - FA06 柔和模糊、氛围飘浮
+    correction:
+      - sharpen object rendering
+      - introduce impossible relations
+  - style: FA10
+    risk: medium
+    difference:
+      - FA10 用符号系统叙事
+      - FA05 用物像关系制造梦境张力
+    correction:
+      - prioritize relational surrealism over symbolic codes
+
+correction_rules:
+  - problem: became_dreamy_blur
+    instructions:
+      - restore crisp object rendering
+      - sharpen focus
+      - add impossible relations
+  - problem: became_mundane
+    instructions:
+      - break everyday logic
+      - shift scale or position
+      - introduce an anomaly
+  - problem: too_abstract
+    instructions:
+      - bring back recognizable objects
+      - keep the surreal relation
+
+use_cases:
+  recommended:
+    - 心理/哲学内容
+    - 梦境/隐喻主题
+    - 实验性海报
+  discouraged:
+    - 需要客观写实的内容
+    - 儿童教育
+    - 产品说明
+
+compatibility:
+  portrait: 7
+  landscape: 9
+  product: 5
+  poster: 9
+  education: 5
+  book_video: 7
+
+reference_policy:
+  minimum_reference_count: 3
+  reference_types: [still_life, environment, complex_scene]
+
+evaluation_profile: FA05_DEFAULT

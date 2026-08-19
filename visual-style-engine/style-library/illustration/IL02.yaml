@@ -1,0 +1,58 @@
+# IL02 — Editorial Illustration / 编辑插画
+id: IL02
+version: 1.0.0
+status: ACTIVE
+name: {zh: 编辑插画, en: Editorial Illustration}
+category: {id: illustration, name_zh: 插画, name_en: Illustration}
+parent_style: null
+aliases: [editorial illustration, 杂志插画, 专栏配图]
+definition:
+  summary: >-
+    为文章/报道服务的概念化插图：图文关系优先，视觉表达观点，形式与主题高度配合。
+  detailed: >-
+    编辑插画的核心是"传达观点"：围绕文章主题做视觉解读，形式可多样（扁平/拼贴/混合媒介），
+    但始终服务内容，风格有编辑气质——克制、讲究、有观点。常用于杂志专栏、评论文章、观点类内容。
+visual_intent: [editorial, opinionated, intellectual]
+fingerprint:
+  shape: [概念化物像, 编辑式构图]
+  line: [风格多样, 干净为主]
+  color: [克制成体系, 可强调色]
+  shading: [简化光影, 形式服务概念]
+  lighting: [氛围化, 非写实]
+  texture: [可纸感/拼贴, 克制]
+  composition: [图文节奏, 观点结构]
+  detail: [4/10 中细节]
+style_dna: {realism: 3, abstraction: 6, detail_density: 4, spatial_depth: 4, texture_strength: 3, shading_strength: 3, lighting_complexity: 2, line_presence: 4, line_roughness: 2, shape_complexity: 5, color_complexity: 5}
+shape_language: {description: 概念化物像, preferred: [观点载体物像, 象征形], avoid: [无观点堆砌]}
+line_language: {description: 干净为主, preferred: [清晰边缘, 风格线], avoid: [杂乱]}
+color_system: {strategy: 克制 + 强调色, recommended_palette_types: [PAL_MUTED, PAL_MORANDI, PAL_CREAM, PAL_HIGH_SATURATION], saturation_range: [2, 6], contrast_range: [4, 6], recommended_color_count: [3, 6], avoid: [霓虹满铺]}
+shading: {method: [简化光影, 平涂], strength: 3, avoid: [写实体积]}
+lighting: {physical_realism: 2, methods: [氛围化, 无真实光], avoid: [体积光]}
+texture: {default: [可纸感/拼贴], strength: 3, avoid: [照片质感]}
+material: {rendering_policy: 图形化, preferred: [简化], avoid: [材质写实]}
+composition: {preferred: [图文节奏, 观点结构, 编辑排版感], negative_space_range: "20-45%", layer_count: "2-3", avoid: [无层次满铺]}
+spatial_system: {depth: 4, perspective: [编辑式, 扁平为主], avoid: [深透视炫技]}
+detail_density: {level: 4, focal_detail_policy: 概念焦点增强, 其余简化}
+character_rendering: {face: 概念化, skin: 简化, hair: 简化, anatomy: 风格化, clothing: 图形化}
+background: {complexity: 2, preferred: [留白/色块/拼贴], avoid: [照片背景]}
+rules:
+  must: [表达观点, 图文关系优先, 概念化物像, 编辑气质]
+  should: [克制配色, 构图有结构, 形式与主题配合]
+  may: [拼贴混合媒介, 强调色]
+  must_not: [无观点装饰堆砌, 照片直用, 卡通低龄感, 3D 渲染感, 高饱和霓虹满铺, 粗糙随意]
+allowed_variations: [媒介形式, 配色]
+forbidden_features: [decorative noise, photoreal, childish cartoon]
+canonical_prompt:
+  positive_anchor: [editorial illustration, concept-driven visual, opinionated composition, graphic editing structure, restrained palette with focal accent, magazine intellectual tone, clean graphic shapes]
+  negative_anchor: [pure decoration, photorealistic, childish cartoon, 3D render, neon overload, rough careless]
+confusion_with:
+  - {style: IL03, risk: high, difference: [IL02 更依赖编辑图文结构, IL03 更依赖象征物像], correction: [强化编辑排版结构]}
+  - {style: IL06, risk: medium, difference: [IL06 极简少元素, IL02 观点表达], correction: [保留观点载体]}
+correction_rules:
+  - {problem: became_decoration, instructions: [回到观点表达, 明确概念载体]}
+  - {problem: lost_editing_structure, instructions: [加强图文节奏, 编辑式构图]}
+  - {problem: too_juvenile, instructions: [去低龄卡通感, 成熟配色]}
+use_cases: {recommended: [杂志专栏, 评论文章, 观点内容], discouraged: [纯叙事小说配图（可 IL04）]}
+compatibility: {portrait: 7, landscape: 9, product: 7, poster: 9, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: IL02_DEFAULT

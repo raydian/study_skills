@@ -1,0 +1,27 @@
+# Strategy — 海报内容域
+schema: strategy
+domain: poster
+version: "1.0.0"
+
+# 海报：视觉冲击 + 留白供排版；Prompt 只生成底图时要求 leave clean negative space
+
+primary:
+  - IL03          # 概念插画（知识海报）
+  - GD01          # 瑞士设计（秩序海报）
+  - GD14          # 复古海报
+  - PR07          # 孔版印刷（艺术海报）
+
+secondary:
+  - GD15          # 现代海报
+  - CI01          # 电影剧照（影视海报）
+  - VE01          # 极简矢量
+
+avoid:
+  - PH12          # 纪实（缺冲击）
+  - DR01          # 素描（缺色彩）
+
+# 海报专项（第 50 节）：分析 typography area / title safe / negative space / reading order / copy amount
+poster_analysis:
+  required_fields: [typography_area, title_safe_area, negative_space, reading_order, copy_amount, fg_bg_conflict]
+  prompt_rule: leave clean negative space for typography
+  text_handling: 大量文字后置排版，Prompt 只负责视觉底图

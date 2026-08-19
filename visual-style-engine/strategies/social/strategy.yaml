@@ -1,0 +1,24 @@
+# Strategy — 社交媒体内容域
+schema: strategy
+domain: social
+version: "1.0.0"
+
+# 社交：高识别度、明快、适合小屏，系列栏目需要 Identity
+
+primary:
+  - IL01          # 扁平插画（明快通用）
+  - IL07          # 颗粒插画（杂志感）
+  - PR07          # 孔版印刷（艺术感）
+  - VE06          # 糖果矢量（年轻向）
+
+secondary:
+  - IL06          # 极简插画（金句卡）
+  - GD08          # 孟菲斯（潮流）
+  - TD06          # 黏土 3D（萌系）
+
+avoid:
+  - PR01          # 木刻（过于硬朗）
+  - CI04          # 黑色电影（压抑）
+
+# 栏目化：一个社交栏目应建立 Visual Identity（第 3.4 节）
+column_rule: 栏目级 Visual Identity 锁定 Primary Style + Palette + Texture，保持系列识别度

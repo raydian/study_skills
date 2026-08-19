@@ -1,0 +1,48 @@
+# GPT Image Adapter
+model_family: gpt-image
+version: 1.0.0
+status: ACTIVE
+
+prompt_behavior:
+  natural_language: strong
+  keyword_density: low
+  long_prompt_tolerance: high
+
+capabilities:
+  reference_image: true
+  multiple_reference_images: false
+  typography: strong
+  negative_prompt: weak
+  image_editing: true
+
+compile_rules:
+  subject: 自然语言描述（一句完整句子）
+  scene: 并入场景句，避免逗号堆叠
+  style: 风格锚点转为自然语言描述（如 "in the style of a clean minimal flat vector illustration"），禁止关键词堆叠
+  attributes: 转为完整句子
+  composition: 并入描述
+  negative: 负向用文字排除（"Do not make it photorealistic, no depth of field"），不使用 negative prompt 参数
+  reference: 单图参考为主
+
+# 编译示例（VE01 风格）
+example:
+  canonical: "minimal vector illustration, clean flat 2D..."
+  compiled: >-
+    A lone farmer standing in a vast field of geometric farmland under an
+    overcast sky. In the style of a minimal flat vector illustration with
+    large simplified shapes, smooth clean contours, and a muted earth palette.
+    Use a soft diffused light, generous negative space, and a balanced
+    editorial composition. Do not make it photorealistic, no depth of field,
+    no 3D rendering, no texture.
+
+fallback_rules:
+  - feature: keyword_density_needed
+    fallback: {convert_to_sentences: true}
+  - feature: multiple_references
+    fallback: {merge_into_single_description: true}
+
+unsupported_features: []
+style_overrides: {}
+
+# 说明：GPT Image 强在自然语言理解与文字渲染；弱在负向表达——
+# 必须用句子"不做什么"来约束，而不是堆叠负向关键词。

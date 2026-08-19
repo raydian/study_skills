@@ -1,0 +1,42 @@
+# Midjourney Adapter
+model_family: midjourney
+version: 1.0.0
+status: DRAFT
+
+prompt_behavior:
+  natural_language: medium
+  keyword_density: medium
+  long_prompt_tolerance: medium
+
+capabilities:
+  reference_image: strong
+  multiple_reference_images: true
+  typography: weak
+  negative_prompt: strong
+  image_editing: partial
+
+compile_rules:
+  subject: 名词短语 + 修饰
+  scene: 并入短语
+  style: 短语 + 参数（--style raw 等）
+  attributes: 并入短语
+  composition: 并入短语
+  negative: 使用 --no 参数（--no photorealism, depth of field）
+  reference: image prompt（URL 前缀）+ --iw 权重
+
+example:
+  compiled: >-
+    minimal vector illustration of a farmer in a vast geometric farmland,
+    flat 2D, smooth shapes, muted earth palette, negative space --ar 16:9
+    --style raw --no photorealism, depth of field, 3d render
+
+fallback_rules:
+  - feature: typography
+    fallback: {postprocess_typography: true}
+unsupported_features: []
+style_overrides:
+  aspect_ratio: "--ar"
+  style_raw: "--style raw"
+  no: "--no"
+
+# 说明：MJ 强在参考图与负向；风格一致性可用参考图权重 --iw 控制。

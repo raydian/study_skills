@@ -1,0 +1,59 @@
+# EA10 — Neo-Chinese / 新中式
+id: EA10
+version: 1.0.0
+status: ACTIVE
+name: {zh: 新中式, en: Neo-Chinese}
+category: {id: eastern-art, name_zh: 东方艺术, name_en: Eastern Art}
+parent_style: EASTERN_BASE
+aliases: [new chinese style, 新中式风格, 东方现代]
+definition:
+  summary: >-
+    东方传统元素 + 现代设计语言的新中式风格：传统意象以当代简洁形式呈现，典雅又现代。
+  detailed: >-
+    新中式将东方元素（山水、窗棂、器物、书法、纹样）用现代设计语言重构：构图更现代、
+    色彩更克制、留白更当代，介于传统与极简之间。适用于现代东方品牌、空间视觉、高端消费品、
+    文化内容。
+visual_intent: [modern, oriental, elegant]
+fingerprint:
+  shape: [传统意象现代重构, 简洁形]
+  line: [干净现代线, 传统符号]
+  color: [东方素色 + 局部墨色朱砂, 克制]
+  shading: [简化层次]
+  lighting: [现代氛围]
+  texture: [纸/木/绢质感可选]
+  composition: [现代留白, 传统符号焦点]
+  detail: [3/10 简洁]
+style_dna: {realism: 3, abstraction: 6, detail_density: 3, spatial_depth: 4, texture_strength: 3, shading_strength: 3, lighting_complexity: 2, line_presence: 5, line_roughness: 1, shape_complexity: 4, color_complexity: 3}
+shape_language: {description: 传统意象现代重构, preferred: [山水剪影, 窗棂器物], avoid: [繁复传统堆砌]}
+line_language: {description: 干净现代, preferred: [简洁线], avoid: [粗放]}
+color_system: {strategy: 东方素色克制, recommended_palette_types: [PAL_TRADITIONAL_CHINESE, PAL_CREAM, PAL_MUTED, PAL_BLACK_GOLD], saturation_range: [1, 4], contrast_range: [3, 5], recommended_color_count: [3, 5], avoid: [荧光]}
+shading: {method: [简化层次], strength: 3, avoid: [西方写实]}
+lighting: {physical_realism: 2, methods: [现代氛围], avoid: [戏剧光]}
+texture: {default: [纸木绢可选], strength: 3, avoid: [塑料]}
+material: {rendering_policy: 现代化东方材质, preferred: [木纸瓷], avoid: [油亮]}
+composition: {preferred: [现代留白, 符号焦点, 不对称], negative_space_range: "35-60%", layer_count: "2-3", avoid: [堆砌]}
+spatial_system: {depth: 4, perspective: [现代浅空间], avoid: [机械]}
+detail_density: {level: 3, focal_detail_policy: 符号焦点简洁}
+character_rendering: {face: 简洁, skin: 素色, hair: 简洁, anatomy: 现代自然, clothing: 现代/新中式}
+background: {complexity: 2, preferred: [留白/现代几何/淡墨], avoid: [照片]}
+rules:
+  must: [东方元素, 现代设计语言, 克制配色, 当代留白]
+  should: [符号简洁, 构图现代, 优雅]
+  may: [墨色朱砂点缀, 几何窗棂]
+  must_not: [繁复传统堆砌, 荧光, 3D 渲染感, 复古陈旧感过重, 商业俗气, 西方写实光影]
+allowed_variations: [元素题材, 色系]
+forbidden_features: [cluttered tradition, fluorescent, kitsch]
+canonical_prompt:
+  positive_anchor: [neo-chinese style, oriental elements in modern design language, restrained elegant palette, contemporary negative space, simplified traditional symbols, subtle ink and cinnabar accents, refined modern elegant mood]
+  negative_anchor: [cluttered tradition, fluorescent colors, 3D render, kitsch, heavy western realistic lighting]
+confusion_with:
+  - {style: EA11, risk: high, difference: [EA11 国潮潮流撞色, EA10 新中式克制], correction: [克制化, 去潮流撞色]}
+  - {style: EA06, risk: medium, difference: [EA06 纯宋韵传统, EA10 现代重构], correction: [现代构图化]}
+correction_rules:
+  - {problem: became_traditional, instructions: [现代构图, 简化元素]}
+  - {problem: became_kitsch, instructions: [克制配色, 去俗气装饰]}
+  - {problem: lost_east, instructions: [加回东方符号, 水墨意象]}
+use_cases: {recommended: [现代东方品牌, 空间视觉, 高端消费品, 文化内容], discouraged: [纯传统古风, 街头潮流]}
+compatibility: {portrait: 7, landscape: 9, product: 8, poster: 9, education: 7, book_video: 8}
+reference_policy: {minimum_reference_count: 3, reference_types: [still_life, environment, abstract]}
+evaluation_profile: EA10_DEFAULT

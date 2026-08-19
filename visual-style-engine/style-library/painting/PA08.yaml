@@ -1,0 +1,252 @@
+# PA08 — Traditional Watercolor / 传统水彩
+id: PA08
+version: 1.0.0
+status: ACTIVE
+
+name:
+  zh: 传统水彩
+  en: Traditional Watercolor
+
+category:
+  id: painting
+  name_zh: 绘画
+  name_en: Painting
+
+parent_style: PAINTING_BASE
+
+aliases:
+  - watercolor painting
+  - 水彩画
+  - transparent watercolor
+
+definition:
+  summary: >-
+    以透明水彩颜料为媒介的绘画风格：水色渗化、层层罩染、纸面留白、边缘水痕。
+    气质清透，介于写实与写意之间，适合文学、自然、情感类内容。
+  detailed: >-
+    PA08 的视觉身份来自水彩媒介本身：颜料以水为溶剂，透明叠加，白色区域依靠纸面留白而非
+    白色颜料。典型特征包括湿润边缘的渗化（bleed）、颜料干后留下的水痕（water edge）、
+    纸张纹理的显现，以及由淡到浓的多层罩染产生的通透层次。色彩通常明亮而清透，阴影与暗部
+    靠浓度而非黑色。它不追求照片级写实，也不极端简化，常在"氛围优先"与"结构可辨"之间。
+    适合诗歌/文学配图、自然科普、治愈系内容、旅行手记。
+
+visual_intent:
+  - poetic
+  - gentle
+  - natural
+  - translucent
+
+fingerprint:
+  shape:
+    - 湿画法的晕染形
+    - 边缘可虚可实（soft edge 主导）
+  line:
+    - 少量细线或完全无线
+    - 偶用干笔触勾勒
+  color:
+    - 透明水色
+    - 清透明亮，高亮度
+  shading:
+    - 浓度层叠而非黑色阴影
+    - 单色罩染
+  lighting:
+    - 靠留白与浓度表现光
+    - 空气感
+  texture:
+    - 水痕 / 渗化边缘
+    - 水彩纸纹理
+  composition:
+    - 留白充分
+    - 焦点靠浓度对比
+  detail:
+    - 3/10 低-中细节
+
+style_dna:
+  realism: 4
+  abstraction: 5
+  detail_density: 3
+  spatial_depth: 4
+  texture_strength: 6
+  shading_strength: 4
+  lighting_complexity: 3
+  line_presence: 3
+  line_roughness: 3
+  shape_complexity: 4
+  color_complexity: 4
+
+shape_language:
+  description: 湿润晕染形，边缘软硬结合，避免生硬轮廓。
+  preferred: [wet-on-wet blooms, soft edges, loose washes]
+  avoid: [crisp vector silhouettes, hard uniform outlines]
+
+line_language:
+  description: 少量干笔勾勒，或无线。
+  preferred: [dry brush accents, minimal line, none]
+  avoid: [uniform ink lines, crosshatch]
+
+color_system:
+  strategy: transparent watercolor layering, white via paper
+  recommended_palette_types: [PAL_PASTEL, PAL_NATURAL, PAL_CREAM, PAL_MACARON]
+  saturation_range: [3, 6]
+  contrast_range: [3, 5]
+  recommended_color_count: [4, 7]
+  avoid: [muddy browns, opaque poster colors, neon]
+
+shading:
+  method: [transparent layering, monochrome wash, dry brush shadow]
+  strength: 4
+  avoid: [black shadows, airbrush gradient]
+
+lighting:
+  physical_realism: 3
+  methods: [paper-white highlights, concentration contrast]
+  avoid: [volumetric god rays, dramatic rim lighting]
+
+texture:
+  default: [watercolor paper grain, water edges, bleed]
+  strength: 6
+  avoid: [clean digital flat, photographic grain]
+
+material:
+  rendering_policy: watercolor media behavior, translucent pigment
+  preferred: [translucency, granulation, paper reveal]
+  avoid: [oil impasto, acrylic plastic gloss]
+
+composition:
+  preferred: [airy composition, generous white space, focal concentration contrast]
+  negative_space_range: "30-55%"
+  layer_count: "2-3"
+  avoid: [dense full-bleed clutter]
+
+spatial_system:
+  depth: 4
+  perspective: [soft atmospheric perspective, flat layering]
+  avoid: [forced deep perspective]
+
+detail_density:
+  level: 3
+  focal_detail_policy: 焦点处多层罩染增强，其余淡染留白
+
+character_rendering:
+  face: 淡染肤色 + 少量线
+  skin: 透明肤色罩染
+  hair: 湿画晕染束
+  anatomy: 自然比例，轻盈
+  clothing: 水色块面，少褶皱
+
+background:
+  complexity: 2
+  preferred: [soft wash, paper white, atmospheric]
+  avoid: [photographic backdrop]
+
+rules:
+  must:
+    - 透明水彩媒介感
+    - 留白用纸面而非白颜料
+    - 有渗化或水痕证据
+    - 色彩清透
+    - 浓度层叠而非黑色阴影
+  should:
+    - 保留纸面纹理
+    - 焦点靠浓度对比
+    - 构图留白充分
+    - 边缘软硬结合
+  may:
+    - 少量干笔勾勒
+    - 单色罩染
+    - 湿画渗化大面积
+  must_not:
+    - 油画厚涂
+    - 丙烯塑料光泽
+    - 黑色阴影
+    - 高饱和海报色
+    - 照片级噪点
+    - 3D 渲染观感
+    - 生硬均匀描边
+
+allowed_variations:
+  - 纸面色调（冷白/暖白）
+  - 湿润程度（湿画 vs 干画比例）
+
+forbidden_features:
+  - opaque poster colors
+  - oil impasto
+  - black shadows
+  - photoreal rendering
+
+canonical_prompt:
+  positive_anchor:
+    - "traditional transparent watercolor painting"
+    - "translucent pigment layering"
+    - "wet-on-wet soft blooms"
+    - "visible water edges and paper texture"
+    - "white areas kept as bare paper"
+    - "light airy transparent color washes"
+    - "concentration-based shading without black"
+    - "gentle poetic mood"
+  negative_anchor:
+    - "oil paint impasto"
+    - "acrylic plastic gloss"
+    - "black shadows"
+    - "opaque poster colors"
+    - "photorealistic rendering"
+    - "3D rendering look"
+    - "crisp uniform outlines"
+
+confusion_with:
+  - style: PA09
+    risk: high
+    difference:
+      - PA08 保留水痕渗化的媒介证据
+      - PA09 更清淡柔和、几乎无结构
+    correction:
+      - restore water edges and granulation
+      - strengthen value structure
+  - style: PA10
+    risk: medium
+    difference:
+      - PA10 水粉不透明、色块扁平
+      - PA08 透明叠色、纸面留白
+    correction:
+      - restore translucency
+      - keep paper white highlights
+
+correction_rules:
+  - problem: turned_opaque
+    instructions:
+      - restore transparency of washes
+      - reveal paper white
+      - reduce flat poster coverage
+  - problem: too_dark_shadows
+    instructions:
+      - replace black with deep transparent pigment
+      - keep shadows luminous
+  - problem: lost_media_evidence
+    instructions:
+      - add water edges
+      - introduce granulation
+      - show paper texture
+
+use_cases:
+  recommended:
+    - 诗歌/文学配图
+    - 自然科普
+    - 治愈系内容
+    - 旅行手记
+  discouraged:
+    - 科技图表
+    - 商业产品图
+
+compatibility:
+  portrait: 7
+  landscape: 9
+  product: 6
+  poster: 8
+  education: 7
+  book_video: 8
+
+reference_policy:
+  minimum_reference_count: 3
+  reference_types: [still_life, environment, nature]
+
+evaluation_profile: PA08_DEFAULT

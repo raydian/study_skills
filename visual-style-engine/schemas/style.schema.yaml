@@ -1,0 +1,167 @@
+# ============================================================
+# Style Schema — 视觉风格定义统一 Schema
+# 依据：《AI Visual Style Skill System 设计方案》第 7 节 + 附录 A
+# 原则：Style 不是关键词，而是一份可执行的视觉规范
+# ============================================================
+schema: style
+version: "1.0.0"
+
+# ---------- 标识 ----------
+id: string            # 必填。全局唯一，如 VE01 / IL03 / DR07
+version: string       # 必填。SemVer，如 1.0.0（PATCH 词序 / MINOR 约束 / MAJOR DNA 变化）
+status: enum          # 可选。DRAFT | SPEC_READY | BENCHMARKING | REVIEW | ACTIVE | DEPRECATED | ARCHIVED（默认 DRAFT）
+
+name:
+  zh: string          # 必填。中文名，如 极简矢量插画
+  en: string          # 必填。英文名，如 Minimal Vector Illustration
+
+category:
+  id: string          # 必填。一级分类 id，如 vector
+  name_zh: string     # 分类中文名
+  name_en: string     # 分类英文名
+
+parent_style: string  # 可选。父 Style 或 BASE 名，如 VECTOR_BASE；省略则平铺
+aliases: [string]     # 可选。别名（用于自然语言检索），如 "clean vector art"
+
+# ---------- 定义 ----------
+definition:
+  summary: string     # 必填。100–200 字中文摘要
+  detailed: string    # 必填。300–800 字详细定义（视觉语言、边界、代表性特征）
+
+visual_intent: [string]  # 可选。该风格契合的意图标签，如 clean / modern / simplified
+
+# ---------- Fingerprint：8 维视觉指纹（决定"属于同一视觉语言"）----------
+fingerprint:
+  shape: [string]     # 必填。≥2 条，如 "simplified silhouette"
+  line: [string]      # 必填。≥2 条
+  color: [string]     # 必填。≥2 条
+  shading: [string]   # 必填。≥2 条
+  lighting: [string]  # 必填。≥2 条
+  texture: [string]   # 必填。≥2 条
+  composition: [string]  # 必填。≥2 条
+  detail: [string]    # 必填。≥2 条
+
+# ---------- Style DNA：数值化视觉向量（比较/去重/选择/一致性检测）----------
+style_dna:            # 必填。全部 0–10 数值
+  realism: number           # 写实程度
+  abstraction: number       # 抽象程度
+  detail_density: number    # 细节密度
+  spatial_depth: number     # 空间深度
+  texture_strength: number  # 纹理强度
+  shading_strength: number  # 阴影强度
+  lighting_complexity: number  # 光影复杂度
+  line_presence: number     # 线条在场程度
+  line_roughness: number    # 线条粗糙度
+  shape_complexity: number  # 形状复杂度
+  color_complexity: number  # 色彩复杂度
+
+# ---------- 各视觉维度语言 ----------
+shape_language:
+  description: string       # 形状语言说明
+  preferred: [string]       # 偏好的形状
+  avoid: [string]           # 避免的形状
+
+line_language:
+  description: string
+  preferred: [string]
+  avoid: [string]
+
+color_system:
+  strategy: string          # 配色策略，如 "limited palette with clear separation"
+  recommended_palette_types: [string]  # 推荐 palette 类型 id
+  saturation_range: [int, int]   # 饱和度范围 0–10
+  contrast_range: [int, int]     # 对比度范围 0–10
+  recommended_color_count: [int, int]  # 主色数量范围
+  avoid: [string]
+
+shading:
+  method: [string]      # 如 flat / cel / soft gradient
+  strength: number      # 0–10
+  avoid: [string]
+
+lighting:
+  physical_realism: number  # 物理真实度 0–10
+  methods: [string]         # 如 "no explicit light source"
+  avoid: [string]
+
+texture:
+  default: [string]     # 默认纹理
+  strength: number      # 0–10
+  avoid: [string]
+
+material:
+  rendering_policy: string  # 材质渲染策略，如 "no PBR materials"
+  preferred: [string]
+  avoid: [string]
+
+composition:
+  preferred: [string]       # 如 negative space / single focal point
+  negative_space_range: string  # 如 "30-60%"
+  layer_count: string       # 如 "2-4"
+  avoid: [string]
+
+spatial_system:
+  depth: number         # 0–10
+  perspective: [string]
+  avoid: [string]
+
+detail_density:
+  level: number         # 0–10
+  focal_detail_policy: string  # 焦点细节策略
+
+character_rendering:    # 人物渲染策略（非人物风格可为空）
+  face: string
+  skin: string
+  hair: string
+  anatomy: string
+  clothing: string
+
+background:
+  complexity: number    # 0–10
+  preferred: [string]
+  avoid: [string]
+
+# ---------- 规则 ----------
+rules:                  # 必填。must ≥5 / should ≥5 / may ≥3 / must_not ≥8
+  must: [string]        # 强制：必须出现
+  should: [string]      # 强烈建议
+  may: [string]         # 允许
+  must_not: [string]    # 禁止：任何一条出现即风格违规
+
+allowed_variations: [string]   # 允许的变化（作为 Attribute 差异，而非新 Style）
+forbidden_features: [string]   # 禁止特征
+
+# ---------- Prompt 锚点（模型无关 Canonical 语义）----------
+canonical_prompt:
+  positive_anchor: [string]    # 必填。50–150 词的模型无关正向语义（可按词条组织）
+  negative_anchor: [string]    # 必填。30–100 词的负向锚点（真正会导致漂移的核心负向）
+
+# ---------- 混淆与纠偏 ----------
+confusion_with:         # 必填。≥2 条
+  - style: string       # 易混淆 Style ID
+    risk: enum          # high | medium | low
+    difference: [string]
+    correction: [string]
+
+correction_rules:       # 必填。≥5 条
+  - problem: string     # 如 texture_too_realistic
+    instructions: [string]
+
+# ---------- 使用场景与兼容性 ----------
+use_cases:
+  recommended: [string]   # 如 book illustration / editorial cover
+  discouraged: [string]
+
+compatibility:          # 各场景契合度 0–10
+  portrait: number
+  landscape: number
+  product: number
+  poster: number
+  education: number
+  book_video: number
+
+reference_policy:
+  minimum_reference_count: int   # 默认 3
+  reference_types: [string]      # 如 portrait / still_life / environment / architecture / complex_scene / abstract
+
+evaluation_profile: string   # 关联 evaluation/profiles/ 下的 profile id，如 VE01_DEFAULT

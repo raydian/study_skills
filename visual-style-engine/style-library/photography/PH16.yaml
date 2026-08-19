@@ -1,0 +1,58 @@
+# PH16 — Analog Film Photography / 模拟胶片摄影
+id: PH16
+version: 1.0.0
+status: ACTIVE
+name: {zh: 模拟胶片摄影, en: Analog Film Photography}
+category: {id: photography, name_zh: 摄影, name_en: Photography}
+parent_style: null
+aliases: [film photography, 胶片摄影, 胶片感]
+definition:
+  summary: >-
+    模拟胶片相机拍摄质感的摄影风格：胶片颗粒、自然色偏、柔和宽容度、光晕与暗角，复古温度感。
+  detailed: >-
+    胶片摄影的核心是介质质感：银盐颗粒、轻微色偏（冷暖偏移）、高光柔化与暗部宽容、偶尔的
+    漏光/光晕/暗角，以及非"数码干净"的色彩渲染。适用于复古、怀旧、文艺、旅行与生活记录。
+visual_intent: [nostalgic, analog, warm]
+fingerprint:
+  shape: [真实物像, 胶片取景]
+  line: [无描边, 颗粒边缘]
+  color: [胶片色偏, 柔和宽容度]
+  shading: [胶片层次, 柔和暗部]
+  lighting: [自然光, 高光柔化]
+  texture: [银盐颗粒, 光晕暗角]
+  composition: [胶片取景, 自然构图]
+  detail: [5/10 颗粒质感]
+style_dna: {realism: 8, abstraction: 1, detail_density: 5, spatial_depth: 6, texture_strength: 8, shading_strength: 6, lighting_complexity: 5, line_presence: 0, line_roughness: 1, shape_complexity: 5, color_complexity: 5}
+shape_language: {description: 真实物像, preferred: [真实形态], avoid: [数码锐化形]}
+line_language: {description: 无描边, preferred: [颗粒自然边缘], avoid: [描边]}
+color_system: {strategy: 胶片色偏, recommended_palette_types: [PAL_VINTAGE_FADED, PAL_EARTH_TONE, PAL_NATURAL], saturation_range: [2, 5], contrast_range: [4, 6], recommended_color_count: [5, 9], avoid: [数码鲜艳, 霓虹]}
+shading: {method: [胶片层次], strength: 6, avoid: [数码 HDR]}
+lighting: {physical_realism: 8, methods: [自然光, 现场光], avoid: [数码冷光]}
+texture: {default: [银盐颗粒, 光晕, 暗角], strength: 8, avoid: [数码纯净]}
+material: {rendering_policy: 真实, preferred: [真实], avoid: [失真]}
+composition: {preferred: [胶片取景, 自然构图], negative_space_range: "15-40%", layer_count: "2-3", avoid: [数码对称炫技]}
+spatial_system: {depth: 6, perspective: [真实透视], avoid: [畸变炫技]}
+detail_density: {level: 5, focal_detail_policy: 真实质感, 颗粒覆盖}
+character_rendering: {face: 胶片肤色, skin: 柔和真实, hair: 真实, anatomy: 真实, clothing: 现场真实}
+background: {complexity: 4, preferred: [真实环境], avoid: [数码纯色]}
+rules:
+  must: [胶片颗粒, 自然色偏, 高光柔化, 复古温度感]
+  should: [暗角或光晕可选, 宽容度柔和, 构图自然]
+  may: [漏光, 过期胶片色偏, 黑白胶片]
+  must_not: [数码纯净锐利, 霓虹高饱和, 卡通化, 3D 渲染观感, HDR, 塑料质感]
+allowed_variations: [彩色/黑白胶片, 不同胶卷色偏]
+forbidden_features: [digital clean sharpness, HDR, neon]
+canonical_prompt:
+  positive_anchor: [analog film photography, silver grain texture, natural color cast, soft highlight rolloff, gentle halation and vignette, nostalgic warm mood, unprocessed film look]
+  negative_anchor: [digital clean sharpness, HDR, neon saturation, cartoon, 3D rendering, plastic look]
+confusion_with:
+  - {style: PH01, risk: medium, difference: [PH01 现代自然摄影, PH16 强调胶片介质], correction: [加强颗粒与色偏]}
+  - {style: CI12, risk: medium, difference: [CI12 复古电影, PH16 静态胶片照片], correction: [去电影构图, 保留照片感]}
+correction_rules:
+  - {problem: too_digital, instructions: [加颗粒, 柔化高光, 引入色偏]}
+  - {problem: over_processed, instructions: [降低后期, 保留胶片原味]}
+  - {problem: no_grain, instructions: [加入银盐颗粒, 增加介质感]}
+use_cases: {recommended: [复古文艺, 怀旧记录, 旅行, 生活], discouraged: [科技产品, 严肃图表]}
+compatibility: {portrait: 8, landscape: 8, product: 5, poster: 7, education: 5, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, environment, still_life]}
+evaluation_profile: PH16_DEFAULT

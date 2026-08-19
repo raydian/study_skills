@@ -1,0 +1,86 @@
+# Fantasy / Surreal Catalog — 奇幻超现实类（16）
+category: fantasy
+name_zh: 奇幻与超现实
+name_en: Fantasy / Surreal
+
+styles:
+  - id: FA01
+    name_zh: 奇幻
+    name_en: Fantasy
+    status: DRAFT
+    desc: 广义奇幻视觉
+  - id: FA02
+    name_zh: 高奇幻
+    name_en: High Fantasy
+    status: DRAFT
+    desc: 史诗奇幻世界
+  - id: FA03
+    name_zh: 黑暗奇幻
+    name_en: Dark Fantasy
+    status: DRAFT
+    desc: 压抑、哥特、危险感
+  - id: FA04
+    name_zh: 魔幻现实主义
+    name_en: Magical Realism
+    status: DRAFT
+    desc: 现实底色 + 魔法细节
+  - id: FA05
+    name_zh: 超现实主义
+    name_en: Surrealism
+    status: ACTIVE
+    desc: 梦境逻辑、物像错置、心理空间
+  - id: FA06
+    name_zh: 梦境感
+    name_en: Dreamlike
+    status: DRAFT
+    desc: 柔和模糊、飘浮感
+  - id: FA07
+    name_zh: 梦核
+    name_en: Dreamcore
+    status: DRAFT
+    desc: 梦境空间、怀旧诡异
+  - id: FA08
+    name_zh: 怪核
+    name_en: Weirdcore
+    status: DRAFT
+    desc: 低清怪异、不安感
+  - id: FA09
+    name_zh: 阈限空间
+    name_en: Liminal Space
+    status: DRAFT
+    desc: 过渡空间的空旷感
+  - id: FA10
+    name_zh: 象征艺术
+    name_en: Symbolic Art
+    status: DRAFT
+    desc: 符号系统叙事
+  - id: FA11
+    name_zh: 迷幻艺术
+    name_en: Psychedelic
+    status: DRAFT
+    desc: 高饱和、流动图案
+  - id: FA12
+    name_zh: 赛博朋克
+    name_en: Cyberpunk
+    status: DRAFT
+    desc: 霓虹、高密度城市、义体
+  - id: FA13
+    name_zh: 蒸汽朋克
+    name_en: Steampunk
+    status: DRAFT
+    desc: 蒸汽机械、黄铜维多利亚
+  - id: FA14
+    name_zh: 太阳朋克
+    name_en: Solarpunk
+    status: DRAFT
+    desc: 生态未来、明亮乐观
+  - id: FA15
+    name_zh: 复古未来主义
+    name_en: Retrofuturism
+    status: DRAFT
+    desc: 过去想象的未来
+  - id: FA16
+    name_zh: 生物朋克
+    name_en: Biopunk
+    status: DRAFT
+    desc: 生物技术美学

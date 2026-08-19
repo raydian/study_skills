@@ -1,0 +1,91 @@
+# Evaluation Profiles — 风格一致性评估配置
+schema: evaluation_library
+version: "1.0.0"
+
+# 通用默认阈值（第 33 节）
+defaults:
+  weights: {shape: 0.20, line: 0.15, color: 0.15, shading: 0.10, lighting: 0.10, texture: 0.10, composition: 0.10, detail: 0.10}
+  thresholds: {strong_pass: 85, pass: 80, correction: 65}
+  hard_fail: [violates_must_not, wrong_rendering_method]
+
+profiles:
+  - id: VE01_DEFAULT
+    style_id: VE01
+    style_version: 1.0.0
+    weights: {shape: 0.22, line: 0.15, color: 0.16, shading: 0.10, lighting: 0.08, texture: 0.10, composition: 0.12, detail: 0.07}
+    thresholds: {strong_pass: 85, pass: 80, correction: 65}
+    hard_fail: [violates_must_not, wrong_rendering_method]
+    correction_map:
+      texture_too_realistic: [eliminate realistic material microtexture, return to flat color regions, remove photographic surface reflections]
+      drifted_to_photography: [reduce photographic realism, restore flat 2D rendering, simplify physical lighting, remove depth of field]
+
+  - id: IL03_DEFAULT
+    style_id: IL03
+    style_version: 1.2.0
+    weights: {shape: 0.20, line: 0.12, color: 0.15, shading: 0.10, lighting: 0.10, texture: 0.10, composition: 0.15, detail: 0.08}
+    thresholds: {strong_pass: 85, pass: 80, correction: 65}
+    hard_fail: [violates_must_not, wrong_rendering_method]
+    correction_map:
+      drifted_to_photography: [reduce photographic realism, restore conceptual editorial rendering, simplify physical lighting, strengthen symbolic illustration language]
+      lost_concept_focus: [identify core concept, choose 1-2 symbolic carriers, remove decorative extras]
+
+  - id: DR07_LINE_HEAVY
+    style_id: DR07
+    style_version: 1.0.0
+    weights: {shape: 0.12, line: 0.28, color: 0.10, shading: 0.10, lighting: 0.05, texture: 0.20, composition: 0.10, detail: 0.05}
+    thresholds: {strong_pass: 85, pass: 80, correction: 65}
+    hard_fail: [violates_must_not, wrong_rendering_method]
+    correction_map:
+      lines_too_perfect: [break smooth contours, add overlapping strokes, variable line weight]
+      lost_paper_texture: [warm background to ivory, add paper grain, allow ink bleed]
+
+  - id: CI08_DEFAULT
+    style_id: CI08
+    style_version: 1.0.0
+    weights: {shape: 0.15, line: 0.05, color: 0.12, shading: 0.15, lighting: 0.25, texture: 0.10, composition: 0.13, detail: 0.05}
+    thresholds: {strong_pass: 85, pass: 80, correction: 65}
+    hard_fail: [violates_must_not, wrong_rendering_method]
+    correction_map:
+      modern_elements_leak: [remove contemporary objects, verify era-appropriate props]
+      too_documentary: [introduce motivated lighting, add cinematic composition]
+
+  - id: PA08_DEFAULT
+    style_id: PA08
+    style_version: 1.0.0
+    weights: {shape: 0.15, line: 0.10, color: 0.15, shading: 0.12, lighting: 0.08, texture: 0.20, composition: 0.12, detail: 0.08}
+    thresholds: {strong_pass: 85, pass: 80, correction: 65}
+    hard_fail: [violates_must_not, wrong_rendering_method]
+    correction_map:
+      turned_opaque: [restore transparency, reveal paper white, reduce poster coverage]
+      too_dark_shadows: [replace black with deep transparent pigment]
+
+  - id: EA01_DEFAULT
+    style_id: EA01
+    style_version: 1.0.0
+    weights: {shape: 0.12, line: 0.22, color: 0.10, shading: 0.18, lighting: 0.05, texture: 0.15, composition: 0.12, detail: 0.06}
+    thresholds: {strong_pass: 85, pass: 80, correction: 65}
+    hard_fail: [violates_must_not, wrong_rendering_method]
+    correction_map:
+      turned_pencil_shading: [replace gray gradation with ink washes, add brush energy]
+      lost_paper_bleed: [add xuan paper texture, allow ink bleeding]
+
+  - id: TD06_DEFAULT
+    style_id: TD06
+    style_version: 1.0.0
+    weights: {shape: 0.20, line: 0.05, color: 0.15, shading: 0.12, lighting: 0.12, texture: 0.18, composition: 0.10, detail: 0.08}
+    thresholds: {strong_pass: 85, pass: 80, correction: 65}
+    hard_fail: [violates_must_not, wrong_rendering_method]
+    correction_map:
+      looks_plastic: [remove glossy highlights, matte the surface, add clay texture]
+
+  - id: FA05_DEFAULT
+    style_id: FA05
+    style_version: 1.0.0
+    weights: {shape: 0.15, line: 0.05, color: 0.12, shading: 0.15, lighting: 0.15, texture: 0.10, composition: 0.20, detail: 0.08}
+    thresholds: {strong_pass: 85, pass: 80, correction: 65}
+    hard_fail: [violates_must_not, wrong_rendering_method]
+    correction_map:
+      became_dreamy_blur: [restore crisp rendering, sharpen focus, add impossible relations]
+      became_mundane: [break everyday logic, shift scale or position, introduce anomaly]
+
+# 其余 Style 未列 profile 时使用 defaults（权重统一、correction 用 style 文件内 correction_rules）

@@ -1,0 +1,77 @@
+# ============================================================
+# Visual Request Schema — Skill 间统一协议 Envelope
+# 依据：《AI Visual Style Skill System 设计方案》第 41 节
+# 原则：每个 Skill 只能修改自己负责的节点
+# ============================================================
+schema: visual_request
+version: "1.0.0"
+
+visual_request:
+  request_id: string      # 必填。每次生成唯一
+  project_id: string      # 可选。项目级 Visual Identity 关联
+  usage: string           # 必填。book / book_video / video / poster / social / product / education / branding
+  model: string           # 可选。seedream / gpt-image / flux / midjourney / sdxl
+  aspect_ratio: string    # 可选。如 "16:9" / "3:4" / "1:1"
+
+  content: {}             # 由上层 Skill / 用户填入。主题、场景、叙事内容
+    # main: 主体
+    # scene: 场景描述
+    # action: 动作
+
+  visual_intent: {}       # 由 visual-intent-analyzer 写入
+    # domain: 内容域，如 history
+    # content_type: nonfiction
+    # visual_role: conceptual_explanation
+    # mood: [reflective, intellectual]
+    # information_density: medium | low | high
+    # narrative_mode: symbolic | literal | ...
+    # realism_need: low | medium | high
+    # abstraction_need: low | medium | high
+
+  style: {}               # 由 visual-style-selector 写入或用户指定
+    # id: IL03
+    # version: 1.2.0
+    # score: 0.94
+    # confidence: 0.92
+    # candidates: [{style, score}]
+    # reason: [string]
+    # strategy: 可选 style_strategy id
+
+  attributes: {}          # Attribute 合并结果
+    # palette: {id, version}
+    # lighting: {id, version}
+    # composition: {id, version}
+    # texture: {id, version}
+    # mood: [string]
+    # era: {id, version}
+    # camera: {id, version}
+
+  identity: {}            # 由 visual-identity-manager 写入（项目级锁定）
+    # primary_style: {id, version}
+    # secondary_styles: [{id, version}]
+    # palette_lock: id
+    # texture_lock: id
+    # mood_range: [string]
+    # style_lock: {shape, line, palette, texture, composition}
+
+  references: []          # 由 style-reference-manager 写入
+    # - id: REF_PROJECT_01
+    #   role: overall_style | line | palette | texture | composition | character
+
+  generation: {}          # 编译/生成结果（由 compiler + adapter 写入）
+    # prompt_ast: {}
+    # canonical_prompt: ""
+    # negative_prompt: ""
+    # compiled_prompt: ""
+    # compiled_negative: ""
+    # adapter: {model, version}
+    # locks: {style: true, palette: true}
+    # conflicts: [{type, feature}]
+
+  evaluation: {}          # 由 image-style-evaluator 写入
+    # style_score: 86
+    # dimensions: {shape, line, color, shading, lighting, texture, composition, detail}
+    # decision: PASS | CORRECT | REGENERATE
+    # problems: [{dimension, expected, actual, severity}]
+    # corrections: [string]
+    # project_identity_score: 0-100

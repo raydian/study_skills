@@ -1,0 +1,86 @@
+# 3D / CGI Catalog — 三维类（16）
+category: 3d
+name_zh: 3D / CGI
+name_en: 3D / CGI
+
+styles:
+  - id: TD01
+    name_zh: 照片级 CGI
+    name_en: Photoreal CGI
+    status: DRAFT
+    desc: 拟真渲染、物理材质与光
+  - id: TD02
+    name_zh: 产品 CGI
+    name_en: Product CGI
+    status: DRAFT
+    desc: 产品级渲染、完美布光
+  - id: TD03
+    name_zh: 建筑 CGI
+    name_en: Architectural CGI
+    status: DRAFT
+    desc: 建筑可视化、真实尺度
+  - id: TD04
+    name_zh: 卡通 3D
+    name_en: Cartoon 3D
+    status: DRAFT
+    desc: 夸张形变、动画质感
+  - id: TD05
+    name_zh: 柔和 3D
+    name_en: Soft 3D
+    status: DRAFT
+    desc: 圆润柔软、柔和光照
+  - id: TD06
+    name_zh: 黏土 3D
+    name_en: Clay 3D
+    status: ACTIVE
+    desc: 黏土质感、手作感
+  - id: TD07
+    name_zh: 塑料 3D
+    name_en: Plastic 3D
+    status: DRAFT
+    desc: 塑料玩具质感、高光
+  - id: TD08
+    name_zh: 低多边形
+    name_en: Low Poly
+    status: DRAFT
+    desc: 低面数、折面光
+  - id: TD09
+    name_zh: 体素
+    name_en: Voxel
+    status: DRAFT
+    desc: 方块像素三维
+  - id: TD10
+    name_zh: 等距 3D
+    name_en: Isometric 3D
+    status: DRAFT
+    desc: 等距视角、游戏 UI 常用
+  - id: TD11
+    name_zh: 微缩模型
+    name_en: Miniature
+    status: DRAFT
+    desc: 微缩景观、移轴感
+  - id: TD12
+    name_zh: 立体模型
+    name_en: Diorama
+    status: ACTIVE
+    desc: 手工立体场景、桌面剧场
+  - id: TD13
+    name_zh: 玩具感 3D
+    name_en: Toy-like 3D
+    status: DRAFT
+    desc: 玩具零件感、可爱
+  - id: TD14
+    name_zh: 游戏 CG
+    name_en: Game Cinematic 3D
+    status: DRAFT
+    desc: 游戏宣传 CG 质感
+  - id: TD15
+    name_zh: 未来主义 CGI
+    name_en: Futuristic CGI
+    status: DRAFT
+    desc: 未来器物/环境渲染
+  - id: TD16
+    name_zh: 抽象 3D
+    name_en: Abstract 3D
+    status: DRAFT
+    desc: 抽象形体与材质实验

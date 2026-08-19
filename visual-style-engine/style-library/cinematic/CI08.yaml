@@ -1,0 +1,254 @@
+# CI08 — Historical Cinema / 历史电影
+id: CI08
+version: 1.0.0
+status: ACTIVE
+
+name:
+  zh: 历史电影
+  en: Historical Cinema
+
+category:
+  id: cinematic
+  name_zh: 电影感
+  name_en: Cinematic
+
+parent_style: null
+
+aliases:
+  - historical film still
+  - period cinema
+  - 历史剧照
+
+definition:
+  summary: >-
+    以电影帧标准呈现历史场景的视觉风格：时代质感、服饰器物考究、纪实电影光，构图与调色按
+    电影叙事标准执行。是历史题材书视频、纪录片配图的常用主视觉。
+  detailed: >-
+    CI08 的核心是"时代可信 + 电影语言"。画面以历史真实为底，但通过电影构图（三分法、前景遮挡、
+    纵深层次）、电影布光（动机光、轮廓光、场景光比）与克制调色（胶片质感、轻微年代色偏）呈现。
+    服饰、器物、建筑细节需符合时代语境，但不过度追求图鉴式准确——服务于叙事氛围优先。
+    它区别于"历史照片"：更讲究戏剧性光线、画面层次与情绪张力；区别于现代电影：剔除当代视觉
+    元素与高对比商业光。适合历史书视频配图、纪录片、时代题材内容。
+
+visual_intent:
+  - historical
+  - cinematic
+  - dramatic
+  - documentary
+
+fingerprint:
+  shape:
+    - 符合时代的物像与建筑形制
+    - 电影式主体轮廓与前景遮挡
+  line:
+    - 自然、无卡通描边
+    - 光影边缘软硬结合
+  color:
+    - 克制年代色调（旧化/轻微偏色）
+    - 低饱和中对比
+  shading:
+    - 电影化光影，soft shadows
+    - 轮廓光/场景光比
+  lighting:
+    - motivated lighting（窗户/烛火/火把）
+    - 光比讲究，暗部保留细节
+  texture:
+    - 胶片颗粒
+    - 织物/器物材质真实
+  composition:
+    - 电影构图（三分法/纵深/前景遮挡）
+    - 叙事性取景
+  detail:
+    - 6/10 中高细节，聚焦时代器物
+
+style_dna:
+  realism: 8
+  abstraction: 2
+  detail_density: 6
+  spatial_depth: 8
+  texture_strength: 6
+  shading_strength: 7
+  lighting_complexity: 8
+  line_presence: 2
+  line_roughness: 2
+  shape_complexity: 6
+  color_complexity: 5
+
+shape_language:
+  description: 符合时代的建筑与器物形制，电影式取景。
+  preferred: [period-accurate architecture, era-appropriate objects, cinematic framing]
+  avoid: [anachronistic objects, cartoon shapes]
+
+line_language:
+  description: 自然光影边缘，无描边。
+  preferred: [natural edges, soft-hard light transitions]
+  avoid: [outline, sketch lines]
+
+color_system:
+  strategy: restrained period palette with film grading
+  recommended_palette_types: [PAL_VINTAGE_FADED, PAL_EARTH_TONE, PAL_MUTED, PAL_CREAM]
+  saturation_range: [2, 5]
+  contrast_range: [5, 7]
+  recommended_color_count: [5, 9]
+  avoid: [neon, modern candy colors, clinical white balance]
+
+shading:
+  method: [cinematic soft shading, motivated shadow, rim light]
+  strength: 7
+  avoid: [flat vector shading, cartoon cel]
+
+lighting:
+  physical_realism: 7
+  methods: [window light, candlelight, firelight, overcast, motivated practicals]
+  avoid: [neon glow, modern commercial high-key, anachronistic lighting]
+
+texture:
+  default: [film grain, fabric weave, wood/stone material]
+  strength: 6
+  avoid: [clean digital plastic]
+
+material:
+  rendering_policy: period-accurate realistic materials
+  preferred: [wool, linen, wood, stone, brass, ceramic]
+  avoid: [modern plastics, reflective synthetics]
+
+composition:
+  preferred: [rule of thirds, depth layering, foreground framing, leading lines, narrative framing]
+  negative_space_range: "15-35%"
+  layer_count: "3-4"
+  avoid: [flat poster stacking, cluttered modern layout]
+
+spatial_system:
+  depth: 8
+  perspective: [cinematic perspective, atmospheric depth, dutch angle allowed]
+  avoid: [flat 2D layering]
+
+detail_density:
+  level: 6
+  focal_detail_policy: 焦点人物/器物细节充分，环境按叙事需要取舍
+
+character_rendering:
+  face: 真实年龄与质感，情绪内敛
+  skin: 自然质感，时代妆容
+  hair: 时代发型
+  anatomy: 真实比例
+  clothing: 时代服饰，材质可辨
+
+background:
+  complexity: 6
+  preferred: [period environment, atmospheric depth, practical sets]
+  avoid: [modern backgrounds, blank studio]
+
+rules:
+  must:
+    - 符合历史时代语境
+    - 电影化构图与布光
+    - 服饰器物时代可信
+    - 保留胶片质感或年代调色
+    - 光比讲究、暗部有细节
+  should:
+    - 使用动机光
+    - 前景遮挡增加纵深
+    - 色彩低饱和中对比
+    - 情绪克制内敛
+  may:
+    - 轻微色偏
+    - 电影画幅（letterbox 感）
+    - 少量胶片划痕颗粒
+  must_not:
+    - 现代物件入画
+    - 高饱和现代商业光
+    - 卡通/描边
+    - 3D 渲染观感
+    - 广告级完美光
+    - 霓虹灯
+
+allowed_variations:
+  - 时代跨度内 palette 换用（唐/宋/民国等）
+  - 光比强度变化
+
+forbidden_features:
+  - anachronistic objects
+  - neon lighting
+  - cartoon rendering
+  - modern commercial glow
+
+canonical_prompt:
+  positive_anchor:
+    - "historical cinema film still"
+    - "period-accurate costumes and props"
+    - "cinematic motivated lighting"
+    - "restrained vintage color grading"
+    - "soft film grain"
+    - "rule of thirds composition"
+    - "atmospheric depth and foreground framing"
+    - "muted earth-tone palette"
+    - "dramatic yet naturalistic mood"
+  negative_anchor:
+    - "modern objects"
+    - "neon lighting"
+    - "high-saturation commercial colors"
+    - "cartoon outlines"
+    - "3D rendering look"
+    - "clinical white balance"
+    - "advertising-grade perfect lighting"
+
+confusion_with:
+  - style: CI01
+    risk: high
+    difference:
+      - CI01 是通用电影剧照，无时代限定
+      - CI08 强时代语境
+    correction:
+      - add period-accurate details
+      - enforce era palette
+  - style: PH12
+    risk: medium
+    difference:
+      - PH12 是纪实摄影的客观记录
+      - CI08 是电影语言的戏剧化呈现
+    correction:
+      - add cinematic lighting and composition
+      - introduce narrative mood
+
+correction_rules:
+  - problem: modern_elements_leak
+    instructions:
+      - remove contemporary objects and clothing
+      - verify era-appropriate props
+  - problem: too_photographic_documentary
+    instructions:
+      - introduce motivated lighting
+      - add cinematic composition
+      - strengthen mood
+  - problem: palette_too_saturated
+    instructions:
+      - desaturate to vintage grade
+      - enforce muted period palette
+  - problem: lost_film_texture
+    instructions:
+      - add soft film grain
+      - introduce subtle color cast
+
+use_cases:
+  recommended:
+    - 历史书视频配图
+    - 历史纪录片画面
+    - 时代题材内容
+  discouraged:
+    - 现代科技内容
+    - 儿童内容
+
+compatibility:
+  portrait: 8
+  landscape: 10
+  product: 4
+  poster: 8
+  education: 7
+  book_video: 9
+
+reference_policy:
+  minimum_reference_count: 3
+  reference_types: [portrait, environment, complex_scene]
+
+evaluation_profile: CI08_DEFAULT

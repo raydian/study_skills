@@ -1,0 +1,86 @@
+# Graphic Design Catalog — 平面设计类（16）
+category: graphic-design
+name_zh: 平面设计
+name_en: Graphic Design
+
+styles:
+  - id: GD01
+    name_zh: 瑞士设计
+    name_en: Swiss Design
+    status: ACTIVE
+    desc: 网格系统、无衬线、客观秩序
+  - id: GD02
+    name_zh: 国际字体风格
+    name_en: International Typographic Style
+    status: DRAFT
+    desc: 字体主导、网格严谨
+  - id: GD03
+    name_zh: 包豪斯
+    name_en: Bauhaus
+    status: DRAFT
+    desc: 几何构成、原色、功能主义
+  - id: GD04
+    name_zh: 构成主义
+    name_en: Constructivism
+    status: DRAFT
+    desc: 斜线/对角线、红黑构成
+  - id: GD05
+    name_zh: 装饰艺术
+    name_en: Art Deco
+    status: DRAFT
+    desc: 几何装饰、金色、对称
+  - id: GD06
+    name_zh: 新艺术运动
+    name_en: Art Nouveau
+    status: DRAFT
+    desc: 植物曲线、装饰边框
+  - id: GD07
+    name_zh: 世纪中叶现代
+    name_en: Mid-century Modern
+    status: DRAFT
+    desc: 复古几何、暖色、乐观
+  - id: GD08
+    name_zh: 孟菲斯
+    name_en: Memphis
+    status: DRAFT
+    desc: 撞色、几何碎块、俏皮
+  - id: GD09
+    name_zh: 粗野主义
+    name_en: Brutalism
+    status: DRAFT
+    desc: 硬朗、无装饰、强对比
+  - id: GD10
+    name_zh: 新粗野主义
+    name_en: Neo Brutalism
+    status: DRAFT
+    desc: 现代粗野、粗描边
+  - id: GD11
+    name_zh: 极简平面设计
+    name_en: Minimal Graphic Design
+    status: DRAFT
+    desc: 少即是多、留白
+  - id: GD12
+    name_zh: 编辑设计
+    name_en: Editorial Design
+    status: DRAFT
+    desc: 版面节奏、图文层级
+  - id: GD13
+    name_zh: 杂志设计
+    name_en: Magazine Design
+    status: DRAFT
+    desc: 杂志版面语言
+  - id: GD14
+    name_zh: 复古海报
+    name_en: Vintage Poster
+    status: DRAFT
+    desc: 老海报媒介与用色
+  - id: GD15
+    name_zh: 现代海报
+    name_en: Modern Poster
+    status: DRAFT
+    desc: 当代海报构成
+  - id: GD16
+    name_zh: 几何平面设计
+    name_en: Geometric Graphic Design
+    status: DRAFT
+    desc: 几何元素驱动版面

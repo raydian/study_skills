@@ -1,0 +1,120 @@
+# Correction Rules — 通用纠偏规则库
+# 使用：Evaluator 输出 problems（dimension/expected/actual/severity）→ 查本库或 Style 文件内 correction_rules
+schema: correction_rules
+version: "1.0.0"
+
+rules:
+  # ---- 漂移类 ----
+  - problem: drifted_to_photography
+    applies_to: [IL01, IL02, IL03, IL05, IL06, VE01, VE03, VE05, VE06, DR08]
+    instructions:
+      - reduce photographic realism
+      - restore flat/editorial rendering
+      - simplify physical lighting
+      - remove depth of field
+
+  - problem: drifted_to_3d_render
+    applies_to: [IL01, IL03, VE01, DR07, PA08, EA01]
+    instructions:
+      - remove 3D render look
+      - restore 2D media rendering
+      - flatten geometry shading
+
+  - problem: drifted_to_cartoon
+    applies_to: [IL03, IL02, CI08, EA01, FA05]
+    instructions:
+      - remove heavy outlines
+      - mature the palette
+      - restore intended rendering method
+
+  # ---- 维度类 ----
+  - problem: texture_too_realistic
+    applies_to: [VE01, VE02, IL01, IL06, GD01]
+    instructions:
+      - eliminate realistic material microtexture
+      - return to flat color regions
+      - remove photographic surface reflections
+
+  - problem: texture_missing
+    applies_to: [DR07, PA08, PR04, IL07, PH16]
+    instructions:
+      - add the style's characteristic texture (paper/water/grain)
+      - restore media evidence
+
+  - problem: palette_too_colorful
+    applies_to: [IL03, CI08, EA06, VE01, DR07]
+    instructions:
+      - mute the palette
+      - keep one focal accent
+      - enforce color system coherence
+
+  - problem: palette_too_dull
+    applies_to: [VE06, PR07, AN04, IL01]
+    instructions:
+      - raise brightness and saturation
+      - restore clean vivid color relationships
+
+  - problem: composition_cluttered
+    applies_to: [IL03, VE01, IL06, GD01, EA06]
+    instructions:
+      - reduce element count
+      - establish clear focal hierarchy
+      - add breathing space
+
+  - problem: composition_too_empty
+    applies_to: [IL04, IL01, CI08]
+    instructions:
+      - add supporting narrative elements
+      - enrich the scene context
+
+  - problem: lighting_too_dramatic
+    applies_to: [VE01, IL01, PA08, EA06]
+    instructions:
+      - simplify physical lighting
+      - restore flat/soft illumination
+
+  - problem: lighting_too_flat
+    applies_to: [CI01, CI08, FA05, PA01]
+    instructions:
+      - introduce motivated lighting
+      - add contrast ratio and depth
+
+  - problem: lines_too_perfect
+    applies_to: [DR07, EA01, DR04]
+    instructions:
+      - break smooth contours
+      - add hand-drawn variation
+      - restore brush/ink energy
+
+  - problem: lines_too_messy
+    applies_to: [DR04, DR08, VE01, EA03]
+    instructions:
+      - strengthen line confidence
+      - clean up contour structure
+
+  - problem: details_too_dense
+    applies_to: [VE01, IL06, DR08, GD01, EA06]
+    instructions:
+      - abstract details into simplified silhouettes
+      - reduce visual noise
+
+  - problem: details_too_sparse_for_style
+    applies_to: [PH08, CI08, EA03, PA01]
+    instructions:
+      - enrich focal details
+      - add material/texture specificity
+
+  # ---- 语义类 ----
+  - problem: style_mix_in_confusion_pair
+    applies_to: all
+    instructions:
+      - identify the confused style (confusion-matrix.yaml)
+      - apply the difference-based correction
+      - re-run evaluation
+
+  - problem: lost_style_identity_in_series
+    applies_to: all
+    instructions:
+      - compare against Project Visual Identity
+      - restore locked dimensions (shape/line/texture)
+      - re-render with identity references

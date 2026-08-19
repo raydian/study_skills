@@ -1,0 +1,298 @@
+# DR07 — Vintage Loose Ink Sketch / 复古松弛墨线速写
+id: DR07
+version: 1.0.0
+status: ACTIVE
+
+name:
+  zh: 复古松弛墨线速写
+  en: Vintage Loose Ink Sketch
+
+category:
+  id: drawing
+  name_zh: 素描线绘
+  name_en: Drawing
+
+parent_style: null
+
+aliases:
+  - vintage ink sketch
+  - loose ink drawing
+  - 复古墨线
+  - 松弛线稿
+
+definition:
+  summary: >-
+    一种强调手绘"不完美感"的墨线速写风格。核心特征不是干净的线稿，而是手绘的断续线条、
+    重复笔迹、自然变化的线宽、纸张质感与复古编辑构图。
+  detailed: >-
+    DR07 的视觉语言围绕"手"的痕迹展开：轮廓不追求完全闭合，允许开口与断线；线条可重复描画，
+    形成自然的笔迹叠加；允许局部 construction lines（辅助线）残留。线宽随运笔自然变化，
+    排线与涂抹式阴影松散自由。背景使用暖米白/象牙色纸张，黑灰色占主要视觉比例，辅以极少量
+    低饱和点缀色。整体构图偏向复古编辑排版——留白充足、边距讲究，常见于旧书插图、文学杂志、
+    旅行手记。它不适合干净的数字矢量表达：任何"完美的 Bézier 曲线""UI 图标式等宽线"
+    "纯白数字画布"都是其反面。
+
+visual_intent:
+  - vintage
+  - hand-drawn
+  - literary
+  - nostalgic
+
+fingerprint:
+  shape:
+    - 轮廓不闭合或半闭合
+    - 允许重复描线造成的形变
+    - 手绘的不完美形状
+  line:
+    - 断续
+    - 重复笔迹
+    - 线宽自然变化
+    - 允许 construction lines
+  color:
+    - 黑灰为主
+    - 暖米白/象牙纸底
+    - 极少量低饱和辅色
+  shading:
+    - 松散排线
+    - 涂抹式墨渍阴影
+    - 不均匀墨色深浅
+  lighting:
+    - 无真实光源
+    - 靠墨色浓淡分层
+  texture:
+    - 纸张质感（暖米白/象牙）
+    - 墨渍与渗色边缘
+  composition:
+    - 复古编辑式构图
+    - 充足留白
+    - 手记式边距
+  detail:
+    - 4/10 中低细节，聚焦手绘趣味
+
+style_dna:
+  realism: 4
+  abstraction: 5
+  detail_density: 4
+  spatial_depth: 2
+  texture_strength: 7
+  shading_strength: 5
+  lighting_complexity: 1
+  line_presence: 9
+  line_roughness: 8
+  shape_complexity: 4
+  color_complexity: 2
+
+shape_language:
+  description: 手绘的不完美形状，轮廓允许开口与重复，整体保持可辨识。
+  preferred: [broken contour, overlapping stroke, hand-drawn wobble, semi-closed silhouette]
+  avoid: [perfect bézier curve, symmetrical precision, ruler-straight edges]
+
+line_language:
+  description: 断续、重复、自然变化线宽；construction lines 被允许甚至保留。
+  preferred: [broken line, overlapping contour, variable ink weight, loose hatching, scribbled shading, construction line]
+  avoid: [uniform UI stroke, perfect smooth curve, single-pass precision, digital vector clean]
+
+color_system:
+  strategy: restrained monochrome with subtle accent
+  recommended_palette_types: [PAL_IVORY_CHARCOAL, PAL_VINTAGE_FADED, PAL_EARTH_TONE]
+  saturation_range: [1, 3]
+  contrast_range: [5, 7]
+  recommended_color_count: [2, 4]
+  avoid: [candy color, neon, large flat bright areas]
+
+shading:
+  method: [loose hatching, scribble shading, ink wash patches]
+  strength: 5
+  avoid: [smooth airbrush gradient, soft volumetric shading]
+
+lighting:
+  physical_realism: 1
+  methods: [ink density value layering, no explicit light source]
+  avoid: [photographic lighting, dramatic rim light, glow]
+
+texture:
+  default: [warm ivory textured paper, ink bleed edge]
+  strength: 7
+  avoid: [clean white digital canvas, glossy surface]
+
+material:
+  rendering_policy: paper and ink media, no PBR
+  preferred: [paper grain, ink absorption, slight bleed]
+  avoid: [metal/glass realism, fabric weave rendering]
+
+composition:
+  preferred: [vintage editorial layout, generous breathing space, asymmetric balance, hand-margin feel]
+  negative_space_range: "35-60%"
+  layer_count: "2-3"
+  avoid: [symmetrical poster grid, dense collage, centered perfection]
+
+spatial_system:
+  depth: 2
+  perspective: [loose perspective, flat layering]
+  avoid: [precise architectural perspective]
+
+detail_density:
+  level: 4
+  focal_detail_policy: 焦点处允许密集笔迹，背景保持留白与松散
+
+character_rendering:
+  face: 简洁特征线，允许夸张
+  skin: 纸底留白 + 稀疏线
+  hair: 松散墨线束，不逐根
+  anatomy: 比例随意，姿态优先
+  clothing: 褶皱用少量线示意
+
+background:
+  complexity: 1
+  preferred: [warm ivory paper, blank space, faint wash]
+  avoid: [photographic background, complex rendered environment]
+
+rules:
+  must:
+    - 使用非完全闭合轮廓
+    - 允许重复描线
+    - 允许局部 construction lines
+    - 线条粗细自然变化
+    - 背景为暖米白/象牙纸
+    - 黑灰占主要视觉比例
+    - 辅色低饱和
+    - 保持手绘松弛感
+  should:
+    - 保留少量笔迹失误
+    - 阴影用松散排线
+    - 留白充足
+    - 边距有手记感
+    - 墨色有浓淡变化
+  may:
+    - 出现墨渍或渗色
+    - 出现轻微纸张纹理
+    - 线条交叉重叠
+    - 出现文字/标注式笔迹
+  must_not:
+    - 完美 Bézier 曲线
+    - UI icon 式等宽线
+    - 纯白数字画布
+    - 大面积 candy color
+    - 摄影光照
+    - 真实 PBR 材质
+    - 数字柔光渐变
+    - 对称海报式精确排版
+    - 高饱和霓虹
+    - 3D 渲染观感
+
+allowed_variations:
+  - 辅色换成不同低饱和色（dusty blue / brick red / sage）
+  - 纸张色调在米白–象牙间变化
+  - 线条密度增减
+
+forbidden_features:
+  - digital vector perfection
+  - UI icon line weight
+  - photorealistic lighting
+  - candy colors
+  - PBR materials
+
+canonical_prompt:
+  positive_anchor:
+    - "vintage loose ink sketch illustration"
+    - "naturally imperfect hand-drawn lines"
+    - "broken and overlapping contours"
+    - "variable ink line weight"
+    - "spontaneous rough sketch character"
+    - "loose hatching and scribbled shading"
+    - "warm ivory textured paper"
+    - "restrained monochrome palette"
+    - "very subtle muted accent color"
+    - "refined vintage editorial composition"
+    - "large breathing space"
+  negative_anchor:
+    - "perfect smooth bézier curves"
+    - "uniform vector stroke width"
+    - "clean white digital canvas"
+    - "bright candy colors"
+    - "photographic lighting"
+    - "PBR materials"
+    - "digital soft glow gradient"
+    - "symmetric poster layout"
+    - "3D rendering"
+    - "high saturation neon"
+
+confusion_with:
+  - style: DR04
+    risk: high
+    difference:
+      - DR07 松弛断续、重复笔迹
+      - DR04 强调干净有力的墨线走势
+    correction:
+      - break the contours
+      - add overlapping strokes
+      - loosen the line work
+  - style: PR04
+    risk: medium
+    difference:
+      - PR04 是蚀刻版画的规则密集线
+      - DR07 是手绘松散线
+    correction:
+      - remove uniform etching hatching
+      - restore hand-drawn variation
+  - style: DR01
+    risk: medium
+    difference:
+      - DR01 是铅笔灰度造型
+      - DR07 是墨线 + 纸感
+    correction:
+      - replace graphite tones with ink lines
+      - warm the paper tone
+
+correction_rules:
+  - problem: lines_too_perfect
+    instructions:
+      - break smooth contours into segments
+      - add repeated overlapping strokes
+      - introduce variable line weight
+  - problem: lost_paper_texture
+    instructions:
+      - warm the background to ivory
+      - add subtle paper grain
+      - allow faint ink bleed
+  - problem: palette_too_bright
+    instructions:
+      - reduce saturation of accent colors
+      - keep charcoal dominant
+      - mute the palette
+  - problem: too_tidy_composition
+    instructions:
+      - loosen the grid
+      - add asymmetric margins
+      - leave more breathing space
+  - problem: drifted_to_vector
+    instructions:
+      - remove uniform stroke widths
+      - introduce hand-drawn wobble
+      - break closed silhouettes
+
+use_cases:
+  recommended:
+    - 文学/诗歌配图
+    - 旧书插图风格
+    - 历史人文内容
+    - 旅行手记 / 手账
+    - 复古文章专栏
+  discouraged:
+    - 科技/现代产品视觉
+    - 数据图表
+    - 需要精确识别度的界面插画
+
+compatibility:
+  portrait: 8
+  landscape: 8
+  product: 5
+  poster: 8
+  education: 6
+  book_video: 8
+
+reference_policy:
+  minimum_reference_count: 3
+  reference_types: [portrait, still_life, environment]
+
+evaluation_profile: DR07_LINE_HEAVY

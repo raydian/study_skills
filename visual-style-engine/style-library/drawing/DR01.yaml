@@ -1,0 +1,58 @@
+# DR01 — Pencil Drawing / 铅笔素描
+id: DR01
+version: 1.0.0
+status: ACTIVE
+name: {zh: 铅笔素描, en: Pencil Drawing}
+category: {id: drawing, name_zh: 素描线绘, name_en: Drawing}
+parent_style: null
+aliases: [pencil sketch, graphite drawing, 铅笔素描]
+definition:
+  summary: >-
+    以石墨铅笔灰度层次造型的素描风格：纸面颗粒、排线过渡、柔和层次，朴素而专注形与光。
+  detailed: >-
+    铅笔素描以石墨的深浅灰度塑造体积与空间：排线/涂抹/擦揉产生层次，纸面颗粒可见。
+    它强调造型与光感的结构性，常用于素描基础、手绘感插画、文献手稿风。
+visual_intent: [hand-drawn, monochrome, academic]
+fingerprint:
+  shape: [结构造型, 灰度体积]
+  line: [石墨线, 排线]
+  color: [石墨灰度, 单色]
+  shading: [排线过渡, 擦揉层次]
+  lighting: [灰度光感]
+  texture: [纸面颗粒, 石墨粉感]
+  composition: [造型构图, 留白纸面]
+  detail: [5/10 灰度细节]
+style_dna: {realism: 6, abstraction: 4, detail_density: 5, spatial_depth: 6, texture_strength: 5, shading_strength: 7, lighting_complexity: 5, line_presence: 6, line_roughness: 5, shape_complexity: 5, color_complexity: 1}
+shape_language: {description: 结构造型, preferred: [结构形, 体积形], avoid: [卡通轮廓]}
+line_language: {description: 石墨线排线, preferred: [结构线, 排线], avoid: [墨线生硬]}
+color_system: {strategy: 石墨单色, recommended_palette_types: [PAL_MONOCHROME, PAL_BLACK_WHITE, PAL_IVORY_CHARCOAL], saturation_range: [0, 1], contrast_range: [4, 7], recommended_color_count: [1, 2], avoid: [彩色]}
+shading: {method: [排线, 擦揉], strength: 7, avoid: [空气刷]}
+lighting: {physical_realism: 5, methods: [灰度光感], avoid: [彩色光]}
+texture: {default: [纸面颗粒], strength: 5, avoid: [数码平滑]}
+material: {rendering_policy: 石墨纸面, preferred: [石墨质感], avoid: [油光]}
+composition: {preferred: [造型构图, 纸面留白], negative_space_range: "20-45%", layer_count: "2-3", avoid: [满铺]}
+spatial_system: {depth: 6, perspective: [结构透视], avoid: [机械]}
+detail_density: {level: 5, focal_detail_policy: 焦点灰度充分}
+character_rendering: {face: 结构素描, skin: 灰度, hair: 排线, anatomy: 结构, clothing: 灰度块}
+background: {complexity: 2, preferred: [纸面留白], avoid: [照片]}
+rules:
+  must: [石墨灰度, 纸面颗粒, 排线或擦揉, 造型结构]
+  should: [层次过渡, 留白纸面, 朴素]
+  may: [擦揉涂抹, 结构辅助线]
+  must_not: [墨线硬边, 彩色, 3D 渲染感, 照片噪点（非素描）, 油光, 卡通勾线]
+allowed_variations: [排线密度, 擦揉程度]
+forbidden_features: [ink hard edge, color, 3D render]
+canonical_prompt:
+  positive_anchor: [pencil drawing, graphite grayscale, crosshatch and blending, paper tooth texture, structural form, soft tonal transitions, academic sketch quality]
+  negative_anchor: [ink hard edges, color, 3D rendering, photographic noise, glossy, cartoon outline]
+confusion_with:
+  - {style: DR02, risk: high, difference: [DR02 炭笔深黑涂抹, DR01 石墨细腻灰度], correction: [细腻化, 减深黑]}
+  - {style: DR04, risk: medium, difference: [DR04 墨线强调轮廓, DR01 灰度造型], correction: [灰度化, 弱化墨线]}
+correction_rules:
+  - {problem: looks_charcoal, instructions: [石墨细腻化, 减对比]}
+  - {problem: looks_ink, instructions: [灰度层次, 去硬边]}
+  - {problem: too_smooth_digital, instructions: [加纸面颗粒, 排线感]}
+use_cases: {recommended: [素描基础, 手绘感插画, 手稿文献风], discouraged: [商业摄影替代]}
+compatibility: {portrait: 8, landscape: 8, product: 6, poster: 7, education: 7, book_video: 7}
+reference_policy: {minimum_reference_count: 3, reference_types: [portrait, still_life, environment]}
+evaluation_profile: DR01_DEFAULT

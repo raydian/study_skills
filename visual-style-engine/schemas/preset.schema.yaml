@@ -1,0 +1,32 @@
+# ============================================================
+# Preset Schema — Style + 常用 Attribute 的稳定组合
+# 依据：《AI Visual Style Skill System 设计方案》第 3.3 节
+# 原则：Preset 方便直接调用，但底层保持 Style 与 Attribute 分离
+# ============================================================
+schema: preset
+version: "1.0.0"
+
+id: string            # 必填。如 PRESET_001
+version: string       # 必填。SemVer
+name:
+  zh: string          # 必填。如 极简矢量 · 糖果清新
+  en: string          # 可选
+
+base_style:
+  id: string          # 必填。如 VE01
+  version: string     # 可选，缺省 = 该 Style 当前 ACTIVE 版本
+
+attributes: {}        # 可选。挂载的 Attribute 组合（palette / lighting / composition / texture / mood / era，各为 attribute id）
+overrides: {}         # 可选。对 Style 规则的有限覆盖（仅 allowed_variations 内允许）
+  # texture_strength: 4
+
+use_cases: [string]   # 推荐用途
+avoid_use_cases: [string]
+
+compatibility:
+  portrait: number    # 0–10
+  landscape: number
+  product: number
+  poster: number
+  education: number
+  book_video: number
