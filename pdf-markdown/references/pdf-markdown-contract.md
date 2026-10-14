@@ -13,7 +13,7 @@ validate: 检查三阶段产物、页面记录、图片引用和拆分覆盖
 
 `format` 不得绕过原始稿重新读取 PDF；`split` 不得直接读取 PDF 或原始稿。三个阶段可以单独重跑，但输入必须来自上一个阶段的已生成产物。
 
-如果 MinerU 已经生成完整 `auto/` 目录，可用 `import-mineru` 将其导入项目目录后继续后两个阶段；导入前必须确认 Markdown、图片和 `content_list_v2.json` 均存在。
+如果 MinerU 已经产出完整 zip（`markdown.md` + `images/` + `structured_content.json` 齐备），可用 `import-mineru` 导入项目目录后继续后两个阶段；导入前必须确认三者均存在，未完成目录不得当作成功结果。
 
 ## 2. Output contract
 
@@ -27,10 +27,9 @@ markdown/<学科>/<PDF 文件名>/
   images/
   mineru/
     <MinerU 原始 Markdown>
-    *_content_list_v2.json
-    *_content_list.json
-    *_middle.json
-    *_model.json
+    structured_content.json
+    middle_json.json
+    model_output.json
   拆分/
     README.md
     章节/README.md
@@ -45,6 +44,8 @@ markdown/<学科>/<PDF 文件名>/
 markdown/<学科>/原始资料/<PDF 文件名>/
 ```
 
+用户指定其它位置时以 `--out-root` 为准，输出为 `<out-root>/<PDF 文件名>/`。
+
 规则：
 
 - `<PDF 文件名>` 使用 PDF stem，不包含 `.pdf`；
@@ -57,37 +58,52 @@ markdown/<学科>/原始资料/<PDF 文件名>/
 
 ## 3. MinerU contract
 
-默认命令等价于：
+MinerU 4.x 不再支持 `mineru -p ... -o ... -b pipeline -l ch`。默认命令等价于：
 
 ```bash
-mineru -p <PDF> -o <临时输出目录> -b pipeline -l ch
+mineru-kit parse <PDF> --pages all --tier standard --format zip --output <临时输出目录>
+```
+
+`--format zip` 产出的 zip 内为：
+
+```text
+markdown.md               # 原始 Markdown
+images/                   # 抽出的图片
+structured_content.json   # 页面/区块结构化结果（页面追溯来源）
+middle_json.json
+model_output.json
 ```
 
 脚本必须支持：
 
 ```bash
---engine mineru|pdfplumber       # 默认 mineru
---mineru-bin <path>
---mineru-backend pipeline
---mineru-language ch
+--tier flash|basic|standard|advanced   # 默认 standard
+--pages all|1-5,8|r3-r1                # 默认 all
+--model-source auto|huggingface|modelscope
+--mineru-kit-bin <path>
+--out-root <输出父目录>                  # 输出目录 = <out-root>/<PDF stem>/
 ```
+
+前置条件（缺一即失败，不得静默降级）：本地档位资源必须 `就绪`（`mineru-kit models show`），
+`parse_server.local.mode` 为 `managed`（`mineru parse` 路径）或直接使用进程内推理的 `mineru-kit parse`。
+HuggingFace 常不可达，模型源优先 `modelscope`。
 
 恢复已有 MinerU 输出：
 
 ```bash
-python scripts/pdf_markdown_pipeline.py import-mineru \
-  --mineru-output <MinerU 输出目录> --pdf <PDF> --subject <学科> --kind textbook
+python study_skills/pdf-markdown/scripts/pdf_markdown_pipeline.py import-mineru \
+  --bundle <MinerU 产出的 zip 或解压目录> --pdf <PDF> --out-root <输出父目录>
 ```
 
-MinerU 原始结果通常位于 `<临时输出>/<stem>/auto/`。导入时：
+导入时：
 
-- Markdown 原文写入输出根目录；
-- `auto/images/` 图片写入输出根目录 `images/`；
-- `*_content_list_v2.json` 等结构化结果写入 `mineru/`；
+- zip 内 `markdown.md` 原文写入输出根目录 `<PDF stem>.md`；
+- `images/` 图片写入输出根目录 `images/`；
+- `structured_content.json`、`middle_json.json`、`model_output.json` 写入 `mineru/`，并另存一份 `mineru/<PDF stem>.md` 供交叉追溯；
 - 原始 Markdown 的图片引用必须仍然指向可存在的相对路径；
 - 不为了添加页面注释而改写 MinerU 原始正文。
 
-如果 MinerU 未安装、模型下载失败、API 端口无法启动或输出不完整，默认流程必须失败并给出原因。`pdfplumber` 只有在显式指定 `--engine pdfplumber` 时作为回退，不得静默切换。
+如果 MinerU 未安装、模型未就绪、模型下载失败或输出不完整，默认流程必须失败并给出原因，不得静默切换到其它引擎。
 
 ## 4. Manifest contract
 
@@ -97,30 +113,33 @@ manifest 至少包含：
 {
   "schema_version": 2,
   "engine": "mineru",
-  "backend": "pipeline",
-  "command": ["mineru", "-p", "...", "-o", "...", "-b", "pipeline", "-l", "ch"],
+  "backend": "standard",
+  "command": ["mineru-kit", "parse", "...", "--pages", "all", "--tier", "standard", "--format", "zip", "--output", "..."],
   "source_pdf": "/absolute/path/book.pdf",
   "source_sha256": "...",
-  "subject": "地理",
-  "source_kind": "textbook",
-  "page_count": 134,
+  "source_kind": "reference",
+  "page_count": 132,
+  "model_source": "modelscope",
   "stages": {
     "raw": "书名.md",
     "formatted": "书名-格式化.md",
     "split": ["拆分/章节/01-第一章.md"]
   },
   "mineru": {
+    "version": "MinerU 4.0.7",
     "language": "ch",
     "source_markdown": "mineru/书名.md",
-    "artifacts": ["mineru/书名_content_list_v2.json"]
+    "artifacts": ["mineru/structured_content.json", "mineru/middle_json.json", "mineru/model_output.json"]
   },
   "pages": [],
   "images": [],
+  "raw_validation": {"images_referenced": 0, "images_missing": [], "ok": true},
+  "format": {"dropped_chrome_lines": 0, "page_markers_inserted": 0},
   "warnings": []
 }
 ```
 
-页面记录至少包含页码、文本字符数、图片路径、OCR 状态和 warning。MinerU 页面信息来自 `content_list_v2.json`；若该文件缺失，`page_count` 可以为空，但必须记录人工复核 warning。图片记录至少包含路径、来源页、尺寸、SHA-256、引用状态、去重关系或过滤原因。
+页面记录至少包含页码、文本字符数、区块数、图片路径、OCR 状态和 warning。MinerU 页面信息来自 `mineru/structured_content.json`（其 `pages[].page_idx` 为 0 基）；若该文件缺失，`page_count` 可以为空，但必须记录人工复核 warning。图片记录至少包含路径、来源页、尺寸、SHA-256、引用状态、去重关系或过滤原因。
 
 ## 5. Raw Markdown contract
 
@@ -132,7 +151,7 @@ MinerU 原始稿必须：
 - 与 `mineru/` 中原始 Markdown 和结构化 JSON 可互相追溯；
 - 不在原始阶段清理目录、页眉、页脚或人工改写正文。
 
-显式 `pdfplumber` 回退稿应增加 `<!-- 第 N 页 -->` 页面标记，并在 OCR 或内容缺失处写出页面级说明。
+原始稿保留 MinerU 输出原貌；页码追溯由 Stage 2 在格式化稿中以 `<!-- 来源页：N -->` 补足，来源是 `mineru/structured_content.json` 的页块锚点。
 
 ## 6. Formatted Markdown contract
 
@@ -184,7 +203,7 @@ MinerU 原始稿必须：
 执行：
 
 ```bash
-python scripts/pdf_markdown_pipeline.py validate --output-dir <输出目录>
+python study_skills/pdf-markdown/scripts/pdf_markdown_pipeline.py validate --dir <输出目录>
 ```
 
 至少检查：
