@@ -1,4 +1,4 @@
 interface:
   display_name: "错题本"
-  short_description: "Build wrong-answer notebooks by subject parameter"
-  default_prompt: "Use $mistake-notebook with 学科=物理 to create a wrong-answer notebook from these mistakes."
+  short_description: "按学科整理错题，支持 Markdown 试卷题号提取、数学分层讲解与巩固复测"
+  default_prompt: "使用 $mistake-notebook，学科=数学，根据指定 Markdown 试卷和错题号创建或更新错题体系，保留原题，通俗讲解知识点、题型、解题思路与方法，并安排分层巩固。"

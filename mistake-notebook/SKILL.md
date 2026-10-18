@@ -1,18 +1,26 @@
 ---
 name: mistake-notebook
-agent_created: true
-description: Create subject-specific high-school wrong-answer notebooks from exams, homework, practice questions, question banks, test analyses, answer records, or correction notes. Use when the user asks for 错题本, 错题整理, 错题复盘, 二次订正, 从试卷提取错题, or to create subject mistake-notebook outputs under high_school; the subject must be provided or inferred and routed to the matching reference file.
+metadata:
+  agent_created: true
+description: Use when a user requests subject-specific high-school 错题本、错题整理、错题体系、二次订正 or 复测更新, especially from a Markdown paper with specified wrong question numbers. Route by subject; mathematics has a detailed extraction, explanation, consolidation and accumulation specification.
 ---
 
-# Mistake Notebook
+# 错题本与错题体系
 
-## Core Rule
+## 范围与输入
 
-Create wrong-answer notebooks for real mistakes, unstable solved questions, repeated traps, or high-value correction records. Do not create question banks, whole-paper analyses, method summaries, or chapter notes.
+围绕用户指定的真实错题、掌握不稳题和订正记录工作。默认服务一个学生，按学科积累；不要求先上传学生作答。输入以 Markdown 试卷和错题号为主，学生作答、参考答案、日期和复测结果均为可选补充。
 
-The user request must include or imply a subject. Treat `学科` as the routing parameter.
+- 最小调用：`学科=数学；试卷=<Markdown 文件路径>；错题号=3、7、12（2）、18`。
+- 更新调用：`学科=数学；将 <错题ID> 的本次复测结果记录为……`。
+- 从明确的请求或试卷推断学科；确实无法区分时才询问。
+- 未提供错题号且材料不能确定哪些题做错时，先询问题号；不能将整张卷子都认定为错题。
+- 没有学生作答时，个人错因写“待确认”，可另列常见易错点；不能编造错误答案、错误步骤或“粗心”等诊断。
+- 参考答案是可选依据；无答案时独立推导并标明，发现答案与推导冲突时展示核验依据，不盲从答案。
 
-Read exactly one subject reference before writing files:
+## 学科路由
+
+写入文件前，只读取对应学科的规范：
 
 - `学科=语文`: `references/chinese.md`
 - `学科=数学`: `references/math.md`
@@ -23,26 +31,20 @@ Read exactly one subject reference before writing files:
 - `学科=历史`: `references/history.md`
 - `学科=地理`: `references/geography.md`
 
-## Workflow
+数学的目录、单题模板、分层讲解和复测规则以 [数学规范](references/math.md) 为准。本次完善数学能力；其他学科沿用各自规范，不套用数学题型或方法。
 
-1. Identify the subject, source material, mistake source, and target notebook theme.
-2. If the subject is ambiguous, ask for the subject before writing files.
-3. Read the matching subject reference file.
-4. Extract only wrong, unstable, repeated, or high-value questions from the input.
-5. For each mistake, preserve the original question, the wrong answer or wrong thinking, the correct solution, the cause, and a prevention rule.
-6. Classify mistakes by question form, knowledge point, mistake cause, and mastery status.
-7. Create or update:
-   - `high_school/<学科>/错题本/<错题主题>.md`
-8. Add second-correction records and same-type variants when useful.
-9. Validate that every mistake explains why it was wrong and how to avoid repeating it.
+## 执行流程
 
-## Output Boundary
+1. **读取与定位**：读取源 Markdown 和引用的必要材料，识别试卷、题号、小问及共用条件；逐项列出“已定位、待确认、未找到”，不悄悄漏题。
+2. **检查已有记录**：在 `high_school/<学科>/错题本/` 查找同卷、同题和历史订正，确定新增或更新；保留用户手写内容和历史记录。
+3. **提取原题**：保留题干、选项、公式、题图和必要上下文，附源路径及原题号。修复输出中的相对图片链接，不改写源试卷；缺失材料单独标记。
+4. **讲解与诊断**：区分知识点、题型、答题思路、答题方法，先解释题意和基础知识，再呈现选择方法的理由、完整解答与核验。学生错因只根据证据判断。
+5. **规划巩固**：针对本题列出需加强的知识、题型、训练方法和验收标准；数学按规范给出分层练习及折叠答案。
+6. **创建或更新体系**：按学科规范写入单题档案和索引。相同题目只维护一个权威记录，各索引链接到它；更新复测时追加真实记录。
+7. **核验并交付**：检查题号覆盖、原题完整、推导正确、来源与内部链接有效、索引一致及状态有据。报告新增、更新、未完成项目和可点击的入口。
 
-Use `错题本/` only for correction and retention.
+只问阻塞当前题目的信息，其余可定位题目继续处理。不要把待确认题、推测错因或推荐训练时间写成已确认事实。
 
-Use other outputs when appropriate:
+## 输出边界
 
-- `试卷解析/`: whole-paper review and per-question scoring analysis.
-- `题库整理/`: collections of questions for practice.
-- `方法总结/`: reusable solving or answer methods across question groups.
-- `知识点专题/`: conceptual knowledge organized by topic.
+默认只在 `high_school/<学科>/错题本/` 创建或更新本任务内容。可链接已有章节笔记、知识点专题和方法总结；链接必须指向实际存在的文件。贴合错题的少量巩固题属于本技能；整卷分析、大型题库、独立方法总结和章节笔记不在本次整理范围内。历史单文件错题本不自动迁移或删除，需要时仅将已有记录纳入索引。
